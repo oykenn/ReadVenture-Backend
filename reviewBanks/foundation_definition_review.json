@@ -1,0 +1,557 @@
+{
+  "1": [
+    {
+      "question_text": "What does big mean?",
+      "word": "big",
+      "meaning": "Large in size",
+      "hint": "Big means large in size.",
+      "example": "The big box took up a lot of space."
+    },
+    {
+      "question_text": "What does small mean?",
+      "word": "small",
+      "meaning": "Little in size",
+      "hint": "Small means little in size.",
+      "example": "The small toy fit in her pocket."
+    },
+    {
+      "question_text": "What does fast mean?",
+      "word": "fast",
+      "meaning": "Moving quickly",
+      "hint": "Fast means moving quickly.",
+      "example": "The fast runner reached the finish line first."
+    },
+    {
+      "question_text": "What does happy mean?",
+      "word": "happy",
+      "meaning": "Feeling glad",
+      "hint": "Happy means feeling glad.",
+      "example": "She felt happy when she got a gift."
+    },
+    {
+      "question_text": "What does sad mean?",
+      "word": "sad",
+      "meaning": "Feeling unhappy",
+      "hint": "Sad means feeling unhappy.",
+      "example": "He felt sad when the game ended."
+    }
+  ],
+  "2": [
+    {
+      "question_text": "What does hot mean?",
+      "word": "hot",
+      "meaning": "Having high heat",
+      "hint": "Hot means having high heat.",
+      "example": "The soup was hot, so I waited before eating."
+    },
+    {
+      "question_text": "What does cold mean?",
+      "word": "cold",
+      "meaning": "Having low heat",
+      "hint": "Cold means having low heat.",
+      "example": "The water felt cold in the morning."
+    },
+    {
+      "question_text": "What does loud mean?",
+      "word": "loud",
+      "meaning": "Making a big sound",
+      "hint": "Loud means making a big sound.",
+      "example": "The loud music could be heard outside."
+    },
+    {
+      "question_text": "What does quiet mean?",
+      "word": "quiet",
+      "meaning": "Making little or no sound",
+      "hint": "Quiet means making little or no sound.",
+      "example": "The library stayed quiet during reading time."
+    },
+    {
+      "question_text": "What does strong mean?",
+      "word": "strong",
+      "meaning": "Having great power",
+      "hint": "Strong means having great power.",
+      "example": "The strong boy lifted the heavy bag."
+    }
+  ],
+  "3": [
+    {
+      "question_text": "What does weak mean?",
+      "word": "weak",
+      "meaning": "Not strong",
+      "hint": "Weak means not strong.",
+      "example": "After being sick, he felt weak."
+    },
+    {
+      "question_text": "What does clean mean?",
+      "word": "clean",
+      "meaning": "Not dirty",
+      "hint": "Clean means not dirty.",
+      "example": "Her clean shirt looked neat and fresh."
+    },
+    {
+      "question_text": "What does dirty mean?",
+      "word": "dirty",
+      "meaning": "Not clean",
+      "hint": "Dirty means not clean.",
+      "example": "His shoes became dirty after playing outside."
+    },
+    {
+      "question_text": "What does begin mean?",
+      "word": "begin",
+      "meaning": "To start",
+      "hint": "Begin means to start.",
+      "example": "We begin class every morning at eight."
+    },
+    {
+      "question_text": "What does end mean?",
+      "word": "end",
+      "meaning": "To finish",
+      "hint": "End means to finish.",
+      "example": "The movie will end in ten minutes."
+    }
+  ],
+  "4": [
+    {
+      "question_text": "What does look mean?",
+      "word": "look",
+      "meaning": "To use your eyes to see",
+      "hint": "Look means to use your eyes to see.",
+      "example": "Please look at the board carefully."
+    },
+    {
+      "question_text": "What does shout mean?",
+      "word": "shout",
+      "meaning": "To speak very loudly",
+      "hint": "Shout means to speak very loudly.",
+      "example": "Do not shout inside the classroom."
+    },
+    {
+      "question_text": "What does walk mean?",
+      "word": "walk",
+      "meaning": "To move using your feet",
+      "hint": "Walk means to move using your feet.",
+      "example": "We walk to school every morning."
+    },
+    {
+      "question_text": "What does jump mean?",
+      "word": "jump",
+      "meaning": "To push yourself into the air",
+      "hint": "Jump means to push yourself into the air.",
+      "example": "The frog can jump very high."
+    },
+    {
+      "question_text": "What does run mean?",
+      "word": "run",
+      "meaning": "To move very fast on your feet",
+      "hint": "Run means to move very fast on your feet.",
+      "example": "The children run across the field."
+    }
+  ],
+  "5": [
+    {
+      "question_text": "What does brave mean?",
+      "word": "brave",
+      "meaning": "Not afraid",
+      "hint": "Brave means not afraid.",
+      "example": "The brave firefighter helped the family."
+    },
+    {
+      "question_text": "What does afraid mean?",
+      "word": "afraid",
+      "meaning": "Feeling scared",
+      "hint": "Afraid means feeling scared.",
+      "example": "The child felt afraid during the storm."
+    },
+    {
+      "question_text": "What does rich mean?",
+      "word": "rich",
+      "meaning": "Having a lot of money",
+      "hint": "Rich means having a lot of money.",
+      "example": "The rich man owned many houses."
+    },
+    {
+      "question_text": "What does poor mean?",
+      "word": "poor",
+      "meaning": "Having little money",
+      "hint": "Poor means having little money.",
+      "example": "The poor family saved every coin."
+    },
+    {
+      "question_text": "What does easy mean?",
+      "word": "easy",
+      "meaning": "Not hard",
+      "hint": "Easy means not hard.",
+      "example": "This puzzle is easy to solve."
+    }
+  ],
+  "6": [
+    {
+      "question_text": "What does hard mean?",
+      "word": "hard",
+      "meaning": "Not easy",
+      "hint": "Hard means not easy.",
+      "example": "The test was hard for many students."
+    },
+    {
+      "question_text": "What does buy mean?",
+      "word": "buy",
+      "meaning": "To pay money for something",
+      "hint": "Buy means to pay money for something.",
+      "example": "Mom will buy bread at the store."
+    },
+    {
+      "question_text": "What does sell mean?",
+      "word": "sell",
+      "meaning": "To give something for money",
+      "hint": "Sell means to give something for money.",
+      "example": "They sell fruit in the market."
+    },
+    {
+      "question_text": "What does help mean?",
+      "word": "help",
+      "meaning": "To give support",
+      "hint": "Help means to give support.",
+      "example": "I will help my friend carry the books."
+    },
+    {
+      "question_text": "What does fix mean?",
+      "word": "fix",
+      "meaning": "To repair something",
+      "hint": "Fix means to repair something.",
+      "example": "Dad can fix the broken chair."
+    }
+  ],
+  "7": [
+    {
+      "question_text": "What does loud mean?",
+      "word": "loud",
+      "meaning": "Making a big sound",
+      "hint": "Loud means making a big sound.",
+      "example": "The loud music could be heard outside."
+    },
+    {
+      "question_text": "What does near mean?",
+      "word": "near",
+      "meaning": "Close by",
+      "hint": "Near means close by.",
+      "example": "Our school is near the park."
+    },
+    {
+      "question_text": "What does far mean?",
+      "word": "far",
+      "meaning": "Not near",
+      "hint": "Far means not near.",
+      "example": "The mountain is far from our house."
+    },
+    {
+      "question_text": "What does open mean?",
+      "word": "open",
+      "meaning": "Not closed",
+      "hint": "Open means not closed.",
+      "example": "Please open the window."
+    },
+    {
+      "question_text": "What does close mean?",
+      "word": "close",
+      "meaning": "To shut something",
+      "hint": "Close means to shut something.",
+      "example": "Please close the door quietly."
+    }
+  ],
+  "8": [
+    {
+      "question_text": "What does smart mean?",
+      "word": "smart",
+      "meaning": "Good at learning",
+      "hint": "Smart means good at learning.",
+      "example": "Ana is smart and learns quickly."
+    },
+    {
+      "question_text": "What does tired mean?",
+      "word": "tired",
+      "meaning": "Needing rest",
+      "hint": "Tired means needing rest.",
+      "example": "I felt tired after the long trip."
+    },
+    {
+      "question_text": "What does hungry mean?",
+      "word": "hungry",
+      "meaning": "Wanting food",
+      "hint": "Hungry means wanting food.",
+      "example": "He was hungry after playing all day."
+    },
+    {
+      "question_text": "What does thirsty mean?",
+      "word": "thirsty",
+      "meaning": "Wanting a drink",
+      "hint": "Thirsty means wanting a drink.",
+      "example": "After running, she felt thirsty."
+    },
+    {
+      "question_text": "What does funny mean?",
+      "word": "funny",
+      "meaning": "Making people laugh",
+      "hint": "Funny means making people laugh.",
+      "example": "The clown was funny and made us laugh."
+    }
+  ],
+  "9": [
+    {
+      "question_text": "What does heavy mean?",
+      "word": "heavy",
+      "meaning": "Hard to lift",
+      "hint": "Heavy means hard to lift.",
+      "example": "The heavy bag was hard to lift."
+    },
+    {
+      "question_text": "What does light mean?",
+      "word": "light",
+      "meaning": "Not heavy",
+      "hint": "Light means not heavy.",
+      "example": "This box is light and easy to carry."
+    },
+    {
+      "question_text": "What does tall mean?",
+      "word": "tall",
+      "meaning": "High in height",
+      "hint": "Tall means high in height.",
+      "example": "The tall tree touched the sky."
+    },
+    {
+      "question_text": "What does short mean?",
+      "word": "short",
+      "meaning": "Not tall",
+      "hint": "Short means not tall.",
+      "example": "The short pencil needs sharpening."
+    },
+    {
+      "question_text": "What does early mean?",
+      "word": "early",
+      "meaning": "Before the usual time",
+      "hint": "Early means before the usual time.",
+      "example": "We arrived early for the program."
+    }
+  ],
+  "10": [
+    {
+      "question_text": "What does late mean?",
+      "word": "late",
+      "meaning": "After the usual time",
+      "hint": "Late means after the usual time.",
+      "example": "He was late for class today."
+    },
+    {
+      "question_text": "What does clean mean?",
+      "word": "clean",
+      "meaning": "Not dirty",
+      "hint": "Clean means not dirty.",
+      "example": "Her clean shirt looked neat and fresh."
+    },
+    {
+      "question_text": "What does empty mean?",
+      "word": "empty",
+      "meaning": "Having nothing inside",
+      "hint": "Empty means having nothing inside.",
+      "example": "The bottle was empty after lunch."
+    },
+    {
+      "question_text": "What does full mean?",
+      "word": "full",
+      "meaning": "Having no more space",
+      "hint": "Full means having no more space.",
+      "example": "The glass was full of juice."
+    },
+    {
+      "question_text": "What does win mean?",
+      "word": "win",
+      "meaning": "To be the best in a game",
+      "hint": "Win means to be the best in a game.",
+      "example": "Our team wants to win the game."
+    }
+  ],
+  "11": [
+    {
+      "question_text": "What does lose mean?",
+      "word": "lose",
+      "meaning": "To not win",
+      "hint": "Lose means to not win.",
+      "example": "Nobody likes to lose a match."
+    },
+    {
+      "question_text": "What does dark mean?",
+      "word": "dark",
+      "meaning": "Having little or no light",
+      "hint": "Dark means having little or no light.",
+      "example": "It gets dark at night."
+    },
+    {
+      "question_text": "What does bright mean?",
+      "word": "bright",
+      "meaning": "Full of light",
+      "hint": "Bright means full of light.",
+      "example": "The bright sun warmed the field."
+    },
+    {
+      "question_text": "What does smooth mean?",
+      "word": "smooth",
+      "meaning": "Not rough",
+      "hint": "Smooth means not rough.",
+      "example": "The table felt smooth to the touch."
+    },
+    {
+      "question_text": "What does rough mean?",
+      "word": "rough",
+      "meaning": "Not smooth",
+      "hint": "Rough means not smooth.",
+      "example": "The rough rock scraped my hand."
+    }
+  ],
+  "12": [
+    {
+      "question_text": "What does kind mean?",
+      "word": "kind",
+      "meaning": "Nice and caring",
+      "hint": "Kind means nice and caring.",
+      "example": "Our teacher is kind to everyone."
+    },
+    {
+      "question_text": "What does mean mean?",
+      "word": "mean",
+      "meaning": "Not kind",
+      "hint": "Mean means not kind.",
+      "example": "It is mean to laugh at others."
+    },
+    {
+      "question_text": "What does careful mean?",
+      "word": "careful",
+      "meaning": "Doing things safely",
+      "hint": "Careful means doing things safely.",
+      "example": "Be careful when crossing the street."
+    },
+    {
+      "question_text": "What does careless mean?",
+      "word": "careless",
+      "meaning": "Not careful",
+      "hint": "Careless means not careful.",
+      "example": "A careless mistake changed the answer."
+    },
+    {
+      "question_text": "What does noisy mean?",
+      "word": "noisy",
+      "meaning": "Making a lot of sound",
+      "hint": "Noisy means making a lot of sound.",
+      "example": "The room became noisy during recess."
+    }
+  ],
+  "13": [
+    {
+      "question_text": "What does silent mean?",
+      "word": "silent",
+      "meaning": "Making no sound",
+      "hint": "Silent means making no sound.",
+      "example": "Everyone stayed silent during the prayer."
+    },
+    {
+      "question_text": "What does proud mean?",
+      "word": "proud",
+      "meaning": "Feeling good about something you did",
+      "hint": "Proud means feeling good about something you did.",
+      "example": "She felt proud of her drawing."
+    },
+    {
+      "question_text": "What does shy mean?",
+      "word": "shy",
+      "meaning": "Feeling nervous around people",
+      "hint": "Shy means feeling nervous around people.",
+      "example": "The shy boy spoke very softly."
+    },
+    {
+      "question_text": "What does excited mean?",
+      "word": "excited",
+      "meaning": "Feeling very happy and eager",
+      "hint": "Excited means feeling very happy and eager.",
+      "example": "I felt excited about the school trip."
+    },
+    {
+      "question_text": "What does calm mean?",
+      "word": "calm",
+      "meaning": "Peaceful and quiet",
+      "hint": "Calm means peaceful and quiet.",
+      "example": "The lake looked calm in the morning."
+    }
+  ],
+  "14": [
+    {
+      "question_text": "What does busy mean?",
+      "word": "busy",
+      "meaning": "Having a lot to do",
+      "hint": "Busy means having a lot to do.",
+      "example": "Mom is busy cooking dinner."
+    },
+    {
+      "question_text": "What does lazy mean?",
+      "word": "lazy",
+      "meaning": "Not wanting to work",
+      "hint": "Lazy means not wanting to work.",
+      "example": "The lazy cat slept all afternoon."
+    },
+    {
+      "question_text": "What does friendly mean?",
+      "word": "friendly",
+      "meaning": "Acting kind toward others",
+      "hint": "Friendly means acting kind toward others.",
+      "example": "Our neighbor is friendly and smiles often."
+    },
+    {
+      "question_text": "What does safe mean?",
+      "word": "safe",
+      "meaning": "Free from danger",
+      "hint": "Safe means free from danger.",
+      "example": "Wear a helmet to stay safe."
+    },
+    {
+      "question_text": "What does danger mean?",
+      "word": "danger",
+      "meaning": "Something that can hurt you",
+      "hint": "Danger means something that can hurt you.",
+      "example": "The wet floor sign warns of danger."
+    }
+  ],
+  "15": [
+    {
+      "question_text": "What does protect mean?",
+      "word": "protect",
+      "meaning": "To keep someone safe",
+      "hint": "Protect means to keep someone safe.",
+      "example": "Sunscreen helps protect your skin."
+    },
+    {
+      "question_text": "What does build mean?",
+      "word": "build",
+      "meaning": "To make something",
+      "hint": "Build means to make something.",
+      "example": "They will build a sandcastle at the beach."
+    },
+    {
+      "question_text": "What does break mean?",
+      "word": "break",
+      "meaning": "To damage something",
+      "hint": "Break means to damage something.",
+      "example": "Be careful not to break the glass."
+    },
+    {
+      "question_text": "What does carry mean?",
+      "word": "carry",
+      "meaning": "To hold and move something",
+      "hint": "Carry means to hold and move something.",
+      "example": "She can carry the basket by herself."
+    },
+    {
+      "question_text": "What does drop mean?",
+      "word": "drop",
+      "meaning": "To let something fall",
+      "hint": "Drop means to let something fall.",
+      "example": "Do not drop the eggs."
+    }
+  ]
+}

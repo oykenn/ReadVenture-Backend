@@ -1,0 +1,557 @@
+{
+  "1": [
+    {
+      "question_text": "What is another word for glad??",
+      "word": "glad",
+      "meaning": "feeling happy",
+      "hint": "Happy is another word for glad.",
+      "example": "I felt happy when my friend visited."
+    },
+    {
+      "question_text": "What is another word for tiny?",
+      "word": "tiny",
+      "meaning": "very small in size",
+      "hint": "Small is another word for tiny.",
+      "example": "The small kitten hid under the chair."
+    },
+    {
+      "question_text": "What is another word for silent?",
+      "word": "silent",
+      "meaning": "making no sound",
+      "hint": "Quiet is another word for silent.",
+      "example": "Please stay quiet in the library."
+    },
+    {
+      "question_text": "What is another word for simple?",
+      "word": "simple",
+      "meaning": "easy to do or understand",
+      "hint": "Easy is another word for simple.",
+      "example": "The puzzle was easy to solve."
+    },
+    {
+      "question_text": "What is another word for large?",
+      "word": "large",
+      "meaning": "big in size",
+      "hint": "Big is another word for large.",
+      "example": "The big box was hard to carry."
+    }
+  ],
+  "2": [
+    {
+      "question_text": "What is another word for purchase?",
+      "word": "purchase",
+      "meaning": "to buy something",
+      "hint": "Buy is another word for purchase.",
+      "example": "We will buy bread at the store."
+    },
+    {
+      "question_text": "What is another word for arrive?",
+      "word": "arrive",
+      "meaning": "to get to a place",
+      "hint": "Reach is another word for arrive.",
+      "example": "We can reach the park before noon."
+    },
+    {
+      "question_text": "What is another word for depart?",
+      "word": "depart",
+      "meaning": "to leave a place",
+      "hint": "Leave is another word for depart.",
+      "example": "It is time to leave the classroom."
+    },
+    {
+      "question_text": "What is another word for observe?",
+      "word": "observe",
+      "meaning": "to watch carefully",
+      "hint": "Watch is another word for observe.",
+      "example": "I like to watch the birds outside."
+    },
+    {
+      "question_text": "What is another word for repair?",
+      "word": "repair",
+      "meaning": "to fix something",
+      "hint": "Fix is another word for repair.",
+      "example": "Dad will fix the broken chair."
+    }
+  ],
+  "3": [
+    {
+      "question_text": "What is another word for frightened?",
+      "word": "frightened",
+      "meaning": "feeling scared",
+      "hint": "Scared is another word for frightened.",
+      "example": "The child felt scared during the storm."
+    },
+    {
+      "question_text": "What is another word for cheerful?",
+      "word": "cheerful",
+      "meaning": "feeling happy and bright",
+      "hint": "Joyful is another word for cheerful.",
+      "example": "The joyful song made everyone smile."
+    },
+    {
+      "question_text": "What is another word for lonely?",
+      "word": "lonely",
+      "meaning": "feeling alone",
+      "hint": "Alone is another word for lonely.",
+      "example": "He sat alone during reading time."
+    },
+    {
+      "question_text": "What is another word for careful?",
+      "word": "careful",
+      "meaning": "acting with care",
+      "hint": "Cautious is another word for careful.",
+      "example": "Be cautious when crossing the street."
+    },
+    {
+      "question_text": "What is another word for quickly?",
+      "word": "quickly",
+      "meaning": "at a fast speed",
+      "hint": "Rapidly is another word for quickly.",
+      "example": "The rabbit moved rapidly across the field."
+    }
+  ],
+  "4": [
+    {
+      "question_text": "What is another word for shiny?",
+      "word": "shiny",
+      "meaning": "bright from light",
+      "hint": "Bright is another word for shiny.",
+      "example": "The bright light filled the room."
+    },
+    {
+      "question_text": "What is another word for rough?",
+      "word": "rough",
+      "meaning": "not smooth",
+      "hint": "Bumpy is another word for rough.",
+      "example": "The road was bumpy after the rain."
+    },
+    {
+      "question_text": "What is another word for grab?",
+      "word": "grab",
+      "meaning": "to catch or take quickly",
+      "hint": "Catch is another word for grab.",
+      "example": "Try to catch the ball with both hands."
+    },
+    {
+      "question_text": "What is another word for search?",
+      "word": "search",
+      "meaning": "to look for something",
+      "hint": "Look is another word for search.",
+      "example": "Please look under the table."
+    },
+    {
+      "question_text": "What is another word for assist?",
+      "word": "assist",
+      "meaning": "to help someone",
+      "hint": "Help is another word for assist.",
+      "example": "I will help my teacher carry the books."
+    }
+  ],
+  "5": [
+    {
+      "question_text": "What is another word for rapid?",
+      "word": "rapid",
+      "meaning": "very fast",
+      "hint": "Swift is another word for rapid.",
+      "example": "The swift bird flew over the trees."
+    },
+    {
+      "question_text": "What is another word for massive?",
+      "word": "massive",
+      "meaning": "very large",
+      "hint": "Huge is another word for massive.",
+      "example": "The huge whale swam in the ocean."
+    },
+    {
+      "question_text": "What is another word for wealthy?",
+      "word": "wealthy",
+      "meaning": "having a lot of money",
+      "hint": "Rich is another word for wealthy.",
+      "example": "The rich man owned many farms."
+    },
+    {
+      "question_text": "What is another word for needy?",
+      "word": "needy",
+      "meaning": "needing help or money",
+      "hint": "Poor is another word for needy.",
+      "example": "The poor family needed food and clothes."
+    },
+    {
+      "question_text": "What is another word for slim?",
+      "word": "slim",
+      "meaning": "thin in shape",
+      "hint": "Thin is another word for slim.",
+      "example": "The thin stick snapped easily."
+    }
+  ],
+  "6": [
+    {
+      "question_text": "What is another word for tidy?",
+      "word": "tidy",
+      "meaning": "neat and in order",
+      "hint": "Neat is another word for tidy.",
+      "example": "Her desk is always neat and clean."
+    },
+    {
+      "question_text": "What is another word for damp?",
+      "word": "damp",
+      "meaning": "slightly wet",
+      "hint": "Wet is another word for damp.",
+      "example": "My shoes got wet in the puddle."
+    },
+    {
+      "question_text": "What is another word for wide?",
+      "word": "wide",
+      "meaning": "having much space across",
+      "hint": "Broad is another word for wide.",
+      "example": "The river is broad and wide."
+    },
+    {
+      "question_text": "What is another word for narrow?",
+      "word": "narrow",
+      "meaning": "not wide",
+      "hint": "Slim is another word for narrow.",
+      "example": "We use the word slim in many sentences."
+    },
+    {
+      "question_text": "What is another word for mend?",
+      "word": "mend",
+      "meaning": "to fix something",
+      "hint": "Repair is another word for mend.",
+      "example": "They will repair the old fence tomorrow."
+    }
+  ],
+  "7": [
+    {
+      "question_text": "What is another word for collect?",
+      "word": "collect",
+      "meaning": "to gather things together",
+      "hint": "Gather is another word for collect.",
+      "example": "We gather leaves in the yard."
+    },
+    {
+      "question_text": "What is another word for destroy?",
+      "word": "destroy",
+      "meaning": "to ruin something",
+      "hint": "Ruin is another word for destroy.",
+      "example": "Rain can ruin a paper drawing."
+    },
+    {
+      "question_text": "What is another word for create?",
+      "word": "create",
+      "meaning": "to make something new",
+      "hint": "Make is another word for create.",
+      "example": "We will make a card for our teacher."
+    },
+    {
+      "question_text": "What is another word for choose?",
+      "word": "choose",
+      "meaning": "to pick one thing",
+      "hint": "Select is another word for choose.",
+      "example": "Please select one book to read."
+    },
+    {
+      "question_text": "What is another word for notice?",
+      "word": "notice",
+      "meaning": "to see or observe something",
+      "hint": "Observe is another word for notice.",
+      "example": "Scientists observe the stars at night."
+    }
+  ],
+  "8": [
+    {
+      "question_text": "What is another word for bold?",
+      "word": "bold",
+      "meaning": "brave and confident",
+      "hint": "Brave is another word for bold.",
+      "example": "The brave firefighter helped the family."
+    },
+    {
+      "question_text": "What is another word for peaceful?",
+      "word": "peaceful",
+      "meaning": "calm and quiet",
+      "hint": "Calm is another word for peaceful.",
+      "example": "She took a deep breath to stay calm."
+    },
+    {
+      "question_text": "What is another word for delighted?",
+      "word": "delighted",
+      "meaning": "very happy",
+      "hint": "Happy is another word for delighted.",
+      "example": "I felt happy when my friend visited."
+    },
+    {
+      "question_text": "What is another word for miserable?",
+      "word": "miserable",
+      "meaning": "very sad",
+      "hint": "Sad is another word for miserable.",
+      "example": "The movie made him feel sad."
+    },
+    {
+      "question_text": "What is another word for furious?",
+      "word": "furious",
+      "meaning": "very angry",
+      "hint": "Angry is another word for furious.",
+      "example": "He was angry when the toy broke."
+    }
+  ],
+  "9": [
+    {
+      "question_text": "What is another word for gigantic?",
+      "word": "gigantic",
+      "meaning": "extremely big",
+      "hint": "Huge is another word for gigantic.",
+      "example": "The huge whale swam in the ocean."
+    },
+    {
+      "question_text": "What is another word for miniature?",
+      "word": "miniature",
+      "meaning": "very small",
+      "hint": "Tiny is another word for miniature.",
+      "example": "We use the word tiny in many sentences."
+    },
+    {
+      "question_text": "What is another word for speedy?",
+      "word": "speedy",
+      "meaning": "fast",
+      "hint": "Fast is another word for speedy.",
+      "example": "The fast runner won the race."
+    },
+    {
+      "question_text": "What is another word for ancient?",
+      "word": "ancient",
+      "meaning": "very old",
+      "hint": "Old is another word for ancient.",
+      "example": "That old house stood near the hill."
+    },
+    {
+      "question_text": "What is another word for modern?",
+      "word": "modern",
+      "meaning": "new and current",
+      "hint": "New is another word for modern.",
+      "example": "She got a new notebook for class."
+    }
+  ],
+  "10": [
+    {
+      "question_text": "What is another word for protect?",
+      "word": "protect",
+      "meaning": "to keep safe",
+      "hint": "Guard is another word for protect.",
+      "example": "A dog can guard the house."
+    },
+    {
+      "question_text": "What is another word for discover?",
+      "word": "discover",
+      "meaning": "to find something new",
+      "hint": "Find is another word for discover.",
+      "example": "I hope we find the missing key."
+    },
+    {
+      "question_text": "What is another word for decide?",
+      "word": "decide",
+      "meaning": "to make a choice",
+      "hint": "Choose is another word for decide.",
+      "example": "You may choose a game to play."
+    },
+    {
+      "question_text": "What is another word for construct?",
+      "word": "construct",
+      "meaning": "to build something",
+      "hint": "Build is another word for construct.",
+      "example": "We can build a tower with blocks."
+    },
+    {
+      "question_text": "What is another word for demolish?",
+      "word": "demolish",
+      "meaning": "to tear down or destroy",
+      "hint": "Destroy is another word for demolish.",
+      "example": "Strong winds can destroy weak plants."
+    }
+  ],
+  "11": [
+    {
+      "question_text": "What is another word for collect?",
+      "word": "collect",
+      "meaning": "to gather things together",
+      "hint": "Gather is another word for collect.",
+      "example": "We gather leaves in the yard."
+    },
+    {
+      "question_text": "What is another word for examine?",
+      "word": "examine",
+      "meaning": "to look at carefully",
+      "hint": "Inspect is another word for examine.",
+      "example": "The teacher will inspect our projects."
+    },
+    {
+      "question_text": "What is another word for support?",
+      "word": "support",
+      "meaning": "to help or hold up",
+      "hint": "Help is another word for support.",
+      "example": "I will help my teacher carry the books."
+    },
+    {
+      "question_text": "What is another word for repair?",
+      "word": "repair",
+      "meaning": "to fix something",
+      "hint": "Restore is another word for repair.",
+      "example": "Workers will restore the old painting."
+    },
+    {
+      "question_text": "What is another word for observe?",
+      "word": "observe",
+      "meaning": "to watch carefully",
+      "hint": "Notice is another word for observe.",
+      "example": "Did you notice the rainbow outside?"
+    }
+  ],
+  "12": [
+    {
+      "question_text": "What is another word for brilliant?",
+      "word": "brilliant",
+      "meaning": "very smart or bright",
+      "hint": "Very smart is another word for brilliant.",
+      "example": "Our very smart classmate solved the problem."
+    },
+    {
+      "question_text": "What is another word for tiny?",
+      "word": "tiny",
+      "meaning": "very small in size",
+      "hint": "Mini is another word for tiny.",
+      "example": "She carried a mini notebook in her bag."
+    },
+    {
+      "question_text": "What is another word for slippery?",
+      "word": "slippery",
+      "meaning": "easy to slide on",
+      "hint": "Smooth is another word for slippery.",
+      "example": "The stone felt smooth in my hand."
+    },
+    {
+      "question_text": "What is another word for dull?",
+      "word": "dull",
+      "meaning": "not exciting or bright",
+      "hint": "Boring is another word for dull.",
+      "example": "The long speech was boring to hear."
+    },
+    {
+      "question_text": "What is another word for shiny?",
+      "word": "shiny",
+      "meaning": "bright from light",
+      "hint": "Glossy is another word for shiny.",
+      "example": "The glossy paper shined in the sun."
+    }
+  ],
+  "13": [
+    {
+      "question_text": "What is another word for quick?",
+      "word": "quick",
+      "meaning": "fast",
+      "hint": "Rapid is another word for quick.",
+      "example": "The rapid stream moved over the rocks."
+    },
+    {
+      "question_text": "What is another word for careful?",
+      "word": "careful",
+      "meaning": "acting with care",
+      "hint": "Watchful is another word for careful.",
+      "example": "The watchful guard stood by the gate."
+    },
+    {
+      "question_text": "What is another word for alone?",
+      "word": "alone",
+      "meaning": "without other people",
+      "hint": "Lonely is another word for alone.",
+      "example": "We use the word lonely in many sentences."
+    },
+    {
+      "question_text": "What is another word for cheerful?",
+      "word": "cheerful",
+      "meaning": "feeling happy and bright",
+      "hint": "Happy is another word for cheerful.",
+      "example": "I felt happy when my friend visited."
+    },
+    {
+      "question_text": "What is another word for scared?",
+      "word": "scared",
+      "meaning": "feeling afraid",
+      "hint": "Afraid is another word for scared.",
+      "example": "The little boy felt afraid in the dark."
+    }
+  ],
+  "14": [
+    {
+      "question_text": "What is another word for collect?",
+      "word": "collect",
+      "meaning": "to gather things together",
+      "hint": "Assemble is another word for collect.",
+      "example": "We will assemble the toy parts carefully."
+    },
+    {
+      "question_text": "What is another word for answer?",
+      "word": "answer",
+      "meaning": "to reply to a question",
+      "hint": "Respond is another word for answer.",
+      "example": "Please respond to the question clearly."
+    },
+    {
+      "question_text": "What is another word for choose?",
+      "word": "choose",
+      "meaning": "to pick one thing",
+      "hint": "Pick is another word for choose.",
+      "example": "You may pick your favorite color."
+    },
+    {
+      "question_text": "What is another word for search?",
+      "word": "search",
+      "meaning": "to look for something",
+      "hint": "Explore is another word for search.",
+      "example": "We will explore the forest trail today."
+    },
+    {
+      "question_text": "What is another word for show?",
+      "word": "show",
+      "meaning": "to let something be seen",
+      "hint": "Display is another word for show.",
+      "example": "The museum will display old pictures."
+    }
+  ],
+  "15": [
+    {
+      "question_text": "What is another word for assist?",
+      "word": "assist",
+      "meaning": "to help someone",
+      "hint": "Support is another word for assist.",
+      "example": "Friends support each other in hard times."
+    },
+    {
+      "question_text": "What is another word for protect?",
+      "word": "protect",
+      "meaning": "to keep safe",
+      "hint": "Defend is another word for protect.",
+      "example": "The knight will defend the castle."
+    },
+    {
+      "question_text": "What is another word for discover?",
+      "word": "discover",
+      "meaning": "to find something new",
+      "hint": "Detect is another word for discover.",
+      "example": "Dogs can detect strange smells quickly."
+    },
+    {
+      "question_text": "What is another word for improve?",
+      "word": "improve",
+      "meaning": "to make better",
+      "hint": "Enhance is another word for improve.",
+      "example": "Practice can enhance your reading skills."
+    },
+    {
+      "question_text": "What is another word for repair?",
+      "word": "repair",
+      "meaning": "to fix something",
+      "hint": "Fix is another word for repair.",
+      "example": "Dad will fix the broken chair."
+    }
+  ]
+}

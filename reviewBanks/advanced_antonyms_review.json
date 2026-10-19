@@ -1,0 +1,557 @@
+{
+  "1": [
+    {
+      "question_text": "What is the opposite of gigantic?",
+      "word": "gigantic",
+      "meaning": "extremely large",
+      "hint": "Miniature is the opposite of gigantic.",
+      "example": "The miniature toy house fit on the small shelf."
+    },
+    {
+      "question_text": "What is the opposite of joyful?",
+      "word": "joyful",
+      "meaning": "full of happiness",
+      "hint": "Miserable is the opposite of joyful.",
+      "example": "He felt miserable after losing his favorite book."
+    },
+    {
+      "question_text": "What is the opposite of boiling?",
+      "word": "boiling",
+      "meaning": "extremely hot",
+      "hint": "Freezing is the opposite of boiling.",
+      "example": "The freezing water turned into ice overnight."
+    },
+    {
+      "question_text": "What is the opposite of swift?",
+      "word": "swift",
+      "meaning": "moving very fast",
+      "hint": "Sluggish is the opposite of swift.",
+      "example": "The sluggish snail moved slowly across the path."
+    },
+    {
+      "question_text": "What is the opposite of above?",
+      "word": "above",
+      "meaning": "in a higher position",
+      "hint": "Beneath is the opposite of above.",
+      "example": "The shoes were hidden beneath the bed."
+    }
+  ],
+  "2": [
+    {
+      "question_text": "What is the opposite of crowded?",
+      "word": "crowded",
+      "meaning": "full of people or things",
+      "hint": "Empty is the opposite of crowded.",
+      "example": "The empty classroom was quiet after school."
+    },
+    {
+      "question_text": "What is the opposite of sunrise?",
+      "word": "sunrise",
+      "meaning": "the time when the sun appears in the morning",
+      "hint": "Sunset is the opposite of sunrise.",
+      "example": "We watched the orange sky during sunset."
+    },
+    {
+      "question_text": "What is the opposite of internal?",
+      "word": "internal",
+      "meaning": "inside something",
+      "hint": "External is the opposite of internal.",
+      "example": "The external wall of the house was painted blue."
+    },
+    {
+      "question_text": "What is the opposite of tall?",
+      "word": "tall",
+      "meaning": "having great height",
+      "hint": "Short is the opposite of tall.",
+      "example": "The short plant stayed close to the ground."
+    },
+    {
+      "question_text": "What is the opposite of open?",
+      "word": "open",
+      "meaning": "not closed",
+      "hint": "Shut is the opposite of open.",
+      "example": "Please keep the window shut during the rain."
+    }
+  ],
+  "3": [
+    {
+      "question_text": "What is the opposite of filthy?",
+      "word": "filthy",
+      "meaning": "very dirty",
+      "hint": "Clean is the opposite of filthy.",
+      "example": "Her hands were clean after washing them."
+    },
+    {
+      "question_text": "What is the opposite of weak?",
+      "word": "weak",
+      "meaning": "not strong",
+      "hint": "Strong is the opposite of weak.",
+      "example": "The strong rope held the heavy box."
+    },
+    {
+      "question_text": "What is the opposite of delayed?",
+      "word": "delayed",
+      "meaning": "happening later than expected",
+      "hint": "Early is the opposite of delayed.",
+      "example": "We arrived early for the school program."
+    },
+    {
+      "question_text": "What is the opposite of rigid?",
+      "word": "rigid",
+      "meaning": "stiff and not easy to bend",
+      "hint": "Flexible is the opposite of rigid.",
+      "example": "The flexible straw bent easily."
+    },
+    {
+      "question_text": "What is the opposite of heavy?",
+      "word": "heavy",
+      "meaning": "having a lot of weight",
+      "hint": "Light is the opposite of heavy.",
+      "example": "The light bag was easy to carry."
+    }
+  ],
+  "4": [
+    {
+      "question_text": "What is the opposite of noisy?",
+      "word": "noisy",
+      "meaning": "making a lot of sound",
+      "hint": "Quiet is the opposite of noisy.",
+      "example": "The library stayed quiet all afternoon."
+    },
+    {
+      "question_text": "What is the opposite of complex?",
+      "word": "complex",
+      "meaning": "hard to understand or made of many parts",
+      "hint": "Simple is the opposite of complex.",
+      "example": "She gave a simple answer to the question."
+    },
+    {
+      "question_text": "What is the opposite of poor?",
+      "word": "poor",
+      "meaning": "having little money",
+      "hint": "Rich is the opposite of poor.",
+      "example": "The rich man lived in a large house."
+    },
+    {
+      "question_text": "What is the opposite of damp?",
+      "word": "damp",
+      "meaning": "slightly wet",
+      "hint": "Dry is the opposite of damp.",
+      "example": "The towel became dry in the sun."
+    },
+    {
+      "question_text": "What is the opposite of thick?",
+      "word": "thick",
+      "meaning": "wide between opposite sides",
+      "hint": "Thin is the opposite of thick.",
+      "example": "She used a thin notebook for class."
+    }
+  ],
+  "5": [
+    {
+      "question_text": "What is the opposite of conclude?",
+      "word": "conclude",
+      "meaning": "to bring something to an end",
+      "hint": "Begin is the opposite of conclude.",
+      "example": "We begin our lesson at eight o\u2019clock."
+    },
+    {
+      "question_text": "What is the opposite of weep?",
+      "word": "weep",
+      "meaning": "to cry",
+      "hint": "Laugh is the opposite of weep.",
+      "example": "The children laugh during the funny play."
+    },
+    {
+      "question_text": "What is the opposite of purchase?",
+      "word": "purchase",
+      "meaning": "to buy something",
+      "hint": "Sell is the opposite of purchase.",
+      "example": "They sell fresh fruit in the market."
+    },
+    {
+      "question_text": "What is the opposite of push?",
+      "word": "push",
+      "meaning": "to move something away from you",
+      "hint": "Pull is the opposite of push.",
+      "example": "Please pull the door gently."
+    },
+    {
+      "question_text": "What is the opposite of accept?",
+      "word": "accept",
+      "meaning": "to agree to take something",
+      "hint": "Reject is the opposite of accept.",
+      "example": "She chose to reject the broken toy."
+    }
+  ],
+  "6": [
+    {
+      "question_text": "What is the opposite of distant?",
+      "word": "distant",
+      "meaning": "far away",
+      "hint": "Near is the opposite of distant.",
+      "example": "The school is near our house."
+    },
+    {
+      "question_text": "What is the opposite of dim?",
+      "word": "dim",
+      "meaning": "not bright",
+      "hint": "Bright is the opposite of dim.",
+      "example": "The bright lamp lit the whole room."
+    },
+    {
+      "question_text": "What is the opposite of modern?",
+      "word": "modern",
+      "meaning": "new or from the present time",
+      "hint": "Ancient is the opposite of modern.",
+      "example": "They found an ancient jar underground."
+    },
+    {
+      "question_text": "What is the opposite of rough?",
+      "word": "rough",
+      "meaning": "not smooth",
+      "hint": "Smooth is the opposite of rough.",
+      "example": "The smooth stone felt cool in my hand."
+    },
+    {
+      "question_text": "What is the opposite of sluggish?",
+      "word": "sluggish",
+      "meaning": "moving slowly",
+      "hint": "Fast is the opposite of sluggish.",
+      "example": "The fast horse ran across the field."
+    }
+  ],
+  "7": [
+    {
+      "question_text": "What is the opposite of timid?",
+      "word": "timid",
+      "meaning": "shy or easily frightened",
+      "hint": "Brave is the opposite of timid.",
+      "example": "The brave girl spoke in front of the class."
+    },
+    {
+      "question_text": "What is the opposite of narrow?",
+      "word": "narrow",
+      "meaning": "not wide",
+      "hint": "Wide is the opposite of narrow.",
+      "example": "The wide road had many lanes."
+    },
+    {
+      "question_text": "What is the opposite of low?",
+      "word": "low",
+      "meaning": "not high",
+      "hint": "High is the opposite of low.",
+      "example": "The bird flew high above the trees."
+    },
+    {
+      "question_text": "What is the opposite of chilly?",
+      "word": "chilly",
+      "meaning": "a little cold",
+      "hint": "Warm is the opposite of chilly.",
+      "example": "The soup kept us warm on the rainy day."
+    },
+    {
+      "question_text": "What is the opposite of vacant?",
+      "word": "vacant",
+      "meaning": "empty or not occupied",
+      "hint": "Occupied is the opposite of vacant.",
+      "example": "The occupied seat already had a bag on it."
+    }
+  ],
+  "8": [
+    {
+      "question_text": "What is the opposite of untidy?",
+      "word": "untidy",
+      "meaning": "not neat",
+      "hint": "Neat is the opposite of untidy.",
+      "example": "Her desk looked neat after cleaning."
+    },
+    {
+      "question_text": "What is the opposite of fragile?",
+      "word": "fragile",
+      "meaning": "easily broken",
+      "hint": "Strong is the opposite of fragile.",
+      "example": "The strong glass did not crack."
+    },
+    {
+      "question_text": "What is the opposite of gloomy?",
+      "word": "gloomy",
+      "meaning": "sad or dark in mood",
+      "hint": "Cheerful is the opposite of gloomy.",
+      "example": "Her cheerful smile brightened the room."
+    },
+    {
+      "question_text": "What is the opposite of dull?",
+      "word": "dull",
+      "meaning": "not bright or exciting",
+      "hint": "Bright is the opposite of dull.",
+      "example": "The bright star shone in the sky."
+    },
+    {
+      "question_text": "What is the opposite of silent?",
+      "word": "silent",
+      "meaning": "making no sound",
+      "hint": "Noisy is the opposite of silent.",
+      "example": "The noisy crowd cheered loudly."
+    }
+  ],
+  "9": [
+    {
+      "question_text": "What is the opposite of bulky?",
+      "word": "bulky",
+      "meaning": "large and hard to carry",
+      "hint": "Slim is the opposite of bulky.",
+      "example": "The slim folder fit into the drawer."
+    },
+    {
+      "question_text": "What is the opposite of brief?",
+      "word": "brief",
+      "meaning": "short in time or length",
+      "hint": "Long is the opposite of brief.",
+      "example": "We had a long meeting after class."
+    },
+    {
+      "question_text": "What is the opposite of firm?",
+      "word": "firm",
+      "meaning": "hard or solid",
+      "hint": "Soft is the opposite of firm.",
+      "example": "The soft pillow felt comfortable."
+    },
+    {
+      "question_text": "What is the opposite of sealed?",
+      "word": "sealed",
+      "meaning": "closed tightly",
+      "hint": "Open is the opposite of sealed.",
+      "example": "Please leave the box open for now."
+    },
+    {
+      "question_text": "What is the opposite of strong?",
+      "word": "strong",
+      "meaning": "having much power",
+      "hint": "Weak is the opposite of strong.",
+      "example": "The weak branch broke in the wind."
+    }
+  ],
+  "10": [
+    {
+      "question_text": "What is the opposite of succeed?",
+      "word": "succeed",
+      "meaning": "to do well or achieve something",
+      "hint": "Fail is the opposite of succeed.",
+      "example": "He may fail if he does not study."
+    },
+    {
+      "question_text": "What is the opposite of advance?",
+      "word": "advance",
+      "meaning": "to move forward",
+      "hint": "Retreat is the opposite of advance.",
+      "example": "The soldiers had to retreat from the hill."
+    },
+    {
+      "question_text": "What is the opposite of vacant?",
+      "word": "vacant",
+      "meaning": "empty",
+      "hint": "Full is the opposite of vacant.",
+      "example": "The bus was full of passengers."
+    },
+    {
+      "question_text": "What is the opposite of above?",
+      "word": "above",
+      "meaning": "at a higher level",
+      "hint": "Below is the opposite of above.",
+      "example": "The fish swam below the boat."
+    },
+    {
+      "question_text": "What is the opposite of external?",
+      "word": "external",
+      "meaning": "on the outside",
+      "hint": "Internal is the opposite of external.",
+      "example": "The doctor checked the internal organs."
+    }
+  ],
+  "11": [
+    {
+      "question_text": "What is the opposite of early?",
+      "word": "early",
+      "meaning": "before the expected time",
+      "hint": "Late is the opposite of early.",
+      "example": "He arrived late to the ceremony."
+    },
+    {
+      "question_text": "What is the opposite of tall?",
+      "word": "tall",
+      "meaning": "having much height",
+      "hint": "Short is the opposite of tall.",
+      "example": "The short candle burned quickly."
+    },
+    {
+      "question_text": "What is the opposite of powerful?",
+      "word": "powerful",
+      "meaning": "very strong",
+      "hint": "Weak is the opposite of powerful.",
+      "example": "The weak battery stopped working."
+    },
+    {
+      "question_text": "What is the opposite of kind?",
+      "word": "kind",
+      "meaning": "friendly and caring",
+      "hint": "Cruel is the opposite of kind.",
+      "example": "The cruel man shouted at the animals."
+    },
+    {
+      "question_text": "What is the opposite of clean?",
+      "word": "clean",
+      "meaning": "not dirty",
+      "hint": "Dirty is the opposite of clean.",
+      "example": "His shoes became dirty in the mud."
+    }
+  ],
+  "12": [
+    {
+      "question_text": "What is the opposite of open?",
+      "word": "open",
+      "meaning": "not shut",
+      "hint": "Closed is the opposite of open.",
+      "example": "The store stayed closed on Sunday."
+    },
+    {
+      "question_text": "What is the opposite of hot?",
+      "word": "hot",
+      "meaning": "having a high temperature",
+      "hint": "Cold is the opposite of hot.",
+      "example": "The cold juice cooled me down."
+    },
+    {
+      "question_text": "What is the opposite of empty?",
+      "word": "empty",
+      "meaning": "containing nothing",
+      "hint": "Full is the opposite of empty.",
+      "example": "The full glass almost spilled."
+    },
+    {
+      "question_text": "What is the opposite of cheerful?",
+      "word": "cheerful",
+      "meaning": "happy and positive",
+      "hint": "Sad is the opposite of cheerful.",
+      "example": "She felt sad after the movie ended."
+    },
+    {
+      "question_text": "What is the opposite of up?",
+      "word": "up",
+      "meaning": "toward a higher place",
+      "hint": "Down is the opposite of up.",
+      "example": "The apple fell down from the tree."
+    }
+  ],
+  "13": [
+    {
+      "question_text": "What is the opposite of laugh?",
+      "word": "laugh",
+      "meaning": "to make sounds when amused",
+      "hint": "Cry is the opposite of laugh.",
+      "example": "Babies cry when they are hungry."
+    },
+    {
+      "question_text": "What is the opposite of give?",
+      "word": "give",
+      "meaning": "to hand something to someone",
+      "hint": "Take is the opposite of give.",
+      "example": "Please take your notebook with you."
+    },
+    {
+      "question_text": "What is the opposite of purchase?",
+      "word": "purchase",
+      "meaning": "to buy",
+      "hint": "Sell is the opposite of purchase.",
+      "example": "They sell bread every morning."
+    },
+    {
+      "question_text": "What is the opposite of near?",
+      "word": "near",
+      "meaning": "close by",
+      "hint": "Far is the opposite of near.",
+      "example": "The farm is far from the city."
+    },
+    {
+      "question_text": "What is the opposite of dark?",
+      "word": "dark",
+      "meaning": "having little or no light",
+      "hint": "Light is the opposite of dark.",
+      "example": "The room became light when the curtain opened."
+    }
+  ],
+  "14": [
+    {
+      "question_text": "What is the opposite of hard?",
+      "word": "hard",
+      "meaning": "firm and not soft",
+      "hint": "Soft is the opposite of hard.",
+      "example": "The soft blanket kept me warm."
+    },
+    {
+      "question_text": "What is the opposite of high?",
+      "word": "high",
+      "meaning": "far above the ground",
+      "hint": "Low is the opposite of high.",
+      "example": "The plane flew low over the field."
+    },
+    {
+      "question_text": "What is the opposite of fast?",
+      "word": "fast",
+      "meaning": "moving quickly",
+      "hint": "Slow is the opposite of fast.",
+      "example": "The slow turtle crossed the road."
+    },
+    {
+      "question_text": "What is the opposite of brave?",
+      "word": "brave",
+      "meaning": "showing courage",
+      "hint": "Afraid is the opposite of brave.",
+      "example": "The afraid child hid behind his mother."
+    },
+    {
+      "question_text": "What is the opposite of rich?",
+      "word": "rich",
+      "meaning": "having a lot of money",
+      "hint": "Poor is the opposite of rich.",
+      "example": "The poor family worked very hard."
+    }
+  ],
+  "15": [
+    {
+      "question_text": "What is the opposite of smooth?",
+      "word": "smooth",
+      "meaning": "even and not rough",
+      "hint": "Rough is the opposite of smooth.",
+      "example": "The rough bark scratched my hand."
+    },
+    {
+      "question_text": "What is the opposite of heavy?",
+      "word": "heavy",
+      "meaning": "having a lot of weight",
+      "hint": "Light is the opposite of heavy.",
+      "example": "The light basket was easy to lift."
+    },
+    {
+      "question_text": "What is the opposite of short?",
+      "word": "short",
+      "meaning": "not long",
+      "hint": "Long is the opposite of short.",
+      "example": "The long bridge crossed the river."
+    },
+    {
+      "question_text": "What is the opposite of loud?",
+      "word": "loud",
+      "meaning": "making a strong sound",
+      "hint": "Quiet is the opposite of loud.",
+      "example": "Please keep your voice quiet in the hall."
+    },
+    {
+      "question_text": "What is the opposite of strong?",
+      "word": "strong",
+      "meaning": "having power",
+      "hint": "Weak is the opposite of strong.",
+      "example": "The weak kitten could barely stand."
+    }
+  ]
+}

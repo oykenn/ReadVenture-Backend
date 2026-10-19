@@ -1,0 +1,482 @@
+{
+  "1": [
+    {
+      "question_id": 1,
+      "question_text": "What does gigantic mean?",
+      "choices": ["Very small", "Extremely big", "Very slow", "Very cold"],
+      "correct_answer": "Extremely big"
+    },
+    {
+      "question_id": 2,
+      "question_text": "What does miniature mean?",
+      "choices": ["Very big", "Very loud", "Very fast", "Very small"],
+      "correct_answer": "Very small"
+    },
+    {
+      "question_id": 3,
+      "question_text": "What does swift mean?",
+      "choices": ["Very slow", "Very fast", "Very quiet", "Very soft"],
+      "correct_answer": "Very fast"
+    },
+    {
+      "question_id": 4,
+      "question_text": "What does delighted mean?",
+      "choices": ["Very happy", "Very angry", "Very tired", "Very scared"],
+      "correct_answer": "Very happy"
+    },
+    {
+      "question_id": 5,
+      "question_text": "What does miserable mean?",
+      "choices": ["Very excited", "Very strong", "Very brave", "Very unhappy"],
+      "correct_answer": "Very unhappy"
+    }
+  ],
+  "2": [
+    {
+      "question_id": 6,
+      "question_text": "What does scorching mean?",
+      "choices": ["Very cold", "Extremely hot", "Very dark", "Very quiet"],
+      "correct_answer": "Extremely hot"
+    },
+    {
+      "question_id": 7,
+      "question_text": "What does icy mean?",
+      "choices": ["Extremely cold", "Very warm", "Very loud", "Very bright"],
+      "correct_answer": "Extremely cold"
+    },
+    {
+      "question_id": 8,
+      "question_text": "What does deafening mean?",
+      "choices": ["Very quiet", "Very small", "Extremely loud", "Very thin"],
+      "correct_answer": "Extremely loud"
+    },
+    {
+      "question_id": 9,
+      "question_text": "What does hushed mean?",
+      "choices": ["Very noisy", "Very bright", "Very quiet", "Very tall"],
+      "correct_answer": "Very quiet"
+    },
+    {
+      "question_id": 10,
+      "question_text": "What does mighty mean?",
+      "choices": ["Very strong", "Very weak", "Very soft", "Very slow"],
+      "correct_answer": "Very strong"
+    }
+  ],
+  "3": [
+    {
+      "question_id": 11,
+      "question_text": "What does delicate mean?",
+      "choices": ["Very strong", "Easily broken", "Very loud", "Very tall"],
+      "correct_answer": "Easily broken"
+    },
+    {
+      "question_id": 12,
+      "question_text": "What does filthy mean?",
+      "choices": ["Very dirty", "Very clean", "Very quiet", "Very fast"],
+      "correct_answer": "Very dirty"
+    },
+    {
+      "question_id": 13,
+      "question_text": "What does commence mean?",
+      "choices": ["To end", "To stop", "To close", "To begin"],
+      "correct_answer": "To begin"
+    },
+    {
+      "question_id": 14,
+      "question_text": "What does conclude mean?",
+      "choices": ["To finish", "To open", "To jump", "To run"],
+      "correct_answer": "To finish"
+    },
+    {
+      "question_id": 15,
+      "question_text": "What does spotless mean?",
+      "choices": ["Very clean", "Very messy", "Very loud", "Very cold"],
+      "correct_answer": "Very clean"
+    }
+  ],
+  "4": [
+    {
+      "question_id": 16,
+      "question_text": "What does examine mean?",
+      "choices": ["To sleep", "To look closely", "To jump", "To cry"],
+      "correct_answer": "To look closely"
+    },
+    {
+      "question_id": 17,
+      "question_text": "What does scream mean?",
+      "choices": ["To shout loudly", "To whisper", "To walk", "To hide"],
+      "correct_answer": "To shout loudly"
+    },
+    {
+      "question_id": 18,
+      "question_text": "What does wander mean?",
+      "choices": ["To walk without direction", "To fly", "To swim", "To jump"],
+      "correct_answer": "To walk without direction"
+    },
+    {
+      "question_id": 19,
+      "question_text": "What does bounce mean?",
+      "choices": ["To sit", "To sleep", "To cry", "To jump repeatedly"],
+      "correct_answer": "To jump repeatedly"
+    },
+    {
+      "question_id": 20,
+      "question_text": "What does dash mean?",
+      "choices": ["To run quickly", "To walk slowly", "To sit", "To hide"],
+      "correct_answer": "To run quickly"
+    }
+  ],
+  "5": [
+    {
+      "question_id": 21,
+      "question_text": "What does courageous mean?",
+      "choices": ["Very scared", "Very brave", "Very tired", "Very quiet"],
+      "correct_answer": "Very brave"
+    },
+    {
+      "question_id": 22,
+      "question_text": "What does anxious mean?",
+      "choices": ["Worried or nervous", "Happy", "Strong", "Calm"],
+      "correct_answer": "Worried or nervous"
+    },
+    {
+      "question_id": 23,
+      "question_text": "What does wealthy mean?",
+      "choices": ["Has no money", "Has a lot of money", "Very weak", "Very small"],
+      "correct_answer": "Has a lot of money"
+    },
+    {
+      "question_id": 24,
+      "question_text": "What does needy mean?",
+      "choices": ["Having a lot", "Very loud", "Lacking basic needs", "Very tall"],
+      "correct_answer": "Lacking basic needs"
+    },
+    {
+      "question_id": 25,
+      "question_text": "What does difficult mean?",
+      "choices": ["Hard", "Easy", "Loud", "Slow"],
+      "correct_answer": "Hard"
+    }
+  ],
+  "6": [
+    {
+      "question_id": 26,
+      "question_text": "What does obtain mean?",
+      "choices": ["To lose something", "To get something", "To throw something", "To hide something"],
+      "correct_answer": "To get something"
+    },
+    {
+      "question_id": 27,
+      "question_text": "What does swap mean?",
+      "choices": ["To exchange", "To buy", "To keep", "To hide"],
+      "correct_answer": "To exchange"
+    },
+    {
+      "question_id": 28,
+      "question_text": "What does aid mean?",
+      "choices": ["To hurt", "To help", "To break", "To throw"],
+      "correct_answer": "To help"
+    },
+    {
+      "question_id": 29,
+      "question_text": "What does restore mean?",
+      "choices": ["To break something", "To fix something", "To hide something", "To cry"],
+      "correct_answer": "To fix something"
+    },
+    {
+      "question_id": 30,
+      "question_text": "What does gather mean?",
+      "choices": ["To collect", "To lose", "To throw", "To hide"],
+      "correct_answer": "To collect"
+    }
+  ],
+  "7": [
+    {
+      "question_id": 31,
+      "question_text": "What does beside mean?",
+      "choices": ["Far away", "Next to", "Very high", "Very dark"],
+      "correct_answer": "Next to"
+    },
+    {
+      "question_id": 32,
+      "question_text": "What does faraway mean?",
+      "choices": ["Very far", "Very close", "Very loud", "Very soft"],
+      "correct_answer": "Very far"
+    },
+    {
+      "question_id": 33,
+      "question_text": "What does unfasten mean?",
+      "choices": ["To close", "To open", "To run", "To jump"],
+      "correct_answer": "To open"
+    },
+    {
+      "question_id": 34,
+      "question_text": "What does shut tightly mean?",
+      "choices": ["To open", "To run", "To close firmly", "To jump"],
+      "correct_answer": "To close firmly"
+    },
+    {
+      "question_id": 35,
+      "question_text": "What does discover mean?",
+      "choices": ["To find", "To hide", "To throw", "To break"],
+      "correct_answer": "To find"
+    }
+  ],
+  "8": [
+    {
+      "question_id": 36,
+      "question_text": "What does brilliant mean?",
+      "choices": ["Very slow", "Very smart", "Very weak", "Very loud"],
+      "correct_answer": "Very smart"
+    },
+    {
+      "question_id": 37,
+      "question_text": "What does weary mean?",
+      "choices": ["Very tired", "Very excited", "Very strong", "Very happy"],
+      "correct_answer": "Very tired"
+    },
+    {
+      "question_id": 38,
+      "question_text": "What does starving mean?",
+      "choices": ["Sleepy", "Thirsty", "Very hungry", "Fast"],
+      "correct_answer": "Very hungry"
+    },
+    {
+      "question_id": 39,
+      "question_text": "What does parched mean?",
+      "choices": ["Very thirsty", "Very hungry", "Very sleepy", "Very fast"],
+      "correct_answer": "Very thirsty"
+    },
+    {
+      "question_id": 40,
+      "question_text": "What does entertaining mean?",
+      "choices": ["Serious", "Fun and interesting", "Angry", "Cold"],
+      "correct_answer": "Fun and interesting"
+    }
+  ],
+  "9": [
+    {
+      "question_id": 41,
+      "question_text": "What does bulky mean?",
+      "choices": ["Big and heavy", "Very light", "Very soft", "Very small"],
+      "correct_answer": "Big and heavy"
+    },
+    {
+      "question_id": 42,
+      "question_text": "What does slim mean?",
+      "choices": ["Very thick", "Thin", "Very loud", "Very heavy"],
+      "correct_answer": "Thin"
+    },
+    {
+      "question_id": 43,
+      "question_text": "What does towering mean?",
+      "choices": ["Very short", "Very small", "Very weak", "Very tall"],
+      "correct_answer": "Very tall"
+    },
+    {
+      "question_id": 44,
+      "question_text": "What does brief mean?",
+      "choices": ["Very long", "Very big", "Short", "Very strong"],
+      "correct_answer": "Short"
+    },
+    {
+      "question_id": 45,
+      "question_text": "What does prompt mean?",
+      "choices": ["Late", "Very loud", "On time or early", "Very slow"],
+      "correct_answer": "On time or early"
+    }
+  ],
+  "10": [
+    {
+      "question_id": 46,
+      "question_text": "What does delayed mean?",
+      "choices": ["Early", "Late", "Loud", "Fast"],
+      "correct_answer": "Late"
+    },
+    {
+      "question_id": 47,
+      "question_text": "What does spotless mean?",
+      "choices": ["Very messy", "Very clean", "Very loud", "Very weak"],
+      "correct_answer": "Very clean"
+    },
+    {
+      "question_id": 48,
+      "question_text": "What does vacant mean?",
+      "choices": ["Full", "Loud", "Bright", "Empty"],
+      "correct_answer": "Empty"
+    },
+    {
+      "question_id": 49,
+      "question_text": "What does packed mean?",
+      "choices": ["Empty", "Full", "Slow", "Soft"],
+      "correct_answer": "Full"
+    },
+    {
+      "question_id": 50,
+      "question_text": "What does accomplish mean?",
+      "choices": ["To succeed", "To fail", "To stop", "To fall"],
+      "correct_answer": "To succeed"
+    }
+  ],
+  "11": [
+    {
+      "question_id": 51,
+      "question_text": "What does faint mean?",
+      "choices": ["Very bright", "Not bright", "Loud", "Soft"],
+      "correct_answer": "Not bright"
+    },
+    {
+      "question_id": 52,
+      "question_text": "What does glowing mean?",
+      "choices": ["Shining", "Dark", "Quiet", "Slow"],
+      "correct_answer": "Shining"
+    },
+    {
+      "question_id": 53,
+      "question_text": "What does sleek mean?",
+      "choices": ["Rough", "Loud", "Tall", "Smooth"],
+      "correct_answer": "Smooth"
+    },
+    {
+      "question_id": 54,
+      "question_text": "What does coarse mean?",
+      "choices": ["Rough", "Soft", "Clean", "Bright"],
+      "correct_answer": "Rough"
+    },
+    {
+      "question_id": 55,
+      "question_text": "What does defeat mean?",
+      "choices": ["To win", "To lose", "To shout", "To jump"],
+      "correct_answer": "To lose"
+    }
+  ],
+  "12": [
+    {
+      "question_id": 56,
+      "question_text": "What does cruel mean?",
+      "choices": ["Kind", "Loud", "Very mean", "Fast"],
+      "correct_answer": "Very mean"
+    },
+    {
+      "question_id": 57,
+      "question_text": "What does cautious mean?",
+      "choices": ["Careless", "Loud", "Fast", "Careful"],
+      "correct_answer": "Careful"
+    },
+    {
+      "question_id": 58,
+      "question_text": "What does reckless mean?",
+      "choices": ["Safe", "Neat", "Not careful", "Quiet"],
+      "correct_answer": "Not careful"
+    },
+    {
+      "question_id": 59,
+      "question_text": "What does loud mean?",
+      "choices": ["Making strong sound", "Silent", "Small", "Cold"],
+      "correct_answer": "Making strong sound"
+    },
+    {
+      "question_id": 60,
+      "question_text": "What does quiet mean?",
+      "choices": ["Loud", "Fast", "Making little sound", "Bright"],
+      "correct_answer": "Making little sound"
+    }
+  ],
+  "13": [
+    {
+      "question_id": 61,
+      "question_text": "What does timid mean?",
+      "choices": ["Loud", "Brave", "Shy", "Angry"],
+      "correct_answer": "Shy"
+    },
+    {
+      "question_id": 62,
+      "question_text": "What does thrilled mean?",
+      "choices": ["Sleepy", "Very excited", "Cold", "Weak"],
+      "correct_answer": "Very excited"
+    },
+    {
+      "question_id": 63,
+      "question_text": "What does peaceful mean?",
+      "choices": ["Angry", "Calm", "Loud", "Fast"],
+      "correct_answer": "Calm"
+    },
+    {
+      "question_id": 64,
+      "question_text": "What does proud mean?",
+      "choices": ["Sad", "Tired", "Scared", "Happy about success"],
+      "correct_answer": "Happy about success"
+    },
+    {
+      "question_id": 65,
+      "question_text": "What does gloomy mean?",
+      "choices": ["Bright", "Sad or dark", "Loud", "Fast"],
+      "correct_answer": "Sad or dark"
+    }
+  ],
+  "14": [
+    {
+      "question_id": 66,
+      "question_text": "What does occupied mean?",
+      "choices": ["Doing nothing", "Sleepy", "Busy", "Cold"],
+      "correct_answer": "Busy"
+    },
+    {
+      "question_id": 67,
+      "question_text": "What does idle mean?",
+      "choices": ["Working hard", "Not working", "Strong", "Loud"],
+      "correct_answer": "Not working"
+    },
+    {
+      "question_id": 68,
+      "question_text": "What does sociable mean?",
+      "choices": ["Mean", "Friendly", "Cold", "Fast"],
+      "correct_answer": "Friendly"
+    },
+    {
+      "question_id": 69,
+      "question_text": "What does secure mean?",
+      "choices": ["Safe", "In danger", "Loud", "Weak"],
+      "correct_answer": "Safe"
+    },
+    {
+      "question_id": 70,
+      "question_text": "What does hazard mean?",
+      "choices": ["Safety", "Quiet", "Bright", "Danger"],
+      "correct_answer": "Danger"
+    }
+  ],
+  "15": [
+    {
+      "question_id": 71,
+      "question_text": "What does defend mean?",
+      "choices": ["To protect", "To hurt", "To shout", "To hide"],
+      "correct_answer": "To protect"
+    },
+    {
+      "question_id": 72,
+      "question_text": "What does assemble mean?",
+      "choices": ["To build", "To break", "To throw", "To cry"],
+      "correct_answer": "To build"
+    },
+    {
+      "question_id": 73,
+      "question_text": "What does demolish mean?",
+      "choices": ["To destroy", "To fix", "To help", "To run"],
+      "correct_answer": "To destroy"
+    },
+    {
+      "question_id": 74,
+      "question_text": "What does transport mean?",
+      "choices": ["To drop", "To sell", "To shout", "To carry"],
+      "correct_answer": "To carry"
+    },
+    {
+      "question_id": 75,
+      "question_text": "What does release mean?",
+      "choices": ["To catch", "To let go", "To build", "To laugh"],
+      "correct_answer": "To let go"
+    }
+  ]
+}

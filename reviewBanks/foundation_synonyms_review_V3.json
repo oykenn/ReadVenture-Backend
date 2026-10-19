@@ -1,0 +1,557 @@
+{
+  "1": [
+    {
+      "question_text": "What is another word for big?",
+      "word": "big",
+      "meaning": "very large in size",
+      "hint": "Large is another word for big.",
+      "example": "The elephant is large."
+    },
+    {
+      "question_text": "What is another word for small?",
+      "word": "small",
+      "meaning": "little in size",
+      "hint": "Little means small in size.",
+      "example": "The little bird sat on the tree."
+    },
+    {
+      "question_text": "What is another word for fast?",
+      "word": "fast",
+      "meaning": "moving quickly",
+      "hint": "Quick means fast.",
+      "example": "The rabbit is quick."
+    },
+    {
+      "question_text": "What is another word for happy?",
+      "word": "happy",
+      "meaning": "feeling joy",
+      "hint": "Glad is another word for happy.",
+      "example": "I felt glad after school."
+    },
+    {
+      "question_text": "What is another word for sad?",
+      "word": "sad",
+      "meaning": "feeling unhappy",
+      "hint": "Unhappy means sad.",
+      "example": "She felt unhappy when it rained."
+    }
+  ],
+  "2": [
+    {
+      "question_text": "What is another word for hot?",
+      "word": "hot",
+      "meaning": "having much heat",
+      "hint": "Warm is close in meaning to hot.",
+      "example": "The soup is warm."
+    },
+    {
+      "question_text": "What is another word for cold?",
+      "word": "cold",
+      "meaning": "having little heat",
+      "hint": "Cool is another word for cold.",
+      "example": "The water feels cool."
+    },
+    {
+      "question_text": "What is another word for mad?",
+      "word": "mad",
+      "meaning": "feeling angry",
+      "hint": "Angry means mad.",
+      "example": "He felt angry after losing the game."
+    },
+    {
+      "question_text": "What is another word for glad?",
+      "word": "glad",
+      "meaning": "feeling happy",
+      "hint": "Happy is another word for glad.",
+      "example": "She was happy to see her friend."
+    },
+    {
+      "question_text": "What is another word for quick?",
+      "word": "quick",
+      "meaning": "done very fast",
+      "hint": "Fast means quick.",
+      "example": "The fast runner won the race."
+    }
+  ],
+  "3": [
+    {
+      "question_text": "What is another word for smart?",
+      "word": "smart",
+      "meaning": "good at thinking and learning",
+      "hint": "Clever means smart.",
+      "example": "The clever boy solved the puzzle."
+    },
+    {
+      "question_text": "What is another word for tired?",
+      "word": "tired",
+      "meaning": "needing rest",
+      "hint": "Sleepy means tired.",
+      "example": "The sleepy child yawned in class."
+    },
+    {
+      "question_text": "What is another word for clean?",
+      "word": "clean",
+      "meaning": "free from dirt",
+      "hint": "Neat means clean and tidy.",
+      "example": "Her room is neat."
+    },
+    {
+      "question_text": "What is another word for messy?",
+      "word": "messy",
+      "meaning": "not neat or clean",
+      "hint": "Dirty can describe something messy and not clean.",
+      "example": "His shoes were dirty after playing outside."
+    },
+    {
+      "question_text": "What is another word for funny?",
+      "word": "funny",
+      "meaning": "causing laughter",
+      "hint": "Silly is another word for funny.",
+      "example": "The silly clown made us laugh."
+    }
+  ],
+  "4": [
+    {
+      "question_text": "What is another word for loud?",
+      "word": "loud",
+      "meaning": "making a strong sound",
+      "hint": "Noisy means loud.",
+      "example": "The classroom was noisy during lunch."
+    },
+    {
+      "question_text": "What is another word for quiet?",
+      "word": "quiet",
+      "meaning": "making little sound",
+      "hint": "Silent means very quiet.",
+      "example": "The library was silent."
+    },
+    {
+      "question_text": "What is another word for strong?",
+      "word": "strong",
+      "meaning": "having much power",
+      "hint": "Powerful means strong.",
+      "example": "The powerful hero lifted the rock."
+    },
+    {
+      "question_text": "What is another word for weak?",
+      "word": "weak",
+      "meaning": "not strong",
+      "hint": "Soft is the matching answer in this level for weak.",
+      "example": "After being sick, he felt soft and weak."
+    },
+    {
+      "question_text": "What is another word for pretty?",
+      "word": "pretty",
+      "meaning": "nice to look at",
+      "hint": "Beautiful is another word for pretty.",
+      "example": "The flower is beautiful."
+    }
+  ],
+  "5": [
+    {
+      "question_text": "What is another word for begin?",
+      "word": "begin",
+      "meaning": "to start something",
+      "hint": "Start means begin.",
+      "example": "We will start the game now."
+    },
+    {
+      "question_text": "What is another word for end?",
+      "word": "end",
+      "meaning": "the last part of something",
+      "hint": "Finish means end.",
+      "example": "The movie will finish soon."
+    },
+    {
+      "question_text": "What is another word for look?",
+      "word": "look",
+      "meaning": "to use your eyes to see",
+      "hint": "See is another word for look.",
+      "example": "I can see the rainbow."
+    },
+    {
+      "question_text": "What is another word for shout?",
+      "word": "shout",
+      "meaning": "to speak very loudly",
+      "hint": "Yell means shout loudly.",
+      "example": "Do not yell in the classroom."
+    },
+    {
+      "question_text": "What is another word for walk?",
+      "word": "walk",
+      "meaning": "to move on foot",
+      "hint": "Stroll means to walk in a relaxed way.",
+      "example": "We took a stroll in the park."
+    }
+  ],
+  "6": [
+    {
+      "question_text": "What is another word for jump?",
+      "word": "jump",
+      "meaning": "to push yourself off the ground",
+      "hint": "Hop is another word for jump.",
+      "example": "The frog can hop high."
+    },
+    {
+      "question_text": "What is another word for run?",
+      "word": "run",
+      "meaning": "to move very fast on foot",
+      "hint": "Race can mean to run very fast.",
+      "example": "The boys race across the field."
+    },
+    {
+      "question_text": "What is another word for hide?",
+      "word": "hide",
+      "meaning": "to keep out of sight",
+      "hint": "Cover is the matching answer in this level for hide.",
+      "example": "Use the blanket to cover the toy."
+    },
+    {
+      "question_text": "What is another word for cry?",
+      "word": "cry",
+      "meaning": "to shed tears",
+      "hint": "Weep means to cry.",
+      "example": "The baby began to weep."
+    },
+    {
+      "question_text": "What is another word for help?",
+      "word": "help",
+      "meaning": "to give support or aid",
+      "hint": "Assist means help.",
+      "example": "I will assist my teacher."
+    }
+  ],
+  "7": [
+    {
+      "question_text": "What is another word for brave?",
+      "word": "brave",
+      "meaning": "showing courage",
+      "hint": "Bold means brave.",
+      "example": "The bold firefighter helped the family."
+    },
+    {
+      "question_text": "What is another word for afraid?",
+      "word": "afraid",
+      "meaning": "feeling fear",
+      "hint": "Scared means afraid.",
+      "example": "The child felt scared in the dark."
+    },
+    {
+      "question_text": "What is another word for easy?",
+      "word": "easy",
+      "meaning": "not hard to do",
+      "hint": "Simple means easy.",
+      "example": "The puzzle was simple to solve."
+    },
+    {
+      "question_text": "What is another word for hard?",
+      "word": "hard",
+      "meaning": "difficult to do",
+      "hint": "Difficult means hard.",
+      "example": "The test was difficult."
+    },
+    {
+      "question_text": "What is another word for rich?",
+      "word": "rich",
+      "meaning": "having a lot of money",
+      "hint": "Wealthy means rich.",
+      "example": "The wealthy man owned a big house."
+    }
+  ],
+  "8": [
+    {
+      "question_text": "What is another word for poor?",
+      "word": "poor",
+      "meaning": "having little money",
+      "hint": "Needy can mean poor or needing help.",
+      "example": "The group gave food to needy families."
+    },
+    {
+      "question_text": "What is another word for buy?",
+      "word": "buy",
+      "meaning": "to get something by paying",
+      "hint": "Purchase means buy.",
+      "example": "Mom will purchase new shoes."
+    },
+    {
+      "question_text": "What is another word for fix?",
+      "word": "fix",
+      "meaning": "to make something work again",
+      "hint": "Repair means fix.",
+      "example": "Dad will repair the chair."
+    },
+    {
+      "question_text": "What is another word for throw?",
+      "word": "throw",
+      "meaning": "to send something through the air",
+      "hint": "Toss means throw lightly.",
+      "example": "Please toss the ball to me."
+    },
+    {
+      "question_text": "What is another word for close?",
+      "word": "close",
+      "meaning": "to shut something",
+      "hint": "Shut means close.",
+      "example": "Please shut the door."
+    }
+  ],
+  "9": [
+    {
+      "question_text": "What is another word for open?",
+      "word": "open",
+      "meaning": "not closed",
+      "hint": "Unlock can mean to open something locked.",
+      "example": "Use the key to unlock the gate."
+    },
+    {
+      "question_text": "What is another word for talk?",
+      "word": "talk",
+      "meaning": "to speak with others",
+      "hint": "Speak means talk.",
+      "example": "Please speak clearly."
+    },
+    {
+      "question_text": "What is another word for ask?",
+      "word": "ask",
+      "meaning": "to say you want to know something",
+      "hint": "Question is the matching answer in this level for ask.",
+      "example": "I will question the guide about the map."
+    },
+    {
+      "question_text": "What is another word for answer?",
+      "word": "answer",
+      "meaning": "a reply to a question",
+      "hint": "Reply means answer.",
+      "example": "Please reply to my message."
+    },
+    {
+      "question_text": "What is another word for stop?",
+      "word": "stop",
+      "meaning": "to end movement or action",
+      "hint": "End means stop.",
+      "example": "The music will end soon."
+    }
+  ],
+  "10": [
+    {
+      "question_text": "What is another word for big?",
+      "word": "big",
+      "meaning": "very large in size",
+      "hint": "Huge means very big.",
+      "example": "The huge whale swam in the sea."
+    },
+    {
+      "question_text": "What is another word for small?",
+      "word": "small",
+      "meaning": "little in size",
+      "hint": "Tiny means very small.",
+      "example": "A tiny ant crawled on the leaf."
+    },
+    {
+      "question_text": "What is another word for fast?",
+      "word": "fast",
+      "meaning": "moving quickly",
+      "hint": "Swift means fast.",
+      "example": "The swift bird flew away."
+    },
+    {
+      "question_text": "What is another word for happy?",
+      "word": "happy",
+      "meaning": "feeling joy",
+      "hint": "Cheerful means happy and bright.",
+      "example": "She gave us a cheerful smile."
+    },
+    {
+      "question_text": "What is another word for sad?",
+      "word": "sad",
+      "meaning": "feeling unhappy",
+      "hint": "Gloomy can mean sad.",
+      "example": "He felt gloomy on the rainy day."
+    }
+  ],
+  "11": [
+    {
+      "question_text": "What is another word for smart?",
+      "word": "smart",
+      "meaning": "good at thinking and learning",
+      "hint": "Bright can describe someone smart.",
+      "example": "The bright student answered quickly."
+    },
+    {
+      "question_text": "What is another word for angry?",
+      "word": "angry",
+      "meaning": "feeling mad",
+      "hint": "Upset can mean angry or bothered.",
+      "example": "She felt upset after the argument."
+    },
+    {
+      "question_text": "What is another word for tired?",
+      "word": "tired",
+      "meaning": "needing rest",
+      "hint": "Exhausted means very tired.",
+      "example": "After the race, he was exhausted."
+    },
+    {
+      "question_text": "What is another word for scared?",
+      "word": "scared",
+      "meaning": "feeling afraid",
+      "hint": "Frightened means scared.",
+      "example": "The frightened cat hid under the bed."
+    },
+    {
+      "question_text": "What is another word for pretty?",
+      "word": "pretty",
+      "meaning": "nice to look at",
+      "hint": "Lovely is another word for pretty.",
+      "example": "She wore a lovely dress."
+    }
+  ],
+  "12": [
+    {
+      "question_text": "What is another word for start?",
+      "word": "start",
+      "meaning": "to begin",
+      "hint": "Begin means start.",
+      "example": "Let us begin the lesson."
+    },
+    {
+      "question_text": "What is another word for finish?",
+      "word": "finish",
+      "meaning": "to complete something",
+      "hint": "Complete means finish.",
+      "example": "Please complete your homework."
+    },
+    {
+      "question_text": "What is another word for look?",
+      "word": "look",
+      "meaning": "to use your eyes to see",
+      "hint": "Glance means to look quickly.",
+      "example": "She took a glance at the clock."
+    },
+    {
+      "question_text": "What is another word for shout?",
+      "word": "shout",
+      "meaning": "to speak very loudly",
+      "hint": "Scream means to shout loudly.",
+      "example": "Do not scream indoors."
+    },
+    {
+      "question_text": "What is another word for walk?",
+      "word": "walk",
+      "meaning": "to move on foot",
+      "hint": "March is a strong way of saying walk.",
+      "example": "The band began to march."
+    }
+  ],
+  "13": [
+    {
+      "question_text": "What is another word for small?",
+      "word": "small",
+      "meaning": "little in size",
+      "hint": "Little means small.",
+      "example": "The little dog barked softly."
+    },
+    {
+      "question_text": "What is another word for clean?",
+      "word": "clean",
+      "meaning": "free from dirt",
+      "hint": "Spotless means very clean.",
+      "example": "The kitchen looked spotless."
+    },
+    {
+      "question_text": "What is another word for messy?",
+      "word": "messy",
+      "meaning": "not neat or clean",
+      "hint": "Untidy means messy.",
+      "example": "His desk was untidy."
+    },
+    {
+      "question_text": "What is another word for funny?",
+      "word": "funny",
+      "meaning": "causing laughter",
+      "hint": "Hilarious means very funny.",
+      "example": "The joke was hilarious."
+    },
+    {
+      "question_text": "What is another word for cold?",
+      "word": "cold",
+      "meaning": "having little heat",
+      "hint": "Chilly means cold.",
+      "example": "The morning air was chilly."
+    }
+  ],
+  "14": [
+    {
+      "question_text": "What is another word for hot?",
+      "word": "hot",
+      "meaning": "having much heat",
+      "hint": "Warm is close in meaning to hot.",
+      "example": "The bread is warm."
+    },
+    {
+      "question_text": "What is another word for strong?",
+      "word": "strong",
+      "meaning": "having much power",
+      "hint": "Mighty means very strong.",
+      "example": "The mighty lion roared."
+    },
+    {
+      "question_text": "What is another word for weak?",
+      "word": "weak",
+      "meaning": "not strong",
+      "hint": "Frail means weak.",
+      "example": "The frail plant bent in the wind."
+    },
+    {
+      "question_text": "What is another word for brave?",
+      "word": "brave",
+      "meaning": "showing courage",
+      "hint": "Fearless means very brave.",
+      "example": "The fearless girl spoke on stage."
+    },
+    {
+      "question_text": "What is another word for quiet?",
+      "word": "quiet",
+      "meaning": "making little sound",
+      "hint": "Calm can mean quiet and peaceful.",
+      "example": "The lake looked calm at sunset."
+    }
+  ],
+  "15": [
+    {
+      "question_text": "What is another word for help?",
+      "word": "help",
+      "meaning": "to give support or aid",
+      "hint": "Aid means help.",
+      "example": "The nurse came to aid the patient."
+    },
+    {
+      "question_text": "What is another word for jump?",
+      "word": "jump",
+      "meaning": "to push yourself off the ground",
+      "hint": "Leap means to jump.",
+      "example": "The deer can leap over logs."
+    },
+    {
+      "question_text": "What is another word for run?",
+      "word": "run",
+      "meaning": "to move very fast on foot",
+      "hint": "Sprint means run very fast.",
+      "example": "He had to sprint to the bus."
+    },
+    {
+      "question_text": "What is another word for cry?",
+      "word": "cry",
+      "meaning": "to shed tears",
+      "hint": "Sob means to cry hard.",
+      "example": "The child began to sob."
+    },
+    {
+      "question_text": "What is another word for talk?",
+      "word": "talk",
+      "meaning": "to speak with others",
+      "hint": "Chat means talk in a friendly way.",
+      "example": "We like to chat after class."
+    }
+  ]
+}

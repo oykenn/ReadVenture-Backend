@@ -1,0 +1,226 @@
+reading_path,level,word,definition
+Foundation,1,big,Large in size
+Foundation,1,small,Little in size
+Foundation,1,fast,Moving quickly
+Foundation,1,happy,Feeling glad
+Foundation,1,sad,Feeling unhappy
+Foundation,2,hot,Having high heat
+Foundation,2,cold,Having low heat
+Foundation,2,loud,Making a big sound
+Foundation,2,quiet,Making little or no sound
+Foundation,2,strong,Having great power
+Foundation,3,weak,Not strong
+Foundation,3,clean,Not dirty
+Foundation,3,dirty,Not clean
+Foundation,3,begin,To start
+Foundation,3,end,To finish
+Foundation,4,look,To use your eyes to see
+Foundation,4,shout,To speak very loudly
+Foundation,4,walk,To move using your feet
+Foundation,4,jump,To push yourself into the air
+Foundation,4,run,To move very fast on your feet
+Foundation,5,brave,Not afraid
+Foundation,5,afraid,Feeling scared
+Foundation,5,rich,Having a lot of money
+Foundation,5,poor,Having little money
+Foundation,5,easy,Not hard
+Foundation,6,hard,Not easy
+Foundation,6,buy,To pay money for something
+Foundation,6,sell,To give something for money
+Foundation,6,help,To give support
+Foundation,6,fix,To repair something
+Foundation,7,loud,Making a big sound
+Foundation,7,near,Close by
+Foundation,7,far,Not near
+Foundation,7,open,Not closed
+Foundation,7,close,To shut something
+Foundation,8,smart,Good at learning
+Foundation,8,tired,Needing rest
+Foundation,8,hungry,Wanting food
+Foundation,8,thirsty,Wanting a drink
+Foundation,8,funny,Making people laugh
+Foundation,9,heavy,Hard to lift
+Foundation,9,light,Not heavy
+Foundation,9,tall,High in height
+Foundation,9,short,Not tall
+Foundation,9,early,Before the usual time
+Foundation,10,late,After the usual time
+Foundation,10,clean,Not dirty
+Foundation,10,empty,Having nothing inside
+Foundation,10,full,Having no more space
+Foundation,10,win,To be the best in a game
+Foundation,11,lose,To not win
+Foundation,11,dark,Having little or no light
+Foundation,11,bright,Full of light
+Foundation,11,smooth,Not rough
+Foundation,11,rough,Not smooth
+Foundation,12,kind,Nice and caring
+Foundation,12,mean,Not kind
+Foundation,12,careful,Doing things safely
+Foundation,12,careless,Not careful
+Foundation,12,noisy,Making a lot of sound
+Foundation,13,silent,Making no sound
+Foundation,13,proud,Feeling good about something you did
+Foundation,13,shy,Feeling nervous around people
+Foundation,13,excited,Feeling very happy and eager
+Foundation,13,calm,Peaceful and quiet
+Foundation,14,busy,Having a lot to do
+Foundation,14,lazy,Not wanting to work
+Foundation,14,friendly,Acting kind toward others
+Foundation,14,safe,Free from danger
+Foundation,14,danger,Something that can hurt you
+Foundation,15,protect,To keep someone safe
+Foundation,15,build,To make something
+Foundation,15,break,To damage something
+Foundation,15,carry,To hold and move something
+Foundation,15,drop,To let something fall
+Developing,1,enormous,Very big
+Developing,1,tiny,Very small
+Developing,1,rapid,Very fast
+Developing,1,cheerful,Happy
+Developing,1,upset,Sad or angry
+Developing,2,boiling,Very hot
+Developing,2,freezing,Very cold
+Developing,2,noisy,Full of sound
+Developing,2,silent,No sound
+Developing,2,powerful,Very strong
+Developing,3,fragile,Easy to break
+Developing,3,spotless,Very clean
+Developing,3,messy,Not neat
+Developing,3,begin,To start
+Developing,3,finish,To complete
+Developing,4,observe,To look carefully
+Developing,4,yell,To shout loudly
+Developing,4,stroll,To walk slowly
+Developing,4,leap,To jump high
+Developing,4,sprint,To run fast
+Developing,5,fearless,Not afraid
+Developing,5,nervous,Worried
+Developing,5,wealthy,Has a lot of money
+Developing,5,simple,Easy
+Developing,5,difficult,Hard
+Developing,6,purchase,To buy something
+Developing,6,trade,To exchange things
+Developing,6,assist,To help
+Developing,6,repair,To fix
+Developing,6,collect,To gather things
+Developing,7,nearby,Close
+Developing,7,distant,Far away
+Developing,7,unlock,To open
+Developing,7,shut,To close
+Developing,7,locate,To find
+Developing,8,clever,Smart
+Developing,8,exhausted,Very tired
+Developing,8,starving,Very hungry
+Developing,8,thirsty,Wants a drink
+Developing,8,amusing,Funny
+Developing,9,heavy,Hard to carry
+Developing,9,light,Easy to carry
+Developing,9,tall,High
+Developing,9,short,Not tall
+Developing,9,early,Before time
+Developing,10,late,After time
+Developing,10,tidy,Clean and neat
+Developing,10,empty,Nothing inside
+Developing,10,full,No space left
+Developing,10,succeed,To do well
+Developing,11,fail,To not succeed
+Developing,11,dim,Not bright
+Developing,11,shiny,Bright and glowing
+Developing,11,smooth,Not rough
+Developing,11,rough,Not smooth
+Developing,12,kind,Nice
+Developing,12,rude,Not polite
+Developing,12,careful,Safe and cautious
+Developing,12,careless,Not careful
+Developing,12,noisy,Full of sound
+Developing,13,silent,No sound
+Developing,13,proud,Happy about what you did
+Developing,13,shy,Not confident
+Developing,13,excited,Very happy
+Developing,13,calm,Peaceful
+Developing,14,busy,Has many things to do
+Developing,14,lazy,Does not want to work
+Developing,14,friendly,Kind to others
+Developing,14,safe,Not in danger
+Developing,14,danger,Something that can hurt
+Developing,15,protect,To keep safe
+Developing,15,construct,To build
+Developing,15,destroy,To break completely
+Developing,15,carry,To hold and move
+Developing,15,drop,To let fall
+Advanced,1,gigantic,Extremely big
+Advanced,1,miniature,Very small
+Advanced,1,swift,Very fast
+Advanced,1,delighted,Very happy
+Advanced,1,miserable,Very unhappy
+Advanced,2,scorching,Extremely hot
+Advanced,2,icy,Extremely cold
+Advanced,2,deafening,Extremely loud
+Advanced,2,hushed,Very quiet
+Advanced,2,mighty,Very strong
+Advanced,3,delicate,Easily broken
+Advanced,3,filthy,Very dirty
+Advanced,3,commence,To begin
+Advanced,3,conclude,To finish
+Advanced,3,spotless,Very clean
+Advanced,4,examine,To look closely
+Advanced,4,scream,To shout loudly
+Advanced,4,wander,To walk without direction
+Advanced,4,bounce,To jump repeatedly
+Advanced,4,dash,To run quickly
+Advanced,5,courageous,Very brave
+Advanced,5,anxious,Worried or nervous
+Advanced,5,wealthy,Has a lot of money
+Advanced,5,needy,Lacking basic needs
+Advanced,5,difficult,Hard
+Advanced,6,obtain,To get something
+Advanced,6,swap,To exchange
+Advanced,6,aid,To help
+Advanced,6,restore,To fix something
+Advanced,6,gather,To collect
+Advanced,7,beside,Next to
+Advanced,7,faraway,Very far
+Advanced,7,unfasten,To open
+Advanced,7,shut tightly,To close firmly
+Advanced,7,discover,To find
+Advanced,8,brilliant,Very smart
+Advanced,8,weary,Very tired
+Advanced,8,starving,Very hungry
+Advanced,8,parched,Very thirsty
+Advanced,8,entertaining,Fun and interesting
+Advanced,9,bulky,Big and heavy
+Advanced,9,slim,Thin
+Advanced,9,towering,Very tall
+Advanced,9,brief,Short
+Advanced,9,prompt,On time or early
+Advanced,10,delayed,Late
+Advanced,10,spotless,Very clean
+Advanced,10,vacant,Empty
+Advanced,10,packed,Full
+Advanced,10,accomplish,To succeed
+Advanced,11,faint,Not bright
+Advanced,11,glowing,Shining
+Advanced,11,sleek,Smooth
+Advanced,11,coarse,Rough
+Advanced,11,defeat,To lose
+Advanced,12,cruel,Very mean
+Advanced,12,cautious,Careful
+Advanced,12,reckless,Not careful
+Advanced,12,loud,Making strong sound
+Advanced,12,quiet,Making little sound
+Advanced,13,timid,Shy
+Advanced,13,thrilled,Very excited
+Advanced,13,peaceful,Calm
+Advanced,13,proud,Happy about success
+Advanced,13,gloomy,Sad or dark
+Advanced,14,occupied,Busy
+Advanced,14,idle,Not working
+Advanced,14,sociable,Friendly
+Advanced,14,secure,Safe
+Advanced,14,hazard,Danger
+Advanced,15,defend,To protect
+Advanced,15,assemble,To build
+Advanced,15,demolish,To destroy
+Advanced,15,transport,To carry
+Advanced,15,release,To let go

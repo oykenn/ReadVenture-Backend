@@ -1,0 +1,632 @@
+[
+  {
+    "level": 1,
+    "title": "Puddle Jumping",
+    "poem_text": "The rain has stopped, the clouds are gone,\nSmall puddles shine beneath the sun.\nI jump and splash with careful feet,\nAnd feel the coolness on the street.",
+    "questions": [
+      {
+        "question_text": "What happened to the rain?",
+        "choices": ["It started", "It stopped", "It froze", "It disappeared"],
+        "correct_answer": "It stopped",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The rain stopped. The first line says, \"The rain has stopped, the clouds are gone.\""
+      },
+      {
+        "question_text": "What shines on the ground?",
+        "choices": ["Stones", "Puddles", "Leaves", "Sand"],
+        "correct_answer": "Puddles",
+        "hint": "Look at the second line of the poem.",
+        "feedback": "The puddles shine on the ground. The poem says small puddles shine beneath the sun."
+      },
+      {
+        "question_text": "What does the child do?",
+        "choices": ["Runs away", "Jumps and splashes", "Sleeps", "Hides"],
+        "correct_answer": "Jumps and splashes",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The child jumps and splashes. The poem says, \"I jump and splash with careful feet.\""
+      },
+      {
+        "question_text": "How does the street feel?",
+        "choices": ["Warm", "Hot", "Cool", "Dry"],
+        "correct_answer": "Cool",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The street feels cool. The last line says the child feels the coolness on the street."
+      },
+      {
+        "question_text": "What is the poem about?",
+        "choices": ["Storm", "After the rain", "Night", "Snow"],
+        "correct_answer": "After the rain",
+        "hint": "Think about what happens after the rain stops.",
+        "feedback": "The poem is about after the rain. It shows puddles, sunshine, and a child jumping and splashing."
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "title": "The Quiet Library",
+    "poem_text": "Inside the library, calm and still,\nBooks line shelves from floor to sill.\nI choose a story, sit and read,\nA peaceful place for thought and need.",
+    "questions": [
+      {
+        "question_text": "Where is the setting?",
+        "choices": ["School yard", "Library", "Park", "Street"],
+        "correct_answer": "Library",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The setting is the library. The first line says, \"Inside the library, calm and still.\""
+      },
+      {
+        "question_text": "How is the place described?",
+        "choices": ["Loud", "Busy", "Calm", "Bright"],
+        "correct_answer": "Calm",
+        "hint": "Look at the describing words in the first line.",
+        "feedback": "The place is described as calm. The poem says the library is calm and still."
+      },
+      {
+        "question_text": "What lines the shelves?",
+        "choices": ["Toys", "Books", "Food", "Clothes"],
+        "correct_answer": "Books",
+        "hint": "Read the second line of the poem.",
+        "feedback": "Books line the shelves. The second line says, \"Books line shelves from floor to sill.\""
+      },
+      {
+        "question_text": "What does the child do?",
+        "choices": ["Sleeps", "Reads", "Runs", "Talks"],
+        "correct_answer": "Reads",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The child reads. The poem says the child chooses a story, sits, and reads."
+      },
+      {
+        "question_text": "What kind of place is it?",
+        "choices": ["Noisy", "Peaceful", "Dirty", "Dark"],
+        "correct_answer": "Peaceful",
+        "hint": "Read the last line of the poem.",
+        "feedback": "It is a peaceful place. The last line says it is a peaceful place for thought and need."
+      }
+    ]
+  },
+  {
+    "level": 3,
+    "title": "The Strong Wind",
+    "poem_text": "The wind blows hard across the land,\nIt shakes the trees and moves the sand.\nKites rise high and twist around,\nWhile leaves go dancing on the ground.",
+    "questions": [
+      {
+        "question_text": "What is strong in the poem?",
+        "choices": ["Rain", "Wind", "Sun", "Snow"],
+        "correct_answer": "Wind",
+        "hint": "Look at the title and first line.",
+        "feedback": "The wind is strong. The poem says the wind blows hard across the land."
+      },
+      {
+        "question_text": "What does the wind shake?",
+        "choices": ["Houses", "Trees", "Cars", "Rivers"],
+        "correct_answer": "Trees",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The wind shakes the trees. The second line says it shakes the trees and moves the sand."
+      },
+      {
+        "question_text": "What happens to kites?",
+        "choices": ["Fall", "Rise", "Break", "Stop"],
+        "correct_answer": "Rise",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The kites rise. The poem says kites rise high and twist around."
+      },
+      {
+        "question_text": "What do leaves do?",
+        "choices": ["Sleep", "Dance", "Sink", "Hide"],
+        "correct_answer": "Dance",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The leaves dance on the ground. The last line says leaves go dancing on the ground."
+      },
+      {
+        "question_text": "What is the main idea?",
+        "choices": ["Quiet day", "Windy day", "Rainy day", "Sunny day"],
+        "correct_answer": "Windy day",
+        "hint": "Think about what the poem mostly describes.",
+        "feedback": "The main idea is a windy day. The poem describes strong wind moving trees, sand, kites, and leaves."
+      }
+    ]
+  },
+  {
+    "level": 4,
+    "title": "Morning Sounds",
+    "poem_text": "I hear the birds begin to sing,\nThe soft alarm clock starts to ring.\nFootsteps echo down the hall,\nA busy morning wakes us all.",
+    "questions": [
+      {
+        "question_text": "What do birds do?",
+        "choices": ["Sleep", "Sing", "Run", "Hide"],
+        "correct_answer": "Sing",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The birds sing. The first line says the birds begin to sing."
+      },
+      {
+        "question_text": "What makes a ringing sound?",
+        "choices": ["Phone", "Clock", "Door", "Bell"],
+        "correct_answer": "Clock",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The clock makes a ringing sound. The poem says the alarm clock starts to ring."
+      },
+      {
+        "question_text": "Where are the footsteps heard?",
+        "choices": ["Yard", "Hall", "Roof", "Street"],
+        "correct_answer": "Hall",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The footsteps are heard in the hall. The third line says footsteps echo down the hall."
+      },
+      {
+        "question_text": "What kind of morning is it?",
+        "choices": ["Quiet", "Busy", "Sad", "Dark"],
+        "correct_answer": "Busy",
+        "hint": "Read the last line of the poem.",
+        "feedback": "It is a busy morning. The last line says, \"A busy morning wakes us all.\""
+      },
+      {
+        "question_text": "What is the poem about?",
+        "choices": ["Night", "Morning routine", "Rain", "Travel"],
+        "correct_answer": "Morning routine",
+        "hint": "Think about the sounds and actions that happen in the morning.",
+        "feedback": "The poem is about a morning routine. It describes birds singing, an alarm clock ringing, footsteps, and waking up."
+      }
+    ]
+  },
+  {
+    "level": 5,
+    "title": "The Lost Toy",
+    "poem_text": "I looked around from room to room,\nBeneath the bed, beside the broom.\nAt last I found it near the chair,\nMy favorite toy was hiding there.",
+    "questions": [
+      {
+        "question_text": "What was lost?",
+        "choices": ["Book", "Toy", "Bag", "Shoes"],
+        "correct_answer": "Toy",
+        "hint": "Read the title and last line of the poem.",
+        "feedback": "The toy was lost. The last line says, \"My favorite toy was hiding there.\""
+      },
+      {
+        "question_text": "Where did the child look?",
+        "choices": ["Outside", "Rooms", "Park", "School"],
+        "correct_answer": "Rooms",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The child looked in rooms. The first line says the child looked from room to room."
+      },
+      {
+        "question_text": "Where was the toy found?",
+        "choices": ["Table", "Chair", "Floor", "Box"],
+        "correct_answer": "Chair",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The toy was found near the chair. The poem says, \"At last I found it near the chair.\""
+      },
+      {
+        "question_text": "How did the child feel?",
+        "choices": ["Angry", "Happy", "Tired", "Scared"],
+        "correct_answer": "Happy",
+        "hint": "Think about how someone feels after finding a favorite toy.",
+        "feedback": "The child likely felt happy because the favorite toy was found."
+      },
+      {
+        "question_text": "What is the poem about?",
+        "choices": ["Playing", "Losing and finding", "Cleaning", "Sleeping"],
+        "correct_answer": "Losing and finding",
+        "hint": "Think about what happens from the beginning to the end of the poem.",
+        "feedback": "The poem is about losing and finding a toy. The child searches and finally finds the favorite toy."
+      }
+    ]
+  },
+  {
+    "level": 6,
+    "title": "The Night Sky",
+    "poem_text": "Stars appear as night grows deep,\nWhile the world begins to sleep.\nThe moon shines bright above the trees,\nLighting paths with gentle ease.",
+    "questions": [
+      {
+        "question_text": "What appears at night?",
+        "choices": ["Clouds", "Stars", "Rain", "Birds"],
+        "correct_answer": "Stars",
+        "hint": "Read the first line of the poem.",
+        "feedback": "Stars appear at night. The first line says, \"Stars appear as night grows deep.\""
+      },
+      {
+        "question_text": "What is the world doing?",
+        "choices": ["Running", "Sleeping", "Eating", "Playing"],
+        "correct_answer": "Sleeping",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The world is sleeping. The poem says the world begins to sleep."
+      },
+      {
+        "question_text": "What shines in the sky?",
+        "choices": ["Sun", "Moon", "Star", "Cloud"],
+        "correct_answer": "Moon",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The moon shines in the sky. The poem says the moon shines bright above the trees."
+      },
+      {
+        "question_text": "What does the moon light?",
+        "choices": ["Rivers", "Paths", "Houses", "Roads"],
+        "correct_answer": "Paths",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The moon lights the paths. The last line says it is lighting paths with gentle ease."
+      },
+      {
+        "question_text": "What is the poem about?",
+        "choices": ["Daytime", "Night sky", "Storm", "Morning"],
+        "correct_answer": "Night sky",
+        "hint": "Think about the stars, moon, and night.",
+        "feedback": "The poem is about the night sky. It describes stars appearing, the world sleeping, and the moon shining."
+      }
+    ]
+  },
+  {
+    "level": 7,
+    "title": "The Busy Market",
+    "poem_text": "Voices call from every side,\nFruits and goods are stacked up wide.\nPeople walk and choose with care,\nA lively place with sounds to share.",
+    "questions": [
+      {
+        "question_text": "Where is the setting?",
+        "choices": ["School", "Market", "Park", "Home"],
+        "correct_answer": "Market",
+        "hint": "Look at the title of the poem.",
+        "feedback": "The setting is the market. The title says \"The Busy Market.\""
+      },
+      {
+        "question_text": "What is sold?",
+        "choices": ["Toys", "Fruits and goods", "Books", "Clothes"],
+        "correct_answer": "Fruits and goods",
+        "hint": "Read the second line of the poem.",
+        "feedback": "Fruits and goods are sold. The poem says fruits and goods are stacked up wide."
+      },
+      {
+        "question_text": "What do people do?",
+        "choices": ["Sleep", "Walk and choose", "Run", "Hide"],
+        "correct_answer": "Walk and choose",
+        "hint": "Read the third line of the poem.",
+        "feedback": "People walk and choose. The third line says people walk and choose with care."
+      },
+      {
+        "question_text": "How is the place described?",
+        "choices": ["Quiet", "Lively", "Dark", "Empty"],
+        "correct_answer": "Lively",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The place is described as lively. The last line says it is a lively place with sounds to share."
+      },
+      {
+        "question_text": "What can you hear?",
+        "choices": ["Silence", "Voices", "Rain", "Wind"],
+        "correct_answer": "Voices",
+        "hint": "Read the first line of the poem.",
+        "feedback": "You can hear voices. The first line says voices call from every side."
+      }
+    ]
+  },
+  {
+    "level": 8,
+    "title": "The Slow Turtle",
+    "poem_text": "A turtle walks at steady pace,\nIt moves along in its own space.\nThough others rush and quickly go,\nIt takes its time, but still will grow.",
+    "questions": [
+      {
+        "question_text": "What animal is in the poem?",
+        "choices": ["Rabbit", "Turtle", "Dog", "Bird"],
+        "correct_answer": "Turtle",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The animal in the poem is a turtle. The first line says a turtle walks at a steady pace."
+      },
+      {
+        "question_text": "How does it move?",
+        "choices": ["Fast", "Slowly", "Loudly", "Quietly"],
+        "correct_answer": "Slowly",
+        "hint": "Look at the title and the turtle's pace.",
+        "feedback": "The turtle moves slowly. The title says \"The Slow Turtle,\" and the poem shows it taking its time."
+      },
+      {
+        "question_text": "What do others do?",
+        "choices": ["Walk", "Rush", "Sleep", "Hide"],
+        "correct_answer": "Rush",
+        "hint": "Read the third line of the poem.",
+        "feedback": "Others rush. The poem says, \"Though others rush and quickly go.\""
+      },
+      {
+        "question_text": "What does the turtle do?",
+        "choices": ["Stops", "Takes time", "Runs", "Jumps"],
+        "correct_answer": "Takes time",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The turtle takes its time. The last line says it takes its time, but still will grow."
+      },
+      {
+        "question_text": "What is the message?",
+        "choices": ["Be fast", "Take your time", "Sleep more", "Run away"],
+        "correct_answer": "Take your time",
+        "hint": "Think about what the turtle teaches in the poem.",
+        "feedback": "The message is to take your time. The turtle moves slowly but continues to grow."
+      }
+    ]
+  },
+  {
+    "level": 9,
+    "title": "The Clean Room",
+    "poem_text": "I sweep the floor and make my bed,\nPut all my books where they are read.\nI fold my clothes and wipe the desk,\nA tidy room is always best.",
+    "questions": [
+      {
+        "question_text": "What does the child clean?",
+        "choices": ["Yard", "Room", "Street", "Park"],
+        "correct_answer": "Room",
+        "hint": "Look at the title of the poem.",
+        "feedback": "The child cleans the room. The title says \"The Clean Room,\" and the poem describes cleaning tasks."
+      },
+      {
+        "question_text": "What is swept?",
+        "choices": ["Wall", "Floor", "Roof", "Chair"],
+        "correct_answer": "Floor",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The floor is swept. The first line says, \"I sweep the floor and make my bed.\""
+      },
+      {
+        "question_text": "What happens to books?",
+        "choices": ["Thrown", "Placed properly", "Hidden", "Lost"],
+        "correct_answer": "Placed properly",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The books are placed properly. The poem says the child puts all the books where they are read."
+      },
+      {
+        "question_text": "What is wiped?",
+        "choices": ["Window", "Desk", "Door", "Bed"],
+        "correct_answer": "Desk",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The desk is wiped. The third line says the child folds clothes and wipes the desk."
+      },
+      {
+        "question_text": "What is the message?",
+        "choices": ["Be messy", "Be clean", "Play more", "Sleep more"],
+        "correct_answer": "Be clean",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The message is to be clean. The poem says a tidy room is always best."
+      }
+    ]
+  },
+  {
+    "level": 10,
+    "title": "The Brave Child",
+    "poem_text": "I tried a task I feared before,\nThough unsure, I tried once more.\nWith steady hands and heart so strong,\nI found the courage all along.",
+    "questions": [
+      {
+        "question_text": "What did the child feel at first?",
+        "choices": ["Happy", "Afraid", "Angry", "Excited"],
+        "correct_answer": "Afraid",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The child felt afraid at first. The poem says the child feared the task before."
+      },
+      {
+        "question_text": "What did the child do?",
+        "choices": ["Quit", "Tried again", "Slept", "Hid"],
+        "correct_answer": "Tried again",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The child tried again. The second line says, \"Though unsure, I tried once more.\""
+      },
+      {
+        "question_text": "What helped the child?",
+        "choices": ["Luck", "Courage", "Speed", "Strength"],
+        "correct_answer": "Courage",
+        "hint": "Read the last line of the poem.",
+        "feedback": "Courage helped the child. The last line says the child found courage all along."
+      },
+      {
+        "question_text": "What is the message?",
+        "choices": ["Give up", "Be brave", "Run away", "Sleep"],
+        "correct_answer": "Be brave",
+        "hint": "Think about what the child learns in the poem.",
+        "feedback": "The message is to be brave. The child faces fear and tries again."
+      },
+      {
+        "question_text": "What kind of child is described?",
+        "choices": ["Lazy", "Brave", "Weak", "Loud"],
+        "correct_answer": "Brave",
+        "hint": "Look at the title and the child's actions.",
+        "feedback": "The child is brave. The child feels afraid but still tries again and finds courage."
+      }
+    ]
+  },
+  {
+    "level": 11,
+    "title": "The Flowing Stream",
+    "poem_text": "A stream runs gently through the land,\nIt curves and bends like nature planned.\nIt carries leaves and stones away,\nAnd sings a song both night and day.",
+    "questions": [
+      {
+        "question_text": "What flows in the poem?",
+        "choices": ["River", "Stream", "Lake", "Ocean"],
+        "correct_answer": "Stream",
+        "hint": "Read the first line of the poem.",
+        "feedback": "A stream flows in the poem. The first line says a stream runs gently through the land."
+      },
+      {
+        "question_text": "How does it move?",
+        "choices": ["Loudly", "Gently", "Fast", "Slowly"],
+        "correct_answer": "Gently",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The stream moves gently. The first line says it runs gently through the land."
+      },
+      {
+        "question_text": "What does it carry?",
+        "choices": ["Fish", "Leaves and stones", "Sand", "Water only"],
+        "correct_answer": "Leaves and stones",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The stream carries leaves and stones. The third line says it carries leaves and stones away."
+      },
+      {
+        "question_text": "What sound does it make?",
+        "choices": ["Roar", "Song", "Whisper", "Bark"],
+        "correct_answer": "Song",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The stream makes a song. The poem says it sings a song both night and day."
+      },
+      {
+        "question_text": "When does it flow?",
+        "choices": ["Morning", "Night", "All day", "Summer"],
+        "correct_answer": "All day",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The stream flows all day. The poem says it sings a song both night and day."
+      }
+    ]
+  },
+  {
+    "level": 12,
+    "title": "The Helpful Hand",
+    "poem_text": "I saw a friend who dropped a book,\nI helped them pick it up with care.\nA simple act can make a change,\nAnd kindness grows when we all share.",
+    "questions": [
+      {
+        "question_text": "What did the friend drop?",
+        "choices": ["Bag", "Book", "Pencil", "Toy"],
+        "correct_answer": "Book",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The friend dropped a book. The first line says, \"I saw a friend who dropped a book.\""
+      },
+      {
+        "question_text": "What did the child do?",
+        "choices": ["Laughed", "Helped", "Ignored", "Ran"],
+        "correct_answer": "Helped",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The child helped. The poem says the child helped the friend pick up the book."
+      },
+      {
+        "question_text": "What kind of act is it?",
+        "choices": ["Big", "Simple", "Hard", "Fast"],
+        "correct_answer": "Simple",
+        "hint": "Read the third line of the poem.",
+        "feedback": "It is a simple act. The third line says, \"A simple act can make a change.\""
+      },
+      {
+        "question_text": "What grows from kindness?",
+        "choices": ["Anger", "Joy", "Fear", "Noise"],
+        "correct_answer": "Joy",
+        "hint": "Think about the positive feeling that kindness can bring.",
+        "feedback": "Joy grows from kindness. Helping and sharing can make people feel happy."
+      },
+      {
+        "question_text": "What is the message?",
+        "choices": ["Be selfish", "Be kind", "Be fast", "Be quiet"],
+        "correct_answer": "Be kind",
+        "hint": "Think about what the poem teaches about helping others.",
+        "feedback": "The message is to be kind. The poem shows that helping and sharing kindness can make a difference."
+      }
+    ]
+  },
+  {
+    "level": 13,
+    "title": "The Changing Weather",
+    "poem_text": "Clouds grow dark and hide the sun,\nSoon the drops of rain will come.\nAfter storms, the skies turn clear,\nAnd rainbows bright will soon appear.",
+    "questions": [
+      {
+        "question_text": "What hides the sun?",
+        "choices": ["Birds", "Clouds", "Rain", "Wind"],
+        "correct_answer": "Clouds",
+        "hint": "Read the first line of the poem.",
+        "feedback": "Clouds hide the sun. The first line says clouds grow dark and hide the sun."
+      },
+      {
+        "question_text": "What comes next?",
+        "choices": ["Snow", "Rain", "Wind", "Heat"],
+        "correct_answer": "Rain",
+        "hint": "Read the second line of the poem.",
+        "feedback": "Rain comes next. The second line says drops of rain will come."
+      },
+      {
+        "question_text": "What happens after the storm?",
+        "choices": ["Dark sky", "Clear sky", "Cold air", "Strong wind"],
+        "correct_answer": "Clear sky",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The sky turns clear after the storm. The poem says, \"After storms, the skies turn clear.\""
+      },
+      {
+        "question_text": "What appears after rain?",
+        "choices": ["Stars", "Rainbow", "Sun", "Moon"],
+        "correct_answer": "Rainbow",
+        "hint": "Read the last line of the poem.",
+        "feedback": "A rainbow appears after rain. The last line says bright rainbows will soon appear."
+      },
+      {
+        "question_text": "What is the poem about?",
+        "choices": ["Seasons", "Weather changes", "Night", "Wind"],
+        "correct_answer": "Weather changes",
+        "hint": "Think about how the weather changes in the poem.",
+        "feedback": "The poem is about weather changes. It shows clouds, rain, storms, clear skies, and rainbows."
+      }
+    ]
+  },
+  {
+    "level": 14,
+    "title": "The School Bell",
+    "poem_text": "The bell rings loud to start the day,\nStudents gather right away.\nThey listen well and do their part,\nLearning new things is where they start.",
+    "questions": [
+      {
+        "question_text": "What rings?",
+        "choices": ["Clock", "Bell", "Phone", "Door"],
+        "correct_answer": "Bell",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The bell rings. The first line says, \"The bell rings loud to start the day.\""
+      },
+      {
+        "question_text": "What do students do?",
+        "choices": ["Run", "Gather", "Sleep", "Hide"],
+        "correct_answer": "Gather",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The students gather. The second line says students gather right away."
+      },
+      {
+        "question_text": "What do they do in class?",
+        "choices": ["Play", "Listen", "Fight", "Jump"],
+        "correct_answer": "Listen",
+        "hint": "Read the third line of the poem.",
+        "feedback": "They listen in class. The poem says they listen well and do their part."
+      },
+      {
+        "question_text": "What do they learn?",
+        "choices": ["Nothing", "New things", "Games", "Songs"],
+        "correct_answer": "New things",
+        "hint": "Read the last line of the poem.",
+        "feedback": "They learn new things. The last line says learning new things is where they start."
+      },
+      {
+        "question_text": "What is the setting?",
+        "choices": ["Park", "School", "Market", "Home"],
+        "correct_answer": "School",
+        "hint": "Look at the title and what students do.",
+        "feedback": "The setting is school. The poem talks about a school bell, students gathering, listening, and learning."
+      }
+    ]
+  },
+  {
+    "level": 15,
+    "title": "The Journey Home",
+    "poem_text": "The sun sets low as I walk home,\nThrough quiet streets I softly roam.\nThe day is done, my work complete,\nI rest at last with tired feet.",
+    "questions": [
+      {
+        "question_text": "What time of day is it?",
+        "choices": ["Morning", "Noon", "Evening", "Night"],
+        "correct_answer": "Evening",
+        "hint": "Read the first line of the poem.",
+        "feedback": "It is evening. The first line says the sun sets low, which happens in the evening."
+      },
+      {
+        "question_text": "Where is the child going?",
+        "choices": ["School", "Home", "Park", "Store"],
+        "correct_answer": "Home",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The child is going home. The first line says, \"I walk home.\""
+      },
+      {
+        "question_text": "How are the streets?",
+        "choices": ["Busy", "Quiet", "Loud", "Bright"],
+        "correct_answer": "Quiet",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The streets are quiet. The second line says the child walks through quiet streets."
+      },
+      {
+        "question_text": "What has been completed?",
+        "choices": ["Game", "Work", "Sleep", "Food"],
+        "correct_answer": "Work",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The work has been completed. The poem says, \"The day is done, my work complete.\""
+      },
+      {
+        "question_text": "How does the child feel?",
+        "choices": ["Happy", "Tired", "Angry", "Scared"],
+        "correct_answer": "Tired",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The child feels tired. The last line says the child rests at last with tired feet."
+      }
+    ]
+  }
+]

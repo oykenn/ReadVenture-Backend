@@ -1,0 +1,226 @@
+reading_path,level,word,definition
+Foundation,1,cat,a small animal that meows
+Foundation,1,dog,a pet that barks
+Foundation,1,book,something you read
+Foundation,1,ball,a round toy used in games
+Foundation,1,tree,a tall plant with a trunk
+Foundation,2,bird,an animal with feathers and wings
+Foundation,2,fish,an animal that lives in water
+Foundation,2,chair,something you sit on
+Foundation,2,table,a piece of furniture with a flat top
+Foundation,2,house,a building where people live
+Foundation,3,school,a place where children learn
+Foundation,3,teacher,a person who helps students learn
+Foundation,3,student,a child who goes to school
+Foundation,3,pencil,a tool used for writing
+Foundation,3,eraser,a tool used to remove pencil marks
+Foundation,4,clock,a tool that shows time
+Foundation,4,bag,something used to carry things
+Foundation,4,shoe,something worn on the feet
+Foundation,4,shirt,a piece of clothing worn on the body
+Foundation,4,hat,something worn on the head
+Foundation,5,apple,a fruit that grows on trees
+Foundation,5,banana,a long yellow fruit
+Foundation,5,bread,a food made from flour
+Foundation,5,milk,a white drink from animals
+Foundation,5,water,a drink with no color
+Foundation,6,sun,the star that gives Earth light
+Foundation,6,moon,the object seen in the night sky
+Foundation,6,star,a bright object in the sky
+Foundation,6,cloud,a mass of water droplets in the sky
+Foundation,6,rain,water that falls from clouds
+Foundation,7,road,a path used by vehicles
+Foundation,7,bridge,a structure built over water or roads
+Foundation,7,park,a place where people play and relax
+Foundation,7,store,a place where people buy things
+Foundation,7,market,a place where goods are sold
+Foundation,8,flower,a colorful part of a plant
+Foundation,8,grass,a green plant covering the ground
+Foundation,8,leaf,a flat green part of a plant
+Foundation,8,garden,a place where plants are grown
+Foundation,8,seed,a small object that can grow into a plant
+Foundation,9,baby,a very young child
+Foundation,9,family,a group of related people
+Foundation,9,friend,a person you like and trust
+Foundation,9,neighbor,a person who lives nearby
+Foundation,9,parent,a mother or father
+Foundation,10,doctor,a person who helps sick people
+Foundation,10,nurse,a person who cares for patients
+Foundation,10,chef,a person who cooks food
+Foundation,10,farmer,a person who grows crops
+Foundation,10,driver,a person who operates a vehicle
+Foundation,11,bus,a large vehicle that carries people
+Foundation,11,train,a vehicle that runs on tracks
+Foundation,11,boat,a vehicle used on water
+Foundation,11,bicycle,a vehicle with two wheels
+Foundation,11,airplane,a vehicle that flies in the sky
+Foundation,12,tooth,a hard part inside the mouth
+Foundation,12,hand,a body part used to hold things
+Foundation,12,foot,a body part used for walking
+Foundation,12,eye,a body part used for seeing
+Foundation,12,ear,a body part used for hearing
+Foundation,13,smile,a happy look on a face
+Foundation,13,laugh,a sound made when amused
+Foundation,13,cry,to shed tears
+Foundation,13,jump,to push yourself off the ground
+Foundation,13,walk,to move using your feet
+Foundation,14,draw,to make a picture with a pencil
+Foundation,14,write,to put words on paper
+Foundation,14,read,to look at and understand words
+Foundation,14,sing,to make music with your voice
+Foundation,14,dance,to move your body to music
+Foundation,15,game,an activity played for fun
+Foundation,15,toy,an object used for play
+Foundation,15,gift,something given to another person
+Foundation,15,story,a tale about people or events
+Foundation,15,picture,an image of something
+Developing,1,observe,to watch something carefully
+Developing,1,discover,to find something new
+Developing,1,collect,to gather things together
+Developing,1,repair,to fix something broken
+Developing,1,purchase,to buy something
+Developing,2,arrive,to reach a place
+Developing,2,depart,to leave a place
+Developing,2,protect,to keep someone or something safe
+Developing,2,choose,to pick from different options
+Developing,2,notice,to become aware of something
+Developing,3,careful,taking time to avoid mistakes
+Developing,3,cheerful,showing happiness
+Developing,3,lonely,feeling alone
+Developing,3,peaceful,quiet and calm
+Developing,3,delighted,very happy
+Developing,4,furious,extremely angry
+Developing,4,miserable,very unhappy
+Developing,4,wealthy,having a lot of money
+Developing,4,generous,willing to share with others
+Developing,4,honest,telling the truth
+Developing,5,patient,able to wait calmly
+Developing,5,famous,known by many people
+Developing,5,valuable,worth a lot
+Developing,5,certain,being sure about something
+Developing,5,fortunate,having good luck
+Developing,6,attempt,to try doing something
+Developing,6,require,to need something
+Developing,6,predict,to say what may happen
+Developing,6,prefer,to like one thing more than another
+Developing,6,compare,to look for similarities and differences
+Developing,7,journey,a trip from one place to another
+Developing,7,rescue,to save from danger
+Developing,7,capture,to catch something
+Developing,7,release,to let go
+Developing,7,decorate,to make something look better
+Developing,8,explore,to travel and learn about a place
+Developing,8,examine,to look at something closely
+Developing,8,respond,to answer or react
+Developing,8,support,to help someone
+Developing,8,defend,to protect from harm
+Developing,9,enhance,to make something better
+Developing,9,display,to show something
+Developing,9,construct,to build something
+Developing,9,demolish,to tear down a structure
+Developing,9,include,to contain as part of a group
+Developing,10,exclude,to leave out
+Developing,10,remove,to take away
+Developing,10,mention,to talk about briefly
+Developing,10,frequent,happening often
+Developing,10,scarce,hard to find
+Developing,11,narrow,not very wide
+Developing,11,broad,covering a wide area
+Developing,11,rapid,happening very quickly
+Developing,11,slender,thin in shape
+Developing,11,cautious,careful to avoid danger
+Developing,12,alert,paying attention
+Developing,12,sincere,honest in feelings
+Developing,12,active,full of energy
+Developing,12,pleasant,giving a happy feeling
+Developing,12,graceful,moving in a smooth way
+Developing,13,talented,having a natural skill
+Developing,13,accurate,free from mistakes
+Developing,13,secure,safe from harm
+Developing,13,helpful,willing to help
+Developing,13,useful,having a helpful purpose
+Developing,14,frightened,feeling afraid
+Developing,14,joyful,feeling great happiness
+Developing,14,swift,moving very fast
+Developing,14,gather,to bring together
+Developing,14,determine,to make a decision
+Developing,15,investigate,to study carefully to learn facts
+Developing,15,encourage,to give support or confidence
+Developing,15,improve,to make something better
+Developing,15,preserve,to keep something in good condition
+Developing,15,identify,to recognize what something is
+Advanced,1,responsibility,the duty to do what is expected
+Advanced,1,consequence,the result of an action
+Advanced,1,objective,something a person wants to achieve
+Advanced,1,strategy,a plan for reaching a goal
+Advanced,1,achievement,something earned through effort
+Advanced,2,solution,an answer to a problem
+Advanced,2,anticipation,the feeling of waiting for something to happen
+Advanced,2,evaluation,the act of judging quality or value
+Advanced,2,interpretation,the explanation of meaning
+Advanced,2,calculation,the process of working with numbers
+Advanced,3,demonstration,an act of showing how something works
+Advanced,3,investigation,a careful search for facts
+Advanced,3,summary,a short form of the main ideas
+Advanced,3,recommendation,a helpful suggestion
+Advanced,3,determination,the decision to keep trying
+Advanced,4,independence,the ability to do things on your own
+Advanced,4,confidence,a belief in your abilities
+Advanced,4,evidence,facts that help prove something
+Advanced,4,conclusion,a final decision based on information
+Advanced,4,requirement,something that is needed
+Advanced,5,environment,the surroundings where people and animals live
+Advanced,5,communication,the sharing of information
+Advanced,5,concentration,the act of giving full attention
+Advanced,5,recognition,the ability to identify something
+Advanced,5,appreciation,the understanding of value or importance
+Advanced,6,contribution,something given to help a group
+Advanced,6,organization,the arrangement of people or things
+Advanced,6,motivation,the reason for taking action
+Advanced,6,cooperation,working together toward a goal
+Advanced,6,participation,the act of taking part
+Advanced,7,resourcefulness,the ability to solve problems creatively
+Advanced,7,flexibility,the ability to change when needed
+Advanced,7,significance,the quality of being important
+Advanced,7,creativity,the ability to produce new ideas
+Advanced,7,curiosity,the desire to learn more
+Advanced,8,prosperity,the condition of doing well and succeeding
+Advanced,8,generosity,the willingness to share with others
+Advanced,8,wisdom,the ability to make good decisions
+Advanced,8,loyalty,the quality of being faithful
+Advanced,8,integrity,the quality of being honest and fair
+Advanced,9,optimism,the belief that good things will happen
+Advanced,9,persistence,the act of continuing despite difficulty
+Advanced,9,adaptability,the ability to adjust to new situations
+Advanced,9,authenticity,the quality of being real and genuine
+Advanced,9,reliability,the quality of being dependable
+Advanced,10,innovation,the introduction of new ideas or methods
+Advanced,10,productivity,the ability to produce good results
+Advanced,10,efficiency,the ability to work without wasting time
+Advanced,10,capability,the power to do something successfully
+Advanced,10,competence,the ability to perform well
+Advanced,11,abundance,a large amount of something
+Advanced,11,scarcity,a shortage of something needed
+Advanced,11,stability,the state of being steady and balanced
+Advanced,11,complexity,the quality of having many parts
+Advanced,11,diversity,the presence of different kinds
+Advanced,12,sustainability,the ability to continue for a long time
+Advanced,12,transparency,the quality of being open and clear
+Advanced,12,accountability,the responsibility for actions taken
+Advanced,12,credibility,the quality of being believable
+Advanced,12,prioritization,the act of deciding what is most important
+Advanced,13,leadership,the ability to guide others
+Advanced,13,collaboration,the process of working with others
+Advanced,13,negotiation,the process of reaching an agreement
+Advanced,13,persuasion,the act of influencing someone's thinking
+Advanced,13,initiative,the willingness to begin actions independently
+Advanced,14,resilience,the ability to recover from difficulties
+Advanced,14,discipline,the ability to control behavior and actions
+Advanced,14,empathy,the ability to understand another person's feelings
+Advanced,14,awareness,the knowledge of what is happening around you
+Advanced,14,reasoning,the process of thinking logically
+Advanced,15,comprehension,the ability to understand information
+Advanced,15,analysis,the careful examination of details
+Advanced,15,synthesis,the combining of ideas into a whole
+Advanced,15,reflection,the act of thinking deeply about something
+Advanced,15,perspective,a particular way of viewing something

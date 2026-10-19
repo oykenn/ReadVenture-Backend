@@ -1,0 +1,494 @@
+{
+    "1": [
+  {
+    "question_id": 1,
+    "question_text": "What does big mean?",
+    "choices": ["Very small", "Large in size", "Very cold", "Very slow"],
+    "correct_answer": "Large in size"
+  },
+  {
+    "question_id": 2,
+    "question_text": "What does small mean?",
+    "choices": ["Very big", "Very loud", "Little in size", "Very fast"],
+    "correct_answer": "Little in size"
+  },
+  {
+    "question_id": 3,
+    "question_text": "What does fast mean?",
+    "choices": ["Very quiet", "Moving slowly", "Very soft", "Moving quickly"],
+    "correct_answer": "Moving quickly"
+  },
+  {
+    "question_id": 4,
+    "question_text": "What does happy mean?",
+    "choices": ["Feeling tired", "Feeling angry", "Feeling glad", "Feeling scared"],
+    "correct_answer": "Feeling glad"
+  },
+  {
+    "question_id": 5,
+    "question_text": "What does sad mean?",
+    "choices": ["Feeling excited", "Feeling brave", "Feeling unhappy", "Feeling strong"],
+    "correct_answer": "Feeling unhappy"
+  }
+],
+"2": [
+  {
+    "question_id": 6,
+    "question_text": "What does hot mean?",
+    "choices": ["Very quiet", "Having high heat", "Very dark", "Very cold"],
+    "correct_answer": "Having high heat"
+  },
+  {
+    "question_id": 7,
+    "question_text": "What does cold mean?",
+    "choices": ["Very loud", "Very bright", "Having low heat", "Very warm"],
+    "correct_answer": "Having low heat"
+  },
+  {
+    "question_id": 8,
+    "question_text": "What does loud mean?",
+    "choices": ["Very small", "Making a big sound", "Very thin", "Very quiet"],
+    "correct_answer": "Making a big sound"
+  },
+  {
+    "question_id": 9,
+    "question_text": "What does quiet mean?",
+    "choices": ["Very tall", "Very noisy", "Making little or no sound", "Very bright"],
+    "correct_answer": "Making little or no sound"
+  },
+  {
+    "question_id": 10,
+    "question_text": "What does strong mean?",
+    "choices": ["Very soft", "Very slow", "Very weak", "Having great power"],
+    "correct_answer": "Having great power"
+  }
+],
+
+"3": [
+  {
+    "question_id": 11,
+    "question_text": "What does weak mean?",
+    "choices": ["Very powerful", "Not strong", "Very tall", "Very loud"],
+    "correct_answer": "Not strong"
+  },
+  {
+    "question_id": 12,
+    "question_text": "What does clean mean?",
+    "choices": ["Very messy", "Very cold", "Not dirty", "Very loud"],
+    "correct_answer": "Not dirty"
+  },
+  {
+    "question_id": 13,
+    "question_text": "What does dirty mean?",
+    "choices": ["Very fast", "Not clean", "Very quiet", "Very neat"],
+    "correct_answer": "Not clean"
+  },
+  {
+    "question_id": 14,
+    "question_text": "What does begin mean?",
+    "choices": ["To end", "To close", "To start", "To stop"],
+    "correct_answer": "To start"
+  },
+  {
+    "question_id": 15,
+    "question_text": "What does end mean?",
+    "choices": ["To open", "To run", "To finish", "To jump"],
+    "correct_answer": "To finish"
+  }
+],
+
+"4": [
+  {
+    "question_id": 16,
+    "question_text": "What does look mean?",
+    "choices": ["To sleep", "To cry", "To use your eyes to see", "To jump"],
+    "correct_answer": "To use your eyes to see"
+  },
+  {
+    "question_id": 17,
+    "question_text": "What does shout mean?",
+    "choices": ["To walk", "To speak very loudly", "To whisper", "To hide"],
+    "correct_answer": "To speak very loudly"
+  },
+  {
+    "question_id": 18,
+    "question_text": "What does walk mean?",
+    "choices": ["To fly", "To jump", "To move using your feet", "To swim"],
+    "correct_answer": "To move using your feet"
+  },
+  {
+    "question_id": 19,
+    "question_text": "What does jump mean?",
+    "choices": ["To sit down", "To cry", "To push yourself into the air", "To sleep"],
+    "correct_answer": "To push yourself into the air"
+  },
+  {
+    "question_id": 20,
+    "question_text": "What does run mean?",
+    "choices": ["To sit", "To hide", "To walk slowly", "To move very fast on your feet"],
+    "correct_answer": "To move very fast on your feet"
+  }
+],
+
+"5": [
+  {
+    "question_id": 21,
+    "question_text": "What does brave mean?",
+    "choices": ["Very scared", "Not afraid", "Very quiet", "Very tired"],
+    "correct_answer": "Not afraid"
+  },
+  {
+    "question_id": 22,
+    "question_text": "What does afraid mean?",
+    "choices": ["Feeling happy", "Feeling calm", "Feeling scared", "Feeling strong"],
+    "correct_answer": "Feeling scared"
+  },
+  {
+    "question_id": 23,
+    "question_text": "What does rich mean?",
+    "choices": ["Having no money", "Very small", "Having a lot of money", "Very weak"],
+    "correct_answer": "Having a lot of money"
+  },
+  {
+    "question_id": 24,
+    "question_text": "What does poor mean?",
+    "choices": ["Very tall", "Having little money", "Very loud", "Having a lot of money"],
+    "correct_answer": "Having little money"
+  },
+  {
+    "question_id": 25,
+    "question_text": "What does easy mean?",
+    "choices": ["Very slow", "Not hard", "Very difficult", "Very loud"],
+    "correct_answer": "Not hard"
+  }
+],
+
+"6": [
+  {
+    "question_id": 26,
+    "question_text": "What does hard mean?",
+    "choices": ["Very quiet", "Not easy", "Very small", "Very soft"],
+    "correct_answer": "Not easy"
+  },
+  {
+    "question_id": 27,
+    "question_text": "What does buy mean?",
+    "choices": ["To sell something", "To break something", "To pay money for something", "To give something"],
+    "correct_answer": "To pay money for something"
+  },
+  {
+    "question_id": 28,
+    "question_text": "What does sell mean?",
+    "choices": ["To keep something", "To buy something", "To hide something", "To give something for money"],
+    "correct_answer": "To give something for money"
+  },
+  {
+    "question_id": 29,
+    "question_text": "What does help mean?",
+    "choices": ["To break something", "To give support", "To throw something", "To hurt someone"],
+    "correct_answer": "To give support"
+  },
+  {
+    "question_id": 30,
+    "question_text": "What does fix mean?",
+    "choices": ["To break something", "To repair something", "To cry", "To hide something"],
+    "correct_answer": "To repair something"
+  }
+],
+
+"7": [
+  {
+    "question_id": 31,
+    "question_text": "What does loud mean?",
+    "choices": ["Very silent", "Making a big sound", "Very slow", "Very tiny"],
+    "correct_answer": "Making a big sound"
+  },
+  {
+    "question_id": 32,
+    "question_text": "What does near mean?",
+    "choices": ["Very high", "Close by", "Very dark", "Very far"],
+    "correct_answer": "Close by"
+  },
+  {
+    "question_id": 33,
+    "question_text": "What does far mean?",
+    "choices": ["Very soft", "Very loud", "Not near", "Very close"],
+    "correct_answer": "Not near"
+  },
+  {
+    "question_id": 34,
+    "question_text": "What does open mean?",
+    "choices": ["Locked", "Finished", "Not closed", "Broken"],
+    "correct_answer": "Not closed"
+  },
+  {
+    "question_id": 35,
+    "question_text": "What does close mean?",
+    "choices": ["To open something", "To shut something", "To jump", "To run"],
+    "correct_answer": "To shut something"
+  }
+],
+"8": [
+  {
+    "question_id": 36,
+    "question_text": "What does smart mean?",
+    "choices": ["Very loud", "Very weak", "Good at learning", "Very slow"],
+    "correct_answer": "Good at learning"
+  },
+  {
+    "question_id": 37,
+    "question_text": "What does tired mean?",
+    "choices": ["Very happy", "Needing rest", "Very strong", "Very excited"],
+    "correct_answer": "Needing rest"
+  },
+  {
+    "question_id": 38,
+    "question_text": "What does hungry mean?",
+    "choices": ["Wanting sleep", "Wanting water", "Wanting food", "Wanting to run"],
+    "correct_answer": "Wanting food"
+  },
+  {
+    "question_id": 39,
+    "question_text": "What does thirsty mean?",
+    "choices": ["Wanting sleep", "Wanting a drink", "Wanting to jump", "Wanting food"],
+    "correct_answer": "Wanting a drink"
+  },
+  {
+    "question_id": 40,
+    "question_text": "What does funny mean?",
+    "choices": ["Very serious", "Making people laugh", "Very cold", "Very angry"],
+    "correct_answer": "Making people laugh"
+  }
+],
+
+"9": [
+  {
+    "question_id": 41,
+    "question_text": "What does heavy mean?",
+    "choices": ["Very small", "Very soft", "Hard to lift", "Very light"],
+    "correct_answer": "Hard to lift"
+  },
+  {
+    "question_id": 42,
+    "question_text": "What does light mean?",
+    "choices": ["Very loud", "Very dark", "Not heavy", "Very thick"],
+    "correct_answer": "Not heavy"
+  },
+  {
+    "question_id": 43,
+    "question_text": "What does tall mean?",
+    "choices": ["Very thin", "High in height", "Very weak", "Very short"],
+    "correct_answer": "High in height"
+  },
+  {
+    "question_id": 44,
+    "question_text": "What does short mean?",
+    "choices": ["Very big", "Not tall", "Very strong", "Very high"],
+    "correct_answer": "Not tall"
+  },
+  {
+    "question_id": 45,
+    "question_text": "What does early mean?",
+    "choices": ["Very fast", "Before the usual time", "Very loud", "After the usual time"],
+    "correct_answer": "Before the usual time"
+  }
+],
+
+"10": [
+  {
+    "question_id": 46,
+    "question_text": "What does late mean?",
+    "choices": ["Very slow", "After the usual time", "Very loud", "Before the usual time"],
+    "correct_answer": "After the usual time"
+  },
+  {
+    "question_id": 47,
+    "question_text": "What does clean mean?",
+    "choices": ["Very messy", "Very weak", "Not dirty", "Very loud"],
+    "correct_answer": "Not dirty"
+  },
+  {
+    "question_id": 48,
+    "question_text": "What does empty mean?",
+    "choices": ["Very bright", "Having nothing inside", "Very loud", "Full of things"],
+    "correct_answer": "Having nothing inside"
+  },
+  {
+    "question_id": 49,
+    "question_text": "What does full mean?",
+    "choices": ["Empty", "Very soft", "Having no more space", "Very slow"],
+    "correct_answer": "Having no more space"
+  },
+  {
+    "question_id": 50,
+    "question_text": "What does win mean?",
+    "choices": ["To fall", "To be the best in a game", "To stop", "To lose a game"],
+    "correct_answer": "To be the best in a game"
+  }
+],
+
+"11": [
+  {
+    "question_id": 51,
+    "question_text": "What does lose mean?",
+    "choices": ["To win a game", "To not win", "To jump high", "To shout loudly"],
+    "correct_answer": "To not win"
+  },
+  {
+    "question_id": 52,
+    "question_text": "What does dark mean?",
+    "choices": ["Very bright", "Very loud", "Having little or no light", "Very soft"],
+    "correct_answer": "Having little or no light"
+  },
+  {
+    "question_id": 53,
+    "question_text": "What does bright mean?",
+    "choices": ["Very slow", "Very dark", "Full of light", "Very quiet"],
+    "correct_answer": "Full of light"
+  },
+  {
+    "question_id": 54,
+    "question_text": "What does smooth mean?",
+    "choices": ["Very loud", "Not rough", "Very tall", "Very hard"],
+    "correct_answer": "Not rough"
+  },
+  {
+    "question_id": 55,
+    "question_text": "What does rough mean?",
+    "choices": ["Very clean", "Very bright", "Not smooth", "Very soft"],
+    "correct_answer": "Not smooth"
+  }
+],
+
+"12": [
+  {
+    "question_id": 56,
+    "question_text": "What does kind mean?",
+    "choices": ["Very loud", "Nice and caring", "Very fast", "Mean and rude"],
+    "correct_answer": "Nice and caring"
+  },
+  {
+    "question_id": 57,
+    "question_text": "What does mean mean?",
+    "choices": ["Very friendly", "Very soft", "Not kind", "Very tall"],
+    "correct_answer": "Not kind"
+  },
+  {
+    "question_id": 58,
+    "question_text": "What does careful mean?",
+    "choices": ["Being careless", "Very loud", "Doing things safely", "Very quick"],
+    "correct_answer": "Doing things safely"
+  },
+  {
+    "question_id": 59,
+    "question_text": "What does careless mean?",
+    "choices": ["Very safe", "Not careful", "Very quiet", "Very neat"],
+    "correct_answer": "Not careful"
+  },
+  {
+    "question_id": 60,
+    "question_text": "What does noisy mean?",
+    "choices": ["Very small", "Making a lot of sound", "Very cold", "Very silent"],
+    "correct_answer": "Making a lot of sound"
+  }
+],
+
+"13": [
+  {
+    "question_id": 61,
+    "question_text": "What does silent mean?",
+    "choices": ["Very loud", "Very bright", "Making no sound", "Very fast"],
+    "correct_answer": "Making no sound"
+  },
+  {
+    "question_id": 62,
+    "question_text": "What does proud mean?",
+    "choices": ["Feeling tired", "Feeling good about something you did", "Feeling scared", "Feeling sad"],
+    "correct_answer": "Feeling good about something you did"
+  },
+  {
+    "question_id": 63,
+    "question_text": "What does shy mean?",
+    "choices": ["Very brave", "Feeling nervous around people", "Very angry", "Very loud"],
+    "correct_answer": "Feeling nervous around people"
+  },
+  {
+    "question_id": 64,
+    "question_text": "What does excited mean?",
+    "choices": ["Feeling sleepy", "Feeling weak", "Feeling very happy and eager", "Feeling cold"],
+    "correct_answer": "Feeling very happy and eager"
+  },
+  {
+    "question_id": 65,
+    "question_text": "What does calm mean?",
+    "choices": ["Very loud", "Very fast", "Peaceful and quiet", "Very angry"],
+    "correct_answer": "Peaceful and quiet"
+  }
+],
+
+"14": [
+  {
+    "question_id": 66,
+    "question_text": "What does busy mean?",
+    "choices": ["Doing nothing", "Very cold", "Having a lot to do", "Very sleepy"],
+    "correct_answer": "Having a lot to do"
+  },
+  {
+    "question_id": 67,
+    "question_text": "What does lazy mean?",
+    "choices": ["Working very hard", "Very loud", "Not wanting to work", "Very strong"],
+    "correct_answer": "Not wanting to work"
+  },
+  {
+    "question_id": 68,
+    "question_text": "What does friendly mean?",
+    "choices": ["Very fast", "Acting mean toward others", "Acting kind toward others", "Very cold"],
+    "correct_answer": "Acting kind toward others"
+  },
+  {
+    "question_id": 69,
+    "question_text": "What does safe mean?",
+    "choices": ["Very loud", "Free from danger", "Very weak", "In danger"],
+    "correct_answer": "Free from danger"
+  },
+  {
+    "question_id": 70,
+    "question_text": "What does danger mean?",
+    "choices": ["Very quiet", "Something that can hurt you", "Very bright", "Something safe"],
+    "correct_answer": "Something that can hurt you"
+  }
+],
+
+"15": [
+  {
+    "question_id": 71,
+    "question_text": "What does protect mean?",
+    "choices": ["To hurt someone", "To keep someone safe", "To shout", "To hide"],
+    "correct_answer": "To keep someone safe"
+  },
+  {
+    "question_id": 72,
+    "question_text": "What does build mean?",
+    "choices": ["To break something", "To cry", "To make something", "To throw something"],
+    "correct_answer": "To make something"
+  },
+  {
+    "question_id": 73,
+    "question_text": "What does break mean?",
+    "choices": ["To fix something", "To damage something", "To run", "To help someone"],
+    "correct_answer": "To damage something"
+  },
+  {
+    "question_id": 74,
+    "question_text": "What does carry mean?",
+    "choices": ["To drop something", "To sell something", "To hold and move something", "To shout"],
+    "correct_answer": "To hold and move something"
+  },
+  {
+    "question_id": 75,
+    "question_text": "What does drop mean?",
+    "choices": ["To catch something", "To let something fall", "To build something", "To laugh"],
+    "correct_answer": "To let something fall"
+  }
+]
+}

@@ -1,0 +1,632 @@
+[
+  {
+    "level": 1,
+    "title": "The Sun and Life",
+    "text": "The sun gives light and heat to Earth.\nPlants use sunlight to make food.\nAnimals eat plants or other animals.\nBecause of this, all living things depend on the sun.\nWithout the sun, life would not exist.",
+    "questions": [
+      {
+        "question_text": "What does the sun give?",
+        "choices": ["Water", "Light and heat", "Air", "Food"],
+        "correct_answer": "Light and heat",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "The sun gives light and heat. The first sentence says the sun gives light and heat to Earth."
+      },
+      {
+        "question_text": "What do plants use sunlight for?",
+        "choices": ["Sleep", "Make food", "Grow roots", "Move"],
+        "correct_answer": "Make food",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Plants use sunlight to make food. The second sentence says this directly."
+      },
+      {
+        "question_text": "What do animals eat?",
+        "choices": ["Rocks", "Plants or animals", "Water", "Air"],
+        "correct_answer": "Plants or animals",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Animals eat plants or other animals. The third sentence gives this information."
+      },
+      {
+        "question_text": "Why is the sun important?",
+        "choices": ["It is bright", "It supports life", "It moves", "It is hot"],
+        "correct_answer": "It supports life",
+        "hint": "Read the fourth and fifth sentences of the text.",
+        "feedback": "The sun is important because it supports life. The text says all living things depend on the sun."
+      },
+      {
+        "question_text": "What would happen without the sun?",
+        "choices": ["Nothing", "No life", "More rain", "More plants"],
+        "correct_answer": "No life",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Without the sun, life would not exist. The last sentence says this directly."
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "title": "Dogs as Pets",
+    "text": "Dogs are popular pets around the world.\nThey help people by guarding homes.\nSome dogs are trained to guide people who cannot see.\nDogs also give comfort and friendship.\nThis is why many families love dogs.",
+    "questions": [
+      {
+        "question_text": "Why are dogs popular?",
+        "choices": ["They are wild", "They help people", "They are loud", "They are small"],
+        "correct_answer": "They help people",
+        "hint": "Read the second, third, and fourth sentences of the text.",
+        "feedback": "Dogs are popular because they help people. They guard homes, guide people, and give comfort."
+      },
+      {
+        "question_text": "What can dogs do for homes?",
+        "choices": ["Clean", "Guard", "Build", "Paint"],
+        "correct_answer": "Guard",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Dogs can guard homes. The second sentence says they help people by guarding homes."
+      },
+      {
+        "question_text": "Who do some dogs help?",
+        "choices": ["Children", "People who cannot see", "Teachers", "Drivers"],
+        "correct_answer": "People who cannot see",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Some dogs help people who cannot see. The text says some dogs are trained to guide them."
+      },
+      {
+        "question_text": "What do dogs give?",
+        "choices": ["Food", "Comfort", "Work", "Noise"],
+        "correct_answer": "Comfort",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Dogs give comfort. The text also says they give friendship."
+      },
+      {
+        "question_text": "Why do families love dogs?",
+        "choices": ["They are fast", "They are helpful", "They are big", "They are quiet"],
+        "correct_answer": "They are helpful",
+        "hint": "Think about the ways dogs help people in the text.",
+        "feedback": "Families love dogs because they are helpful. They guard homes, guide people, and give comfort and friendship."
+      }
+    ]
+  },
+  {
+    "level": 3,
+    "title": "Water Cycle",
+    "text": "Water moves in a cycle on Earth.\nThe sun heats water and turns it into vapor.\nThis vapor forms clouds in the sky.\nWhen clouds get heavy, rain falls.\nThis process repeats again and again.",
+    "questions": [
+      {
+        "question_text": "What moves in a cycle?",
+        "choices": ["Air", "Water", "Soil", "Fire"],
+        "correct_answer": "Water",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Water moves in a cycle. The first sentence says water moves in a cycle on Earth."
+      },
+      {
+        "question_text": "What turns water into vapor?",
+        "choices": ["Wind", "Sun", "Rain", "Clouds"],
+        "correct_answer": "Sun",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "The sun turns water into vapor. The text says the sun heats water and turns it into vapor."
+      },
+      {
+        "question_text": "What forms from vapor?",
+        "choices": ["Rain", "Clouds", "Ice", "Snow"],
+        "correct_answer": "Clouds",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Clouds form from vapor. The third sentence says vapor forms clouds in the sky."
+      },
+      {
+        "question_text": "When does rain fall?",
+        "choices": ["When clouds are heavy", "When sun shines", "At night", "Always"],
+        "correct_answer": "When clouds are heavy",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Rain falls when clouds get heavy. The text says this directly."
+      },
+      {
+        "question_text": "What kind of process is this?",
+        "choices": ["One time", "Repeating", "Short", "Fast"],
+        "correct_answer": "Repeating",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "The water cycle is a repeating process. The last sentence says it repeats again and again."
+      }
+    ]
+  },
+  {
+    "level": 4,
+    "title": "Bird Migration",
+    "text": "Some birds travel long distances every year.\nThey move to warmer places when it gets cold.\nThis journey is called migration.\nBirds return when the weather becomes warm again.\nMigration helps them survive.",
+    "questions": [
+      {
+        "question_text": "What do some birds do every year?",
+        "choices": ["Sleep", "Travel", "Hide", "Fly randomly"],
+        "correct_answer": "Travel",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Some birds travel every year. The first sentence says they travel long distances."
+      },
+      {
+        "question_text": "Why do they move?",
+        "choices": ["Food", "Cold weather", "Rain", "Wind"],
+        "correct_answer": "Cold weather",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Birds move because of cold weather. They move to warmer places when it gets cold."
+      },
+      {
+        "question_text": "What is this journey called?",
+        "choices": ["Travel", "Migration", "Movement", "Flight"],
+        "correct_answer": "Migration",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "This journey is called migration. The third sentence says this directly."
+      },
+      {
+        "question_text": "When do they return?",
+        "choices": ["Cold", "Warm", "Night", "Rainy"],
+        "correct_answer": "Warm",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Birds return when the weather becomes warm again."
+      },
+      {
+        "question_text": "Why is migration important?",
+        "choices": ["Fun", "Survival", "Speed", "Size"],
+        "correct_answer": "Survival",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Migration is important for survival. The last sentence says migration helps birds survive."
+      }
+    ]
+  },
+  {
+    "level": 5,
+    "title": "Healthy Eating",
+    "text": "Eating healthy food helps the body grow strong.\nFruits and vegetables give vitamins.\nToo much junk food can harm the body.\nDrinking enough water is also important.\nA balanced diet keeps people healthy.",
+    "questions": [
+      {
+        "question_text": "What helps the body grow?",
+        "choices": ["Sleep", "Healthy food", "Water", "Exercise"],
+        "correct_answer": "Healthy food",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Healthy food helps the body grow strong. The first sentence says this directly."
+      },
+      {
+        "question_text": "What do fruits give?",
+        "choices": ["Sugar", "Vitamins", "Salt", "Oil"],
+        "correct_answer": "Vitamins",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Fruits give vitamins. The text says fruits and vegetables give vitamins."
+      },
+      {
+        "question_text": "What can harm the body?",
+        "choices": ["Fruits", "Junk food", "Water", "Rice"],
+        "correct_answer": "Junk food",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Too much junk food can harm the body. The third sentence says this directly."
+      },
+      {
+        "question_text": "What should we drink?",
+        "choices": ["Soda", "Water", "Juice", "Milk"],
+        "correct_answer": "Water",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "We should drink enough water. The fourth sentence says drinking enough water is important."
+      },
+      {
+        "question_text": "What keeps people healthy?",
+        "choices": ["Eating a lot", "Balanced diet", "Sleeping", "Playing"],
+        "correct_answer": "Balanced diet",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "A balanced diet keeps people healthy. The last sentence says this directly."
+      }
+    ]
+  },
+  {
+    "level": 6,
+    "title": "Trees and Air",
+    "text": "Trees play an important role in the environment.\nThey take in carbon dioxide and give out oxygen.\nPeople and animals need oxygen to breathe.\nTrees also help keep the air clean.\nThis is why planting trees is important.",
+    "questions": [
+      {
+        "question_text": "What do trees take in?",
+        "choices": ["Oxygen", "Carbon dioxide", "Water", "Air"],
+        "correct_answer": "Carbon dioxide",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Trees take in carbon dioxide. The second sentence says this directly."
+      },
+      {
+        "question_text": "What do trees give out?",
+        "choices": ["Smoke", "Oxygen", "Gas", "Heat"],
+        "correct_answer": "Oxygen",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Trees give out oxygen. The text says they take in carbon dioxide and give out oxygen."
+      },
+      {
+        "question_text": "Why is oxygen important?",
+        "choices": ["Eating", "Breathing", "Sleeping", "Running"],
+        "correct_answer": "Breathing",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Oxygen is important for breathing. People and animals need oxygen to breathe."
+      },
+      {
+        "question_text": "What else do trees do?",
+        "choices": ["Make noise", "Clean air", "Block sun", "Grow fast"],
+        "correct_answer": "Clean air",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Trees help clean the air. The fourth sentence says trees help keep the air clean."
+      },
+      {
+        "question_text": "Why should we plant trees?",
+        "choices": ["For fun", "For clean air", "For shade only", "For color"],
+        "correct_answer": "For clean air",
+        "hint": "Think about what trees do for the air.",
+        "feedback": "We should plant trees because they help keep the air clean and give oxygen."
+      }
+    ]
+  },
+  {
+    "level": 7,
+    "title": "Fish Adaptations",
+    "text": "Fish live in water and have special body parts.\nTheir gills help them breathe underwater.\nFins help them swim and balance.\nSome fish have colors to hide from enemies.\nThese features help fish survive.",
+    "questions": [
+      {
+        "question_text": "Where do fish live?",
+        "choices": ["Land", "Water", "Sky", "Trees"],
+        "correct_answer": "Water",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Fish live in water. The first sentence says this directly."
+      },
+      {
+        "question_text": "What helps them breathe?",
+        "choices": ["Lungs", "Gills", "Nose", "Mouth"],
+        "correct_answer": "Gills",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Gills help fish breathe underwater. The second sentence says this directly."
+      },
+      {
+        "question_text": "What helps them swim?",
+        "choices": ["Wings", "Fins", "Feet", "Hands"],
+        "correct_answer": "Fins",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Fins help fish swim and balance. The third sentence says this directly."
+      },
+      {
+        "question_text": "Why do some fish have colors?",
+        "choices": ["Beauty", "Hide", "Shine", "Glow"],
+        "correct_answer": "Hide",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Some fish have colors to hide from enemies. The fourth sentence says this directly."
+      },
+      {
+        "question_text": "What do these features help?",
+        "choices": ["Play", "Survive", "Sleep", "Grow"],
+        "correct_answer": "Survive",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "These features help fish survive. The last sentence says this directly."
+      }
+    ]
+  },
+  {
+    "level": 8,
+    "title": "Why We Go to School",
+    "text": "School is a place where children learn many things.\nThey study reading, math, and science.\nTeachers guide students in their learning.\nStudents also learn how to work with others.\nSchool prepares them for the future.",
+    "questions": [
+      {
+        "question_text": "What is school for?",
+        "choices": ["Playing", "Learning", "Sleeping", "Eating"],
+        "correct_answer": "Learning",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "School is for learning. The text says school is a place where children learn many things."
+      },
+      {
+        "question_text": "What subjects do students study?",
+        "choices": ["Sports", "Reading and math", "Music only", "Games"],
+        "correct_answer": "Reading and math",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Students study reading and math. The text also mentions science."
+      },
+      {
+        "question_text": "Who helps students?",
+        "choices": ["Friends", "Teachers", "Parents", "Guards"],
+        "correct_answer": "Teachers",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Teachers help students. The text says teachers guide students in their learning."
+      },
+      {
+        "question_text": "What else do students learn?",
+        "choices": ["Fight", "Work together", "Run", "Hide"],
+        "correct_answer": "Work together",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Students also learn how to work with others."
+      },
+      {
+        "question_text": "What does school prepare them for?",
+        "choices": ["Games", "Future", "Sleep", "Trips"],
+        "correct_answer": "Future",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "School prepares students for the future. The last sentence says this directly."
+      }
+    ]
+  },
+  {
+    "level": 9,
+    "title": "Types of Rain",
+    "text": "Rain can fall in different ways.\nLight rain falls slowly and softly.\nHeavy rain falls fast and can flood areas.\nSome rain comes with strong winds.\nDifferent types of rain affect people in different ways.",
+    "questions": [
+      {
+        "question_text": "How can rain fall?",
+        "choices": ["One way", "Different ways", "Fast only", "Slow only"],
+        "correct_answer": "Different ways",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Rain can fall in different ways. The first sentence says this directly."
+      },
+      {
+        "question_text": "What is light rain like?",
+        "choices": ["Strong", "Soft", "Loud", "Heavy"],
+        "correct_answer": "Soft",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Light rain is soft. The text says light rain falls slowly and softly."
+      },
+      {
+        "question_text": "What can heavy rain cause?",
+        "choices": ["Fire", "Flood", "Wind", "Heat"],
+        "correct_answer": "Flood",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Heavy rain can cause floods. The third sentence says this directly."
+      },
+      {
+        "question_text": "What can come with rain?",
+        "choices": ["Sun", "Wind", "Snow", "Ice"],
+        "correct_answer": "Wind",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Strong winds can come with rain. The fourth sentence says this directly."
+      },
+      {
+        "question_text": "What is the main idea?",
+        "choices": ["Rain types", "Floods", "Weather", "Clouds"],
+        "correct_answer": "Rain types",
+        "hint": "Think about what the whole text explains.",
+        "feedback": "The main idea is rain types. The text explains different ways rain can fall and affect people."
+      }
+    ]
+  },
+  {
+    "level": 10,
+    "title": "Bicycles and Safety",
+    "text": "Bicycles are useful for travel and exercise.\nRiders should wear helmets to protect their heads.\nThey must follow road rules for safety.\nUsing lights at night helps others see them.\nSafety keeps riders protected.",
+    "questions": [
+      {
+        "question_text": "What are bicycles used for?",
+        "choices": ["Eating", "Travel and exercise", "Sleeping", "Reading"],
+        "correct_answer": "Travel and exercise",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Bicycles are used for travel and exercise. The first sentence says this directly."
+      },
+      {
+        "question_text": "What should riders wear?",
+        "choices": ["Hat", "Helmet", "Shirt", "Shoes"],
+        "correct_answer": "Helmet",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Riders should wear helmets. Helmets protect their heads."
+      },
+      {
+        "question_text": "Why follow road rules?",
+        "choices": ["Fun", "Safety", "Speed", "Style"],
+        "correct_answer": "Safety",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Riders should follow road rules for safety. The third sentence says this directly."
+      },
+      {
+        "question_text": "Why use lights at night?",
+        "choices": ["Decoration", "Visibility", "Noise", "Speed"],
+        "correct_answer": "Visibility",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Riders use lights at night for visibility. Lights help others see them."
+      },
+      {
+        "question_text": "What is the main idea?",
+        "choices": ["Riding", "Safety", "Travel", "Exercise"],
+        "correct_answer": "Safety",
+        "hint": "Think about the helmet, road rules, lights, and protection.",
+        "feedback": "The main idea is safety. The text explains how bicycle riders can stay protected."
+      }
+    ]
+  },
+  {
+    "level": 11,
+    "title": "Fruits and Health",
+    "text": "Fruits are important for a healthy body.\nThey provide vitamins and minerals.\nEating different fruits gives more nutrients.\nFruits also help the body fight sickness.\nThat is why fruits should be eaten daily.",
+    "questions": [
+      {
+        "question_text": "Why are fruits important?",
+        "choices": ["Taste", "Health", "Color", "Shape"],
+        "correct_answer": "Health",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Fruits are important for health. The text says fruits are important for a healthy body."
+      },
+      {
+        "question_text": "What do fruits provide?",
+        "choices": ["Sugar", "Vitamins", "Salt", "Oil"],
+        "correct_answer": "Vitamins",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Fruits provide vitamins. The text also says they provide minerals."
+      },
+      {
+        "question_text": "Why eat different fruits?",
+        "choices": ["Fun", "More nutrients", "Color", "Size"],
+        "correct_answer": "More nutrients",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Eating different fruits gives more nutrients. The third sentence says this directly."
+      },
+      {
+        "question_text": "What do fruits help fight?",
+        "choices": ["Hunger", "Sickness", "Sleep", "Heat"],
+        "correct_answer": "Sickness",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Fruits help the body fight sickness. The fourth sentence says this directly."
+      },
+      {
+        "question_text": "What is the advice?",
+        "choices": ["Eat fruits daily", "Avoid fruits", "Eat sweets", "Drink only"],
+        "correct_answer": "Eat fruits daily",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "The advice is to eat fruits daily. The text says fruits should be eaten daily."
+      }
+    ]
+  },
+  {
+    "level": 12,
+    "title": "Earth’s Layers",
+    "text": "The Earth has different layers.\nThe outer layer is called the crust.\nBelow it is the mantle, which is very hot.\nThe center is the core, which is even hotter.\nThese layers make up the Earth.",
+    "questions": [
+      {
+        "question_text": "What does Earth have?",
+        "choices": ["Parts", "Layers", "Pieces", "Sections"],
+        "correct_answer": "Layers",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Earth has layers. The first sentence says the Earth has different layers."
+      },
+      {
+        "question_text": "What is the outer layer?",
+        "choices": ["Core", "Mantle", "Crust", "Shell"],
+        "correct_answer": "Crust",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "The outer layer is the crust. The second sentence says this directly."
+      },
+      {
+        "question_text": "What is under the crust?",
+        "choices": ["Core", "Mantle", "Air", "Water"],
+        "correct_answer": "Mantle",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "The mantle is under the crust. The text says below the crust is the mantle."
+      },
+      {
+        "question_text": "Which is the hottest part?",
+        "choices": ["Crust", "Mantle", "Core", "Air"],
+        "correct_answer": "Core",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "The core is the hottest part. The text says the core is even hotter than the mantle."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Earth", "Layers", "Core", "Heat"],
+        "correct_answer": "Layers",
+        "hint": "Think about what the text explains about Earth.",
+        "feedback": "The text is about Earth’s layers. It explains the crust, mantle, and core."
+      }
+    ]
+  },
+  {
+    "level": 13,
+    "title": "Air Pollution",
+    "text": "Air pollution happens when harmful gases enter the air.\nSmoke from cars and factories causes pollution.\nDirty air can make people sick.\nPlants and animals are also affected.\nKeeping the air clean is important for everyone.",
+    "questions": [
+      {
+        "question_text": "What is air pollution?",
+        "choices": ["Clean air", "Harmful air", "Fresh air", "Cold air"],
+        "correct_answer": "Harmful air",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Air pollution is harmful air. The text says it happens when harmful gases enter the air."
+      },
+      {
+        "question_text": "What causes pollution?",
+        "choices": ["Water", "Smoke", "Plants", "Rain"],
+        "correct_answer": "Smoke",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Smoke causes pollution. The text says smoke from cars and factories causes pollution."
+      },
+      {
+        "question_text": "What can dirty air do?",
+        "choices": ["Help", "Make people sick", "Clean", "Grow"],
+        "correct_answer": "Make people sick",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Dirty air can make people sick. The third sentence says this directly."
+      },
+      {
+        "question_text": "Who is affected?",
+        "choices": ["People only", "Animals only", "Both", "None"],
+        "correct_answer": "Both",
+        "hint": "Read the third and fourth sentences of the text.",
+        "feedback": "Both people and animals are affected. The text says dirty air can make people sick and animals are also affected."
+      },
+      {
+        "question_text": "What should we do?",
+        "choices": ["Ignore", "Keep air clean", "Add smoke", "Stay inside"],
+        "correct_answer": "Keep air clean",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "We should keep the air clean. The text says keeping the air clean is important for everyone."
+      }
+    ]
+  },
+  {
+    "level": 14,
+    "title": "Clothing and Weather",
+    "text": "Clothing helps protect the body from weather.\nPeople wear light clothes in hot weather.\nIn cold weather, they wear thick clothes.\nRaincoats keep people dry in the rain.\nChoosing the right clothes keeps people comfortable.",
+    "questions": [
+      {
+        "question_text": "What do clothes do?",
+        "choices": ["Style", "Protect", "Hide", "Show"],
+        "correct_answer": "Protect",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Clothes protect the body from weather. The first sentence says this directly."
+      },
+      {
+        "question_text": "What do we wear in hot weather?",
+        "choices": ["Thick", "Light", "Wet", "Dark"],
+        "correct_answer": "Light",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "We wear light clothes in hot weather. The second sentence says this directly."
+      },
+      {
+        "question_text": "What do we wear in cold weather?",
+        "choices": ["Light", "Thick", "Thin", "Wet"],
+        "correct_answer": "Thick",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "We wear thick clothes in cold weather. The third sentence says this directly."
+      },
+      {
+        "question_text": "What keeps people dry?",
+        "choices": ["Jacket", "Raincoat", "Shirt", "Hat"],
+        "correct_answer": "Raincoat",
+        "hint": "Read the fourth sentence of the text.",
+        "feedback": "Raincoats keep people dry in the rain. The fourth sentence says this directly."
+      },
+      {
+        "question_text": "Why choose the right clothes?",
+        "choices": ["Look good", "Comfort", "Style", "Color"],
+        "correct_answer": "Comfort",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Choosing the right clothes keeps people comfortable. The last sentence says this directly."
+      }
+    ]
+  },
+  {
+    "level": 15,
+    "title": "Transportation and Travel",
+    "text": "Transportation helps people travel easily.\nCars are used for short distances.\nTrains and planes are used for long trips.\nEach type of transport has its own use.\nChoosing the right one saves time and effort.",
+    "questions": [
+      {
+        "question_text": "What does transportation help with?",
+        "choices": ["Sleep", "Travel", "Eat", "Play"],
+        "correct_answer": "Travel",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Transportation helps with travel. The first sentence says transportation helps people travel easily."
+      },
+      {
+        "question_text": "What is used for short distance?",
+        "choices": ["Plane", "Car", "Train", "Boat"],
+        "correct_answer": "Car",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Cars are used for short distances. The second sentence says this directly."
+      },
+      {
+        "question_text": "What is used for long trips?",
+        "choices": ["Car", "Bike", "Train or plane", "Walk"],
+        "correct_answer": "Train or plane",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Trains and planes are used for long trips. The third sentence says this directly."
+      },
+      {
+        "question_text": "Why choose the right transport?",
+        "choices": ["Fun", "Save time", "Color", "Style"],
+        "correct_answer": "Save time",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Choosing the right transport saves time and effort. The last sentence says this directly."
+      },
+      {
+        "question_text": "What is the main idea?",
+        "choices": ["Travel", "Transportation use", "Cars", "Planes"],
+        "correct_answer": "Transportation use",
+        "hint": "Think about what the whole text explains.",
+        "feedback": "The main idea is transportation use. The text explains how different types of transportation are used for travel."
+      }
+    ]
+  }
+]

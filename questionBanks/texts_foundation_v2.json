@@ -1,0 +1,77 @@
+[
+  {
+    "level": 1,
+    "title": "The Sun",
+    "text_content": "The sun is a star.\nIt gives us light and heat.\nPlants and people need the sun.\nIt shines during the day."
+  },
+  {
+    "level": 2,
+    "title": "Dogs",
+    "text_content": "Dogs are animals.\nThey can be pets at home.\nDogs can run and bark.\nThey are known as loyal animals."
+  },
+  {
+    "level": 3,
+    "title": "Water",
+    "text_content": "Water is very important.\nPeople drink water every day.\nPlants need water to grow.\nWater has no color."
+  },
+  {
+    "level": 4,
+    "title": "Birds",
+    "text_content": "Birds have wings and feathers.\nThey can fly in the sky.\nSome birds build nests in trees.\nThey lay eggs."
+  },
+  {
+    "level": 5,
+    "title": "The Moon",
+    "text_content": "The moon can be seen at night.\nIt shines in the sky.\nThe moon does not make its own light.\nIt reflects light from the sun."
+  },
+  {
+    "level": 6,
+    "title": "Trees",
+    "text_content": "Trees are plants that grow tall.\nThey have roots, trunks, and leaves.\nTrees give shade and fresh air.\nMany animals live in trees."
+  },
+  {
+    "level": 7,
+    "title": "Fish",
+    "text_content": "Fish live in water.\nThey use gills to breathe.\nFish have fins to swim.\nThey come in many colors."
+  },
+  {
+    "level": 8,
+    "title": "Schools",
+    "text_content": "Schools are places for learning.\nStudents go there to study.\nTeachers help students learn new things.\nSchools have classrooms and books."
+  },
+  {
+    "level": 9,
+    "title": "Rain",
+    "text_content": "Rain comes from clouds.\nIt falls as water drops.\nRain helps plants grow.\nToo much rain can cause floods."
+  },
+  {
+    "level": 10,
+    "title": "Bicycles",
+    "text_content": "A bicycle has two wheels.\nPeople ride it to travel.\nIt is moved by pedaling.\nBicycles are good for exercise."
+  },
+  {
+    "level": 11,
+    "title": "Fruits",
+    "text_content": "Fruits grow on plants and trees.\nThey are sweet and healthy to eat.\nFruits have vitamins.\nExamples are apples, bananas, and mangoes."
+  },
+  {
+    "level": 12,
+    "title": "The Earth",
+    "text_content": "The Earth is our home.\nIt has land and water.\nPeople and animals live on Earth.\nWe must take care of it."
+  },
+  {
+    "level": 13,
+    "title": "Air",
+    "text_content": "Air is all around us.\nWe cannot see it, but we can feel it.\nPeople and animals need air to breathe.\nClean air is important for health."
+  },
+  {
+    "level": 14,
+    "title": "Clothes",
+    "text_content": "People wear clothes every day.\nClothes protect our bodies.\nWe wear different clothes for different weather.\nThey also come in many styles and colors."
+  },
+  {
+    "level": 15,
+    "title": "Transportation",
+    "text_content": "Transportation helps people move from one place to another.\nExamples include cars, buses, and trains.\nThey make travel faster and easier.\nDifferent places use different types of transportation."
+  }
+]

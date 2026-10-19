@@ -1,0 +1,632 @@
+[
+  {
+    "level": 1,
+    "title": "The Sun",
+    "text": "The sun is a star.\nIt gives us light and heat.\nPlants and people need the sun.\nIt shines during the day.",
+    "questions": [
+      {
+        "question_text": "What is the sun?",
+        "choices": ["Planet", "Star", "Moon", "Cloud"],
+        "correct_answer": "Star",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "The sun is a star. The first sentence says, \"The sun is a star.\""
+      },
+      {
+        "question_text": "What does the sun give?",
+        "choices": ["Water", "Light and heat", "Wind", "Snow"],
+        "correct_answer": "Light and heat",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "The sun gives light and heat. The text says it gives us light and heat."
+      },
+      {
+        "question_text": "Who needs the sun?",
+        "choices": ["Cars", "Plants and people", "Buildings", "Toys"],
+        "correct_answer": "Plants and people",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Plants and people need the sun. The text says plants and people need the sun."
+      },
+      {
+        "question_text": "When does the sun shine?",
+        "choices": ["Night", "Day", "Morning only", "Evening"],
+        "correct_answer": "Day",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "The sun shines during the day. The last sentence says it shines during the day."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Moon", "Sun", "Stars", "Sky"],
+        "correct_answer": "Sun",
+        "hint": "Think about the main topic of the text.",
+        "feedback": "The text is about the sun. All the sentences describe what the sun is and why it is important."
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "title": "Dogs",
+    "text": "Dogs are animals.\nThey can be pets at home.\nDogs can run and bark.\nThey are known as loyal animals.",
+    "questions": [
+      {
+        "question_text": "What are dogs?",
+        "choices": ["Plants", "Animals", "Birds", "Fish"],
+        "correct_answer": "Animals",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Dogs are animals. The first sentence says, \"Dogs are animals.\""
+      },
+      {
+        "question_text": "Where can dogs live?",
+        "choices": ["Forest", "Home", "Sea", "Sky"],
+        "correct_answer": "Home",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Dogs can live at home as pets. The text says they can be pets at home."
+      },
+      {
+        "question_text": "What can dogs do?",
+        "choices": ["Fly", "Swim", "Run and bark", "Climb"],
+        "correct_answer": "Run and bark",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Dogs can run and bark. The third sentence says this directly."
+      },
+      {
+        "question_text": "How are dogs described?",
+        "choices": ["Wild", "Loyal", "Lazy", "Slow"],
+        "correct_answer": "Loyal",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Dogs are described as loyal. The text says they are known as loyal animals."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Cats", "Dogs", "Birds", "Fish"],
+        "correct_answer": "Dogs",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about dogs. It describes what dogs are, where they can live, and what they can do."
+      }
+    ]
+  },
+  {
+    "level": 3,
+    "title": "Water",
+    "text": "Water is very important.\nPeople drink water every day.\nPlants need water to grow.\nWater has no color.",
+    "questions": [
+      {
+        "question_text": "What is important?",
+        "choices": ["Food", "Water", "Air", "Sun"],
+        "correct_answer": "Water",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Water is important. The first sentence says, \"Water is very important.\""
+      },
+      {
+        "question_text": "What do people do with water?",
+        "choices": ["Eat", "Drink", "Throw", "Break"],
+        "correct_answer": "Drink",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "People drink water. The text says people drink water every day."
+      },
+      {
+        "question_text": "Who needs water?",
+        "choices": ["Cars", "Plants", "Toys", "Books"],
+        "correct_answer": "Plants",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Plants need water. The text says plants need water to grow."
+      },
+      {
+        "question_text": "What color is water?",
+        "choices": ["Blue", "Red", "No color", "Green"],
+        "correct_answer": "No color",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Water has no color. The last sentence says this directly."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Food", "Water", "Plants", "Air"],
+        "correct_answer": "Water",
+        "hint": "Think about the main topic of the text.",
+        "feedback": "The text is about water. It explains why water is important and who needs it."
+      }
+    ]
+  },
+  {
+    "level": 4,
+    "title": "Birds",
+    "text": "Birds have wings and feathers.\nThey can fly in the sky.\nSome birds build nests in trees.\nThey lay eggs.",
+    "questions": [
+      {
+        "question_text": "What do birds have?",
+        "choices": ["Fur", "Wings", "Scales", "Shell"],
+        "correct_answer": "Wings",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Birds have wings. The first sentence says birds have wings and feathers."
+      },
+      {
+        "question_text": "What can birds do?",
+        "choices": ["Swim", "Fly", "Crawl", "Jump"],
+        "correct_answer": "Fly",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Birds can fly. The text says they can fly in the sky."
+      },
+      {
+        "question_text": "Where do birds build nests?",
+        "choices": ["Ground", "Trees", "Water", "Sky"],
+        "correct_answer": "Trees",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Birds build nests in trees. The third sentence says some birds build nests in trees."
+      },
+      {
+        "question_text": "What do birds lay?",
+        "choices": ["Seeds", "Eggs", "Leaves", "Rocks"],
+        "correct_answer": "Eggs",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Birds lay eggs. The last sentence says this directly."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Fish", "Birds", "Animals", "Trees"],
+        "correct_answer": "Birds",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about birds. It describes their body parts, actions, nests, and eggs."
+      }
+    ]
+  },
+  {
+    "level": 5,
+    "title": "The Moon",
+    "text": "The moon can be seen at night.\nIt shines in the sky.\nThe moon does not make its own light.\nIt reflects light from the sun.",
+    "questions": [
+      {
+        "question_text": "When can we see the moon?",
+        "choices": ["Day", "Night", "Morning", "Noon"],
+        "correct_answer": "Night",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "We can see the moon at night. The first sentence says the moon can be seen at night."
+      },
+      {
+        "question_text": "Where is the moon?",
+        "choices": ["Ground", "Sky", "Water", "Tree"],
+        "correct_answer": "Sky",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "The moon is in the sky. The text says it shines in the sky."
+      },
+      {
+        "question_text": "Does the moon make its own light?",
+        "choices": ["Yes", "No", "Sometimes", "Maybe"],
+        "correct_answer": "No",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "No, the moon does not make its own light. The third sentence says this directly."
+      },
+      {
+        "question_text": "Where does its light come from?",
+        "choices": ["Stars", "Sun", "Earth", "Clouds"],
+        "correct_answer": "Sun",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "The moon's light comes from the sun. The text says it reflects light from the sun."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Sun", "Moon", "Stars", "Sky"],
+        "correct_answer": "Moon",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about the moon. It explains when we see it and where its light comes from."
+      }
+    ]
+  },
+  {
+    "level": 6,
+    "title": "Trees",
+    "text": "Trees are plants that grow tall.\nThey have roots, trunks, and leaves.\nTrees give shade and fresh air.\nMany animals live in trees.",
+    "questions": [
+      {
+        "question_text": "What are trees?",
+        "choices": ["Animals", "Plants", "Objects", "Food"],
+        "correct_answer": "Plants",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Trees are plants. The first sentence says trees are plants that grow tall."
+      },
+      {
+        "question_text": "What do trees have?",
+        "choices": ["Wings", "Roots and leaves", "Fur", "Scales"],
+        "correct_answer": "Roots and leaves",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Trees have roots and leaves. The text also says they have trunks."
+      },
+      {
+        "question_text": "What do trees give?",
+        "choices": ["Water", "Shade and air", "Fire", "Light"],
+        "correct_answer": "Shade and air",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Trees give shade and fresh air. The third sentence says this directly."
+      },
+      {
+        "question_text": "Who lives in trees?",
+        "choices": ["People", "Animals", "Cars", "Fish"],
+        "correct_answer": "Animals",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Many animals live in trees. The last sentence says this directly."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Plants", "Trees", "Animals", "Air"],
+        "correct_answer": "Trees",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about trees. It describes what trees are, what they have, and why they are useful."
+      }
+    ]
+  },
+  {
+    "level": 7,
+    "title": "Fish",
+    "text": "Fish live in water.\nThey use gills to breathe.\nFish have fins to swim.\nThey come in many colors.",
+    "questions": [
+      {
+        "question_text": "Where do fish live?",
+        "choices": ["Land", "Water", "Sky", "Trees"],
+        "correct_answer": "Water",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Fish live in water. The first sentence says this directly."
+      },
+      {
+        "question_text": "How do fish breathe?",
+        "choices": ["Nose", "Gills", "Mouth", "Lungs"],
+        "correct_answer": "Gills",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Fish breathe using gills. The text says they use gills to breathe."
+      },
+      {
+        "question_text": "What helps fish swim?",
+        "choices": ["Wings", "Fins", "Feet", "Hands"],
+        "correct_answer": "Fins",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Fins help fish swim. The text says fish have fins to swim."
+      },
+      {
+        "question_text": "How do fish look?",
+        "choices": ["One color", "Many colors", "No color", "Dark"],
+        "correct_answer": "Many colors",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Fish come in many colors. The last sentence says this directly."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Birds", "Fish", "Water", "Sea"],
+        "correct_answer": "Fish",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about fish. It explains where they live, how they breathe, and how they swim."
+      }
+    ]
+  },
+  {
+    "level": 8,
+    "title": "Schools",
+    "text": "Schools are places for learning.\nStudents go there to study.\nTeachers help students learn new things.\nSchools have classrooms and books.",
+    "questions": [
+      {
+        "question_text": "What is a school?",
+        "choices": ["Store", "Learning place", "Park", "House"],
+        "correct_answer": "Learning place",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "A school is a learning place. The first sentence says schools are places for learning."
+      },
+      {
+        "question_text": "Who goes to school?",
+        "choices": ["Workers", "Students", "Farmers", "Drivers"],
+        "correct_answer": "Students",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Students go to school. The text says students go there to study."
+      },
+      {
+        "question_text": "Who helps students?",
+        "choices": ["Parents", "Teachers", "Friends", "Guards"],
+        "correct_answer": "Teachers",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Teachers help students. The third sentence says teachers help students learn new things."
+      },
+      {
+        "question_text": "What is inside schools?",
+        "choices": ["Toys", "Books", "Food", "Tools"],
+        "correct_answer": "Books",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Schools have books. The last sentence says schools have classrooms and books."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Learning", "School", "Work", "Play"],
+        "correct_answer": "School",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about schools. It explains what schools are and who learns there."
+      }
+    ]
+  },
+  {
+    "level": 9,
+    "title": "Rain",
+    "text": "Rain comes from clouds.\nIt falls as water drops.\nRain helps plants grow.\nToo much rain can cause floods.",
+    "questions": [
+      {
+        "question_text": "Where does rain come from?",
+        "choices": ["Sun", "Clouds", "Ground", "Trees"],
+        "correct_answer": "Clouds",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Rain comes from clouds. The first sentence says this directly."
+      },
+      {
+        "question_text": "What form is rain?",
+        "choices": ["Ice", "Drops", "Gas", "Sand"],
+        "correct_answer": "Drops",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Rain falls as drops. The text says it falls as water drops."
+      },
+      {
+        "question_text": "What does rain help?",
+        "choices": ["Animals", "Plants", "People", "Cars"],
+        "correct_answer": "Plants",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Rain helps plants grow. The third sentence says this directly."
+      },
+      {
+        "question_text": "What can too much rain cause?",
+        "choices": ["Fire", "Flood", "Wind", "Heat"],
+        "correct_answer": "Flood",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Too much rain can cause floods. The last sentence says this directly."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Water", "Rain", "Weather", "Clouds"],
+        "correct_answer": "Rain",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about rain. It explains where rain comes from and how it affects plants and floods."
+      }
+    ]
+  },
+  {
+    "level": 10,
+    "title": "Bicycles",
+    "text": "A bicycle has two wheels.\nPeople ride it to travel.\nIt is moved by pedaling.\nBicycles are good for exercise.",
+    "questions": [
+      {
+        "question_text": "How many wheels does a bicycle have?",
+        "choices": ["One", "Two", "Three", "Four"],
+        "correct_answer": "Two",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "A bicycle has two wheels. The first sentence says this directly."
+      },
+      {
+        "question_text": "What is it used for?",
+        "choices": ["Eating", "Traveling", "Sleeping", "Reading"],
+        "correct_answer": "Traveling",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "A bicycle is used for traveling. The text says people ride it to travel."
+      },
+      {
+        "question_text": "How does it move?",
+        "choices": ["Running", "Pedaling", "Flying", "Jumping"],
+        "correct_answer": "Pedaling",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "A bicycle moves by pedaling. The text says it is moved by pedaling."
+      },
+      {
+        "question_text": "What is a benefit?",
+        "choices": ["Rest", "Exercise", "Sleep", "Food"],
+        "correct_answer": "Exercise",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "A benefit of bicycles is exercise. The text says bicycles are good for exercise."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Cars", "Bicycle", "Travel", "Wheels"],
+        "correct_answer": "Bicycle",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about bicycles. It explains their wheels, use, movement, and benefit."
+      }
+    ]
+  },
+  {
+    "level": 11,
+    "title": "Fruits",
+    "text": "Fruits grow on plants and trees.\nThey are sweet and healthy to eat.\nFruits have vitamins.\nExamples are apples, bananas, and mangoes.",
+    "questions": [
+      {
+        "question_text": "Where do fruits grow?",
+        "choices": ["Ground", "Trees and plants", "Water", "Sky"],
+        "correct_answer": "Trees and plants",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Fruits grow on trees and plants. The first sentence says this directly."
+      },
+      {
+        "question_text": "How do fruits taste?",
+        "choices": ["Bitter", "Sweet", "Sour", "Salty"],
+        "correct_answer": "Sweet",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Fruits taste sweet. The text says they are sweet and healthy to eat."
+      },
+      {
+        "question_text": "What do fruits have?",
+        "choices": ["Sugar", "Vitamins", "Salt", "Oil"],
+        "correct_answer": "Vitamins",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "Fruits have vitamins. The third sentence says this directly."
+      },
+      {
+        "question_text": "Which is a fruit?",
+        "choices": ["Rice", "Apple", "Bread", "Meat"],
+        "correct_answer": "Apple",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "An apple is a fruit. The text gives apples, bananas, and mangoes as examples."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Food", "Fruits", "Plants", "Trees"],
+        "correct_answer": "Fruits",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about fruits. It explains where fruits grow, how they taste, and why they are healthy."
+      }
+    ]
+  },
+  {
+    "level": 12,
+    "title": "The Earth",
+    "text": "The Earth is our home.\nIt has land and water.\nPeople and animals live on Earth.\nWe must take care of it.",
+    "questions": [
+      {
+        "question_text": "What is Earth?",
+        "choices": ["Star", "Planet", "Moon", "Cloud"],
+        "correct_answer": "Planet",
+        "hint": "Think about what Earth is in space.",
+        "feedback": "Earth is a planet. The text describes Earth as our home with land and water."
+      },
+      {
+        "question_text": "What does Earth have?",
+        "choices": ["Fire", "Land and water", "Air only", "Rocks"],
+        "correct_answer": "Land and water",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Earth has land and water. The second sentence says this directly."
+      },
+      {
+        "question_text": "Who lives on Earth?",
+        "choices": ["Fish only", "People and animals", "Birds only", "Plants only"],
+        "correct_answer": "People and animals",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "People and animals live on Earth. The third sentence says this directly."
+      },
+      {
+        "question_text": "What should we do?",
+        "choices": ["Ignore it", "Take care of it", "Leave it", "Break it"],
+        "correct_answer": "Take care of it",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "We should take care of Earth. The last sentence says this directly."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Planet", "Earth", "Water", "Land"],
+        "correct_answer": "Earth",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about Earth. It explains that Earth is our home and should be cared for."
+      }
+    ]
+  },
+  {
+    "level": 13,
+    "title": "Air",
+    "text": "Air is all around us.\nWe cannot see it, but we can feel it.\nPeople and animals need air to breathe.\nClean air is important for health.",
+    "questions": [
+      {
+        "question_text": "Where is air?",
+        "choices": ["Ground", "Around us", "Sky only", "Water"],
+        "correct_answer": "Around us",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Air is around us. The first sentence says, \"Air is all around us.\""
+      },
+      {
+        "question_text": "Can we see air?",
+        "choices": ["Yes", "No", "Sometimes", "Maybe"],
+        "correct_answer": "No",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "No, we cannot see air. The text says we cannot see it, but we can feel it."
+      },
+      {
+        "question_text": "Why do we need air?",
+        "choices": ["To eat", "To breathe", "To sleep", "To walk"],
+        "correct_answer": "To breathe",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "We need air to breathe. The text says people and animals need air to breathe."
+      },
+      {
+        "question_text": "What kind of air is good?",
+        "choices": ["Dirty", "Clean", "Hot", "Cold"],
+        "correct_answer": "Clean",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Clean air is good. The text says clean air is important for health."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Wind", "Air", "Sky", "Breath"],
+        "correct_answer": "Air",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about air. It explains where air is and why living things need it."
+      }
+    ]
+  },
+  {
+    "level": 14,
+    "title": "Clothes",
+    "text": "People wear clothes every day.\nClothes protect our bodies.\nWe wear different clothes for different weather.\nThey also come in many styles and colors.",
+    "questions": [
+      {
+        "question_text": "What do people wear?",
+        "choices": ["Hats", "Clothes", "Shoes", "Bags"],
+        "correct_answer": "Clothes",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "People wear clothes. The first sentence says people wear clothes every day."
+      },
+      {
+        "question_text": "What do clothes do?",
+        "choices": ["Hide", "Protect", "Break", "Clean"],
+        "correct_answer": "Protect",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "Clothes protect our bodies. The second sentence says this directly."
+      },
+      {
+        "question_text": "Why do we change clothes?",
+        "choices": ["Fun", "Weather", "Food", "Time"],
+        "correct_answer": "Weather",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "We change clothes because of the weather. The text says we wear different clothes for different weather."
+      },
+      {
+        "question_text": "How do clothes look?",
+        "choices": ["Same", "Many styles", "One color", "Plain"],
+        "correct_answer": "Many styles",
+        "hint": "Read the last sentence of the text.",
+        "feedback": "Clothes come in many styles and colors. The last sentence says this directly."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Fashion", "Clothes", "Weather", "People"],
+        "correct_answer": "Clothes",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about clothes. It explains why people wear clothes and how clothes can differ."
+      }
+    ]
+  },
+  {
+    "level": 15,
+    "title": "Transportation",
+    "text": "Transportation helps people move from one place to another.\nExamples include cars, buses, and trains.\nThey make travel faster and easier.\nDifferent places use different types of transportation.",
+    "questions": [
+      {
+        "question_text": "What is transportation?",
+        "choices": ["Food", "Movement", "Travel system", "Game"],
+        "correct_answer": "Travel system",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Transportation is a travel system that helps people move from one place to another."
+      },
+      {
+        "question_text": "What does it help people do?",
+        "choices": ["Sleep", "Move", "Eat", "Play"],
+        "correct_answer": "Move",
+        "hint": "Read the first sentence of the text.",
+        "feedback": "Transportation helps people move. The text says it helps people move from one place to another."
+      },
+      {
+        "question_text": "Which is an example?",
+        "choices": ["Chair", "Car", "Book", "Table"],
+        "correct_answer": "Car",
+        "hint": "Read the second sentence of the text.",
+        "feedback": "A car is an example of transportation. The text also mentions buses and trains."
+      },
+      {
+        "question_text": "What is a benefit?",
+        "choices": ["Slow", "Fast", "Hard", "Small"],
+        "correct_answer": "Fast",
+        "hint": "Read the third sentence of the text.",
+        "feedback": "A benefit of transportation is faster travel. The text says transportation makes travel faster and easier."
+      },
+      {
+        "question_text": "What is the text about?",
+        "choices": ["Travel", "Transportation", "Cars", "Roads"],
+        "correct_answer": "Transportation",
+        "hint": "Look at the title and repeated topic.",
+        "feedback": "The text is about transportation. It explains what transportation does and gives examples."
+      }
+    ]
+  }
+]

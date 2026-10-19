@@ -1,0 +1,632 @@
+[
+  {
+    "level": 1,
+    "title": "My Little Cat",
+    "poem_text": "My little cat is soft and small,\nIt likes to play with a tiny ball.\nIt runs around and jumps so high,\nThen curls to sleep when night is nigh.",
+    "questions": [
+      {
+        "question_text": "What is the poem about?",
+        "choices": ["A dog", "A cat", "A bird", "A fish"],
+        "correct_answer": "A cat",
+        "hint": "Look at the title and the animal mentioned in the poem.",
+        "feedback": "The poem is mainly about a little cat. The title and first line show that the poem is about a cat."
+      },
+      {
+        "question_text": "What does the cat play with?",
+        "choices": ["A stick", "A ball", "A rope", "A leaf"],
+        "correct_answer": "A ball",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The cat plays with a ball. The second line says that it likes to play with a tiny ball."
+      },
+      {
+        "question_text": "What does the cat do after playing?",
+        "choices": ["Eats food", "Runs away", "Sleeps", "Climbs"],
+        "correct_answer": "Sleeps",
+        "hint": "Look at what the cat does after it runs and jumps.",
+        "feedback": "After playing, the cat sleeps. The poem first shows the cat running and jumping, then curling to sleep."
+      },
+      {
+        "question_text": "When does the cat sleep?",
+        "choices": ["Morning", "Afternoon", "Night", "Noon"],
+        "correct_answer": "Night",
+        "hint": "The poem says the cat sleeps when night is near.",
+        "feedback": "The cat sleeps at night. The last line says it curls to sleep when night is nigh."
+      },
+      {
+        "question_text": "How is the cat described?",
+        "choices": ["Big and loud", "Soft and small", "Fast and wild", "Tall and strong"],
+        "correct_answer": "Soft and small",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The cat is described as soft and small. This description is found in the first line."
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "title": "Sunny Day",
+    "poem_text": "The sun is bright up in the sky,\nWhite clouds slowly pass me by.\nI feel the warmth upon my face,\nIt makes the day a happy place.",
+    "questions": [
+      {
+        "question_text": "Where is the sun?",
+        "choices": ["In the sea", "In the sky", "On the ground", "In the house"],
+        "correct_answer": "In the sky",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The sun is in the sky. The first line says, “The sun is bright up in the sky.”"
+      },
+      {
+        "question_text": "What moves in the sky?",
+        "choices": ["Birds", "Planes", "Clouds", "Leaves"],
+        "correct_answer": "Clouds",
+        "hint": "Look at the second line of the poem.",
+        "feedback": "The clouds move in the sky. The second line says white clouds slowly pass by."
+      },
+      {
+        "question_text": "How does the day feel?",
+        "choices": ["Sad", "Angry", "Happy", "Scary"],
+        "correct_answer": "Happy",
+        "hint": "The last line says the day is a happy place.",
+        "feedback": "The day feels happy. The poem says the warmth makes the day a happy place."
+      },
+      {
+        "question_text": "What does the sun give?",
+        "choices": ["Wind", "Rain", "Warmth", "Snow"],
+        "correct_answer": "Warmth",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The sun gives warmth. The third line says, “I feel the warmth upon my face.”"
+      },
+      {
+        "question_text": "What is the poem about?",
+        "choices": ["Rainy day", "Sunny day", "Stormy night", "Cold weather"],
+        "correct_answer": "Sunny day",
+        "hint": "Think about the title and what the poem describes.",
+        "feedback": "The poem is about a sunny day. The title and poem describe the sun, warmth, clouds, and a happy day."
+      }
+    ]
+  },
+  {
+    "level": 3,
+    "title": "The Busy Bee",
+    "poem_text": "A little bee flies in the air,\nIt visits flowers here and there.\nIt gathers nectar all day long,\nWhile humming softly in its song.",
+    "questions": [
+      {
+        "question_text": "What animal is in the poem?",
+        "choices": ["Bird", "Bee", "Ant", "Butterfly"],
+        "correct_answer": "Bee",
+        "hint": "Look at the title and first line.",
+        "feedback": "The animal in the poem is a bee. The title says “The Busy Bee,” and the first line mentions a little bee."
+      },
+      {
+        "question_text": "Where does the bee go?",
+        "choices": ["Trees", "Houses", "Flowers", "Rivers"],
+        "correct_answer": "Flowers",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The bee goes to flowers. The poem says it visits flowers here and there."
+      },
+      {
+        "question_text": "What does the bee collect?",
+        "choices": ["Water", "Leaves", "Nectar", "Sand"],
+        "correct_answer": "Nectar",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The bee collects nectar. The third line says it gathers nectar all day long."
+      },
+      {
+        "question_text": "What sound does the bee make?",
+        "choices": ["Buzz", "Roar", "Bark", "Meow"],
+        "correct_answer": "Buzz",
+        "hint": "Think about the sound bees usually make.",
+        "feedback": "The bee makes a buzzing sound. The poem also says the bee is humming softly."
+      },
+      {
+        "question_text": "What kind of bee is it?",
+        "choices": ["Lazy", "Angry", "Busy", "Sleepy"],
+        "correct_answer": "Busy",
+        "hint": "Look at the title of the poem.",
+        "feedback": "The bee is busy. The poem shows the bee flying, visiting flowers, gathering nectar, and humming."
+      }
+    ]
+  },
+  {
+    "level": 4,
+    "title": "My Red Ball",
+    "poem_text": "I have a ball so big and red,\nI bounce it high above my head.\nIt rolls away across the floor,\nThen comes right back to me once more.",
+    "questions": [
+      {
+        "question_text": "What does the child have?",
+        "choices": ["A kite", "A ball", "A toy car", "A book"],
+        "correct_answer": "A ball",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The child has a ball. The first line says, “I have a ball so big and red.”"
+      },
+      {
+        "question_text": "What color is the ball?",
+        "choices": ["Blue", "Red", "Green", "Yellow"],
+        "correct_answer": "Red",
+        "hint": "Look at the describing word in the first line.",
+        "feedback": "The ball is red. The poem describes it as big and red."
+      },
+      {
+        "question_text": "What does the ball do?",
+        "choices": ["Flies", "Rolls", "Sleeps", "Sings"],
+        "correct_answer": "Rolls",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The ball rolls. The third line says it rolls away across the floor."
+      },
+      {
+        "question_text": "Where does the ball go?",
+        "choices": ["Outside", "On the roof", "Across the floor", "In the box"],
+        "correct_answer": "Across the floor",
+        "hint": "The poem says where the ball rolls.",
+        "feedback": "The ball goes across the floor. This is stated in the third line."
+      },
+      {
+        "question_text": "What happens at the end?",
+        "choices": ["It breaks", "It disappears", "It comes back", "It gets lost"],
+        "correct_answer": "It comes back",
+        "hint": "Read the last line of the poem.",
+        "feedback": "At the end, the ball comes back. The last line says it comes right back once more."
+      }
+    ]
+  },
+  {
+    "level": 5,
+    "title": "The Little Bird",
+    "poem_text": "A little bird sings in a tree,\nIts song is sweet and full of glee.\nIt flaps its wings and flies so high,\nThen glides across the clear blue sky.",
+    "questions": [
+      {
+        "question_text": "Where is the bird?",
+        "choices": ["On the ground", "In a tree", "In a house", "In the water"],
+        "correct_answer": "In a tree",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The bird is in a tree. The first line says the little bird sings in a tree."
+      },
+      {
+        "question_text": "What does the bird do?",
+        "choices": ["Runs", "Sings", "Sleeps", "Crawls"],
+        "correct_answer": "Sings",
+        "hint": "Look at the action in the first line.",
+        "feedback": "The bird sings. The poem says the little bird sings in a tree."
+      },
+      {
+        "question_text": "How is the song?",
+        "choices": ["Loud", "Sweet", "Sad", "Angry"],
+        "correct_answer": "Sweet",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The song is sweet. The second line says its song is sweet and full of glee."
+      },
+      {
+        "question_text": "What does the bird use to fly?",
+        "choices": ["Feet", "Tail", "Wings", "Beak"],
+        "correct_answer": "Wings",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The bird uses its wings to fly. The poem says it flaps its wings and flies high."
+      },
+      {
+        "question_text": "Where does it fly?",
+        "choices": ["River", "Sky", "Road", "House"],
+        "correct_answer": "Sky",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The bird flies across the sky. The last line mentions the clear blue sky."
+      }
+    ]
+  },
+  {
+    "level": 6,
+    "title": "Rainy Fun",
+    "poem_text": "The rain falls down in tiny drops,\nIt lands on roofs and never stops.\nI wear my coat and boots so tight,\nAnd jump in puddles with delight.",
+    "questions": [
+      {
+        "question_text": "What is falling?",
+        "choices": ["Snow", "Rain", "Leaves", "Sand"],
+        "correct_answer": "Rain",
+        "hint": "Read the first line of the poem.",
+        "feedback": "Rain is falling. The first line says, “The rain falls down in tiny drops.”"
+      },
+      {
+        "question_text": "Where does the rain land?",
+        "choices": ["Trees", "Roofs", "Cars", "Rivers"],
+        "correct_answer": "Roofs",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The rain lands on roofs. The second line says it lands on roofs and never stops."
+      },
+      {
+        "question_text": "What does the child wear?",
+        "choices": ["Hat", "Coat and boots", "Shoes", "Shirt"],
+        "correct_answer": "Coat and boots",
+        "hint": "Look at what the speaker wears in the third line.",
+        "feedback": "The child wears a coat and boots. The third line says, “I wear my coat and boots so tight.”"
+      },
+      {
+        "question_text": "What does the child do?",
+        "choices": ["Sleeps", "Runs", "Jumps in puddles", "Hides"],
+        "correct_answer": "Jumps in puddles",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The child jumps in puddles. The last line says the child jumps in puddles with delight."
+      },
+      {
+        "question_text": "How does the child feel?",
+        "choices": ["Sad", "Happy", "Angry", "Tired"],
+        "correct_answer": "Happy",
+        "hint": "The word “delight” shows how the child feels.",
+        "feedback": "The child feels happy. The word “delight” shows that the child enjoys the rainy fun."
+      }
+    ]
+  },
+  {
+    "level": 7,
+    "title": "My Best Friend",
+    "poem_text": "My best friend walks along with me,\nWe laugh and play so happily.\nWe share our toys and help each day,\nAnd never let our smiles go away.",
+    "questions": [
+      {
+        "question_text": "Who is in the poem?",
+        "choices": ["Teacher", "Friend", "Brother", "Dog"],
+        "correct_answer": "Friend",
+        "hint": "Look at the title and the first line.",
+        "feedback": "The poem is about a friend. The title says “My Best Friend,” and the first line mentions the best friend."
+      },
+      {
+        "question_text": "What do they do together?",
+        "choices": ["Sleep", "Laugh and play", "Cry", "Fight"],
+        "correct_answer": "Laugh and play",
+        "hint": "Read the second line of the poem.",
+        "feedback": "They laugh and play together. The second line says, “We laugh and play so happily.”"
+      },
+      {
+        "question_text": "What do they share?",
+        "choices": ["Food", "Toys", "Books", "Clothes"],
+        "correct_answer": "Toys",
+        "hint": "Read the third line of the poem.",
+        "feedback": "They share toys. The third line says, “We share our toys and help each day.”"
+      },
+      {
+        "question_text": "What do they do each day?",
+        "choices": ["Fight", "Help", "Hide", "Run"],
+        "correct_answer": "Help",
+        "hint": "Look at the third line.",
+        "feedback": "They help each day. The poem says they share toys and help each day."
+      },
+      {
+        "question_text": "How do they feel?",
+        "choices": ["Angry", "Happy", "Scared", "Tired"],
+        "correct_answer": "Happy",
+        "hint": "Look for words like “happily” and “smiles.”",
+        "feedback": "They feel happy. The poem uses words like “happily” and “smiles” to show their feelings."
+      }
+    ]
+  },
+  {
+    "level": 8,
+    "title": "The Big Tree",
+    "poem_text": "The big tree stands so tall and wide,\nWith birds and nests all tucked inside.\nIts leaves are green and shade is cool,\nA perfect place to rest from school.",
+    "questions": [
+      {
+        "question_text": "How is the tree described?",
+        "choices": ["Small", "Tall and wide", "Thin", "Short"],
+        "correct_answer": "Tall and wide",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The tree is described as tall and wide. This description is found in the first line."
+      },
+      {
+        "question_text": "What is inside the tree?",
+        "choices": ["Fruits", "Birds and nests", "Water", "Stones"],
+        "correct_answer": "Birds and nests",
+        "hint": "Read the second line of the poem.",
+        "feedback": "Birds and nests are inside the tree. The second line says they are tucked inside."
+      },
+      {
+        "question_text": "What color are the leaves?",
+        "choices": ["Red", "Green", "Yellow", "Blue"],
+        "correct_answer": "Green",
+        "hint": "Look at the third line.",
+        "feedback": "The leaves are green. The third line says, “Its leaves are green.”"
+      },
+      {
+        "question_text": "What does the tree give?",
+        "choices": ["Food", "Shade", "Light", "Sound"],
+        "correct_answer": "Shade",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The tree gives shade. The poem says its shade is cool."
+      },
+      {
+        "question_text": "What do children do there?",
+        "choices": ["Study", "Rest", "Run", "Sleep"],
+        "correct_answer": "Rest",
+        "hint": "Read the last line of the poem.",
+        "feedback": "Children rest there. The last line says it is a perfect place to rest from school."
+      }
+    ]
+  },
+  {
+    "level": 9,
+    "title": "Morning Time",
+    "poem_text": "The sun comes up to start the day,\nThe birds wake up and fly away.\nI brush my teeth and wash my face,\nThen get ready at a steady pace.",
+    "questions": [
+      {
+        "question_text": "What starts the day?",
+        "choices": ["Moon", "Sun", "Rain", "Wind"],
+        "correct_answer": "Sun",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The sun starts the day. The first line says the sun comes up to start the day."
+      },
+      {
+        "question_text": "What do birds do?",
+        "choices": ["Sleep", "Fly", "Swim", "Hide"],
+        "correct_answer": "Fly",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The birds fly. The second line says the birds wake up and fly away."
+      },
+      {
+        "question_text": "What does the child do?",
+        "choices": ["Eats", "Sleeps", "Brushes teeth", "Runs"],
+        "correct_answer": "Brushes teeth",
+        "hint": "Look at the third line.",
+        "feedback": "The child brushes teeth. The third line says, “I brush my teeth and wash my face.”"
+      },
+      {
+        "question_text": "What else does the child do?",
+        "choices": ["Reads", "Washes face", "Plays", "Sings"],
+        "correct_answer": "Washes face",
+        "hint": "Read the third line again.",
+        "feedback": "The child washes their face. The poem says the child brushes teeth and washes face."
+      },
+      {
+        "question_text": "What is the poem about?",
+        "choices": ["Night", "Morning routine", "School", "Rain"],
+        "correct_answer": "Morning routine",
+        "hint": "Think about the title and the actions in the poem.",
+        "feedback": "The poem is about a morning routine. It shows the sun rising, birds waking, and the child getting ready."
+      }
+    ]
+  },
+  {
+    "level": 10,
+    "title": "At the Park",
+    "poem_text": "I run and play at the park so wide,\nI swing and slide with joy and pride.\nThe grass is green, the sky is blue,\nThere’s so much fun for me to do.",
+    "questions": [
+      {
+        "question_text": "Where is the child?",
+        "choices": ["School", "Park", "Home", "Store"],
+        "correct_answer": "Park",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The child is at the park. The first line says, “I run and play at the park so wide.”"
+      },
+      {
+        "question_text": "What does the child do?",
+        "choices": ["Sleeps", "Runs and plays", "Eats", "Reads"],
+        "correct_answer": "Runs and plays",
+        "hint": "Look at the first line.",
+        "feedback": "The child runs and plays. This action is stated in the first line."
+      },
+      {
+        "question_text": "What activities are mentioned?",
+        "choices": ["Swimming", "Swinging and sliding", "Reading", "Jumping rope"],
+        "correct_answer": "Swinging and sliding",
+        "hint": "Read the second line of the poem.",
+        "feedback": "Swinging and sliding are mentioned. The second line says, “I swing and slide with joy and pride.”"
+      },
+      {
+        "question_text": "What color is the grass?",
+        "choices": ["Yellow", "Green", "Blue", "Red"],
+        "correct_answer": "Green",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The grass is green. The third line says, “The grass is green.”"
+      },
+      {
+        "question_text": "How does the child feel?",
+        "choices": ["Sad", "Happy", "Angry", "Tired"],
+        "correct_answer": "Happy",
+        "hint": "Look for words like “joy” and “fun.”",
+        "feedback": "The child feels happy. The poem uses words like “joy” and “fun” to show happiness."
+      }
+    ]
+  },
+  {
+    "level": 11,
+    "title": "The Shiny Moon",
+    "poem_text": "The moon shines bright up in the sky,\nIt watches as the clouds pass by.\nThe stars all twinkle in the night,\nTogether making a lovely sight.",
+    "questions": [
+      {
+        "question_text": "What shines in the sky?",
+        "choices": ["Sun", "Moon", "Cloud", "Bird"],
+        "correct_answer": "Moon",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The moon shines in the sky. The first line says, “The moon shines bright up in the sky.”"
+      },
+      {
+        "question_text": "What passes by?",
+        "choices": ["Stars", "Clouds", "Planes", "Trees"],
+        "correct_answer": "Clouds",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The clouds pass by. The second line says the moon watches as the clouds pass by."
+      },
+      {
+        "question_text": "What do the stars do?",
+        "choices": ["Sleep", "Twinkle", "Fall", "Shine"],
+        "correct_answer": "Twinkle",
+        "hint": "Look at the third line.",
+        "feedback": "The stars twinkle. The third line says, “The stars all twinkle in the night.”"
+      },
+      {
+        "question_text": "When does this happen?",
+        "choices": ["Morning", "Afternoon", "Night", "Noon"],
+        "correct_answer": "Night",
+        "hint": "The poem mentions the night.",
+        "feedback": "This happens at night. The poem talks about the moon and stars in the night."
+      },
+      {
+        "question_text": "What is described?",
+        "choices": ["River", "Night sky", "Forest", "School"],
+        "correct_answer": "Night sky",
+        "hint": "Think about the moon, stars, and clouds.",
+        "feedback": "The poem describes the night sky. It mentions the moon, clouds, and stars shining at night."
+      }
+    ]
+  },
+  {
+    "level": 12,
+    "title": "My Pet Dog",
+    "poem_text": "My pet dog runs fast and free,\nIt wags its tail and plays with me.\nIt barks out loud and guards our home,\nBut never likes to be alone.",
+    "questions": [
+      {
+        "question_text": "What animal is in the poem?",
+        "choices": ["Cat", "Dog", "Bird", "Fish"],
+        "correct_answer": "Dog",
+        "hint": "Look at the title and first line.",
+        "feedback": "The animal in the poem is a dog. The title says “My Pet Dog,” and the first line mentions a pet dog."
+      },
+      {
+        "question_text": "What does the dog do?",
+        "choices": ["Sleeps", "Runs", "Flies", "Climbs"],
+        "correct_answer": "Runs",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The dog runs. The first line says the pet dog runs fast and free."
+      },
+      {
+        "question_text": "What does the dog wag?",
+        "choices": ["Head", "Tail", "Feet", "Ears"],
+        "correct_answer": "Tail",
+        "hint": "Read the second line.",
+        "feedback": "The dog wags its tail. The second line says, “It wags its tail and plays with me.”"
+      },
+      {
+        "question_text": "What does the dog do at home?",
+        "choices": ["Sleeps", "Guards", "Eats", "Hides"],
+        "correct_answer": "Guards",
+        "hint": "Look at the third line.",
+        "feedback": "The dog guards the home. The third line says it barks out loud and guards our home."
+      },
+      {
+        "question_text": "What does the dog not like?",
+        "choices": ["Food", "Playing", "Being alone", "Running"],
+        "correct_answer": "Being alone",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The dog does not like being alone. The last line says it never likes to be alone."
+      }
+    ]
+  },
+  {
+    "level": 13,
+    "title": "The Windy Day",
+    "poem_text": "The wind blows strong from left to right,\nIt lifts the leaves and kites in flight.\nIt whistles softly through the air,\nAnd moves the trees without a care.",
+    "questions": [
+      {
+        "question_text": "What is blowing?",
+        "choices": ["Rain", "Wind", "Snow", "Sand"],
+        "correct_answer": "Wind",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The wind is blowing. The first line says, “The wind blows strong from left to right.”"
+      },
+      {
+        "question_text": "What does the wind lift?",
+        "choices": ["Water", "Leaves and kites", "Rocks", "Trees"],
+        "correct_answer": "Leaves and kites",
+        "hint": "Read the second line.",
+        "feedback": "The wind lifts leaves and kites. The second line says it lifts the leaves and kites in flight."
+      },
+      {
+        "question_text": "What sound does the wind make?",
+        "choices": ["Roar", "Whistle", "Bark", "Buzz"],
+        "correct_answer": "Whistle",
+        "hint": "Look at the third line.",
+        "feedback": "The wind makes a whistling sound. The third line says it whistles softly through the air."
+      },
+      {
+        "question_text": "What does the wind move?",
+        "choices": ["Houses", "Trees", "Cars", "Roads"],
+        "correct_answer": "Trees",
+        "hint": "Read the last line of the poem.",
+        "feedback": "The wind moves the trees. The last line says it moves the trees without a care."
+      },
+      {
+        "question_text": "What kind of day is it?",
+        "choices": ["Rainy", "Windy", "Sunny", "Cloudy"],
+        "correct_answer": "Windy",
+        "hint": "Look at the title and what the poem describes.",
+        "feedback": "It is a windy day. The title is “The Windy Day,” and the poem describes the wind blowing and moving things."
+      }
+    ]
+  },
+  {
+    "level": 14,
+    "title": "The Busy Street",
+    "poem_text": "Cars and buses move so fast,\nPeople walk and hurry past.\nLights turn red and then to green,\nA busy street is always seen.",
+    "questions": [
+      {
+        "question_text": "What moves fast?",
+        "choices": ["Birds", "Cars and buses", "Trees", "Clouds"],
+        "correct_answer": "Cars and buses",
+        "hint": "Read the first line of the poem.",
+        "feedback": "Cars and buses move fast. The first line says, “Cars and buses move so fast.”"
+      },
+      {
+        "question_text": "What do people do?",
+        "choices": ["Sleep", "Walk", "Fly", "Swim"],
+        "correct_answer": "Walk",
+        "hint": "Read the second line.",
+        "feedback": "People walk. The second line says people walk and hurry past."
+      },
+      {
+        "question_text": "What do the lights do?",
+        "choices": ["Shine", "Change color", "Break", "Fall"],
+        "correct_answer": "Change color",
+        "hint": "Look at the third line.",
+        "feedback": "The lights change color. The poem says the lights turn red and then to green."
+      },
+      {
+        "question_text": "What colors are mentioned?",
+        "choices": ["Blue and yellow", "Red and green", "Black and white", "Orange and pink"],
+        "correct_answer": "Red and green",
+        "hint": "Read the third line of the poem.",
+        "feedback": "The colors mentioned are red and green. The third line says, “Lights turn red and then to green.”"
+      },
+      {
+        "question_text": "How is the street described?",
+        "choices": ["Quiet", "Busy", "Empty", "Dark"],
+        "correct_answer": "Busy",
+        "hint": "Look at the title and last line.",
+        "feedback": "The street is described as busy. The title says “The Busy Street,” and the last line says a busy street is always seen."
+      }
+    ]
+  },
+  {
+    "level": 15,
+    "title": "A Day at School",
+    "poem_text": "At school I learn and read each day,\nI write and listen as teachers say.\nI answer questions and try my best,\nThen go outside and take a rest.",
+    "questions": [
+      {
+        "question_text": "Where is the child?",
+        "choices": ["Park", "School", "Home", "Store"],
+        "correct_answer": "School",
+        "hint": "Read the first line of the poem.",
+        "feedback": "The child is at school. The first line says, “At school I learn and read each day.”"
+      },
+      {
+        "question_text": "What does the child do?",
+        "choices": ["Sleeps", "Learns and reads", "Runs", "Plays"],
+        "correct_answer": "Learns and reads",
+        "hint": "Look at the first line.",
+        "feedback": "The child learns and reads. The first line says the child learns and reads each day."
+      },
+      {
+        "question_text": "What else does the child do?",
+        "choices": ["Writes", "Swims", "Climbs", "Sings"],
+        "correct_answer": "Writes",
+        "hint": "Read the second line of the poem.",
+        "feedback": "The child writes. The second line says, “I write and listen as teachers say.”"
+      },
+      {
+        "question_text": "What happens after work?",
+        "choices": ["Eats", "Sleeps", "Rests outside", "Goes home"],
+        "correct_answer": "Rests outside",
+        "hint": "Read the last line of the poem.",
+        "feedback": "After work, the child rests outside. The last line says the child goes outside and takes a rest."
+      },
+      {
+        "question_text": "What is the message of the poem?",
+        "choices": ["Playing all day", "Learning at school", "Traveling", "Sleeping"],
+        "correct_answer": "Learning at school",
+        "hint": "Think about the whole poem and what the child does at school.",
+        "feedback": "The message is about learning at school. The poem shows the child learning, reading, writing, listening, answering questions, and trying their best."
+      }
+    ]
+  }
+]

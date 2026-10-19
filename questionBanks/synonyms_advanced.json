@@ -1,0 +1,482 @@
+{
+  "1": [
+    {
+      "question_id": 1,
+      "question_text": "What is another word for gigantic?",
+      "choices": ["Thin", "Huge", "Tiny", "Narrow"],
+      "correct_answer": "Huge"
+    },
+    {
+      "question_id": 2,
+      "question_text": "What is another word for miniature?",
+      "choices": ["Very bright", "Very small", "Very loud", "Very big"],
+      "correct_answer": "Very small"
+    },
+    {
+      "question_id": 3,
+      "question_text": "What is another word for swift?",
+      "choices": ["Quiet", "Weak", "Fast", "Slow"],
+      "correct_answer": "Fast"
+    },
+    {
+      "question_id": 4,
+      "question_text": "What is another word for ancient?",
+      "choices": ["Very old", "Very loud", "Very new", "Very small"],
+      "correct_answer": "Very old"
+    },
+    {
+      "question_id": 5,
+      "question_text": "What is another word for modern?",
+      "choices": ["Old", "Broken", "Loud", "New"],
+      "correct_answer": "New"
+    }
+  ],
+  "2": [
+    {
+      "question_id": 6,
+      "question_text": "What is another word for protect?",
+      "choices": ["Break", "Drop", "Guard", "Hurt"],
+      "correct_answer": "Guard"
+    },
+    {
+      "question_id": 7,
+      "question_text": "What is another word for support?",
+      "choices": ["Drop", "Hurt", "Help", "Break"],
+      "correct_answer": "Help"
+    },
+    {
+      "question_id": 8,
+      "question_text": "What is another word for discover?",
+      "choices": ["Find", "Hide", "Throw", "Break"],
+      "correct_answer": "Find"
+    },
+    {
+      "question_id": 9,
+      "question_text": "What is another word for decide?",
+      "choices": ["Drop", "Choose", "Break", "Throw"],
+      "correct_answer": "Choose"
+    },
+    {
+      "question_id": 10,
+      "question_text": "What is another word for produce?",
+      "choices": ["Hide", "Throw", "Break", "Make"],
+      "correct_answer": "Make"
+    }
+  ],
+  "3": [
+    {
+      "question_id": 11,
+      "question_text": "What is another word for examine?",
+      "choices": ["Break", "Hide", "Inspect", "Throw"],
+      "correct_answer": "Inspect"
+    },
+    {
+      "question_id": 12,
+      "question_text": "What is another word for collect?",
+      "choices": ["Gather", "Break", "Lose", "Drop"],
+      "correct_answer": "Gather"
+    },
+    {
+      "question_id": 13,
+      "question_text": "What is another word for construct?",
+      "choices": ["Drop", "Build", "Destroy", "Hide"],
+      "correct_answer": "Build"
+    },
+    {
+      "question_id": 14,
+      "question_text": "What is another word for demolish?",
+      "choices": ["Grow", "Destroy", "Fix", "Build"],
+      "correct_answer": "Destroy"
+    },
+    {
+      "question_id": 15,
+      "question_text": "What is another word for assist?",
+      "choices": ["Break", "Support", "Drop", "Hurt"],
+      "correct_answer": "Support"
+    }
+  ],
+  "4": [
+    {
+      "question_id": 16,
+      "question_text": "What is another word for careful?",
+      "choices": ["Messy", "Lazy", "Cautious", "Loud"],
+      "correct_answer": "Cautious"
+    },
+    {
+      "question_id": 17,
+      "question_text": "What is another word for rapid?",
+      "choices": ["Weak", "Slow", "Quiet", "Speedy"],
+      "correct_answer": "Speedy"
+    },
+    {
+      "question_id": 18,
+      "question_text": "What is another word for brilliant?",
+      "choices": ["Very loud", "Very smart", "Very weak", "Very slow"],
+      "correct_answer": "Very smart"
+    },
+    {
+      "question_id": 19,
+      "question_text": "What is another word for tiny?",
+      "choices": ["Mini", "Loud", "Huge", "Thick"],
+      "correct_answer": "Mini"
+    },
+    {
+      "question_id": 20,
+      "question_text": "What is another word for wide?",
+      "choices": ["Quiet", "Narrow", "Broad", "Small"],
+      "correct_answer": "Broad"
+    }
+  ],
+  "5": [
+    {
+      "question_id": 21,
+      "question_text": "What is another word for notice?",
+      "choices": ["Throw", "Observe", "Break", "Hide"],
+      "correct_answer": "Observe"
+    },
+    {
+      "question_id": 22,
+      "question_text": "What is another word for search?",
+      "choices": ["Break", "Drop", "Hide", "Explore"],
+      "correct_answer": "Explore"
+    },
+    {
+      "question_id": 23,
+      "question_text": "What is another word for choose?",
+      "choices": ["Select", "Break", "Throw", "Drop"],
+      "correct_answer": "Select"
+    },
+    {
+      "question_id": 24,
+      "question_text": "What is another word for collect?",
+      "choices": ["Lose", "Assemble", "Break", "Drop"],
+      "correct_answer": "Assemble"
+    },
+    {
+      "question_id": 25,
+      "question_text": "What is another word for show?",
+      "choices": ["Display", "Drop", "Hide", "Break"],
+      "correct_answer": "Display"
+    }
+  ],
+  "6": [
+    {
+      "question_id": 26,
+      "question_text": "What is another word for protect?",
+      "choices": ["Defend", "Hurt", "Drop", "Break"],
+      "correct_answer": "Defend"
+    },
+    {
+      "question_id": 27,
+      "question_text": "What is another word for improve?",
+      "choices": ["Hide", "Enhance", "Drop", "Break"],
+      "correct_answer": "Enhance"
+    },
+    {
+      "question_id": 28,
+      "question_text": "What is another word for repair?",
+      "choices": ["Throw", "Hide", "Restore", "Break"],
+      "correct_answer": "Restore"
+    },
+    {
+      "question_id": 29,
+      "question_text": "What is another word for discover?",
+      "choices": ["Detect", "Break", "Throw", "Hide"],
+      "correct_answer": "Detect"
+    },
+    {
+      "question_id": 30,
+      "question_text": "What is another word for create?",
+      "choices": ["Throw", "Produce", "Hide", "Break"],
+      "correct_answer": "Produce"
+    }
+  ],
+  "7": [
+    {
+      "question_id": 31,
+      "question_text": "What is another word for glance?",
+      "choices": ["Look quickly", "Hide", "Break", "Throw"],
+      "correct_answer": "Look quickly"
+    },
+    {
+      "question_id": 32,
+      "question_text": "What is another word for whisper?",
+      "choices": ["Run", "Speak softly", "Shout loudly", "Jump"],
+      "correct_answer": "Speak softly"
+    },
+    {
+      "question_id": 33,
+      "question_text": "What is another word for giggle?",
+      "choices": ["Run", "Laugh softly", "Sleep", "Cry loudly"],
+      "correct_answer": "Laugh softly"
+    },
+    {
+      "question_id": 34,
+      "question_text": "What is another word for stare?",
+      "choices": ["Throw", "Look closely", "Break", "Hide"],
+      "correct_answer": "Look closely"
+    },
+    {
+      "question_id": 35,
+      "question_text": "What is another word for wander?",
+      "choices": ["Jump high", "Fly", "Walk around", "Run fast"],
+      "correct_answer": "Walk around"
+    }
+  ],
+  "8": [
+    {
+      "question_id": 36,
+      "question_text": "What is another word for gloomy?",
+      "choices": ["Happy", "Sad", "Quick", "Loud"],
+      "correct_answer": "Sad"
+    },
+    {
+      "question_id": 37,
+      "question_text": "What is another word for joyful?",
+      "choices": ["Very loud", "Very happy", "Very weak", "Very sad"],
+      "correct_answer": "Very happy"
+    },
+    {
+      "question_id": 38,
+      "question_text": "What is another word for furious?",
+      "choices": ["Very sleepy", "Very calm", "Very angry", "Very quiet"],
+      "correct_answer": "Very angry"
+    },
+    {
+      "question_id": 39,
+      "question_text": "What is another word for calm?",
+      "choices": ["Peaceful", "Busy", "Angry", "Loud"],
+      "correct_answer": "Peaceful"
+    },
+    {
+      "question_id": 40,
+      "question_text": "What is another word for lonely?",
+      "choices": ["Bright", "Busy", "Alone", "Loud"],
+      "correct_answer": "Alone"
+    }
+  ],
+  "9": [
+    {
+      "question_id": 41,
+      "question_text": "What is another word for bright?",
+      "choices": ["Rough", "Dark", "Shiny", "Dull"],
+      "correct_answer": "Shiny"
+    },
+    {
+      "question_id": 42,
+      "question_text": "What is another word for rough?",
+      "choices": ["Smooth", "Quiet", "Bumpy", "Soft"],
+      "correct_answer": "Bumpy"
+    },
+    {
+      "question_id": 43,
+      "question_text": "What is another word for smooth?",
+      "choices": ["Even", "Hard", "Rough", "Loud"],
+      "correct_answer": "Even"
+    },
+    {
+      "question_id": 44,
+      "question_text": "What is another word for thin?",
+      "choices": ["Heavy", "Wide", "Slim", "Thick"],
+      "correct_answer": "Slim"
+    },
+    {
+      "question_id": 45,
+      "question_text": "What is another word for thick?",
+      "choices": ["Thin", "Dense", "Weak", "Small"],
+      "correct_answer": "Dense"
+    }
+  ],
+  "10": [
+    {
+      "question_id": 46,
+      "question_text": "What is another word for tiny?",
+      "choices": ["Huge", "Loud", "Miniature", "Thick"],
+      "correct_answer": "Miniature"
+    },
+    {
+      "question_id": 47,
+      "question_text": "What is another word for huge?",
+      "choices": ["Narrow", "Enormous", "Weak", "Tiny"],
+      "correct_answer": "Enormous"
+    },
+    {
+      "question_id": 48,
+      "question_text": "What is another word for old?",
+      "choices": ["Ancient", "Small", "Loud", "New"],
+      "correct_answer": "Ancient"
+    },
+    {
+      "question_id": 49,
+      "question_text": "What is another word for new?",
+      "choices": ["Broken", "Old", "Fresh", "Loud"],
+      "correct_answer": "Fresh"
+    },
+    {
+      "question_id": 50,
+      "question_text": "What is another word for big?",
+      "choices": ["Massive", "Thin", "Narrow", "Tiny"],
+      "correct_answer": "Massive"
+    }
+  ],
+  "11": [
+    {
+      "question_id": 51,
+      "question_text": "What is another word for help?",
+      "choices": ["Drop", "Aid", "Break", "Hurt"],
+      "correct_answer": "Aid"
+    },
+    {
+      "question_id": 52,
+      "question_text": "What is another word for choose?",
+      "choices": ["Drop", "Break", "Decide", "Throw"],
+      "correct_answer": "Decide"
+    },
+    {
+      "question_id": 53,
+      "question_text": "What is another word for collect?",
+      "choices": ["Break", "Gather", "Lose", "Drop"],
+      "correct_answer": "Gather"
+    },
+    {
+      "question_id": 54,
+      "question_text": "What is another word for look?",
+      "choices": ["Observe", "Throw", "Break", "Hide"],
+      "correct_answer": "Observe"
+    },
+    {
+      "question_id": 55,
+      "question_text": "What is another word for fix?",
+      "choices": ["Hide", "Break", "Repair", "Throw"],
+      "correct_answer": "Repair"
+    }
+  ],
+  "12": [
+    {
+      "question_id": 56,
+      "question_text": "What is another word for protect?",
+      "choices": ["Drop", "Break", "Guard", "Hurt"],
+      "correct_answer": "Guard"
+    },
+    {
+      "question_id": 57,
+      "question_text": "What is another word for search?",
+      "choices": ["Hide", "Explore", "Throw", "Break"],
+      "correct_answer": "Explore"
+    },
+    {
+      "question_id": 58,
+      "question_text": "What is another word for build?",
+      "choices": ["Hide", "Destroy", "Construct", "Drop"],
+      "correct_answer": "Construct"
+    },
+    {
+      "question_id": 59,
+      "question_text": "What is another word for destroy?",
+      "choices": ["Fix", "Demolish", "Build", "Grow"],
+      "correct_answer": "Demolish"
+    },
+    {
+      "question_id": 60,
+      "question_text": "What is another word for make?",
+      "choices": ["Hide", "Break", "Create", "Throw"],
+      "correct_answer": "Create"
+    }
+  ],
+  "13": [
+    {
+      "question_id": 61,
+      "question_text": "What is another word for fast?",
+      "choices": ["Weak", "Rapid", "Quiet", "Slow"],
+      "correct_answer": "Rapid"
+    },
+    {
+      "question_id": 62,
+      "question_text": "What is another word for slow?",
+      "choices": ["Bright", "Fast", "Sluggish", "Loud"],
+      "correct_answer": "Sluggish"
+    },
+    {
+      "question_id": 63,
+      "question_text": "What is another word for happy?",
+      "choices": ["Sad", "Cheerful", "Tired", "Angry"],
+      "correct_answer": "Cheerful"
+    },
+    {
+      "question_id": 64,
+      "question_text": "What is another word for sad?",
+      "choices": ["Glad", "Quick", "Miserable", "Loud"],
+      "correct_answer": "Miserable"
+    },
+    {
+      "question_id": 65,
+      "question_text": "What is another word for angry?",
+      "choices": ["Soft", "Calm", "Furious", "Happy"],
+      "correct_answer": "Furious"
+    }
+  ],
+  "14": [
+    {
+      "question_id": 66,
+      "question_text": "What is another word for careful?",
+      "choices": ["Messy", "Lazy", "Cautious", "Loud"],
+      "correct_answer": "Cautious"
+    },
+    {
+      "question_id": 67,
+      "question_text": "What is another word for brave?",
+      "choices": ["Weak", "Courageous", "Quiet", "Afraid"],
+      "correct_answer": "Courageous"
+    },
+    {
+      "question_id": 68,
+      "question_text": "What is another word for quiet?",
+      "choices": ["Fast", "Loud", "Silent", "Angry"],
+      "correct_answer": "Silent"
+    },
+    {
+      "question_id": 69,
+      "question_text": "What is another word for strong?",
+      "choices": ["Powerful", "Tiny", "Slow", "Weak"],
+      "correct_answer": "Powerful"
+    },
+    {
+      "question_id": 70,
+      "question_text": "What is another word for weak?",
+      "choices": ["Big", "Strong", "Fragile", "Loud"],
+      "correct_answer": "Fragile"
+    }
+  ],
+  "15": [
+    {
+      "question_id": 71,
+      "question_text": "What is another word for improve?",
+      "choices": ["Hide", "Better", "Drop", "Break"],
+      "correct_answer": "Better"
+    },
+    {
+      "question_id": 72,
+      "question_text": "What is another word for discover?",
+      "choices": ["Throw", "Hide", "Find", "Break"],
+      "correct_answer": "Find"
+    },
+    {
+      "question_id": 73,
+      "question_text": "What is another word for repair?",
+      "choices": ["Break", "Restore", "Hide", "Throw"],
+      "correct_answer": "Restore"
+    },
+    {
+      "question_id": 74,
+      "question_text": "What is another word for protect?",
+      "choices": ["Defend", "Break", "Drop", "Hurt"],
+      "correct_answer": "Defend"
+    },
+    {
+      "question_id": 75,
+      "question_text": "What is another word for collect?",
+      "choices": ["Lose", "Assemble", "Break", "Drop"],
+      "correct_answer": "Assemble"
+    }
+  ]
+}

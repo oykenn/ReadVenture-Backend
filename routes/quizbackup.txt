@@ -1,0 +1,325 @@
+// router.post("/progress/save", requireAuth, async (req, res) => {
+//   try {
+//     const userId = req.user.id;
+//     const { activity_type, reading_path, level, score } = req.body || {};
+
+//     if (
+//       !activity_type ||
+//       !reading_path ||
+//       level === undefined ||
+//       score === undefined
+//     ) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Missing required fields.",
+//       });
+//     }
+
+//     const normalizedActivityType = String(activity_type).toLowerCase();
+//     const normalizedReadingPath = String(reading_path).toLowerCase();
+//     const parsedLevel = Number(level);
+//     const parsedScore = Number(score);
+
+//     if (
+//       Number.isNaN(parsedLevel) ||
+//       Number.isNaN(parsedScore) ||
+//       parsedLevel < 1 ||
+//       parsedScore < 0
+//     ) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid level or score.",
+//       });
+//     }
+
+//     const existing = await pool.query(
+//       `
+//       SELECT id, user_id, activity_type, reading_path, level, score, completed, created_at
+//       FROM user_progress
+//       WHERE user_id = $1
+//         AND activity_type = $2
+//         AND reading_path = $3
+//         AND level = $4
+//       LIMIT 1
+//       `,
+//       [userId, normalizedActivityType, normalizedReadingPath, parsedLevel]
+//     );
+
+//     // do not overwrite first saved score
+//     if (existing.rows.length > 0) {
+//       return res.json({
+//         success: true,
+//         saved: false,
+//         message: "Progress already recorded. Official score not overwritten.",
+//         progress: existing.rows[0],
+//       });
+//     }
+
+//     const insertResult = await pool.query(
+//       `
+//       INSERT INTO user_progress (
+//         user_id,
+//         activity_type,
+//         reading_path,
+//         level,
+//         score,
+//         completed
+//       )
+//       VALUES ($1, $2, $3, $4, $5, TRUE)
+//       RETURNING id, user_id, activity_type, reading_path, level, score, completed, created_at
+//       `,
+//       [
+//         userId,
+//         normalizedActivityType,
+//         normalizedReadingPath,
+//         parsedLevel,
+//         parsedScore,
+//       ]
+//     );
+
+//     return res.json({
+//       success: true,
+//       saved: true,
+//       message: "Progress saved successfully.",
+//       progress: insertResult.rows[0],
+//     });
+//   } catch (err) {
+//     console.error("SAVE PROGRESS ERROR:", err);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Server error.",
+//     });
+//   }
+// });
+
+// router.post("/progress/save", requireAuth, async (req, res) => {
+//   try {
+//     const userId = req.user.id;
+//     const { activity_type, reading_path, level, score } = req.body || {};
+
+//     if (
+//       !activity_type ||
+//       !reading_path ||
+//       level === undefined ||
+//       score === undefined
+//     ) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Missing required fields.",
+//       });
+//     }
+
+//     const normalizedActivityType = String(activity_type).toLowerCase();
+//     const normalizedReadingPath = String(reading_path);
+
+//     const allowedPaths = ["Foundation", "Developing", "Advanced"];
+//     if (!allowedPaths.includes(normalizedReadingPath)) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid reading_path",
+//       });
+//     }
+
+//     const parsedLevel = Number(level);
+//     const parsedScore = Number(score);
+
+//     if (
+//       Number.isNaN(parsedLevel) ||
+//       Number.isNaN(parsedScore) ||
+//       parsedLevel < 1 ||
+//       parsedScore < 0
+//     ) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid level or score.",
+//       });
+//     }
+
+//     const existing = await pool.query(
+//       `
+//       SELECT id, user_id, activity_type, reading_path, level, score, completed, created_at
+//       FROM user_progress
+//       WHERE user_id = $1
+//         AND activity_type = $2
+//         AND reading_path = $3
+//         AND level = $4
+//       LIMIT 1
+//       `,
+//       [userId, normalizedActivityType, normalizedReadingPath, parsedLevel]
+//     );
+
+//     if (existing.rows.length > 0) {
+//       return res.json({
+//         success: true,
+//         saved: false,
+//         message: "Progress already recorded. Official score not overwritten.",
+//         progress: existing.rows[0],
+//       });
+//     }
+
+//     const insertResult = await pool.query(
+//       `
+//       INSERT INTO user_progress (
+//         user_id,
+//         activity_type,
+//         reading_path,
+//         level,
+//         score,
+//         completed
+//       )
+//       VALUES ($1, $2, $3, $4, $5, TRUE)
+//       RETURNING id, user_id, activity_type, reading_path, level, score, completed, created_at
+//       `,
+//       [
+//         userId,
+//         normalizedActivityType,
+//         normalizedReadingPath,
+//         parsedLevel,
+//         parsedScore,
+//       ]
+//     );
+
+//     return res.json({
+//       success: true,
+//       saved: true,
+//       message: "Progress saved successfully.",
+//       progress: insertResult.rows[0],
+//     });
+//   } catch (err) {
+//     console.error("SAVE PROGRESS ERROR:", err);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Server error.",
+//     });
+//   }
+// });
+
+
+// router.post("/progress/save", requireAuth, async (req, res) => {
+//   try {
+//     const userId = req.user.id;
+//     const { activity_type, level, score } = req.body || {};
+
+//     if (
+//       !activity_type ||
+//       level === undefined ||
+//       score === undefined
+//     ) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Missing required fields.",
+//       });
+//     }
+
+//     const normalizedActivityType = String(activity_type).toLowerCase();
+//     const parsedLevel = Number(level);
+//     const parsedScore = Number(score);
+
+//     if (
+//       Number.isNaN(parsedLevel) ||
+//       Number.isNaN(parsedScore) ||
+//       parsedLevel < 1 ||
+//       parsedScore < 0
+//     ) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid level or score.",
+//       });
+//     }
+
+//     // get reading_path from users table based on logged-in user
+//     const userResult = await pool.query(
+//       `
+//       SELECT reading_path
+//       FROM users
+//       WHERE id = $1
+//       LIMIT 1
+//       `,
+//       [userId]
+//     );
+
+//     if (userResult.rows.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "User not found.",
+//       });
+//     }
+
+//     const readingPath = userResult.rows[0].reading_path;
+//       console.log("SAVE BODY:", req.body);
+//       console.log("SAVE USER ID:", userId);
+//       console.log("SAVE READING PATH:", readingPath);
+
+//     if (!readingPath) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "User has no reading_path yet.",
+//       });
+//     }
+
+//     const allowedPaths = ["Foundation", "Developing", "Advanced"];
+//     if (!allowedPaths.includes(readingPath)) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid reading_path in user record.",
+//       });
+//     }
+
+//     const existing = await pool.query(
+//       `
+//       SELECT id, user_id, activity_type, reading_path, level, score, completed, created_at
+//       FROM user_progress
+//       WHERE user_id = $1
+//         AND activity_type = $2
+//         AND reading_path = $3
+//         AND level = $4
+//       LIMIT 1
+//       `,
+//       [userId, normalizedActivityType, readingPath, parsedLevel]
+//     );
+
+//     if (existing.rows.length > 0) {
+//       return res.json({
+//         success: true,
+//         saved: false,
+//         message: "Progress already recorded. Official score not overwritten.",
+//         progress: existing.rows[0],
+//       });
+//     }
+
+//     const insertResult = await pool.query(
+//       `
+//       INSERT INTO user_progress (
+//         user_id,
+//         activity_type,
+//         reading_path,
+//         level,
+//         score,
+//         completed
+//       )
+//       VALUES ($1, $2, $3, $4, $5, TRUE)
+//       RETURNING id, user_id, activity_type, reading_path, level, score, completed, created_at
+//       `,
+//       [
+//         userId,
+//         normalizedActivityType,
+//         readingPath,
+//         parsedLevel,
+//         parsedScore,
+//       ]
+//     );
+
+//     return res.json({
+//       success: true,
+//       saved: true,
+//       message: "Progress saved successfully.",
+//       progress: insertResult.rows[0],
+//     });
+//   } catch (err) {
+//     console.error("SAVE PROGRESS ERROR:", err);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Server error.",
+//     });
+//   }
+// });
