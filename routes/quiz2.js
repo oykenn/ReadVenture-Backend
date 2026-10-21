@@ -47,67 +47,6 @@ function loadAntonymsCsv() {
   });
 }
 
-// router.get("/antonyms/:path/:level", (req, res) => {
-//   try {
-//     const { path: readingPath, level } = req.params;
-//     const normalizedPath = readingPath.toLowerCase();
-
-//     console.log("Antonyms request path:", normalizedPath, "level:", level);
-
-//     let fileName = "";
-
-//     if (normalizedPath === "foundation") {
-//       fileName = "antonyms_foundation.json";
-//     } else if (normalizedPath === "developing") {
-//       fileName = "antonyms_developing.json";
-//     } else if (normalizedPath === "advanced") {
-//       fileName = "antonyms_advanced.json";
-//     } else {
-//       return res.status(400).json({
-//         success: false,
-//         message: "Invalid reading path."
-//       });
-//     }
-
-//     const filePath = path.join(__dirname, "../questionBanks", fileName);
-
-//     if (!fs.existsSync(filePath)) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Antonyms question bank file not found."
-//       });
-//     }
-
-//     const rawData = fs.readFileSync(filePath, "utf8");
-//     const questions = JSON.parse(rawData);
-
-//     const levelQuestions = questions[level];
-
-//     if (!levelQuestions) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Level not found."
-//       });
-//     }
-
-//     return res.status(200).json({
-//       success: true,
-//       path: normalizedPath,
-//       level: Number(level),
-//       total_questions: levelQuestions.length,
-//       questions: levelQuestions,
-//       questionNumber: 1,
-//       totalQuestions: levelQuestions.length
-//     });
-//   } catch (err) {
-//     console.error("Antonyms route error:", err);
-//     return res.status(500).json({
-//       success: false,
-//       message: "Server error."
-//     });
-//   }
-// });
-
 router.get("/antonyms/:path/:level", async (req, res) => {
   try {
     const { path: readingPath, level } = req.params;
