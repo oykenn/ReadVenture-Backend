@@ -175,10 +175,7 @@ function detectMeaningfulSpeech(wavBuffer) {
 
 
 
-// =====================================================
 // GET SAVED WORDS PROGRESS
-// =====================================================
-
 router.get(
   "/progress/words",
   requireAuth,
@@ -251,10 +248,7 @@ router.get(
   }
 );
 
-// =====================================================
 // GET WORD QUESTIONS BY PATH AND LEVEL
-// =====================================================
-
 router.get("/:path/:level", (req, res) => {
   try {
     const { path: readingPath, level } = req.params;

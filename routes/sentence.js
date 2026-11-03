@@ -402,7 +402,7 @@ router.get(
           "sentence_developing.json";
       } else {
         fileName =
-          "sentence_advanced.json";
+          "sentence_updated_V3.json";
       }
 
       const filePath =
@@ -646,7 +646,7 @@ router.post(
           "sentence_developing.json";
       } else {
         fileName =
-          "sentence_advanced.json";
+          "sentence_updated_V3.json";
       }
 
       const filePath =
@@ -1444,111 +1444,5 @@ Keep all feedback short, encouraging, clear, and child-friendly.
     }
   }
 );
-
-// router.post(
-//   "/analyze-pronunciation",
-//   requireAuth,
-//   upload.none(),
-//   async (req, res) => {
-//     try {
-//       const {
-//         path: readingPath,
-//         level,
-//         question_id,
-//       } = req.body || {};
-
-//       const normalizedPath = String(
-//         readingPath || "advanced"
-//       )
-//         .trim()
-//         .toLowerCase();
-
-//       const parsedLevel =
-//         Number(level || 1);
-
-//       const parsedQuestionId =
-//         Number(question_id || 1);
-
-//       return res.status(200).json({
-//         success: true,
-
-//         path:
-//           normalizedPath,
-
-//         level:
-//           parsedLevel,
-
-//         question_id:
-//           parsedQuestionId,
-
-//         question_text:
-//           "Say the sentence: The big cat sleeps on the mat",
-
-//         target_sentence:
-//           "The big cat sleeps on the mat",
-
-//         recognized_text:
-//           "The big cat sleeps on the mat",
-
-//         sentence_match:
-//           true,
-
-//         is_correct:
-//           true,
-
-//         result_status:
-//           "correct",
-
-//         mistake:
-//           "No major pronunciation mistake detected.",
-
-//         analysis: {
-//           pronunciation:
-//             "The sentence was pronounced clearly.",
-
-//           stress_intonation:
-//             "Good stress and intonation.",
-
-//           pacing:
-//             "The reading speed was good.",
-
-//           fluency:
-//             "The sentence was read smoothly.",
-
-//           pauses:
-//             "The pauses sounded natural.",
-//         },
-
-//         tips: {
-//           pronunciation:
-//             "Keep saying each word clearly.",
-
-//           pacing:
-//             "Read at a steady speed.",
-
-//           breathing:
-//             "Take a small breath before reading.",
-
-//           exercise:
-//             'Practice reading "The big cat sleeps on the mat" again.',
-//         },
-//       });
-//     } catch (err) {
-//       console.error(
-//         "SENTENCE ANALYZE TEST ERROR:",
-//         err
-//       );
-
-//       return res.status(500).json({
-//         success: false,
-//         message:
-//           "Failed to run sentence pronunciation test.",
-//         error:
-//           err.message,
-//       });
-//     }
-//   }
-// );
-
 
 export default router;

@@ -519,7 +519,7 @@ router.get("/users-v2", async (req, res) => {
     console.log("ENTERED /users-v2");
     console.log("REQ QUERY:", req.query);
 
-    const { role, search } = req.query;
+    const { role, search, sort = "az" } = req.query;
 
     let query = `
       SELECT id, username, role, firstname, lastname
@@ -550,7 +550,12 @@ router.get("/users-v2", async (req, res) => {
     `;
   }
 
-    query += ` ORDER BY id ASC`;
+    // query += ` ORDER BY id ASC`;
+    if (sort === "za") {
+      query += ` ORDER BY firstname DESC, lastname DESC, id ASC`;
+    } else {
+      query += ` ORDER BY firstname ASC, lastname ASC, id ASC`;
+    }
 
     console.log("FINAL QUERY:", query);
     console.log("VALUES:", values);
@@ -600,175 +605,6 @@ router.get('/users-stats', async (req, res) => {
   }
 });
 
-// router.post("/add-user", async (req, res) => {
-//   const { firstname, lastname, role, teacher_id } = req.body;
-
-//   // Validate required fields
-//   if (!firstname || !lastname || !role) {
-//     return res.status(400).json({
-//       success: false,
-//       message: "firstname, lastname, and role are required",
-//     });
-//   }
-
-//   const normalizedRole = String(role).trim().toLowerCase();
-
-//   const allowedRoles = ["student", "teacher", "admin"];
-
-//   if (!allowedRoles.includes(normalizedRole)) {
-//     return res.status(400).json({
-//       success: false,
-//       message: "Invalid role. Must be student, teacher, or admin.",
-//     });
-//   }
-
-//   try {
-//     // Student must have an assigned teacher
-//     if (normalizedRole === "student") {
-//       if (!teacher_id) {
-//         return res.status(400).json({
-//           success: false,
-//           message: "teacher_id is required for students",
-//         });
-//       }
-
-//       const teacherResult = await pool.query(
-//         `
-//         SELECT id
-//         FROM users
-//         WHERE id = $1
-//           AND role = 'teacher'
-//         LIMIT 1
-//         `,
-//         [teacher_id]
-//       );
-
-//       if (teacherResult.rows.length === 0) {
-//         return res.status(400).json({
-//           success: false,
-//           message: "Invalid teacher_id",
-//         });
-//       }
-//     }
-
-//     // Clean names
-//     const cleanName = (value) =>
-//       String(value)
-//         .trim()
-//         .toLowerCase()
-//         .replace(/[^a-z]/g, "");
-
-//     const cleanFirstName = cleanName(firstname);
-//     const cleanLastName = cleanName(lastname);
-
-//     // Get initials of first name/s
-//     // Example: "Kenn Louis Mario" -> "klm"
-//     const firstNameInitials = String(firstname)
-//       .trim()
-//       .split(/\s+/)
-//       .filter(Boolean)
-//       .map((name) => name.charAt(0).toUpperCase())
-//       .join("");
-
-//     // Generate username
-//     // Example: apellido.kennlouismario@jhg
-//     const baseUsername = `${cleanLastName}.${cleanFirstName}@jhg`;
-
-//     let username = baseUsername;
-
-//     // Check if generated username already exists
-//     let counter = 2;
-
-//     while (true) {
-//       const existingUser = await pool.query(
-//         `
-//         SELECT id
-//         FROM users
-//         WHERE username = $1
-//         LIMIT 1
-//         `,
-//         [username]
-//       );
-
-//       if (existingUser.rows.length === 0) {
-//         break;
-//       }
-
-//       // Example:
-//       // cruz.juan@jhg
-//       // cruz.juan2@jhg
-//       // cruz.juan3@jhg
-//       username = `${cleanLastName}.${cleanFirstName}${counter}@jhg`;
-//       counter++;
-//     }
-
-//     // Generate default password
-//     // Example:
-//     // Kenn Louis Mario Apellido
-//     // apellidoKLM!
-//     const generatedPassword =
-//       `${cleanLastName}${firstNameInitials}!`;
-
-//     // Hash password before saving
-//     const hashedPassword = await bcrypt.hash(
-//       generatedPassword,
-//       10
-//     );
-
-//     const finalTeacherId =
-//       normalizedRole === "student"
-//         ? teacher_id
-//         : null;
-
-//     const result = await pool.query(
-//       `
-//       INSERT INTO users (
-//         firstname,
-//         lastname,
-//         username,
-//         password,
-//         role,
-//         teacher_id
-//       )
-//       VALUES ($1, $2, $3, $4, $5, $6)
-//       RETURNING
-//         id,
-//         firstname,
-//         lastname,
-//         username,
-//         role,
-//         teacher_id
-//       `,
-//       [
-//         firstname.trim(),
-//         lastname.trim(),
-//         username,
-//         hashedPassword,
-//         normalizedRole,
-//         finalTeacherId,
-//       ]
-//     );
-
-//     return res.status(201).json({
-//       success: true,
-//       message: "User added successfully.",
-//       user: result.rows[0],
-
-//       // Send these back so FlutterFlow can display them
-//       credentials: {
-//         username: username,
-//         temporary_password: generatedPassword,
-//       },
-//     });
-//   } catch (err) {
-//     console.error("ADD USER ERROR:", err);
-
-//     return res.status(500).json({
-//       success: false,
-//       message: "Failed to add user",
-//     });
-//   }
-// });
 
 router.post("/add-user", async (req, res) => {
   const { firstname, lastname, role, teacher_id } = req.body;

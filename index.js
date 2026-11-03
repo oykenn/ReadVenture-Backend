@@ -19,7 +19,7 @@ import adminTchr from "./routes/adminTchrDtls.js";
 import poemsRouter from "./routes/poems.js";
 import shortStoriesRouter from "./routes/shortstories.js";
 import textsRouter from "./routes/texts.js";
-
+import aiUsageRoutes from "./routes/aiUsage.js";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -77,7 +77,7 @@ app.use("/quiz3", quiz3Routes);
 app.use("/words", wordsRoutes);
 app.use("/phrase", phraseRoutes);
 app.use("/sentence", sentenceRoutes);
-
+app.use("/admin", aiUsageRoutes);
 // IMPORTANT: POEMS FIRST
 app.use("/reading", poemsRouter);
 app.use("/reading", shortStoriesRouter);

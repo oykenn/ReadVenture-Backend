@@ -58,61 +58,6 @@ router.get("/teacher/:id/details", async (req, res) => {
   }
 });
 
-// router.put("/:id/update-profile", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { firstname, lastname, username } = req.body;
-
-//     if (!firstname || !lastname || !username) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "First name, last name, and username are required.",
-//       });
-//     }
-
-//     const result = await pool.query(
-//       `
-//       UPDATE users
-//       SET
-//         firstname = $1,
-//         lastname = $2,
-//         username = $3
-//       WHERE id = $4
-//         AND role = 'teacher'
-//       RETURNING id, firstname, lastname, username, role
-//       `,
-//       [firstname, lastname, username, id]
-//     );
-
-//     if (result.rows.length === 0) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Teacher not found.",
-//       });
-//     }
-
-//     res.status(200).json({
-//       success: true,
-//       message: "Teacher profile updated successfully.",
-//       teacher: result.rows[0],
-//     });
-//   } catch (error) {
-//     console.error("Error updating teacher profile:", error);
-
-//     if (error.code === "23505") {
-//       return res.status(409).json({
-//         success: false,
-//         message: "Username already exists.",
-//       });
-//     }
-
-//     res.status(500).json({
-//       success: false,
-//       message: "Failed to update teacher profile.",
-//     });
-//   }
-// });
-
 router.put("/teacher/:id/update-profile", async (req, res) => {
   try {
     const { id } = req.params;

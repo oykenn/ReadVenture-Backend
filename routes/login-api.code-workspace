@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "login-api",
+			"path": ".."
+		},
+		{
+			"name": "csvFiles",
+			"path": "../../../csvFiles"
+		}
+	],
+	"settings": {}
+}
