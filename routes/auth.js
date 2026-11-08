@@ -109,65 +109,6 @@ router.post("/login-v2", async (req, res) => {
   }
 });
 
-// login route with saved login check box
-router.post("/login-v3", async (req, res) => {
-  const { username, password } = req.body;
-
-  if (!username || !password) {
-    return res.status(400).json({
-      success: false,
-      message: "username and password required",
-    });
-  }
-
-  try {
-    const result = await pool.query(
-      "SELECT id, username, role, password FROM users WHERE username = $1 LIMIT 1",
-      [username]
-    );
-
-    if (result.rows.length === 0) {
-      return res.status(401).json({
-        success: false,
-        message: "Invalid credentials",
-      });
-    }
-
-    const user = result.rows[0];
-
-    // TEMP: plain-text password check (OK for thesis demo)
-    if (user.password !== password) {
-      return res.status(401).json({
-        success: false,
-        message: "Invalid credentials",
-      });
-    }
-
-    // ✅ JWT token (7 days)
-    const accessToken = jwt.sign(
-      { id: user.id, role: user.role, username: user.username },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
-    );
-
-    return res.json({
-      success: true,
-      accessToken,
-      user: {
-        id: user.id,
-        username: user.username,
-        role: user.role,
-      },
-    });
-  } catch (err) {
-    console.error("LOGIN ERROR:", err);
-    return res.status(500).json({
-      success: false,
-      message: "Server error",
-    });
-  }
-});
-
 router.post("/login-v4", async (req, res) => {
   const { username, password } = req.body;
 

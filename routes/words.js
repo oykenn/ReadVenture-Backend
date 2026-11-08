@@ -673,6 +673,7 @@ router.post(
 
           recognized_text:
             "No speech detected",
+          
 
           recognized_word:
             "Unclear",

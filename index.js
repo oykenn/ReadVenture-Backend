@@ -21,6 +21,8 @@ import shortStoriesRouter from "./routes/shortstories.js";
 import textsRouter from "./routes/texts.js";
 import aiUsageRoutes from "./routes/aiUsage.js";
 
+import healthRoutes from "./routes/health.js"; 
+
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -91,9 +93,11 @@ app.use("/teacher", tchrRoutes);
 app.use("/admin/student", adminStud);
 app.use("/admin", adminTchr);
 
+app.use("/health", healthRoutes);
+
 /**
  * ✅ Start server
- */
+  */
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);

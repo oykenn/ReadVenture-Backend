@@ -519,7 +519,7 @@ Return valid JSON only.
           type: "json_object",
         },
 
-        temperature: 0.6,
+        // temperature: 0.6,
       });
 
     // ==================================================

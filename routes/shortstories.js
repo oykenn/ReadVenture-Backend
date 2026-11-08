@@ -537,7 +537,7 @@ Return valid JSON only.
           type: "json_object",
         },
 
-        temperature: 0.6,
+        // temperature: 0.6,
       });
 
 
@@ -593,11 +593,7 @@ Return valid JSON only.
       );
     }
 
-
-    // ==================================================
     // CLEAN / NORMALIZE QUESTIONS
-    // ==================================================
-
     const questions = aiData.questions.map(
       (question, index) => {
         return {
