@@ -7,6 +7,8 @@ import multer from "multer";
 import { parse } from "csv-parse/sync";
 import path from "path";
 
+import { randomBytes } from "node:crypto";
+
 
 const router = express.Router();
 
@@ -547,151 +549,480 @@ router.get('/users-stats', async (req, res) => {
 });
 
 
-router.post("/add-user", async (req, res) => {
-  const { firstname, lastname, role, teacher_id } = req.body;
+// router.post("/add-user", requireAuth, async (req, res) => {
+//   const { firstname, lastname, role, teacher_id } = req.body;
 
-  console.log("\n==============================");
-  console.log("ADD USER REQUEST RECEIVED");
-  console.log("==============================");
+//   console.log("\n==============================");
+//   console.log("ADD USER REQUEST RECEIVED");
+//   console.log("==============================");
 
-  console.log("RAW BODY:", req.body);
+//   console.log("RAW BODY:", req.body);
 
-  // Validate required fields
-  if (!firstname || !lastname || !role) {
-    console.log("VALIDATION FAILED: Missing required fields");
+//   // Validate required fields
+//   if (!firstname || !lastname || !role) {
+//     console.log("VALIDATION FAILED: Missing required fields");
 
-    return res.status(400).json({
+//     return res.status(400).json({
+//       success: false,
+//       message: "firstname, lastname, and role are required",
+//     });
+//   }
+
+//   const normalizedRole = String(role).trim().toLowerCase();
+
+//   console.log("NORMALIZED ROLE:", normalizedRole);
+
+//   const allowedRoles = ["student", "teacher", "admin"];
+
+//   if (!allowedRoles.includes(normalizedRole)) {
+//     console.log("VALIDATION FAILED: Invalid role");
+
+//     return res.status(400).json({
+//       success: false,
+//       message: "Invalid role. Must be student, teacher, or admin.",
+//     });
+//   }
+
+//   try {
+//     // =========================================
+//     // VALIDATE TEACHER IF USER IS A STUDENT
+//     // =========================================
+//     if (normalizedRole === "student") {
+//       console.log("USER ROLE IS STUDENT");
+//       console.log("TEACHER ID RECEIVED:", teacher_id);
+
+//       if (!teacher_id) {
+//         console.log("VALIDATION FAILED: teacher_id missing");
+
+//         return res.status(400).json({
+//           success: false,
+//           message: "teacher_id is required for students",
+//         });
+//       }
+
+//       const teacherResult = await pool.query(
+//         `
+//         SELECT id, firstname, lastname, username, role
+//         FROM users
+//         WHERE id = $1
+//           AND role = 'teacher'
+//         LIMIT 1
+//         `,
+//         [teacher_id]
+//       );
+
+//       console.log(
+//         "TEACHER SEARCH RESULT:",
+//         teacherResult.rows
+//       );
+
+//       if (teacherResult.rows.length === 0) {
+//         console.log("VALIDATION FAILED: Invalid teacher_id");
+
+//         return res.status(400).json({
+//           success: false,
+//           message: "Invalid teacher_id",
+//         });
+//       }
+
+//       console.log(
+//         "TEACHER FOUND:",
+//         teacherResult.rows[0]
+//       );
+//     }
+
+//     // =========================================
+//     // CLEAN NAMES
+//     // =========================================
+//     const cleanName = (value) =>
+//       String(value)
+//         .trim()
+//         .toLowerCase()
+//         .replace(/[^a-z]/g, "");
+
+//     const cleanFirstName = cleanName(firstname);
+//     const cleanLastName = cleanName(lastname);
+
+//     console.log("ORIGINAL FIRSTNAME:", firstname);
+//     console.log("ORIGINAL LASTNAME:", lastname);
+
+//     console.log("CLEAN FIRSTNAME:", cleanFirstName);
+//     console.log("CLEAN LASTNAME:", cleanLastName);
+
+//     // =========================================
+//     // GENERATE FIRST NAME INITIALS
+//     // Example:
+//     // Kenn Louis Mario -> KLM
+//     // Paulo -> P
+//     // =========================================
+//     const firstNameInitials = String(firstname)
+//       .trim()
+//       .split(/\s+/)
+//       .filter(Boolean)
+//       .map((name) => name.charAt(0).toUpperCase())
+//       .join("");
+
+//     console.log(
+//       "FIRST NAME INITIALS:",
+//       firstNameInitials
+//     );
+
+//     // =========================================
+//     // GENERATE USERNAME
+//     // Example:
+//     // Francisco Paulo
+//     // francisco.paulo@jhg
+//     // =========================================
+//     const baseUsername =
+//       `${cleanLastName}.${cleanFirstName}@jhg`;
+
+//     let username = baseUsername;
+
+//     console.log("BASE USERNAME:", baseUsername);
+
+//     // =========================================
+//     // CHECK DUPLICATE USERNAME
+//     // =========================================
+//     let counter = 2;
+
+//     while (true) {
+//       console.log(
+//         "CHECKING USERNAME AVAILABILITY:",
+//         username
+//       );
+
+//       const existingUser = await pool.query(
+//         `
+//         SELECT id, username
+//         FROM users
+//         WHERE username = $1
+//         LIMIT 1
+//         `,
+//         [username]
+//       );
+
+//       if (existingUser.rows.length === 0) {
+//         console.log(
+//           "USERNAME AVAILABLE:",
+//           username
+//         );
+
+//         break;
+//       }
+
+//       console.log(
+//         "USERNAME ALREADY EXISTS:",
+//         username
+//       );
+
+//       username =
+//         `${cleanLastName}.${cleanFirstName}${counter}@jhg`;
+
+//       console.log(
+//         "TRYING NEW USERNAME:",
+//         username
+//       );
+
+//       counter++;
+//     }
+
+//     // =========================================
+//     // GENERATE DEFAULT PASSWORD
+//     //
+//     // Example:
+//     // Paulo Francisco
+//     //
+//     // lastname = francisco
+//     // initial = P
+//     //
+//     // password = franciscoP!
+//     // =========================================
+//     const generatedPassword =
+//       `${cleanLastName}${firstNameInitials}!`;
+
+//     console.log("==============================");
+//     console.log("GENERATED CREDENTIALS");
+//     console.log("==============================");
+
+//     console.log("USERNAME:", username);
+//     console.log(
+//       "TEMPORARY PASSWORD:",
+//       generatedPassword
+//     );
+
+//     // =========================================
+//     // HASH PASSWORD
+//     // =========================================
+//     const hashedPassword = await bcrypt.hash(
+//       generatedPassword,
+//       10
+//     );
+
+//     console.log(
+//       "GENERATED PASSWORD HASH:",
+//       hashedPassword
+//     );
+
+//     // Optional debugging:
+//     // immediately verify that the generated
+//     // plaintext password matches the hash.
+//     const hashTest = await bcrypt.compare(
+//       generatedPassword,
+//       hashedPassword
+//     );
+
+//     console.log(
+//       "HASH SELF-CHECK:",
+//       hashTest
+//     );
+
+//     if (!hashTest) {
+//       console.error(
+//         "CRITICAL ERROR: Generated password does not match its own hash"
+//       );
+
+//       return res.status(500).json({
+//         success: false,
+//         message: "Password hashing verification failed",
+//       });
+//     }
+
+//     // =========================================
+//     // ASSIGN TEACHER ID
+//     // =========================================
+//     const finalTeacherId =
+//       normalizedRole === "student"
+//         ? teacher_id
+//         : null;
+
+//     console.log(
+//       "FINAL TEACHER ID:",
+//       finalTeacherId
+//     );
+
+//     // =========================================
+//     // INSERT USER
+//     // =========================================
+//     console.log("INSERTING USER INTO DATABASE...");
+
+//     const result = await pool.query(
+//       `
+//       INSERT INTO users (
+//         firstname,
+//         lastname,
+//         username,
+//         password,
+//         role,
+//         teacher_id
+//       )
+//       VALUES ($1, $2, $3, $4, $5, $6)
+
+//       RETURNING
+//         id,
+//         firstname,
+//         lastname,
+//         username,
+//         role,
+//         teacher_id
+//       `,
+//       [
+//         String(firstname).trim(),
+//         String(lastname).trim(),
+//         username,
+//         hashedPassword,
+//         normalizedRole,
+//         finalTeacherId,
+//       ]
+//     );
+
+//     console.log("==============================");
+//     console.log("USER CREATED SUCCESSFULLY");
+//     console.log("==============================");
+
+//     console.log("DATABASE RESULT:", result.rows[0]);
+
+//     // =========================================
+//     // VERIFY SAVED PASSWORD FROM DATABASE
+//     // =========================================
+//     const savedUserResult = await pool.query(
+//       `
+//       SELECT
+//         id,
+//         username,
+//         password,
+//         role
+//       FROM users
+//       WHERE id = $1
+//       LIMIT 1
+//       `,
+//       [result.rows[0].id]
+//     );
+
+//     if (savedUserResult.rows.length > 0) {
+//       const savedUser = savedUserResult.rows[0];
+
+//       console.log(
+//         "SAVED USERNAME:",
+//         savedUser.username
+//       );
+
+//       console.log(
+//         "SAVED PASSWORD HASH:",
+//         savedUser.password
+//       );
+
+//       const savedPasswordMatch =
+//         await bcrypt.compare(
+//           generatedPassword,
+//           savedUser.password
+//         );
+
+//       console.log(
+//         "SAVED PASSWORD MATCH:",
+//         savedPasswordMatch
+//       );
+//     }
+
+//     console.log("==============================\n");
+
+//     return res.status(201).json({
+//       success: true,
+//       message: "User added successfully.",
+
+//       user: result.rows[0],
+
+//       credentials: {
+//         username,
+//         temporary_password: generatedPassword,
+//       },
+//     });
+//   } catch (err) {
+//     console.error("\n==============================");
+//     console.error("ADD USER ERROR");
+//     console.error("==============================");
+
+//     console.error("MESSAGE:", err.message);
+//     console.error("STACK:", err.stack);
+//     console.error("FULL ERROR:", err);
+
+//     console.error("==============================\n");
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to add user",
+//     });
+//   }
+// });
+
+router.post("/add-user", requireAuth, async (req, res) => {
+  // =========================================
+  // 1. ADMIN AUTHORIZATION
+  // =========================================
+  if (req.user?.role !== "admin") {
+    return res.status(403).json({
       success: false,
-      message: "firstname, lastname, and role are required",
+      message: "Admin access required",
     });
   }
 
-  const normalizedRole = String(role).trim().toLowerCase();
+  const { firstname, lastname, role, teacher_id } = req.body || {};
 
-  console.log("NORMALIZED ROLE:", normalizedRole);
+  // =========================================
+  // 2. VALIDATE INPUT
+  // =========================================
+  if (
+    typeof firstname !== "string" ||
+    typeof lastname !== "string" ||
+    typeof role !== "string" ||
+    !firstname.trim() ||
+    !lastname.trim() ||
+    !role.trim()
+  ) {
+    return res.status(400).json({
+      success: false,
+      message: "Valid firstname, lastname, and role are required",
+    });
+  }
 
+  const normalizedRole = role.trim().toLowerCase();
   const allowedRoles = ["student", "teacher", "admin"];
 
   if (!allowedRoles.includes(normalizedRole)) {
-    console.log("VALIDATION FAILED: Invalid role");
-
     return res.status(400).json({
       success: false,
       message: "Invalid role. Must be student, teacher, or admin.",
     });
   }
 
+  // =========================================
+  // 3. CLEAN NAMES
+  // =========================================
+  const cleanName = (value) =>
+    value.trim().toLowerCase().replace(/[^a-z]/g, "");
+
+  const cleanFirstName = cleanName(firstname);
+  const cleanLastName = cleanName(lastname);
+
+  if (!cleanFirstName || !cleanLastName) {
+    return res.status(400).json({
+      success: false,
+      message: "Firstname and lastname must contain valid letters",
+    });
+  }
+
   try {
     // =========================================
-    // VALIDATE TEACHER IF USER IS A STUDENT
+    // 4. VALIDATE TEACHER FOR STUDENTS
     // =========================================
+    let finalTeacherId = null;
+
     if (normalizedRole === "student") {
-      console.log("USER ROLE IS STUDENT");
-      console.log("TEACHER ID RECEIVED:", teacher_id);
+      const parsedTeacherId = Number(teacher_id);
 
-      if (!teacher_id) {
-        console.log("VALIDATION FAILED: teacher_id missing");
-
+      if (
+        !Number.isSafeInteger(parsedTeacherId) ||
+        parsedTeacherId <= 0
+      ) {
         return res.status(400).json({
           success: false,
-          message: "teacher_id is required for students",
+          message: "Valid teacher_id is required for students",
         });
       }
 
       const teacherResult = await pool.query(
         `
-        SELECT id, firstname, lastname, username, role
+        SELECT id
         FROM users
         WHERE id = $1
           AND role = 'teacher'
         LIMIT 1
         `,
-        [teacher_id]
-      );
-
-      console.log(
-        "TEACHER SEARCH RESULT:",
-        teacherResult.rows
+        [parsedTeacherId]
       );
 
       if (teacherResult.rows.length === 0) {
-        console.log("VALIDATION FAILED: Invalid teacher_id");
-
         return res.status(400).json({
           success: false,
           message: "Invalid teacher_id",
         });
       }
 
-      console.log(
-        "TEACHER FOUND:",
-        teacherResult.rows[0]
-      );
+      finalTeacherId = parsedTeacherId;
     }
 
     // =========================================
-    // CLEAN NAMES
-    // =========================================
-    const cleanName = (value) =>
-      String(value)
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-z]/g, "");
-
-    const cleanFirstName = cleanName(firstname);
-    const cleanLastName = cleanName(lastname);
-
-    console.log("ORIGINAL FIRSTNAME:", firstname);
-    console.log("ORIGINAL LASTNAME:", lastname);
-
-    console.log("CLEAN FIRSTNAME:", cleanFirstName);
-    console.log("CLEAN LASTNAME:", cleanLastName);
-
-    // =========================================
-    // GENERATE FIRST NAME INITIALS
-    // Example:
-    // Kenn Louis Mario -> KLM
-    // Paulo -> P
-    // =========================================
-    const firstNameInitials = String(firstname)
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean)
-      .map((name) => name.charAt(0).toUpperCase())
-      .join("");
-
-    console.log(
-      "FIRST NAME INITIALS:",
-      firstNameInitials
-    );
-
-    // =========================================
-    // GENERATE USERNAME
-    // Example:
-    // Francisco Paulo
-    // francisco.paulo@jhg
+    // 5. GENERATE USERNAME
     // =========================================
     const baseUsername =
       `${cleanLastName}.${cleanFirstName}@jhg`;
 
     let username = baseUsername;
-
-    console.log("BASE USERNAME:", baseUsername);
-
-    // =========================================
-    // CHECK DUPLICATE USERNAME
-    // =========================================
     let counter = 2;
 
     while (true) {
-      console.log(
-        "CHECKING USERNAME AVAILABILITY:",
-        username
-      );
-
       const existingUser = await pool.query(
         `
-        SELECT id, username
+        SELECT id
         FROM users
         WHERE username = $1
         LIMIT 1
@@ -700,109 +1031,44 @@ router.post("/add-user", async (req, res) => {
       );
 
       if (existingUser.rows.length === 0) {
-        console.log(
-          "USERNAME AVAILABLE:",
-          username
-        );
-
         break;
       }
 
-      console.log(
-        "USERNAME ALREADY EXISTS:",
-        username
-      );
-
       username =
         `${cleanLastName}.${cleanFirstName}${counter}@jhg`;
-
-      console.log(
-        "TRYING NEW USERNAME:",
-        username
-      );
 
       counter++;
     }
 
     // =========================================
-    // GENERATE DEFAULT PASSWORD
-    //
-    // Example:
-    // Paulo Francisco
-    //
-    // lastname = francisco
-    // initial = P
-    //
-    // password = franciscoP!
+    // 6. GENERATE PASSWORD
     // =========================================
+    const firstNameInitials = firstname
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((name) => name.charAt(0).toUpperCase())
+      .join("");
+
+    // Preserve existing ReadVenture password format
+    // for students and teachers.
     const generatedPassword =
-      `${cleanLastName}${firstNameInitials}!`;
-
-    console.log("==============================");
-    console.log("GENERATED CREDENTIALS");
-    console.log("==============================");
-
-    console.log("USERNAME:", username);
-    console.log(
-      "TEMPORARY PASSWORD:",
-      generatedPassword
-    );
+      normalizedRole === "admin"
+        // ? require("node:crypto").randomBytes(24).toString("base64url")
+        ? randomBytes(24).toString("base64url")
+        : `${cleanLastName}${firstNameInitials}!`;
 
     // =========================================
-    // HASH PASSWORD
+    // 7. HASH PASSWORD
     // =========================================
     const hashedPassword = await bcrypt.hash(
       generatedPassword,
-      10
-    );
-
-    console.log(
-      "GENERATED PASSWORD HASH:",
-      hashedPassword
-    );
-
-    // Optional debugging:
-    // immediately verify that the generated
-    // plaintext password matches the hash.
-    const hashTest = await bcrypt.compare(
-      generatedPassword,
-      hashedPassword
-    );
-
-    console.log(
-      "HASH SELF-CHECK:",
-      hashTest
-    );
-
-    if (!hashTest) {
-      console.error(
-        "CRITICAL ERROR: Generated password does not match its own hash"
-      );
-
-      return res.status(500).json({
-        success: false,
-        message: "Password hashing verification failed",
-      });
-    }
-
-    // =========================================
-    // ASSIGN TEACHER ID
-    // =========================================
-    const finalTeacherId =
-      normalizedRole === "student"
-        ? teacher_id
-        : null;
-
-    console.log(
-      "FINAL TEACHER ID:",
-      finalTeacherId
+      12
     );
 
     // =========================================
-    // INSERT USER
+    // 8. SAVE USER IN POSTGRESQL
     // =========================================
-    console.log("INSERTING USER INTO DATABASE...");
-
     const result = await pool.query(
       `
       INSERT INTO users (
@@ -824,8 +1090,8 @@ router.post("/add-user", async (req, res) => {
         teacher_id
       `,
       [
-        String(firstname).trim(),
-        String(lastname).trim(),
+        firstname.trim(),
+        lastname.trim(),
         username,
         hashedPassword,
         normalizedRole,
@@ -833,77 +1099,33 @@ router.post("/add-user", async (req, res) => {
       ]
     );
 
-    console.log("==============================");
-    console.log("USER CREATED SUCCESSFULLY");
-    console.log("==============================");
-
-    console.log("DATABASE RESULT:", result.rows[0]);
+    console.log("USER CREATED:", {
+      id: result.rows[0].id,
+      role: result.rows[0].role,
+    });
 
     // =========================================
-    // VERIFY SAVED PASSWORD FROM DATABASE
+    // 9. RETURN ACCOUNT INFORMATION
     // =========================================
-    const savedUserResult = await pool.query(
-      `
-      SELECT
-        id,
-        username,
-        password,
-        role
-      FROM users
-      WHERE id = $1
-      LIMIT 1
-      `,
-      [result.rows[0].id]
-    );
-
-    if (savedUserResult.rows.length > 0) {
-      const savedUser = savedUserResult.rows[0];
-
-      console.log(
-        "SAVED USERNAME:",
-        savedUser.username
-      );
-
-      console.log(
-        "SAVED PASSWORD HASH:",
-        savedUser.password
-      );
-
-      const savedPasswordMatch =
-        await bcrypt.compare(
-          generatedPassword,
-          savedUser.password
-        );
-
-      console.log(
-        "SAVED PASSWORD MATCH:",
-        savedPasswordMatch
-      );
-    }
-
-    console.log("==============================\n");
-
     return res.status(201).json({
       success: true,
       message: "User added successfully.",
-
       user: result.rows[0],
-
       credentials: {
         username,
         temporary_password: generatedPassword,
       },
     });
+
   } catch (err) {
-    console.error("\n==============================");
-    console.error("ADD USER ERROR");
-    console.error("==============================");
+    console.error("ADD USER ERROR:", err.message);
 
-    console.error("MESSAGE:", err.message);
-    console.error("STACK:", err.stack);
-    console.error("FULL ERROR:", err);
-
-    console.error("==============================\n");
+    if (err.code === "23505") {
+      return res.status(409).json({
+        success: false,
+        message: "Username already exists. Please retry.",
+      });
+    }
 
     return res.status(500).json({
       success: false,
@@ -912,22 +1134,427 @@ router.post("/add-user", async (req, res) => {
   }
 });
 
+// router.post("/add-users-csv", requireAuth, async (req, res) => {
+
+//   // ADMIN ONLY
+//   if (req.user?.role !== "admin") {
+//     return res.status(403).json({
+//       success: false,
+//       message: "Admin access required",
+//     });
+//   }
+
+//   // Existing CSV processing code continues here
+
+//     console.log("📄 CSV FILE RECEIVED:", req.file.originalname);
+
+//     let rows;
+//     let detectedHeaders = [];
+
+//     try {
+//       const csvText = req.file.buffer.toString("utf8");
+
+//       rows = parse(csvText, {
+//         columns: (headers) => {
+//           detectedHeaders = headers.map((header) =>
+//             String(header).trim().toLowerCase()
+//           );
+
+//           return detectedHeaders;
+//         },
+
+//         skip_empty_lines: true,
+//         trim: true,
+//         bom: true,
+//       });
+
+//       console.log("✅ CSV PARSED SUCCESSFULLY");
+//       console.log("📋 HEADERS:", detectedHeaders);
+//       console.log("👥 TOTAL ROWS:", rows.length);
+//     } catch (err) {
+//       console.log("❌ CSV PARSE ERROR:", err.message);
+
+//       return res.status(400).json({
+//         success: false,
+//         message:
+//           "Invalid CSV format. Please check the file and try again.",
+//       });
+//     }
+
+//     // Required CSV columns
+//     const requiredColumns = [
+//       "firstname",
+//       "lastname",
+//       "role",
+//       "teacher_lastname",
+//     ];
+
+//     const missingColumns = requiredColumns.filter(
+//       (column) => !detectedHeaders.includes(column)
+//     );
+
+//     if (missingColumns.length > 0) {
+//       console.log(
+//         "❌ MISSING CSV COLUMNS:",
+//         missingColumns
+//       );
+
+//       return res.status(400).json({
+//         success: false,
+//         message: `Invalid CSV format. Missing column(s): ${missingColumns.join(
+//           ", "
+//         )}`,
+//         required_columns: requiredColumns,
+//       });
+//     }
+
+//     if (!rows || rows.length === 0) {
+//       console.log("❌ CSV IMPORT FAILED: CSV contains no users");
+
+//       return res.status(400).json({
+//         success: false,
+//         message: "CSV file contains no users.",
+//       });
+//     }
+
+//     const allowedRoles = [
+//       "student",
+//       "teacher",
+//       "admin",
+//     ];
+
+//     const cleanName = (value) =>
+//       String(value)
+//         .trim()
+//         .normalize("NFD")
+//         .replace(/[\u0300-\u036f]/g, "")
+//         .toLowerCase()
+//         .replace(/[^a-z]/g, "");
+
+//     const client = await pool.connect();
+
+//     try {
+//       await client.query("BEGIN");
+
+//       console.log("🔄 DATABASE TRANSACTION STARTED");
+
+//       const createdUsers = [];
+
+//       for (let i = 0; i < rows.length; i++) {
+//         const row = rows[i];
+
+//         // +2 because row 1 is CSV header
+//         const rowNumber = i + 2;
+
+//         const firstname = String(
+//           row.firstname || ""
+//         ).trim();
+
+//         const lastname = String(
+//           row.lastname || ""
+//         ).trim();
+
+//         const role = String(
+//           row.role || ""
+//         )
+//           .trim()
+//           .toLowerCase();
+
+//         const teacherLastname = String(
+//           row.teacher_lastname || ""
+//         ).trim();
+
+//         console.log(
+//           `\n➡️ PROCESSING ROW ${rowNumber}:`,
+//           {
+//             firstname,
+//             lastname,
+//             role,
+//             teacher_lastname:
+//               teacherLastname || null,
+//           }
+//         );
+
+//         // Basic validation
+//         if (!firstname || !lastname || !role) {
+//           throw new Error(
+//             `Row ${rowNumber}: firstname, lastname, and role are required.`
+//           );
+//         }
+
+//         if (!allowedRoles.includes(role)) {
+//           throw new Error(
+//             `Row ${rowNumber}: invalid role "${role}". Use student, teacher, or admin.`
+//           );
+//         }
+
+//         let teacherId = null;
+
+//         // Student must have teacher_lastname
+//         if (role === "student") {
+//           if (!teacherLastname) {
+//             throw new Error(
+//               `Row ${rowNumber}: teacher_lastname is required for students.`
+//             );
+//           }
+
+//           const teacherResult =
+//             await client.query(
+//               `
+//               SELECT
+//                 id,
+//                 firstname,
+//                 lastname,
+//                 username
+//               FROM users
+//               WHERE LOWER(TRIM(lastname))
+//                     = LOWER(TRIM($1))
+//                 AND role = 'teacher'
+//               `,
+//               [teacherLastname]
+//             );
+
+//           if (
+//             teacherResult.rows.length === 0
+//           ) {
+//             throw new Error(
+//               `Row ${rowNumber}: teacher "${teacherLastname}" was not found.`
+//             );
+//           }
+
+//           if (
+//             teacherResult.rows.length > 1
+//           ) {
+//             throw new Error(
+//               `Row ${rowNumber}: multiple teachers have the lastname "${teacherLastname}".`
+//             );
+//           }
+
+//           teacherId =
+//             teacherResult.rows[0].id;
+
+//           console.log(
+//             `✅ TEACHER RESOLVED: ${teacherResult.rows[0].firstname} ${teacherResult.rows[0].lastname} -> teacher_id ${teacherId}`
+//           );
+//         }
+
+//         const cleanFirstName =
+//           cleanName(firstname);
+
+//         const cleanLastName =
+//           cleanName(lastname);
+
+//         if (
+//           !cleanFirstName ||
+//           !cleanLastName
+//         ) {
+//           throw new Error(
+//             `Row ${rowNumber}: invalid firstname or lastname.`
+//           );
+//         }
+
+//         // Example:
+//         // Nicole -> N
+//         // Juan Miguel -> JM
+//         const firstNameInitials =
+//           firstname
+//             .split(/\s+/)
+//             .filter(Boolean)
+//             .map((name) =>
+//               name
+//                 .charAt(0)
+//                 .toUpperCase()
+//             )
+//             .join("");
+
+//         // Generate username
+//         let username =
+//           `${cleanLastName}.${cleanFirstName}@jhg`;
+
+//         let counter = 2;
+
+//         // Handle duplicate usernames
+//         while (true) {
+//           const existingUser =
+//             await client.query(
+//               `
+//               SELECT id
+//               FROM users
+//               WHERE username = $1
+//               LIMIT 1
+//               `,
+//               [username]
+//             );
+
+//           if (
+//             existingUser.rows.length === 0
+//           ) {
+//             break;
+//           }
+
+//           username =
+//             `${cleanLastName}.${cleanFirstName}${counter}@jhg`;
+
+//           counter++;
+//         }
+
+//         // Generate default password
+//         const generatedPassword =
+//           `${cleanLastName}${firstNameInitials}!`;
+
+//         const hashedPassword =
+//           await bcrypt.hash(
+//             generatedPassword,
+//             10
+//           );
+
+//         const result =
+//           await client.query(
+//             `
+//             INSERT INTO users (
+//               firstname,
+//               lastname,
+//               username,
+//               password,
+//               role,
+//               teacher_id
+//             )
+//             VALUES ($1, $2, $3, $4, $5, $6)
+//             RETURNING
+//               id,
+//               firstname,
+//               lastname,
+//               username,
+//               role,
+//               teacher_id
+//             `,
+//             [
+//               firstname,
+//               lastname,
+//               username,
+//               hashedPassword,
+//               role,
+//               teacherId,
+//             ]
+//           );
+
+//         createdUsers.push({
+//           ...result.rows[0],
+//           temporary_password:
+//             generatedPassword,
+//         });
+
+//         console.log("✅ CREATED USER:", {
+//           id: result.rows[0].id,
+//           firstname:
+//             result.rows[0].firstname,
+//           lastname:
+//             result.rows[0].lastname,
+//           username:
+//             result.rows[0].username,
+//           role:
+//             result.rows[0].role,
+//           teacher_id:
+//             result.rows[0].teacher_id,
+//         });
+//       }
+
+//       await client.query("COMMIT");
+
+//       console.log(
+//         `\n🎉 CSV IMPORT SUCCESS: ${createdUsers.length} users created successfully.`
+//       );
+
+//       return res.status(201).json({
+//         success: true,
+//         message: `${createdUsers.length} users imported successfully.`,
+//         total_created:
+//           createdUsers.length,
+//         users: createdUsers,
+//       });
+//     } catch (err) {
+//       await client.query("ROLLBACK");
+
+//       console.error(
+//         "\n❌ ADD USERS CSV ERROR:",
+//         err.message
+//       );
+
+//       console.log(
+//         "↩️ DATABASE TRANSACTION ROLLED BACK"
+//       );
+
+//       return res.status(400).json({
+//         success: false,
+//         message: err.message,
+//       });
+//     } finally {
+//       client.release();
+
+//       console.log(
+//         "🔌 DATABASE CLIENT RELEASED"
+//       );
+//     }
+//   }
+// );
+
+
 router.post(
   "/add-users-csv",
-  uploadCsvFile,
-  async (req, res) => {
-    console.log("📥 ENTERED /add-users-csv ROUTE");
 
-    if (!req.file) {
-      console.log("❌ CSV IMPORT FAILED: No file selected");
+  // =========================================
+  // 1. JWT AUTHENTICATION
+  // =========================================
+  requireAuth,
 
-      return res.status(400).json({
+  // =========================================
+  // 2. ADMIN AUTHORIZATION
+  // =========================================
+  (req, res, next) => {
+    if (req.user?.role !== "admin") {
+      return res.status(403).json({
         success: false,
-        message: "Please select a CSV file.",
+        message: "Admin access required",
       });
     }
 
-    console.log("📄 CSV FILE RECEIVED:", req.file.originalname);
+    next();
+  },
+
+  // =========================================
+  // 3. CSV UPLOAD MIDDLEWARE
+  // =========================================
+  (req, res, next) => {
+    csvUpload(req, res, (err) => {
+      if (err) {
+        return res.status(400).json({
+          success: false,
+          message:
+            err.code === "LIMIT_FILE_SIZE"
+              ? "CSV file exceeds the 2 MB limit"
+              : "Invalid CSV upload",
+        });
+      }
+
+      next();
+    });
+  },
+
+  // =========================================
+  // 4. CSV PROCESSING
+  // =========================================
+  async (req, res) => {
+    if (!req.file?.buffer) {
+      return res.status(400).json({
+        success: false,
+        message: "CSV file is required",
+      });
+    }
+
+    console.log(
+      "CSV FILE RECEIVED:",
+      req.file.originalname
+    );
 
     let rows;
     let detectedHeaders = [];
@@ -943,18 +1570,12 @@ router.post(
 
           return detectedHeaders;
         },
-
         skip_empty_lines: true,
         trim: true,
         bom: true,
       });
 
-      console.log("✅ CSV PARSED SUCCESSFULLY");
-      console.log("📋 HEADERS:", detectedHeaders);
-      console.log("👥 TOTAL ROWS:", rows.length);
     } catch (err) {
-      console.log("❌ CSV PARSE ERROR:", err.message);
-
       return res.status(400).json({
         success: false,
         message:
@@ -962,7 +1583,9 @@ router.post(
       });
     }
 
-    // Required CSV columns
+    // =========================================
+    // 5. VALIDATE CSV STRUCTURE
+    // =========================================
     const requiredColumns = [
       "firstname",
       "lastname",
@@ -975,34 +1598,31 @@ router.post(
     );
 
     if (missingColumns.length > 0) {
-      console.log(
-        "❌ MISSING CSV COLUMNS:",
-        missingColumns
-      );
-
       return res.status(400).json({
         success: false,
-        message: `Invalid CSV format. Missing column(s): ${missingColumns.join(
-          ", "
-        )}`,
+        message:
+          `Invalid CSV format. Missing column(s): ${missingColumns.join(", ")}`,
         required_columns: requiredColumns,
       });
     }
 
-    if (!rows || rows.length === 0) {
-      console.log("❌ CSV IMPORT FAILED: CSV contains no users");
-
+    if (!rows.length) {
       return res.status(400).json({
         success: false,
         message: "CSV file contains no users.",
       });
     }
 
-    const allowedRoles = [
-      "student",
-      "teacher",
-      "admin",
-    ];
+    if (rows.length > 500) {
+      return res.status(400).json({
+        success: false,
+        message: "Maximum of 500 users per CSV import.",
+      });
+    }
+
+    // CSV importing is restricted to students and teachers.
+    // Admin accounts must be created individually.
+    const allowedRoles = ["student", "teacher"];
 
     const cleanName = (value) =>
       String(value)
@@ -1012,19 +1632,19 @@ router.post(
         .toLowerCase()
         .replace(/[^a-z]/g, "");
 
-    const client = await pool.connect();
+    // =========================================
+    // 6. DATABASE TRANSACTION
+    // =========================================
+    let client;
 
     try {
+      client = await pool.connect();
       await client.query("BEGIN");
-
-      console.log("🔄 DATABASE TRANSACTION STARTED");
 
       const createdUsers = [];
 
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
-
-        // +2 because row 1 is CSV header
         const rowNumber = i + 2;
 
         const firstname = String(
@@ -1037,26 +1657,15 @@ router.post(
 
         const role = String(
           row.role || ""
-        )
-          .trim()
-          .toLowerCase();
+        ).trim().toLowerCase();
 
         const teacherLastname = String(
           row.teacher_lastname || ""
         ).trim();
 
-        console.log(
-          `\n➡️ PROCESSING ROW ${rowNumber}:`,
-          {
-            firstname,
-            lastname,
-            role,
-            teacher_lastname:
-              teacherLastname || null,
-          }
-        );
-
-        // Basic validation
+        // =====================================
+        // VALIDATE ROW
+        // =====================================
         if (!firstname || !lastname || !role) {
           throw new Error(
             `Row ${rowNumber}: firstname, lastname, and role are required.`
@@ -1065,13 +1674,15 @@ router.post(
 
         if (!allowedRoles.includes(role)) {
           throw new Error(
-            `Row ${rowNumber}: invalid role "${role}". Use student, teacher, or admin.`
+            `Row ${rowNumber}: invalid role. Only student and teacher are allowed in CSV imports.`
           );
         }
 
+        // =====================================
+        // FIND STUDENT'S TEACHER
+        // =====================================
         let teacherId = null;
 
-        // Student must have teacher_lastname
         if (role === "student") {
           if (!teacherLastname) {
             throw new Error(
@@ -1079,97 +1690,77 @@ router.post(
             );
           }
 
-          const teacherResult =
-            await client.query(
-              `
-              SELECT
-                id,
-                firstname,
-                lastname,
-                username
-              FROM users
-              WHERE LOWER(TRIM(lastname))
-                    = LOWER(TRIM($1))
-                AND role = 'teacher'
-              `,
-              [teacherLastname]
-            );
+          const teacherResult = await client.query(
+            `
+            SELECT
+              id,
+              firstname,
+              lastname,
+              username
+            FROM users
+            WHERE LOWER(TRIM(lastname)) =
+                  LOWER(TRIM($1))
+              AND role = 'teacher'
+            `,
+            [teacherLastname]
+          );
 
-          if (
-            teacherResult.rows.length === 0
-          ) {
+          if (teacherResult.rows.length === 0) {
             throw new Error(
               `Row ${rowNumber}: teacher "${teacherLastname}" was not found.`
             );
           }
 
-          if (
-            teacherResult.rows.length > 1
-          ) {
+          if (teacherResult.rows.length > 1) {
             throw new Error(
               `Row ${rowNumber}: multiple teachers have the lastname "${teacherLastname}".`
             );
           }
 
-          teacherId =
-            teacherResult.rows[0].id;
-
-          console.log(
-            `✅ TEACHER RESOLVED: ${teacherResult.rows[0].firstname} ${teacherResult.rows[0].lastname} -> teacher_id ${teacherId}`
-          );
+          teacherId = teacherResult.rows[0].id;
         }
 
-        const cleanFirstName =
-          cleanName(firstname);
+        // =====================================
+        // CLEAN NAME
+        // =====================================
+        const cleanFirstName = cleanName(firstname);
+        const cleanLastName = cleanName(lastname);
 
-        const cleanLastName =
-          cleanName(lastname);
-
-        if (
-          !cleanFirstName ||
-          !cleanLastName
-        ) {
+        if (!cleanFirstName || !cleanLastName) {
           throw new Error(
             `Row ${rowNumber}: invalid firstname or lastname.`
           );
         }
 
-        // Example:
-        // Nicole -> N
-        // Juan Miguel -> JM
-        const firstNameInitials =
-          firstname
-            .split(/\s+/)
-            .filter(Boolean)
-            .map((name) =>
-              name
-                .charAt(0)
-                .toUpperCase()
-            )
-            .join("");
+        // =====================================
+        // GENERATE FIRST NAME INITIALS
+        // =====================================
+        const firstNameInitials = firstname
+          .split(/\s+/)
+          .filter(Boolean)
+          .map((name) => name.charAt(0).toUpperCase())
+          .join("");
 
-        // Generate username
+        // =====================================
+        // GENERATE UNIQUE USERNAME
+        // =====================================
         let username =
           `${cleanLastName}.${cleanFirstName}@jhg`;
 
         let counter = 2;
 
-        // Handle duplicate usernames
         while (true) {
-          const existingUser =
-            await client.query(
-              `
-              SELECT id
-              FROM users
-              WHERE username = $1
-              LIMIT 1
-              `,
-              [username]
-            );
+          const existingUser = await client.query(
+            `
+            SELECT id
+            FROM users
+            WHERE username = $1
+            LIMIT 1
+            `,
+            [username]
+          );
 
-          if (
-            existingUser.rows.length === 0
-          ) {
+          if (existingUser.rows.length === 0) {
             break;
           }
 
@@ -1179,106 +1770,108 @@ router.post(
           counter++;
         }
 
-        // Generate default password
+        // =====================================
+        // GENERATE TEMPORARY PASSWORD
+        // =====================================
+        // Preserves existing ReadVenture format.
         const generatedPassword =
           `${cleanLastName}${firstNameInitials}!`;
 
-        const hashedPassword =
-          await bcrypt.hash(
-            generatedPassword,
-            10
-          );
+        const hashedPassword = await bcrypt.hash(
+          generatedPassword,
+          10
+        );
 
-        const result =
-          await client.query(
-            `
-            INSERT INTO users (
-              firstname,
-              lastname,
-              username,
-              password,
-              role,
-              teacher_id
-            )
-            VALUES ($1, $2, $3, $4, $5, $6)
-            RETURNING
-              id,
-              firstname,
-              lastname,
-              username,
-              role,
-              teacher_id
-            `,
-            [
-              firstname,
-              lastname,
-              username,
-              hashedPassword,
-              role,
-              teacherId,
-            ]
-          );
+        // =====================================
+        // INSERT USER INTO POSTGRESQL
+        // =====================================
+        const result = await client.query(
+          `
+          INSERT INTO users (
+            firstname,
+            lastname,
+            username,
+            password,
+            role,
+            teacher_id
+          )
+          VALUES ($1, $2, $3, $4, $5, $6)
+          RETURNING
+            id,
+            firstname,
+            lastname,
+            username,
+            role,
+            teacher_id
+          `,
+          [
+            firstname,
+            lastname,
+            username,
+            hashedPassword,
+            role,
+            teacherId,
+          ]
+        );
 
         createdUsers.push({
           ...result.rows[0],
-          temporary_password:
-            generatedPassword,
+          temporary_password: generatedPassword,
         });
 
-        console.log("✅ CREATED USER:", {
+        console.log("CSV USER CREATED:", {
           id: result.rows[0].id,
-          firstname:
-            result.rows[0].firstname,
-          lastname:
-            result.rows[0].lastname,
-          username:
-            result.rows[0].username,
-          role:
-            result.rows[0].role,
-          teacher_id:
-            result.rows[0].teacher_id,
+          role: result.rows[0].role,
         });
       }
 
+      // =====================================
+      // COMMIT TRANSACTION
+      // =====================================
       await client.query("COMMIT");
-
-      console.log(
-        `\n🎉 CSV IMPORT SUCCESS: ${createdUsers.length} users created successfully.`
-      );
 
       return res.status(201).json({
         success: true,
-        message: `${createdUsers.length} users imported successfully.`,
-        total_created:
-          createdUsers.length,
+        message:
+          `${createdUsers.length} users imported successfully.`,
+        total_created: createdUsers.length,
         users: createdUsers,
       });
+
     } catch (err) {
-      await client.query("ROLLBACK");
+      if (client) {
+        try {
+          await client.query("ROLLBACK");
+        } catch (rollbackErr) {
+          console.error(
+            "CSV ROLLBACK ERROR:",
+            rollbackErr.message
+          );
+        }
+      }
 
-      console.error(
-        "\n❌ ADD USERS CSV ERROR:",
-        err.message
-      );
+      console.error("CSV IMPORT ERROR:", err.message);
 
-      console.log(
-        "↩️ DATABASE TRANSACTION ROLLED BACK"
-      );
+      const isDatabaseError = Boolean(err.code);
+      const isRowError = /^Row \d+:/.test(err.message);
 
-      return res.status(400).json({
+      return res.status(isRowError ? 400 : 500).json({
         success: false,
-        message: err.message,
+        message:
+          isRowError
+            ? err.message
+            : isDatabaseError
+              ? "Database error during CSV import"
+              : "CSV import failed",
       });
-    } finally {
-      client.release();
 
-      console.log(
-        "🔌 DATABASE CLIENT RELEASED"
-      );
+    } finally {
+      if (client) {
+        client.release();
+      }
     }
   }
 );
-
 
 // GET teachers (for assign-teacher dropdown)
 router.get("/teachers", async (req, res) => {
