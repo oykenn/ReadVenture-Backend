@@ -457,62 +457,177 @@ router.patch("/placement-v1", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/users-v2", async (req, res) => {
-  try {
-    console.log("ENTERED /users-v2");
-    console.log("REQ QUERY:", req.query);
+// router.get("/users-v2", async (req, res) => {
+//   try {
+//     console.log("ENTERED /users-v2");
+//     console.log("REQ QUERY:", req.query);
 
+//     const { role, search, sort = "az" } = req.query;
+
+//     let query = `
+//       SELECT id, username, role, firstname, lastname
+//       FROM users
+//       WHERE 1 = 1
+//     `;
+
+//     const values = [];
+
+//     if (role && role !== "All") {
+//       values.push(role);
+//       query += ` AND role = $${values.length}`;
+//     }
+//       if (
+//     search &&
+//     search !== "null" &&
+//     search !== "undefined" &&
+//     search.trim() !== ""
+//   ) {
+//     values.push(`%${search.trim()}%`);
+//     query += `
+//       AND (
+//         firstname ILIKE $${values.length}
+//         OR lastname ILIKE $${values.length}
+//         OR username ILIKE $${values.length}
+//         OR role ILIKE $${values.length}
+//       )
+//     `;
+//   }
+
+//     // query += ` ORDER BY id ASC`;
+//     if (sort === "za") {
+//       query += ` ORDER BY firstname DESC, lastname DESC, id ASC`;
+//     } else {
+//       query += ` ORDER BY firstname ASC, lastname ASC, id ASC`;
+//     }
+
+//     console.log("FINAL QUERY:", query);
+//     console.log("VALUES:", values);
+
+//     const result = await pool.query(query, values);
+
+//     res.status(200).json({
+//       success: true,
+//       count: result.rows.length,
+//       users: result.rows,
+//     });
+//   } catch (error) {
+//     console.error("ERROR IN /users-v2:", error);
+//     res.status(500).json({
+//       success: false,
+//       message: "Failed to retrieve users",
+//     });
+//   }
+// });
+
+// =========================================
+// GET USERS V2 — ADMIN ONLY
+// =========================================
+router.get("/users-v2", requireAuth, async (req, res) => {
+
+  // =========================================
+  // 1. ADMIN AUTHORIZATION
+  // =========================================
+  if (req.user?.role !== "admin") {
+    return res.status(403).json({
+      success: false,
+      message: "Admin access required",
+    });
+  }
+
+  try {
+    // =========================================
+    // 2. GET QUERY PARAMETERS
+    // =========================================
     const { role, search, sort = "az" } = req.query;
 
+    // =========================================
+    // 3. BUILD SQL QUERY
+    // =========================================
     let query = `
-      SELECT id, username, role, firstname, lastname
+      SELECT
+        id,
+        username,
+        role,
+        firstname,
+        lastname
       FROM users
       WHERE 1 = 1
     `;
 
     const values = [];
 
-    if (role && role !== "All") {
-      values.push(role);
+    // =========================================
+    // 4. FILTER BY ROLE
+    // =========================================
+    if (
+      typeof role === "string" &&
+      role !== "All" &&
+      role !== "all" &&
+      role.trim() !== ""
+    ) {
+      values.push(role.trim().toLowerCase());
+
       query += ` AND role = $${values.length}`;
     }
-      if (
-    search &&
-    search !== "null" &&
-    search !== "undefined" &&
-    search.trim() !== ""
-  ) {
-    values.push(`%${search.trim()}%`);
-    query += `
-      AND (
-        firstname ILIKE $${values.length}
-        OR lastname ILIKE $${values.length}
-        OR username ILIKE $${values.length}
-        OR role ILIKE $${values.length}
-      )
-    `;
-  }
 
-    // query += ` ORDER BY id ASC`;
-    if (sort === "za") {
-      query += ` ORDER BY firstname DESC, lastname DESC, id ASC`;
-    } else {
-      query += ` ORDER BY firstname ASC, lastname ASC, id ASC`;
+    // =========================================
+    // 5. SEARCH USERS
+    // =========================================
+    if (
+      typeof search === "string" &&
+      search !== "null" &&
+      search !== "undefined" &&
+      search.trim() !== ""
+    ) {
+      values.push(`%${search.trim()}%`);
+
+      query += `
+        AND (
+          firstname ILIKE $${values.length}
+          OR lastname ILIKE $${values.length}
+          OR username ILIKE $${values.length}
+          OR role ILIKE $${values.length}
+        )
+      `;
     }
 
-    console.log("FINAL QUERY:", query);
-    console.log("VALUES:", values);
+    // =========================================
+    // 6. SORT USERS
+    // =========================================
+    if (sort === "za") {
+      query += `
+        ORDER BY
+          firstname DESC,
+          lastname DESC,
+          id ASC
+      `;
+    } else {
+      query += `
+        ORDER BY
+          firstname ASC,
+          lastname ASC,
+          id ASC
+      `;
+    }
 
+    // =========================================
+    // 7. EXECUTE DATABASE QUERY
+    // =========================================
     const result = await pool.query(query, values);
 
-    res.status(200).json({
+    // =========================================
+    // 8. RETURN USERS
+    // =========================================
+    return res.status(200).json({
       success: true,
       count: result.rows.length,
       users: result.rows,
     });
+
   } catch (error) {
-    console.error("ERROR IN /users-v2:", error);
-    res.status(500).json({
+    console.error("GET USERS V2 ERROR:", error.message);
+
+    return res.status(500).json({
       success: false,
       message: "Failed to retrieve users",
     });
