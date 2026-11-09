@@ -914,6 +914,227 @@ router.get('/users-stats', async (req, res) => {
 //   }
 // });
 
+// router.post("/add-user", requireAuth, async (req, res) => {
+//   // =========================================
+//   // 1. ADMIN AUTHORIZATION
+//   // =========================================
+//   if (req.user?.role !== "admin") {
+//     return res.status(403).json({
+//       success: false,
+//       message: "Admin access required",
+//     });
+//   }
+
+//   const { firstname, lastname, role, teacher_id } = req.body || {};
+
+//   // =========================================
+//   // 2. VALIDATE INPUT
+//   // =========================================
+//   if (
+//     typeof firstname !== "string" ||
+//     typeof lastname !== "string" ||
+//     typeof role !== "string" ||
+//     !firstname.trim() ||
+//     !lastname.trim() ||
+//     !role.trim()
+//   ) {
+//     return res.status(400).json({
+//       success: false,
+//       message: "Valid firstname, lastname, and role are required",
+//     });
+//   }
+
+//   const normalizedRole = role.trim().toLowerCase();
+//   const allowedRoles = ["student", "teacher", "admin"];
+
+//   if (!allowedRoles.includes(normalizedRole)) {
+//     return res.status(400).json({
+//       success: false,
+//       message: "Invalid role. Must be student, teacher, or admin.",
+//     });
+//   }
+
+//   // =========================================
+//   // 3. CLEAN NAMES
+//   // =========================================
+//   const cleanName = (value) =>
+//     value.trim().toLowerCase().replace(/[^a-z]/g, "");
+
+//   const cleanFirstName = cleanName(firstname);
+//   const cleanLastName = cleanName(lastname);
+
+//   if (!cleanFirstName || !cleanLastName) {
+//     return res.status(400).json({
+//       success: false,
+//       message: "Firstname and lastname must contain valid letters",
+//     });
+//   }
+
+//   try {
+//     // =========================================
+//     // 4. VALIDATE TEACHER FOR STUDENTS
+//     // =========================================
+//     let finalTeacherId = null;
+
+//     if (normalizedRole === "student") {
+//       const parsedTeacherId = Number(teacher_id);
+
+//       if (
+//         !Number.isSafeInteger(parsedTeacherId) ||
+//         parsedTeacherId <= 0
+//       ) {
+//         return res.status(400).json({
+//           success: false,
+//           message: "Valid teacher_id is required for students",
+//         });
+//       }
+
+//       const teacherResult = await pool.query(
+//         `
+//         SELECT id
+//         FROM users
+//         WHERE id = $1
+//           AND role = 'teacher'
+//         LIMIT 1
+//         `,
+//         [parsedTeacherId]
+//       );
+
+//       if (teacherResult.rows.length === 0) {
+//         return res.status(400).json({
+//           success: false,
+//           message: "Invalid teacher_id",
+//         });
+//       }
+
+//       finalTeacherId = parsedTeacherId;
+//     }
+
+//     // =========================================
+//     // 5. GENERATE USERNAME
+//     // =========================================
+//     const baseUsername =
+//       `${cleanLastName}.${cleanFirstName}@jhg`;
+
+//     let username = baseUsername;
+//     let counter = 2;
+
+//     while (true) {
+//       const existingUser = await pool.query(
+//         `
+//         SELECT id
+//         FROM users
+//         WHERE username = $1
+//         LIMIT 1
+//         `,
+//         [username]
+//       );
+
+//       if (existingUser.rows.length === 0) {
+//         break;
+//       }
+
+//       username =
+//         `${cleanLastName}.${cleanFirstName}${counter}@jhg`;
+
+//       counter++;
+//     }
+
+//     // =========================================
+//     // 6. GENERATE PASSWORD
+//     // =========================================
+//     const firstNameInitials = firstname
+//       .trim()
+//       .split(/\s+/)
+//       .filter(Boolean)
+//       .map((name) => name.charAt(0).toUpperCase())
+//       .join("");
+
+//     // Preserve existing ReadVenture password format
+//     // for students and teachers.
+//     const generatedPassword =
+//       normalizedRole === "admin"
+//         // ? require("node:crypto").randomBytes(24).toString("base64url")
+//         ? randomBytes(24).toString("base64url")
+//         : `${cleanLastName}${firstNameInitials}!`;
+
+//     // =========================================
+//     // 7. HASH PASSWORD
+//     // =========================================
+//     const hashedPassword = await bcrypt.hash(
+//       generatedPassword,
+//       12
+//     );
+
+//     // =========================================
+//     // 8. SAVE USER IN POSTGRESQL
+//     // =========================================
+//     const result = await pool.query(
+//       `
+//       INSERT INTO users (
+//         firstname,
+//         lastname,
+//         username,
+//         password,
+//         role,
+//         teacher_id
+//       )
+//       VALUES ($1, $2, $3, $4, $5, $6)
+
+//       RETURNING
+//         id,
+//         firstname,
+//         lastname,
+//         username,
+//         role,
+//         teacher_id
+//       `,
+//       [
+//         firstname.trim(),
+//         lastname.trim(),
+//         username,
+//         hashedPassword,
+//         normalizedRole,
+//         finalTeacherId,
+//       ]
+//     );
+
+//     console.log("USER CREATED:", {
+//       id: result.rows[0].id,
+//       role: result.rows[0].role,
+//     });
+
+//     // =========================================
+//     // 9. RETURN ACCOUNT INFORMATION
+//     // =========================================
+//     return res.status(201).json({
+//       success: true,
+//       message: "User added successfully.",
+//       user: result.rows[0],
+//       credentials: {
+//         username,
+//         temporary_password: generatedPassword,
+//       },
+//     });
+
+//   } catch (err) {
+//     console.error("ADD USER ERROR:", err.message);
+
+//     if (err.code === "23505") {
+//       return res.status(409).json({
+//         success: false,
+//         message: "Username already exists. Please retry.",
+//       });
+//     }
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to add user",
+//     });
+//   }
+// });
+
+
 router.post("/add-user", requireAuth, async (req, res) => {
   // =========================================
   // 1. ADMIN AUTHORIZATION
@@ -925,7 +1146,8 @@ router.post("/add-user", requireAuth, async (req, res) => {
     });
   }
 
-  const { firstname, lastname, role, teacher_id } = req.body || {};
+  const { firstname, lastname, role, teacher_id } =
+    req.body || {};
 
   // =========================================
   // 2. VALIDATE INPUT
@@ -958,7 +1180,12 @@ router.post("/add-user", requireAuth, async (req, res) => {
   // 3. CLEAN NAMES
   // =========================================
   const cleanName = (value) =>
-    value.trim().toLowerCase().replace(/[^a-z]/g, "");
+    String(value)
+      .trim()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z]/g, "");
 
   const cleanFirstName = cleanName(firstname);
   const cleanLastName = cleanName(lastname);
@@ -1011,7 +1238,7 @@ router.post("/add-user", requireAuth, async (req, res) => {
     }
 
     // =========================================
-    // 5. GENERATE USERNAME
+    // 5. GENERATE UNIQUE USERNAME
     // =========================================
     const baseUsername =
       `${cleanLastName}.${cleanFirstName}@jhg`;
@@ -1041,22 +1268,33 @@ router.post("/add-user", requireAuth, async (req, res) => {
     }
 
     // =========================================
-    // 6. GENERATE PASSWORD
+    // 6. GENERATE DEFAULT PASSWORD
     // =========================================
+    // ReadVenture agreed format:
+    // lastname + firstname initials + !
+    //
+    // Example:
+    // firstname = Paolo
+    // lastname  = Ad
+    // password  = adP!
+    //
+    // Example:
+    // firstname = Kenn Louis Mario
+    // lastname  = Apellido
+    // password  = apellidoKLM!
+
     const firstNameInitials = firstname
       .trim()
       .split(/\s+/)
       .filter(Boolean)
-      .map((name) => name.charAt(0).toUpperCase())
+      .map((name) => {
+        const cleaned = cleanName(name);
+        return cleaned.charAt(0).toUpperCase();
+      })
       .join("");
 
-    // Preserve existing ReadVenture password format
-    // for students and teachers.
     const generatedPassword =
-      normalizedRole === "admin"
-        // ? require("node:crypto").randomBytes(24).toString("base64url")
-        ? randomBytes(24).toString("base64url")
-        : `${cleanLastName}${firstNameInitials}!`;
+      `${cleanLastName}${firstNameInitials}!`;
 
     // =========================================
     // 7. HASH PASSWORD
@@ -1067,7 +1305,7 @@ router.post("/add-user", requireAuth, async (req, res) => {
     );
 
     // =========================================
-    // 8. SAVE USER IN POSTGRESQL
+    // 8. INSERT USER INTO POSTGRESQL
     // =========================================
     const result = await pool.query(
       `
@@ -1080,7 +1318,6 @@ router.post("/add-user", requireAuth, async (req, res) => {
         teacher_id
       )
       VALUES ($1, $2, $3, $4, $5, $6)
-
       RETURNING
         id,
         firstname,
@@ -1105,7 +1342,7 @@ router.post("/add-user", requireAuth, async (req, res) => {
     });
 
     // =========================================
-    // 9. RETURN ACCOUNT INFORMATION
+    // 9. RETURN USER AND DEFAULT CREDENTIALS
     // =========================================
     return res.status(201).json({
       success: true,
@@ -1133,6 +1370,7 @@ router.post("/add-user", requireAuth, async (req, res) => {
     });
   }
 });
+
 
 // router.post("/add-users-csv", requireAuth, async (req, res) => {
 
@@ -1497,9 +1735,7 @@ router.post("/add-user", requireAuth, async (req, res) => {
 //     }
 //   }
 // );
-
-
-router.post(
+// router.post(
   "/add-users-csv",
 
   // =========================================
@@ -1871,7 +2107,384 @@ router.post(
       }
     }
   }
+// );
+
+
+router.post(
+  "/add-users-csv",
+
+  // 1. JWT AUTHENTICATION
+  requireAuth,
+
+  // 2. ADMIN AUTHORIZATION
+  (req, res, next) => {
+    if (req.user?.role !== "admin") {
+      return res.status(403).json({
+        success: false,
+        message: "Admin access required",
+      });
+    }
+
+    next();
+  },
+
+  // 3. CSV FILE UPLOAD
+  uploadCsvFile,
+
+  // =========================================
+  // 4. CSV PROCESSING
+  // =========================================
+  async (req, res) => {
+    if (!req.file?.buffer) {
+      return res.status(400).json({
+        success: false,
+        message: "CSV file is required",
+      });
+    }
+
+    console.log(
+      "CSV FILE RECEIVED:",
+      req.file.originalname
+    );
+
+    let rows;
+    let detectedHeaders = [];
+
+    try {
+      const csvText = req.file.buffer.toString("utf8");
+
+      rows = parse(csvText, {
+        columns: (headers) => {
+          detectedHeaders = headers.map((header) =>
+            String(header).trim().toLowerCase()
+          );
+
+          return detectedHeaders;
+        },
+
+        skip_empty_lines: true,
+        trim: true,
+        bom: true,
+      });
+
+    } catch (err) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Invalid CSV format. Please check the file and try again.",
+      });
+    }
+
+    // =========================================
+    // 5. VALIDATE CSV HEADERS
+    // =========================================
+    const requiredColumns = [
+      "firstname",
+      "lastname",
+      "role",
+      "teacher_lastname",
+    ];
+
+    const missingColumns = requiredColumns.filter(
+      (column) => !detectedHeaders.includes(column)
+    );
+
+    if (missingColumns.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message:
+          `Invalid CSV format. Missing column(s): ${missingColumns.join(", ")}`,
+        required_columns: requiredColumns,
+      });
+    }
+
+    if (!rows.length) {
+      return res.status(400).json({
+        success: false,
+        message: "CSV file contains no users.",
+      });
+    }
+
+    if (rows.length > 500) {
+      return res.status(400).json({
+        success: false,
+        message: "Maximum of 500 users per CSV import.",
+      });
+    }
+
+    // =========================================
+    // 6. ALLOWED CSV ROLES
+    // =========================================
+    // Admin accounts are created individually.
+    const allowedRoles = ["student", "teacher"];
+
+    const cleanName = (value) =>
+      String(value)
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z]/g, "");
+
+    // =========================================
+    // 7. DATABASE TRANSACTION
+    // =========================================
+    let client;
+    let transactionStarted = false;
+
+    try {
+      client = await pool.connect();
+
+      await client.query("BEGIN");
+      transactionStarted = true;
+
+      const createdUsers = [];
+
+      // =====================================
+      // PROCESS EACH CSV ROW
+      // =====================================
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const rowNumber = i + 2;
+
+        const firstname = String(
+          row.firstname || ""
+        ).trim();
+
+        const lastname = String(
+          row.lastname || ""
+        ).trim();
+
+        const role = String(
+          row.role || ""
+        ).trim().toLowerCase();
+
+        const teacherLastname = String(
+          row.teacher_lastname || ""
+        ).trim();
+
+        // ===================================
+        // VALIDATE USER DATA
+        // ===================================
+        if (!firstname || !lastname || !role) {
+          throw new Error(
+            `Row ${rowNumber}: firstname, lastname, and role are required.`
+          );
+        }
+
+        if (!allowedRoles.includes(role)) {
+          throw new Error(
+            `Row ${rowNumber}: invalid role. Only student and teacher are allowed in CSV imports.`
+          );
+        }
+
+        // ===================================
+        // VALIDATE STUDENT'S TEACHER
+        // ===================================
+        let teacherId = null;
+
+        if (role === "student") {
+          if (!teacherLastname) {
+            throw new Error(
+              `Row ${rowNumber}: teacher_lastname is required for students.`
+            );
+          }
+
+          const teacherResult = await client.query(
+            `
+            SELECT
+              id,
+              firstname,
+              lastname,
+              username
+            FROM users
+            WHERE LOWER(TRIM(lastname)) =
+                  LOWER(TRIM($1))
+              AND role = 'teacher'
+            `,
+            [teacherLastname]
+          );
+
+          if (teacherResult.rows.length === 0) {
+            throw new Error(
+              `Row ${rowNumber}: teacher "${teacherLastname}" was not found.`
+            );
+          }
+
+          if (teacherResult.rows.length > 1) {
+            throw new Error(
+              `Row ${rowNumber}: multiple teachers have the lastname "${teacherLastname}".`
+            );
+          }
+
+          teacherId = teacherResult.rows[0].id;
+        }
+
+        // ===================================
+        // CLEAN FIRSTNAME AND LASTNAME
+        // ===================================
+        const cleanFirstName = cleanName(firstname);
+        const cleanLastName = cleanName(lastname);
+
+        if (!cleanFirstName || !cleanLastName) {
+          throw new Error(
+            `Row ${rowNumber}: invalid firstname or lastname.`
+          );
+        }
+
+        // ===================================
+        // GENERATE FIRSTNAME INITIALS
+        // ===================================
+        const firstNameInitials = firstname
+          .split(/\s+/)
+          .filter(Boolean)
+          .map((name) => {
+            const cleaned = cleanName(name);
+            return cleaned.charAt(0).toUpperCase();
+          })
+          .join("");
+
+        // ===================================
+        // GENERATE UNIQUE USERNAME
+        // ===================================
+        let username =
+          `${cleanLastName}.${cleanFirstName}@jhg`;
+
+        let counter = 2;
+
+        while (true) {
+          const existingUser = await client.query(
+            `
+            SELECT id
+            FROM users
+            WHERE username = $1
+            LIMIT 1
+            `,
+            [username]
+          );
+
+          if (existingUser.rows.length === 0) {
+            break;
+          }
+
+          username =
+            `${cleanLastName}.${cleanFirstName}${counter}@jhg`;
+
+          counter++;
+        }
+
+        // ===================================
+        // GENERATE DEFAULT PASSWORD
+        // ===================================
+        // Same format as /auth/add-user:
+        // lastname + firstname initials + !
+
+        const generatedPassword =
+          `${cleanLastName}${firstNameInitials}!`;
+
+        // ===================================
+        // HASH DEFAULT PASSWORD
+        // ===================================
+        const hashedPassword = await bcrypt.hash(
+          generatedPassword,
+          12
+        );
+
+        // ===================================
+        // INSERT USER INTO POSTGRESQL
+        // ===================================
+        const result = await client.query(
+          `
+          INSERT INTO users (
+            firstname,
+            lastname,
+            username,
+            password,
+            role,
+            teacher_id
+          )
+          VALUES ($1, $2, $3, $4, $5, $6)
+
+          RETURNING
+            id,
+            firstname,
+            lastname,
+            username,
+            role,
+            teacher_id
+          `,
+          [
+            firstname,
+            lastname,
+            username,
+            hashedPassword,
+            role,
+            teacherId,
+          ]
+        );
+
+        // ===================================
+        // COLLECT CREATED ACCOUNTS
+        // ===================================
+        createdUsers.push({
+          ...result.rows[0],
+          temporary_password: generatedPassword,
+        });
+
+        console.log("CSV USER CREATED:", {
+          id: result.rows[0].id,
+          role: result.rows[0].role,
+        });
+      }
+
+      // =====================================
+      // 8. COMMIT DATABASE TRANSACTION
+      // =====================================
+      await client.query("COMMIT");
+      transactionStarted = false;
+
+      return res.status(201).json({
+        success: true,
+        message:
+          `${createdUsers.length} users imported successfully.`,
+        total_created: createdUsers.length,
+        users: createdUsers,
+      });
+
+    } catch (err) {
+      if (client && transactionStarted) {
+        try {
+          await client.query("ROLLBACK");
+        } catch (rollbackErr) {
+          console.error(
+            "CSV ROLLBACK ERROR:",
+            rollbackErr.message
+          );
+        }
+      }
+
+      console.error("CSV IMPORT ERROR:", err.message);
+
+      const isRowError =
+        /^Row \d+:/.test(err.message);
+
+      return res.status(isRowError ? 400 : 500).json({
+        success: false,
+        message: isRowError
+          ? err.message
+          : "CSV import failed",
+      });
+
+    } finally {
+      if (client) {
+        client.release();
+      }
+    }
+  }
 );
+
+
+
 
 // GET teachers (for assign-teacher dropdown)
 router.get("/teachers", async (req, res) => {
