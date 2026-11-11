@@ -2249,6 +2249,12 @@ Return valid JSON only.
             )
           : [];
 
+          for (let i = choices.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+
+  [choices[i], choices[j]] = [choices[j], choices[i]];
+}
+
         const correctAnswer = String(
           question.correct_answer || ""
         ).trim();
@@ -3452,16 +3458,16 @@ Use exactly this structure:
   }
 );
 
-    for (const question of questions) {
-      for (let i = question.choices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+    // for (const question of questions) {
+    //   for (let i = question.choices.length - 1; i > 0; i--) {
+    //     const j = Math.floor(Math.random() * (i + 1));
 
-        [question.choices[i], question.choices[j]] =
-          [question.choices[j], question.choices[i]];
-      }
+    //     [question.choices[i], question.choices[j]] =
+    //       [question.choices[j], question.choices[i]];
+    //   }
 
-      question.correct_choice_index =
-        question.choices.indexOf(question.correct_answer);
-    }
+    //   question.correct_choice_index =
+    //     question.choices.indexOf(question.correct_answer);
+    // }
 
 export default router;
