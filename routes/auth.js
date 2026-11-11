@@ -113,7 +113,8 @@ router.post("/login-v4", async (req, res) => {
 
     const user = result.rows[0];
 
-    console.log("USER FOUND:");
+    // console.log("USER FOUND:");
+
     console.log({
       id: user.id,
       username: user.username,
@@ -121,10 +122,10 @@ router.post("/login-v4", async (req, res) => {
       placement_done: user.placement_done,
     });
 
-    console.log(
-      "PASSWORD VALUE IN DB:",
-      user.password
-    );
+    // console.log(
+    //   "PASSWORD VALUE IN DB:",
+    //   user.password
+    // );
 
     // =========================================
     // DETECT PASSWORD TYPE
@@ -1391,7 +1392,7 @@ router.post("/reset-password", async (req, res) => {
     const defaultPassword =
       `${cleanLastName}${firstNameInitials}!`;
 
-    console.log("GENERATED DEFAULT PASSWORD:", defaultPassword);
+    // console.log("GENERATED DEFAULT PASSWORD:", defaultPassword);
 
     // Hash password
     const hashedPassword = await bcrypt.hash(

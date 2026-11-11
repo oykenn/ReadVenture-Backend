@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 export function requireAuth(req, res, next) {
   const header = req.headers.authorization || "";
-  console.log("AUTH HEADER:", header);
+  // console.log("AUTH HEADER:", header);
 
   let token = header.startsWith("Bearer ") ? header.slice(7) : null;
 

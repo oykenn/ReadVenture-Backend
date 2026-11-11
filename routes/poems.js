@@ -3452,6 +3452,16 @@ Use exactly this structure:
   }
 );
 
+    for (const question of questions) {
+      for (let i = question.choices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
 
+        [question.choices[i], question.choices[j]] =
+          [question.choices[j], question.choices[i]];
+      }
+
+      question.correct_choice_index =
+        question.choices.indexOf(question.correct_answer);
+    }
 
 export default router;
