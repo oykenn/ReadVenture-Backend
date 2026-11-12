@@ -2437,109 +2437,256 @@ Return valid JSON only.
   }
 });
 
-router.get(
-  "/progress/pattern",
-  requireAuth,
-  async (req, res) => {
-    try {
-      const userId = req.user.id;
-      const activityType = String(
-        req.query.activity_type || ""
-      ).trim().toLowerCase();
 
-      const level = Number(req.query.level);
+router.get("/progress/pattern", requireAuth, async (req, res) => {
+  try {
+    const userId = req.user.id;
 
-      if (
-        !activityType ||
-        !Number.isInteger(level) ||
-        level < 3 ||
-        level > 15 ||
-        level % 3 !== 0
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid activity or checkpoint level."
-        });
-      }
+    const activityType = String(
+      req.query.activity_type || ""
+    ).trim().toLowerCase();
 
-      const userResult = await pool.query(
-        "SELECT reading_path FROM users WHERE id = $1",
-        [userId]
-      );
+    const level = Number(req.query.level);
 
-      if (!userResult.rows.length) {
-        return res.status(404).json({
-          success: false,
-          message: "User not found."
-        });
-      }
-
-      const readingPath = userResult.rows[0].reading_path;
-
-      const result = await pool.query(
-        `
-        SELECT level, score
-        FROM user_progress
-        WHERE user_id = $1
-          AND activity_type = $2
-          AND reading_path = $3
-          AND level BETWEEN $4 AND $5
-          AND completed = TRUE
-        ORDER BY level ASC
-        `,
-        [
-          userId,
-          activityType,
-          readingPath,
-          level - 2,
-          level
-        ]
-      );
-
-      const scores = result.rows;
-
-      if (
-        scores.length !== 3 ||
-        scores.some(
-          (row, i) => Number(row.level) !== level - 2 + i
-        )
-      ) {
-        return res.json({
-          success: true,
-          ready: false,
-          message: "Complete three levels first."
-        });
-      }
-
-      const minimumPassCount = scores.filter(
-        row => Number(row.score) === 3
-      ).length;
-
-      const hasPattern = minimumPassCount >= 2;
-
-      return res.json({
-        success: true,
-        ready: true,
-        activity_type: activityType,
-        review_level: level,
-        scores,
-        minimum_pass_count: minimumPassCount,
-        has_pattern: hasPattern,
-        pattern_type: hasPattern
-          ? "recurring_comprehension_difficulty"
-          : "no_recurring_difficulty"
-      });
-
-    } catch (err) {
-      console.error("PATTERN ERROR:", err);
-
-      return res.status(500).json({
+    // Only assess every 3 levels.
+    if (
+      !activityType ||
+      !Number.isInteger(level) ||
+      level < 3 ||
+      level > 15 ||
+      level % 3 !== 0
+    ) {
+      return res.status(400).json({
         success: false,
-        message: "Server error."
+        message: "Invalid activity or checkpoint level."
       });
     }
+
+    // Get student's reading path.
+    const userResult = await pool.query(
+      `
+      SELECT reading_path
+      FROM users
+      WHERE id = $1
+      LIMIT 1
+      `,
+      [userId]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found."
+      });
+    }
+
+    const readingPath = userResult.rows[0].reading_path;
+
+    if (!readingPath) {
+      return res.status(400).json({
+        success: false,
+        message: "Student has no reading path."
+      });
+    }
+
+    // Retrieve the three levels for this checkpoint.
+    const result = await pool.query(
+      `
+      SELECT level, score
+      FROM user_progress
+      WHERE user_id = $1
+        AND activity_type = $2
+        AND reading_path = $3
+        AND level BETWEEN $4 AND $5
+        AND completed = TRUE
+      ORDER BY level ASC
+      `,
+      [
+        userId,
+        activityType,
+        readingPath,
+        level - 2,
+        level
+      ]
+    );
+
+    const scores = result.rows;
+
+    // All three levels must have saved passing scores.
+    if (
+      scores.length !== 3 ||
+      scores.some(
+        (row, i) =>
+          Number(row.level) !== level - 2 + i
+      )
+    ) {
+      return res.json({
+        success: true,
+        ready: false,
+        activity_type: activityType,
+        review_level: level,
+        has_pattern: false,
+        feedback: null,
+        message: "Complete three levels first."
+      });
+    }
+
+    // Convert database scores into numbers.
+    const scorePattern = scores.map(
+      row => Number(row.score)
+    );
+
+    // Count how many levels have a score of exactly 3/5.
+    const minimumPassCount = scorePattern.filter(
+      score => score === 3
+    ).length;
+
+    // Detect recurring minimum-passing performance.
+    const hasPattern = minimumPassCount >= 2;
+
+    // Grade 3-friendly dynamic feedback.
+    const feedback = hasPattern
+      ? `You scored 3 out of 5 in ${minimumPassCount} of your last 3 levels! Some questions are still tricky. Read slowly and look for clues before answering. You can do it!`
+      : null;
+
+    const patternType = hasPattern
+      ? "recurring_comprehension_difficulty"
+      : "no_recurring_difficulty";
+
+    return res.status(200).json({
+      success: true,
+      ready: true,
+      activity_type: activityType,
+      reading_path: readingPath,
+      review_level: level,
+      levels_analyzed: [
+        level - 2,
+        level - 1,
+        level
+      ],
+      scores: scores,
+      score_pattern: scorePattern,
+      minimum_pass_count: minimumPassCount,
+      has_pattern: hasPattern,
+      pattern_type: patternType,
+      feedback: feedback
+    });
+
+  } catch (err) {
+    console.error("PATTERN ERROR:", err);
+
+    return res.status(500).json({
+      success: false,
+      ready: false,
+      message: "Server error."
+    });
   }
-);
+});
+
+
+// router.get(
+//   "/progress/pattern",
+//   requireAuth,
+//   async (req, res) => {
+//     try {
+//       const userId = req.user.id;
+//       const activityType = String(
+//         req.query.activity_type || ""
+//       ).trim().toLowerCase();
+
+//       const level = Number(req.query.level);
+
+//       if (
+//         !activityType ||
+//         !Number.isInteger(level) ||
+//         level < 3 ||
+//         level > 15 ||
+//         level % 3 !== 0
+//       ) {
+//         return res.status(400).json({
+//           success: false,
+//           message: "Invalid activity or checkpoint level."
+//         });
+//       }
+
+//       const userResult = await pool.query(
+//         "SELECT reading_path FROM users WHERE id = $1",
+//         [userId]
+//       );
+
+//       if (!userResult.rows.length) {
+//         return res.status(404).json({
+//           success: false,
+//           message: "User not found."
+//         });
+//       }
+
+//       const readingPath = userResult.rows[0].reading_path;
+
+//       const result = await pool.query(
+//         `
+//         SELECT level, score
+//         FROM user_progress
+//         WHERE user_id = $1
+//           AND activity_type = $2
+//           AND reading_path = $3
+//           AND level BETWEEN $4 AND $5
+//           AND completed = TRUE
+//         ORDER BY level ASC
+//         `,
+//         [
+//           userId,
+//           activityType,
+//           readingPath,
+//           level - 2,
+//           level
+//         ]
+//       );
+
+//       const scores = result.rows;
+
+//       if (
+//         scores.length !== 3 ||
+//         scores.some(
+//           (row, i) => Number(row.level) !== level - 2 + i
+//         )
+//       ) {
+//         return res.json({
+//           success: true,
+//           ready: false,
+//           message: "Complete three levels first."
+//         });
+//       }
+
+//       const minimumPassCount = scores.filter(
+//         row => Number(row.score) === 3
+//       ).length;
+
+//       const hasPattern = minimumPassCount >= 2;
+
+//       return res.json({
+//         success: true,
+//         ready: true,
+//         activity_type: activityType,
+//         review_level: level,
+//         scores,
+//         minimum_pass_count: minimumPassCount,
+//         has_pattern: hasPattern,
+//         pattern_type: hasPattern
+//           ? "recurring_comprehension_difficulty"
+//           : "no_recurring_difficulty"
+//       });
+
+//     } catch (err) {
+//       console.error("PATTERN ERROR:", err);
+
+//       return res.status(500).json({
+//         success: false,
+//         message: "Server error."
+//       });
+//     }
+//   }
+// );
 
 
  // ======================================================
