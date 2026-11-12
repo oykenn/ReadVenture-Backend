@@ -2437,257 +2437,359 @@ Return valid JSON only.
   }
 });
 
-
- // ======================================================
- // SAVE FIRST-ATTEMPT READING COMPREHENSION SKILLS
- // Shared by Poems, Short Stories, Informational Texts
- // ======================================================
-
-router.post(
-  "/reading-skills/save",
+router.get(
+  "/progress/pattern",
   requireAuth,
   async (req, res) => {
     try {
-      console.log("ENTERED /reading-skills/save");
-
       const userId = req.user.id;
-
-      const {
-        activity_type,
-        level,
-        skill_results
-      } = req.body || {};
-
-      // ==========================================
-      // VALIDATE ACTIVITY TYPE
-      // ==========================================
-
       const activityType = String(
-        activity_type || ""
+        req.query.activity_type || ""
       ).trim().toLowerCase();
 
-      console.log("DEBUG ACTIVITY TYPE:", activityType);
-      console.log("DEBUG REQUEST URL:", req.originalUrl);
-      console.log("DEBUG REQUEST BODY:", req.body);
-
-      const allowedActivities = [
-        "poems",
-        "short_stories",
-        "informational_texts"
-      ];
-
-      if (!allowedActivities.includes(activityType)) {
-        return res.status(400).json({
-          success: false,
-          saved: false,
-          message: "Invalid reading activity type."
-        });
-      }
-
-      // ==========================================
-      // VALIDATE LEVEL
-      // ==========================================
-
-      const parsedLevel = Number(level);
+      const level = Number(req.query.level);
 
       if (
-        !Number.isInteger(parsedLevel) ||
-        parsedLevel < 1 ||
-        parsedLevel > 15
+        !activityType ||
+        !Number.isInteger(level) ||
+        level < 3 ||
+        level > 15 ||
+        level % 3 !== 0
       ) {
         return res.status(400).json({
           success: false,
-          saved: false,
-          message: "Level must be between 1 and 15."
+          message: "Invalid activity or checkpoint level."
         });
       }
-
-      // ==========================================
-      // REQUIRED COMPREHENSION SKILLS
-      // ==========================================
-
-      const requiredSkills = [
-        "main_idea",
-        "supporting_details",
-        "vocabulary_in_context",
-        "inference",
-        "cause_effect"
-      ];
-
-      // Same five skills for all Reading activities.
-      // Question-generation routes must use
-      // these exact skill_type values.
-
-      if (
-        !skill_results ||
-        typeof skill_results !== "object" ||
-        Array.isArray(skill_results)
-      ) {
-        return res.status(400).json({
-          success: false,
-          saved: false,
-          message: "skill_results must be an object."
-        });
-      }
-
-      const receivedSkills = Object.keys(
-        skill_results
-      );
-
-      const validSkills =
-        receivedSkills.length === requiredSkills.length &&
-        requiredSkills.every(
-          (skill) =>
-            Object.prototype.hasOwnProperty.call(
-              skill_results,
-              skill
-            ) &&
-            typeof skill_results[skill] === "boolean"
-        );
-
-      if (!validSkills) {
-        return res.status(400).json({
-          success: false,
-          saved: false,
-          message:
-            "Invalid or incomplete comprehension skill results."
-        });
-      }
-
-      // ==========================================
-      // GET READING PATH FROM LOGGED-IN USER
-      // ==========================================
 
       const userResult = await pool.query(
-        `
-        SELECT reading_path
-        FROM users
-        WHERE id = $1
-        LIMIT 1
-        `,
+        "SELECT reading_path FROM users WHERE id = $1",
         [userId]
       );
 
-      if (userResult.rows.length === 0) {
+      if (!userResult.rows.length) {
         return res.status(404).json({
           success: false,
-          saved: false,
           message: "User not found."
         });
       }
 
-      const readingPath = String(
-        userResult.rows[0].reading_path || ""
-      ).trim().toLowerCase();
+      const readingPath = userResult.rows[0].reading_path;
 
-      const allowedPaths = [
-        "foundation",
-        "developing",
-        "advanced"
-      ];
-
-      if (!allowedPaths.includes(readingPath)) {
-        return res.status(400).json({
-          success: false,
-          saved: false,
-          message: "Student has no valid reading path."
-        });
-      }
-
-      // ==========================================
-      // SAVE FIRST ATTEMPT ONLY
-      // ==========================================
-
-      const insertResult = await pool.query(
+      const result = await pool.query(
         `
-        INSERT INTO reading_skill_history (
-          user_id,
-          activity_type,
-          reading_path,
-          level,
-          skill_results
-        )
-        VALUES ($1, $2, $3, $4, $5::jsonb)
-
-        ON CONFLICT (
-          user_id,
-          activity_type,
-          reading_path,
-          level
-        )
-        DO NOTHING
-
-        RETURNING
-          id,
-          user_id,
-          activity_type,
-          reading_path,
-          level,
-          skill_results,
-          created_at
+        SELECT level, score
+        FROM user_progress
+        WHERE user_id = $1
+          AND activity_type = $2
+          AND reading_path = $3
+          AND level BETWEEN $4 AND $5
+          AND completed = TRUE
+        ORDER BY level ASC
         `,
         [
           userId,
           activityType,
           readingPath,
-          parsedLevel,
-          JSON.stringify(skill_results)
+          level - 2,
+          level
         ]
       );
 
-      // ==========================================
-      // EXISTING FIRST ATTEMPT
-      // ==========================================
+      const scores = result.rows;
 
-      if (insertResult.rows.length === 0) {
-        console.log(
-          "FIRST ATTEMPT ALREADY RECORDED"
-        );
-
-        return res.status(200).json({
+      if (
+        scores.length !== 3 ||
+        scores.some(
+          (row, i) => Number(row.level) !== level - 2 + i
+        )
+      ) {
+        return res.json({
           success: true,
-          saved: false,
-          already_recorded: true,
-          message:
-            "First-attempt results already exist. Original results were preserved."
+          ready: false,
+          message: "Complete three levels first."
         });
       }
 
-      // ==========================================
-      // FIRST ATTEMPT SAVED
-      // ==========================================
+      const minimumPassCount = scores.filter(
+        row => Number(row.score) === 3
+      ).length;
 
-      console.log(
-        "READING SKILL HISTORY SAVED:",
-        insertResult.rows[0]
-      );
+      const hasPattern = minimumPassCount >= 2;
 
-      return res.status(201).json({
+      return res.json({
         success: true,
-        saved: true,
-        already_recorded: false,
-        message:
-          "First-attempt reading skill results saved successfully.",
-        history: insertResult.rows[0]
+        ready: true,
+        activity_type: activityType,
+        review_level: level,
+        scores,
+        minimum_pass_count: minimumPassCount,
+        has_pattern: hasPattern,
+        pattern_type: hasPattern
+          ? "recurring_comprehension_difficulty"
+          : "no_recurring_difficulty"
       });
 
     } catch (err) {
-      console.error(
-        "SAVE READING SKILLS ERROR:",
-        err
-      );
+      console.error("PATTERN ERROR:", err);
 
       return res.status(500).json({
         success: false,
-        saved: false,
-        message:
-          "Unable to save reading skill results."
+        message: "Server error."
       });
     }
   }
 );
 
 
+ // ======================================================
+ // SAVE FIRST-ATTEMPT READING COMPREHENSION SKILLS
+ // Shared by Poems, Short Stories, Informational Texts
+ // ======================================================
+
+// router.post(
+//   "/reading-skills/save",
+//   requireAuth,
+//   async (req, res) => {
+//     try {
+//       console.log("ENTERED /reading-skills/save");
+
+//       const userId = req.user.id;
+
+//       const {
+//         activity_type,
+//         level,
+//         skill_results
+//       } = req.body || {};
+
+//       // ==========================================
+//       // VALIDATE ACTIVITY TYPE
+//       // ==========================================
+
+//       const activityType = String(
+//         activity_type || ""
+//       ).trim().toLowerCase();
+
+//       console.log("DEBUG ACTIVITY TYPE:", activityType);
+//       console.log("DEBUG REQUEST URL:", req.originalUrl);
+//       console.log("DEBUG REQUEST BODY:", req.body);
+
+//       const allowedActivities = [
+//         "poems",
+//         "short_stories",
+//         "informational_texts"
+//       ];
+
+//       if (!allowedActivities.includes(activityType)) {
+//         return res.status(400).json({
+//           success: false,
+//           saved: false,
+//           message: "Invalid reading activity type."
+//         });
+//       }
+
+//       // ==========================================
+//       // VALIDATE LEVEL
+//       // ==========================================
+
+//       const parsedLevel = Number(level);
+
+//       if (
+//         !Number.isInteger(parsedLevel) ||
+//         parsedLevel < 1 ||
+//         parsedLevel > 15
+//       ) {
+//         return res.status(400).json({
+//           success: false,
+//           saved: false,
+//           message: "Level must be between 1 and 15."
+//         });
+//       }
+
+//       // ==========================================
+//       // REQUIRED COMPREHENSION SKILLS
+//       // ==========================================
+
+//       const requiredSkills = [
+//         "main_idea",
+//         "supporting_details",
+//         "vocabulary_in_context",
+//         "inference",
+//         "cause_effect"
+//       ];
+
+//       // Same five skills for all Reading activities.
+//       // Question-generation routes must use
+//       // these exact skill_type values.
+
+//       if (
+//         !skill_results ||
+//         typeof skill_results !== "object" ||
+//         Array.isArray(skill_results)
+//       ) {
+//         return res.status(400).json({
+//           success: false,
+//           saved: false,
+//           message: "skill_results must be an object."
+//         });
+//       }
+
+//       const receivedSkills = Object.keys(
+//         skill_results
+//       );
+
+//       const validSkills =
+//         receivedSkills.length === requiredSkills.length &&
+//         requiredSkills.every(
+//           (skill) =>
+//             Object.prototype.hasOwnProperty.call(
+//               skill_results,
+//               skill
+//             ) &&
+//             typeof skill_results[skill] === "boolean"
+//         );
+
+//       if (!validSkills) {
+//         return res.status(400).json({
+//           success: false,
+//           saved: false,
+//           message:
+//             "Invalid or incomplete comprehension skill results."
+//         });
+//       }
+
+//       // ==========================================
+//       // GET READING PATH FROM LOGGED-IN USER
+//       // ==========================================
+
+//       const userResult = await pool.query(
+//         `
+//         SELECT reading_path
+//         FROM users
+//         WHERE id = $1
+//         LIMIT 1
+//         `,
+//         [userId]
+//       );
+
+//       if (userResult.rows.length === 0) {
+//         return res.status(404).json({
+//           success: false,
+//           saved: false,
+//           message: "User not found."
+//         });
+//       }
+
+//       const readingPath = String(
+//         userResult.rows[0].reading_path || ""
+//       ).trim().toLowerCase();
+
+//       const allowedPaths = [
+//         "foundation",
+//         "developing",
+//         "advanced"
+//       ];
+
+//       if (!allowedPaths.includes(readingPath)) {
+//         return res.status(400).json({
+//           success: false,
+//           saved: false,
+//           message: "Student has no valid reading path."
+//         });
+//       }
+
+//       // ==========================================
+//       // SAVE FIRST ATTEMPT ONLY
+//       // ==========================================
+
+//       const insertResult = await pool.query(
+//         `
+//         INSERT INTO reading_skill_history (
+//           user_id,
+//           activity_type,
+//           reading_path,
+//           level,
+//           skill_results
+//         )
+//         VALUES ($1, $2, $3, $4, $5::jsonb)
+
+//         ON CONFLICT (
+//           user_id,
+//           activity_type,
+//           reading_path,
+//           level
+//         )
+//         DO NOTHING
+
+//         RETURNING
+//           id,
+//           user_id,
+//           activity_type,
+//           reading_path,
+//           level,
+//           skill_results,
+//           created_at
+//         `,
+//         [
+//           userId,
+//           activityType,
+//           readingPath,
+//           parsedLevel,
+//           JSON.stringify(skill_results)
+//         ]
+//       );
+
+//       // ==========================================
+//       // EXISTING FIRST ATTEMPT
+//       // ==========================================
+
+//       if (insertResult.rows.length === 0) {
+//         console.log(
+//           "FIRST ATTEMPT ALREADY RECORDED"
+//         );
+
+//         return res.status(200).json({
+//           success: true,
+//           saved: false,
+//           already_recorded: true,
+//           message:
+//             "First-attempt results already exist. Original results were preserved."
+//         });
+//       }
+
+//       // ==========================================
+//       // FIRST ATTEMPT SAVED
+//       // ==========================================
+
+//       console.log(
+//         "READING SKILL HISTORY SAVED:",
+//         insertResult.rows[0]
+//       );
+
+//       return res.status(201).json({
+//         success: true,
+//         saved: true,
+//         already_recorded: false,
+//         message:
+//           "First-attempt reading skill results saved successfully.",
+//         history: insertResult.rows[0]
+//       });
+
+//     } catch (err) {
+//       console.error(
+//         "SAVE READING SKILLS ERROR:",
+//         err
+//       );
+
+//       return res.status(500).json({
+//         success: false,
+//         saved: false,
+//         message:
+//           "Unable to save reading skill results."
+//       });
+//     }
+//   }
+// );
 // router.get(
 //   "/reading-skills/pattern",
 //   requireAuth,
@@ -2921,553 +3023,539 @@ router.post(
 //     }
 //   }
 // );
-
-
-router.get(
-  "/reading-skills/pattern",
-  requireAuth,
-  async (req, res) => {
-    try {
-      // ==================================================
-      // AUTHENTICATED STUDENT
-      // ==================================================
-
-      const userId = req.user.id;
-
-      const activityType = String(
-        req.query.activity_type || ""
-      ).trim().toLowerCase();
-
-      const reviewLevel = Number(req.query.level);
-
-      // ==================================================
-      // CONFIGURATION
-      // ==================================================
-
-      const allowedActivities = [
-        "poems",
-        "short_stories",
-        "informational_texts"
-      ];
-
-      const checkpointLevels = [3, 6, 9, 12, 15];
-
-      const requiredSkills = [
-        "main_idea",
-        "supporting_details",
-        "vocabulary_in_context",
-        "inference",
-        "cause_effect"
-      ];
-
-      const skillLabels = {
-        main_idea: "Main Idea",
-        supporting_details: "Supporting Details",
-        vocabulary_in_context: "Vocabulary in Context",
-        inference: "Making Inferences",
-        cause_effect: "Cause and Effect"
-      };
-
-      const skillAdvice = {
-        main_idea:
-          "Think about what the whole reading is mostly about.",
-
-        supporting_details:
-          "Look for important facts and details in the reading.",
-
-        vocabulary_in_context:
-          "Use nearby words and sentences to understand unfamiliar words.",
-
-        inference:
-          "Use clues from the reading to make a reasonable guess.",
-
-        cause_effect:
-          "Think about why something happened and what happened because of it."
-      };
-
-      // ==================================================
-      // VALIDATE ACTIVITY TYPE
-      // ==================================================
-
-      if (!allowedActivities.includes(activityType)) {
-        return res.status(400).json({
-          success: false,
-          ready: false,
-          message: "Invalid reading activity type."
-        });
-      }
-
-      // ==================================================
-      // VALIDATE CHECKPOINT LEVEL
-      // ==================================================
-
-      if (!checkpointLevels.includes(reviewLevel)) {
-        return res.status(400).json({
-          success: false,
-          ready: false,
-          message:
-            "Pattern review is available only at levels 3, 6, 9, 12, and 15."
-        });
-      }
-
-      // ==================================================
-      // GET STUDENT READING PATH
-      // ==================================================
-
-      const userResult = await pool.query(
-        `
-        SELECT reading_path
-        FROM users
-        WHERE id = $1
-        LIMIT 1
-        `,
-        [userId]
-      );
-
-      if (userResult.rows.length === 0) {
-        return res.status(404).json({
-          success: false,
-          ready: false,
-          message: "User not found."
-        });
-      }
-
-      const readingPath = String(
-        userResult.rows[0].reading_path || ""
-      ).trim().toLowerCase();
-
-      if (
-        !["foundation", "developing", "advanced"]
-          .includes(readingPath)
-      ) {
-        return res.status(400).json({
-          success: false,
-          ready: false,
-          message: "Invalid student reading path."
-        });
-      }
-
-      // ==================================================
-      // DETERMINE THREE-LEVEL WINDOW
-      // ==================================================
-
-      const startLevel = reviewLevel - 2;
-
-      const expectedLevels = [
-        startLevel,
-        startLevel + 1,
-        reviewLevel
-      ];
-
-      // ==================================================
-      // FETCH FIRST-ATTEMPT HISTORY
-      // ==================================================
-
-      const historyResult = await pool.query(
-        `
-        SELECT level, skill_results
-        FROM reading_skill_history
-        WHERE user_id = $1
-          AND activity_type = $2
-          AND LOWER(reading_path) = $3
-          AND level BETWEEN $4 AND $5
-        ORDER BY level ASC
-        `,
-        [
-          userId,
-          activityType,
-          readingPath,
-          startLevel,
-          reviewLevel
-        ]
-      );
-
-      const history = historyResult.rows;
-
-      const actualLevels = history.map(
-        (record) => Number(record.level)
-      );
-
-      const missingLevels = expectedLevels.filter(
-        (level) => !actualLevels.includes(level)
-      );
-
-      // ==================================================
-      // INCOMPLETE HISTORY
-      // ==================================================
-
-      if (missingLevels.length > 0) {
-        return res.status(200).json({
-          success: true,
-          ready: false,
-          has_pattern: false,
-          activity_type: activityType,
-          reading_path: readingPath,
-          review_level: reviewLevel,
-          levels_analyzed: actualLevels,
-          missing_levels: missingLevels,
-          feedback: "",
-          recommendation: "",
-          ai_generated: false,
-          message:
-            "Not enough first-attempt records to analyze recurring misunderstandings."
-        });
-      }
-
-      // ==================================================
-      // VALIDATE STORED SKILL RESULTS
-      // ==================================================
-
-      const incompleteHistory = history.some(
-        (record) =>
-          requiredSkills.some(
-            (skill) =>
-              typeof record.skill_results?.[skill] !==
-              "boolean"
-          )
-      );
-
-      if (incompleteHistory) {
-        return res.status(422).json({
-          success: false,
-          ready: false,
-          message:
-            "Some skill history records are incomplete."
-        });
-      }
-
-      // ==================================================
-      // ANALYZE EACH COMPREHENSION SKILL
-      // ==================================================
-
-      const skillAnalysis = requiredSkills.map(
-        (skill) => {
-
-          const incorrectLevels = history
-            .filter(
-              (record) =>
-                record.skill_results[skill] === false
-            )
-            .map(
-              (record) => Number(record.level)
-            );
-
-          return {
-            skill_type: skill,
-            skill_name: skillLabels[skill],
-            incorrect_count: incorrectLevels.length,
-            total_levels: 3,
-            incorrect_levels: incorrectLevels,
-            recurring: incorrectLevels.length >= 2,
-            recommendation: skillAdvice[skill]
-          };
-        }
-      );
-
-      // ==================================================
-      // DETECT RECURRING PATTERNS
-      // ==================================================
-
-      const patterns = skillAnalysis
-        .filter((skill) => skill.recurring)
-        .sort(
-          (a, b) =>
-            b.incorrect_count - a.incorrect_count
-        );
-
-      const hasPattern = patterns.length > 0;
-
-      const primaryPattern = patterns[0] || null;
-
-      // ==================================================
-      // DEFAULT FEEDBACK (FALLBACK)
-      // ==================================================
-
-      let feedback = hasPattern
-        ? `Let's keep practicing! Some reading skills need a little more attention.`
-        : "Great work! No recurring difficulty was detected in these three levels.";
-
-      let recommendation = hasPattern
-        ? patterns
-            .map(
-              (pattern) =>
-                `${pattern.skill_name}: ${pattern.recommendation}`
-            )
-            .join(" ")
-        : "Keep reading, learning new words, and practicing your reading skills!";
-
-      let aiGenerated = false;
-
-      // ==================================================
-      // GENERATE PERSONALIZED AI FEEDBACK
-      // ==================================================
-
-      try {
-        const activityLabels = {
-          poems: "poems",
-          short_stories: "short stories",
-          informational_texts: "informational texts"
-        };
-
-        const detectedPatterns = patterns.map(
-          (pattern) => ({
-            skill_type: pattern.skill_type,
-            skill_name: pattern.skill_name,
-            incorrect_count: pattern.incorrect_count,
-            total_levels: 3
-          })
-        );
-
-        const aiPrompt = `
-You are a friendly reading tutor for Grade 3 learners.
-
-Generate personalized reading feedback based
-ONLY on the comprehension skill analysis provided.
-
-READING ACTIVITY:
-${activityLabels[activityType]}
-
-READING PATH:
-${readingPath}
-
-LEVELS ANALYZED:
-${expectedLevels.join(", ")}
-
-RECURRING DIFFICULTIES:
-${JSON.stringify(detectedPatterns)}
-
-HAS RECURRING PATTERN:
-${hasPattern}
-
-==================================================
-IMPORTANT RULES
-==================================================
-
-The student is in Grade 3.
-
-Use simple, friendly, encouraging English.
-
-Do not use difficult academic words.
-
-Do not shame or discourage the student.
-
-Do not say the student is bad at reading.
-
-Do not claim the student has a permanent weakness.
-
-Do not invent mistakes, scores, or learning results.
-
-Do not mention skills that were not identified
-as recurring difficulties.
-
-If multiple recurring skills are detected,
-address ALL detected skills.
-
-Do not use the exact phrase
-"misunderstanding pattern" in student feedback.
-
-Do not mention numerical scores such as
-"2 out of 3" in the student-facing message.
-
-Only recommend strategies that students can
-perform using the provided reading text.
-
-Do not mention pictures, illustrations,
-audio, or other materials unless they
-are actually available in the activity.
-
-For poems, focus on words, lines, events,
-and feelings expressed in the poem.
-
-For short stories, focus on characters,
-events, actions, and details in the story.
-
-For informational texts, focus on facts,
-explanations, and important information.
-
-Keep every recommendation practical,
-specific, and appropriate for Grade 3 learners.
-
-If NO recurring difficulty was detected,
-provide positive encouragement and a
-general reading practice recommendation.
-
-==================================================
-FEEDBACK REQUIREMENTS
-==================================================
-
-Generate:
-
-1. feedback
-- 1 or 2 short sentences.
-- Friendly and encouraging.
-- Explain which reading skills need practice.
-- If no recurring difficulties exist,
-  congratulate the learner.
-
-2. recommendation
-- 2 to 4 short sentences.
-- Provide specific, actionable reading tips.
-- Address every detected recurring skill.
-- Use Grade 3 language.
-- Keep the advice suitable for the activity.
-
-Examples of suitable learning tips:
-
-Main Idea:
-Think about what the whole reading is mostly about.
-
-Supporting Details:
-Look for important facts in the reading.
-
-Vocabulary in Context:
-Use nearby words to understand a new word.
-
-Making Inferences:
-Use clues to make a smart guess.
-
-Cause and Effect:
-Think about why something happened.
-
-==================================================
-OUTPUT FORMAT
-==================================================
-
-Return ONLY valid JSON.
-
-Use exactly this structure:
-
-{
-  "feedback": "",
-  "recommendation": ""
-}
-`;
-
-        const completion =
-          await openai.chat.completions.create({
-            model: "gpt-5-mini",
-
-            messages: [
-              {
-                role: "system",
-                content:
-                  "You are a Grade 3 reading tutor. Return valid JSON only."
-              },
-              {
-                role: "user",
-                content: aiPrompt
-              }
-            ],
-
-            response_format: {
-              type: "json_object"
-            }
-          });
-
-        const aiText =
-          completion.choices?.[0]?.message?.content;
-
-        if (!aiText) {
-          throw new Error(
-            "OpenAI returned empty feedback."
-          );
-        }
-
-        const aiResponse = JSON.parse(aiText);
-
-        const generatedFeedback =
-          String(aiResponse.feedback || "").trim();
-
-        const generatedRecommendation =
-          String(aiResponse.recommendation || "").trim();
-
-        // Only use the AI response if BOTH fields exist.
-        if (
-          !generatedFeedback ||
-          !generatedRecommendation
-        ) {
-          throw new Error(
-            "AI feedback response is incomplete."
-          );
-        }
-
-        feedback = generatedFeedback;
-        recommendation = generatedRecommendation;
-        aiGenerated = true;
-
-        console.log(
-          "AI PATTERN FEEDBACK GENERATED:",
-          {
-            feedback,
-            recommendation
-          }
-        );
-
-      } catch (aiError) {
-        // Keep the fallback feedback.
-        console.error(
-          "AI FEEDBACK GENERATION ERROR:",
-          aiError.message
-        );
-      }
-
-      // ==================================================
-      // SUCCESS RESPONSE
-      // ==================================================
-
-      return res.status(200).json({
-        success: true,
-        ready: true,
-
-        activity_type: activityType,
-        reading_path: readingPath,
-
-        review_level: reviewLevel,
-        levels_analyzed: expectedLevels,
-
-        has_pattern: hasPattern,
-        pattern_count: patterns.length,
-
-        primary_pattern: primaryPattern,
-        patterns: patterns,
-        skill_analysis: skillAnalysis,
-
-        ai_generated: aiGenerated,
-
-        feedback: feedback,
-        recommendation: recommendation
-      });
-
-    } catch (err) {
-      // ==================================================
-      // ERROR HANDLING
-      // ==================================================
-
-      console.error(
-        "READING PATTERN ERROR:",
-        err
-      );
-
-      return res.status(500).json({
-        success: false,
-        ready: false,
-        message:
-          "Unable to analyze reading misunderstanding patterns."
-      });
-    }
-  }
-);
-
-    // for (const question of questions) {
-    //   for (let i = question.choices.length - 1; i > 0; i--) {
-    //     const j = Math.floor(Math.random() * (i + 1));
-
-    //     [question.choices[i], question.choices[j]] =
-    //       [question.choices[j], question.choices[i]];
-    //   }
-
-    //   question.correct_choice_index =
-    //     question.choices.indexOf(question.correct_answer);
-    // }
+// router.get(
+//   "/reading-skills/pattern",
+//   requireAuth,
+//   async (req, res) => {
+//     try {
+//       // ==================================================
+//       // AUTHENTICATED STUDENT
+//       // ==================================================
+
+//       const userId = req.user.id;
+
+//       const activityType = String(
+//         req.query.activity_type || ""
+//       ).trim().toLowerCase();
+
+//       const reviewLevel = Number(req.query.level);
+
+//       // ==================================================
+//       // CONFIGURATION
+//       // ==================================================
+
+//       const allowedActivities = [
+//         "poems",
+//         "short_stories",
+//         "informational_texts"
+//       ];
+
+//       const checkpointLevels = [3, 6, 9, 12, 15];
+
+//       const requiredSkills = [
+//         "main_idea",
+//         "supporting_details",
+//         "vocabulary_in_context",
+//         "inference",
+//         "cause_effect"
+//       ];
+
+//       const skillLabels = {
+//         main_idea: "Main Idea",
+//         supporting_details: "Supporting Details",
+//         vocabulary_in_context: "Vocabulary in Context",
+//         inference: "Making Inferences",
+//         cause_effect: "Cause and Effect"
+//       };
+
+//       const skillAdvice = {
+//         main_idea:
+//           "Think about what the whole reading is mostly about.",
+
+//         supporting_details:
+//           "Look for important facts and details in the reading.",
+
+//         vocabulary_in_context:
+//           "Use nearby words and sentences to understand unfamiliar words.",
+
+//         inference:
+//           "Use clues from the reading to make a reasonable guess.",
+
+//         cause_effect:
+//           "Think about why something happened and what happened because of it."
+//       };
+
+//       // ==================================================
+//       // VALIDATE ACTIVITY TYPE
+//       // ==================================================
+
+//       if (!allowedActivities.includes(activityType)) {
+//         return res.status(400).json({
+//           success: false,
+//           ready: false,
+//           message: "Invalid reading activity type."
+//         });
+//       }
+
+//       // ==================================================
+//       // VALIDATE CHECKPOINT LEVEL
+//       // ==================================================
+
+//       if (!checkpointLevels.includes(reviewLevel)) {
+//         return res.status(400).json({
+//           success: false,
+//           ready: false,
+//           message:
+//             "Pattern review is available only at levels 3, 6, 9, 12, and 15."
+//         });
+//       }
+
+//       // ==================================================
+//       // GET STUDENT READING PATH
+//       // ==================================================
+
+//       const userResult = await pool.query(
+//         `
+//         SELECT reading_path
+//         FROM users
+//         WHERE id = $1
+//         LIMIT 1
+//         `,
+//         [userId]
+//       );
+
+//       if (userResult.rows.length === 0) {
+//         return res.status(404).json({
+//           success: false,
+//           ready: false,
+//           message: "User not found."
+//         });
+//       }
+
+//       const readingPath = String(
+//         userResult.rows[0].reading_path || ""
+//       ).trim().toLowerCase();
+
+//       if (
+//         !["foundation", "developing", "advanced"]
+//           .includes(readingPath)
+//       ) {
+//         return res.status(400).json({
+//           success: false,
+//           ready: false,
+//           message: "Invalid student reading path."
+//         });
+//       }
+
+//       // ==================================================
+//       // DETERMINE THREE-LEVEL WINDOW
+//       // ==================================================
+
+//       const startLevel = reviewLevel - 2;
+
+//       const expectedLevels = [
+//         startLevel,
+//         startLevel + 1,
+//         reviewLevel
+//       ];
+
+//       // ==================================================
+//       // FETCH FIRST-ATTEMPT HISTORY
+//       // ==================================================
+
+//       const historyResult = await pool.query(
+//         `
+//         SELECT level, skill_results
+//         FROM reading_skill_history
+//         WHERE user_id = $1
+//           AND activity_type = $2
+//           AND LOWER(reading_path) = $3
+//           AND level BETWEEN $4 AND $5
+//         ORDER BY level ASC
+//         `,
+//         [
+//           userId,
+//           activityType,
+//           readingPath,
+//           startLevel,
+//           reviewLevel
+//         ]
+//       );
+
+//       const history = historyResult.rows;
+
+//       const actualLevels = history.map(
+//         (record) => Number(record.level)
+//       );
+
+//       const missingLevels = expectedLevels.filter(
+//         (level) => !actualLevels.includes(level)
+//       );
+
+//       // ==================================================
+//       // INCOMPLETE HISTORY
+//       // ==================================================
+
+//       if (missingLevels.length > 0) {
+//         return res.status(200).json({
+//           success: true,
+//           ready: false,
+//           has_pattern: false,
+//           activity_type: activityType,
+//           reading_path: readingPath,
+//           review_level: reviewLevel,
+//           levels_analyzed: actualLevels,
+//           missing_levels: missingLevels,
+//           feedback: "",
+//           recommendation: "",
+//           ai_generated: false,
+//           message:
+//             "Not enough first-attempt records to analyze recurring misunderstandings."
+//         });
+//       }
+
+//       // ==================================================
+//       // VALIDATE STORED SKILL RESULTS
+//       // ==================================================
+
+//       const incompleteHistory = history.some(
+//         (record) =>
+//           requiredSkills.some(
+//             (skill) =>
+//               typeof record.skill_results?.[skill] !==
+//               "boolean"
+//           )
+//       );
+
+//       if (incompleteHistory) {
+//         return res.status(422).json({
+//           success: false,
+//           ready: false,
+//           message:
+//             "Some skill history records are incomplete."
+//         });
+//       }
+
+//       // ==================================================
+//       // ANALYZE EACH COMPREHENSION SKILL
+//       // ==================================================
+
+//       const skillAnalysis = requiredSkills.map(
+//         (skill) => {
+
+//           const incorrectLevels = history
+//             .filter(
+//               (record) =>
+//                 record.skill_results[skill] === false
+//             )
+//             .map(
+//               (record) => Number(record.level)
+//             );
+
+//           return {
+//             skill_type: skill,
+//             skill_name: skillLabels[skill],
+//             incorrect_count: incorrectLevels.length,
+//             total_levels: 3,
+//             incorrect_levels: incorrectLevels,
+//             recurring: incorrectLevels.length >= 2,
+//             recommendation: skillAdvice[skill]
+//           };
+//         }
+//       );
+
+//       // ==================================================
+//       // DETECT RECURRING PATTERNS
+//       // ==================================================
+
+//       const patterns = skillAnalysis
+//         .filter((skill) => skill.recurring)
+//         .sort(
+//           (a, b) =>
+//             b.incorrect_count - a.incorrect_count
+//         );
+
+//       const hasPattern = patterns.length > 0;
+
+//       const primaryPattern = patterns[0] || null;
+
+//       // ==================================================
+//       // DEFAULT FEEDBACK (FALLBACK)
+//       // ==================================================
+
+//       let feedback = hasPattern
+//         ? `Let's keep practicing! Some reading skills need a little more attention.`
+//         : "Great work! No recurring difficulty was detected in these three levels.";
+
+//       let recommendation = hasPattern
+//         ? patterns
+//             .map(
+//               (pattern) =>
+//                 `${pattern.skill_name}: ${pattern.recommendation}`
+//             )
+//             .join(" ")
+//         : "Keep reading, learning new words, and practicing your reading skills!";
+
+//       let aiGenerated = false;
+
+//       // ==================================================
+//       // GENERATE PERSONALIZED AI FEEDBACK
+//       // ==================================================
+
+//       try {
+//         const activityLabels = {
+//           poems: "poems",
+//           short_stories: "short stories",
+//           informational_texts: "informational texts"
+//         };
+
+//         const detectedPatterns = patterns.map(
+//           (pattern) => ({
+//             skill_type: pattern.skill_type,
+//             skill_name: pattern.skill_name,
+//             incorrect_count: pattern.incorrect_count,
+//             total_levels: 3
+//           })
+//         );
+
+//         const aiPrompt = `
+// You are a friendly reading tutor for Grade 3 learners.
+
+// Generate personalized reading feedback based
+// ONLY on the comprehension skill analysis provided.
+
+// READING ACTIVITY:
+// ${activityLabels[activityType]}
+
+// READING PATH:
+// ${readingPath}
+
+// LEVELS ANALYZED:
+// ${expectedLevels.join(", ")}
+
+// RECURRING DIFFICULTIES:
+// ${JSON.stringify(detectedPatterns)}
+
+// HAS RECURRING PATTERN:
+// ${hasPattern}
+
+// ==================================================
+// IMPORTANT RULES
+// ==================================================
+
+// The student is in Grade 3.
+
+// Use simple, friendly, encouraging English.
+
+// Do not use difficult academic words.
+
+// Do not shame or discourage the student.
+
+// Do not say the student is bad at reading.
+
+// Do not claim the student has a permanent weakness.
+
+// Do not invent mistakes, scores, or learning results.
+
+// Do not mention skills that were not identified
+// as recurring difficulties.
+
+// If multiple recurring skills are detected,
+// address ALL detected skills.
+
+// Do not use the exact phrase
+// "misunderstanding pattern" in student feedback.
+
+// Do not mention numerical scores such as
+// "2 out of 3" in the student-facing message.
+
+// Only recommend strategies that students can
+// perform using the provided reading text.
+
+// Do not mention pictures, illustrations,
+// audio, or other materials unless they
+// are actually available in the activity.
+
+// For poems, focus on words, lines, events,
+// and feelings expressed in the poem.
+
+// For short stories, focus on characters,
+// events, actions, and details in the story.
+
+// For informational texts, focus on facts,
+// explanations, and important information.
+
+// Keep every recommendation practical,
+// specific, and appropriate for Grade 3 learners.
+
+// If NO recurring difficulty was detected,
+// provide positive encouragement and a
+// general reading practice recommendation.
+
+// ==================================================
+// FEEDBACK REQUIREMENTS
+// ==================================================
+
+// Generate:
+
+// 1. feedback
+// - 1 or 2 short sentences.
+// - Friendly and encouraging.
+// - Explain which reading skills need practice.
+// - If no recurring difficulties exist,
+//   congratulate the learner.
+
+// 2. recommendation
+// - 2 to 4 short sentences.
+// - Provide specific, actionable reading tips.
+// - Address every detected recurring skill.
+// - Use Grade 3 language.
+// - Keep the advice suitable for the activity.
+
+// Examples of suitable learning tips:
+
+// Main Idea:
+// Think about what the whole reading is mostly about.
+
+// Supporting Details:
+// Look for important facts in the reading.
+
+// Vocabulary in Context:
+// Use nearby words to understand a new word.
+
+// Making Inferences:
+// Use clues to make a smart guess.
+
+// Cause and Effect:
+// Think about why something happened.
+
+// ==================================================
+// OUTPUT FORMAT
+// ==================================================
+
+// Return ONLY valid JSON.
+
+// Use exactly this structure:
+
+// {
+//   "feedback": "",
+//   "recommendation": ""
+// }
+// `;
+
+//         const completion =
+//           await openai.chat.completions.create({
+//             model: "gpt-5-mini",
+
+//             messages: [
+//               {
+//                 role: "system",
+//                 content:
+//                   "You are a Grade 3 reading tutor. Return valid JSON only."
+//               },
+//               {
+//                 role: "user",
+//                 content: aiPrompt
+//               }
+//             ],
+
+//             response_format: {
+//               type: "json_object"
+//             }
+//           });
+
+//         const aiText =
+//           completion.choices?.[0]?.message?.content;
+
+//         if (!aiText) {
+//           throw new Error(
+//             "OpenAI returned empty feedback."
+//           );
+//         }
+
+//         const aiResponse = JSON.parse(aiText);
+
+//         const generatedFeedback =
+//           String(aiResponse.feedback || "").trim();
+
+//         const generatedRecommendation =
+//           String(aiResponse.recommendation || "").trim();
+
+//         // Only use the AI response if BOTH fields exist.
+//         if (
+//           !generatedFeedback ||
+//           !generatedRecommendation
+//         ) {
+//           throw new Error(
+//             "AI feedback response is incomplete."
+//           );
+//         }
+
+//         feedback = generatedFeedback;
+//         recommendation = generatedRecommendation;
+//         aiGenerated = true;
+
+//         console.log(
+//           "AI PATTERN FEEDBACK GENERATED:",
+//           {
+//             feedback,
+//             recommendation
+//           }
+//         );
+
+//       } catch (aiError) {
+//         // Keep the fallback feedback.
+//         console.error(
+//           "AI FEEDBACK GENERATION ERROR:",
+//           aiError.message
+//         );
+//       }
+
+//       // ==================================================
+//       // SUCCESS RESPONSE
+//       // ==================================================
+
+//       return res.status(200).json({
+//         success: true,
+//         ready: true,
+
+//         activity_type: activityType,
+//         reading_path: readingPath,
+
+//         review_level: reviewLevel,
+//         levels_analyzed: expectedLevels,
+
+//         has_pattern: hasPattern,
+//         pattern_count: patterns.length,
+
+//         primary_pattern: primaryPattern,
+//         patterns: patterns,
+//         skill_analysis: skillAnalysis,
+
+//         ai_generated: aiGenerated,
+
+//         feedback: feedback,
+//         recommendation: recommendation
+//       });
+
+//     } catch (err) {
+//       // ==================================================
+//       // ERROR HANDLING
+//       // ==================================================
+
+//       console.error(
+//         "READING PATTERN ERROR:",
+//         err
+//       );
+
+//       return res.status(500).json({
+//         success: false,
+//         ready: false,
+//         message:
+//           "Unable to analyze reading misunderstanding patterns."
+//       });
+//     }
+//   }
+// );
 
 export default router;
