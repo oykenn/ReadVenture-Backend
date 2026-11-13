@@ -315,13 +315,156 @@ router.put("/teacher/:id/update-profile", requireAuth, async (req, res) => {
   }
 });
 
+// router.put("/teacher/:id/reset-password", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { newPassword, confirmPassword } = req.body;
 
+//     if (!newPassword || !confirmPassword) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "New password and confirm password are required.",
+//       });
+//     }
 
-router.put("/teacher/:id/reset-password", async (req, res) => {
+//     if (newPassword !== confirmPassword) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Passwords do not match.",
+//       });
+//     }
+
+//     if (newPassword.length < 6) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Password must be at least 6 characters.",
+//       });
+//     }
+
+//     const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+//     const result = await pool.query(
+//       `
+//       UPDATE users
+//       SET password = $1
+//       WHERE id = $2
+//         AND role = 'teacher'
+//       RETURNING id, firstname, lastname, username, role
+//       `,
+//       [hashedPassword, id]
+//     );
+
+//     if (result.rows.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Teacher not found.",
+//       });
+//     }
+
+//     res.status(200).json({
+//       success: true,
+//       message: "Teacher password reset successfully.",
+//       teacher: result.rows[0],
+//     });
+//   } catch (error) {
+//     console.error("Error resetting teacher password:", error);
+//     res.status(500).json({
+//       success: false,
+//       message: "Failed to reset teacher password.",
+//     });
+//   }
+// });
+
+// router.delete("/teacher/:id/delete", async (req, res) => {
+//   const client = await pool.connect();
+
+//   try {
+//     const { id } = req.params;
+
+//     await client.query("BEGIN");
+
+//     const teacherCheck = await client.query(
+//       `
+//       SELECT id, firstname, lastname, username, role
+//       FROM users
+//       WHERE id = $1
+//         AND role = 'teacher'
+//       LIMIT 1
+//       `,
+//       [id]
+//     );
+
+//     if (teacherCheck.rows.length === 0) {
+//       await client.query("ROLLBACK");
+
+//       return res.status(404).json({
+//         success: false,
+//         message: "Teacher not found.",
+//       });
+//     }
+
+//     const teacher = teacherCheck.rows[0];
+
+//     // Unassign students first to avoid foreign key issues
+//     await client.query(
+//       `
+//       UPDATE users
+//       SET teacher_id = NULL
+//       WHERE teacher_id = $1
+//         AND role = 'student'
+//       `,
+//       [id]
+//     );
+
+//     // Delete the teacher account
+//     await client.query(
+//       `
+//       DELETE FROM users
+//       WHERE id = $1
+//         AND role = 'teacher'
+//       `,
+//       [id]
+//     );
+
+//     await client.query("COMMIT");
+
+//     return res.status(200).json({
+//       success: true,
+//       message: "Teacher deleted successfully.",
+//       deletedTeacher: teacher,
+//     });
+//   } catch (error) {
+//     await client.query("ROLLBACK");
+
+//     console.error("Error deleting teacher:", error);
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to delete teacher.",
+//     });
+//   } finally {
+//     client.release();
+//   }
+// });
+
+router.put("/teacher/:id/reset-password", requireAuth, async (req, res) => {
   try {
+    // =========================================
+    // 1. ADMIN AUTHORIZATION
+    // =========================================
+    if (req.user?.role !== "admin") {
+      return res.status(403).json({
+        success: false,
+        message: "Admin access required",
+      });
+    }
+
     const { id } = req.params;
     const { newPassword, confirmPassword } = req.body;
 
+    // =========================================
+    // 2. VALIDATE INPUT
+    // =========================================
     if (!newPassword || !confirmPassword) {
       return res.status(400).json({
         success: false,
@@ -343,8 +486,14 @@ router.put("/teacher/:id/reset-password", async (req, res) => {
       });
     }
 
+    // =========================================
+    // 3. HASH PASSWORD
+    // =========================================
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
+    // =========================================
+    // 4. UPDATE TEACHER PASSWORD
+    // =========================================
     const result = await pool.query(
       `
       UPDATE users
@@ -363,21 +512,32 @@ router.put("/teacher/:id/reset-password", async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Teacher password reset successfully.",
       teacher: result.rows[0],
     });
   } catch (error) {
     console.error("Error resetting teacher password:", error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Failed to reset teacher password.",
     });
   }
 });
 
-router.delete("/teacher/:id/delete", async (req, res) => {
+router.delete("/teacher/:id/delete", requireAuth, async (req, res) => {
+
+  // =========================================
+  // 1. ADMIN AUTHORIZATION
+  // =========================================
+  if (req.user?.role !== "admin") {
+    return res.status(403).json({
+      success: false,
+      message: "Admin access required",
+    });
+  }
+
   const client = await pool.connect();
 
   try {
@@ -385,6 +545,9 @@ router.delete("/teacher/:id/delete", async (req, res) => {
 
     await client.query("BEGIN");
 
+    // =========================================
+    // 2. CHECK TEACHER
+    // =========================================
     const teacherCheck = await client.query(
       `
       SELECT id, firstname, lastname, username, role
@@ -407,7 +570,9 @@ router.delete("/teacher/:id/delete", async (req, res) => {
 
     const teacher = teacherCheck.rows[0];
 
-    // Unassign students first to avoid foreign key issues
+    // =========================================
+    // 3. UNASSIGN STUDENTS
+    // =========================================
     await client.query(
       `
       UPDATE users
@@ -418,7 +583,9 @@ router.delete("/teacher/:id/delete", async (req, res) => {
       [id]
     );
 
-    // Delete the teacher account
+    // =========================================
+    // 4. DELETE TEACHER
+    // =========================================
     await client.query(
       `
       DELETE FROM users
@@ -435,6 +602,7 @@ router.delete("/teacher/:id/delete", async (req, res) => {
       message: "Teacher deleted successfully.",
       deletedTeacher: teacher,
     });
+
   } catch (error) {
     await client.query("ROLLBACK");
 
@@ -444,10 +612,12 @@ router.delete("/teacher/:id/delete", async (req, res) => {
       success: false,
       message: "Failed to delete teacher.",
     });
+
   } finally {
     client.release();
   }
 });
+
 
 router.get("/teacher/:id/assigned-students", async (req, res) => {
   const teacherId = req.params.id;

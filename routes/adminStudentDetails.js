@@ -256,11 +256,143 @@ router.get("/:id/scores", async (req, res) => {
   }
 });
 
-router.put("/:id/update-profile", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { firstname, lastname, username } = req.body;
+// router.put("/:id/update-profile", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { firstname, lastname, username } = req.body;
 
+//     if (!firstname || !lastname || !username) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "First name, last name, and username are required.",
+//       });
+//     }
+
+//     const result = await pool.query(
+//       `
+//       UPDATE users
+//       SET
+//         firstname = $1,
+//         lastname = $2,
+//         username = $3
+//       WHERE id = $4
+//         AND role = 'student'
+//       RETURNING id, firstname, lastname, username, role, reading_path
+//       `,
+//       [firstname, lastname, username, id]
+//     );
+
+//     if (result.rows.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Student not found.",
+//       });
+//     }
+
+//     res.status(200).json({
+//       success: true,
+//       message: "Student profile updated successfully.",
+//       student: result.rows[0],
+//     });
+//   } catch (error) {
+//     console.error("Error updating student profile:", error);
+
+//     if (error.code === "23505") {
+//       return res.status(409).json({
+//         success: false,
+//         message: "Username already exists.",
+//       });
+//     }
+
+//     res.status(500).json({
+//       success: false,
+//       message: "Failed to update student profile.",
+//     });
+//   }
+// });
+
+// router.put("/:id/reset-password", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { newPassword, confirmPassword } = req.body;
+
+//     if (!newPassword || !confirmPassword) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "New password and confirmation are required.",
+//       });
+//     }
+
+//     if (newPassword !== confirmPassword) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Passwords do not match.",
+//       });
+//     }
+
+//     if (newPassword.length < 6) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Password must be at least 6 characters.",
+//       });
+//     }
+
+//     const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+//     const result = await pool.query(
+//       `
+//       UPDATE users
+//       SET password = $1
+//       WHERE id = $2
+//         AND role = 'student'
+//       RETURNING id, firstname, lastname, username, role
+//       `,
+//       [hashedPassword, id]
+//     );
+
+//     if (result.rows.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Student not found.",
+//       });
+//     }
+
+//     res.status(200).json({
+//       success: true,
+//       message: "Password reset successfully.",
+//       student: result.rows[0],
+//     });
+//   } catch (error) {
+//     console.error("Error resetting student password:", error);
+//     res.status(500).json({
+//       success: false,
+//       message: "Failed to reset password.",
+//     });
+//   }
+// });
+
+
+router.put("/:id/update-profile", requireAuth, async (req, res) => {
+  try {
+    // =========================================
+    // 1. ADMIN AUTHORIZATION
+    // =========================================
+    if (req.user?.role !== "admin") {
+      return res.status(403).json({
+        success: false,
+        message: "Admin access required",
+      });
+    }
+
+    // =========================================
+    // 2. GET PARAMETERS
+    // =========================================
+    const { id } = req.params;
+    const { firstname, lastname, username } = req.body || {};
+
+    // =========================================
+    // 3. VALIDATE INPUT
+    // =========================================
     if (!firstname || !lastname || !username) {
       return res.status(400).json({
         success: false,
@@ -268,6 +400,9 @@ router.put("/:id/update-profile", async (req, res) => {
       });
     }
 
+    // =========================================
+    // 4. UPDATE STUDENT PROFILE
+    // =========================================
     const result = await pool.query(
       `
       UPDATE users
@@ -277,11 +412,20 @@ router.put("/:id/update-profile", async (req, res) => {
         username = $3
       WHERE id = $4
         AND role = 'student'
-      RETURNING id, firstname, lastname, username, role, reading_path
+      RETURNING
+        id,
+        firstname,
+        lastname,
+        username,
+        role,
+        reading_path
       `,
       [firstname, lastname, username, id]
     );
 
+    // =========================================
+    // 5. CHECK STUDENT
+    // =========================================
     if (result.rows.length === 0) {
       return res.status(404).json({
         success: false,
@@ -289,11 +433,15 @@ router.put("/:id/update-profile", async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    // =========================================
+    // 6. RETURN RESPONSE
+    // =========================================
+    return res.status(200).json({
       success: true,
       message: "Student profile updated successfully.",
       student: result.rows[0],
     });
+
   } catch (error) {
     console.error("Error updating student profile:", error);
 
@@ -304,12 +452,13 @@ router.put("/:id/update-profile", async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Failed to update student profile.",
     });
   }
 });
+
 
 router.put("/:id/reset-password", async (req, res) => {
   try {
@@ -371,14 +520,102 @@ router.put("/:id/reset-password", async (req, res) => {
   }
 });
 
-router.delete("/:id/delete", async (req, res) => {
+// router.delete("/:id/delete", async (req, res) => {
+//   const client = await pool.connect();
+
+//   try {
+//     const { id } = req.params;
+
+//     await client.query("BEGIN");
+
+//     const studentCheck = await client.query(
+//       `
+//       SELECT id, firstname, lastname, username, role
+//       FROM users
+//       WHERE id = $1
+//         AND role = 'student'
+//       LIMIT 1
+//       `,
+//       [id]
+//     );
+
+//     if (studentCheck.rows.length === 0) {
+//       await client.query("ROLLBACK");
+
+//       return res.status(404).json({
+//         success: false,
+//         message: "Student not found.",
+//       });
+//     }
+
+//     const student = studentCheck.rows[0];
+
+//     // Delete student progress first to avoid foreign key issues
+//     await client.query(
+//       `
+//       DELETE FROM user_progress
+//       WHERE user_id = $1
+//       `,
+//       [id]
+//     );
+
+//     // Delete the student account
+//     await client.query(
+//       `
+//       DELETE FROM users
+//       WHERE id = $1
+//         AND role = 'student'
+//       `,
+//       [id]
+//     );
+
+//     await client.query("COMMIT");
+
+//     return res.status(200).json({
+//       success: true,
+//       message: "Student deleted successfully.",
+//       deletedStudent: student,
+//     });
+//   } catch (error) {
+//     await client.query("ROLLBACK");
+
+//     console.error("Error deleting student:", error);
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to delete student.",
+//     });
+//   } finally {
+//     client.release();
+//   }
+// });
+
+
+router.delete("/:id/delete", requireAuth, async (req, res) => {
+
+  // =========================================
+  // 1. ADMIN AUTHORIZATION
+  // =========================================
+  if (req.user?.role !== "admin") {
+    return res.status(403).json({
+      success: false,
+      message: "Admin access required",
+    });
+  }
+
   const client = await pool.connect();
 
   try {
+    // =========================================
+    // 2. GET STUDENT ID
+    // =========================================
     const { id } = req.params;
 
     await client.query("BEGIN");
 
+    // =========================================
+    // 3. CHECK STUDENT
+    // =========================================
     const studentCheck = await client.query(
       `
       SELECT id, firstname, lastname, username, role
@@ -401,7 +638,9 @@ router.delete("/:id/delete", async (req, res) => {
 
     const student = studentCheck.rows[0];
 
-    // Delete student progress first to avoid foreign key issues
+    // =========================================
+    // 4. DELETE STUDENT PROGRESS
+    // =========================================
     await client.query(
       `
       DELETE FROM user_progress
@@ -410,7 +649,9 @@ router.delete("/:id/delete", async (req, res) => {
       [id]
     );
 
-    // Delete the student account
+    // =========================================
+    // 5. DELETE STUDENT
+    // =========================================
     await client.query(
       `
       DELETE FROM users
@@ -427,6 +668,7 @@ router.delete("/:id/delete", async (req, res) => {
       message: "Student deleted successfully.",
       deletedStudent: student,
     });
+
   } catch (error) {
     await client.query("ROLLBACK");
 
@@ -436,9 +678,11 @@ router.delete("/:id/delete", async (req, res) => {
       success: false,
       message: "Failed to delete student.",
     });
+
   } finally {
     client.release();
   }
 });
+
 
 export default router;
