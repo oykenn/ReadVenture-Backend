@@ -336,7 +336,7 @@ router.get("/me-v3", requireAuth, (req, res) => {
 router.get("/me-v2", requireAuth, async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT id, username, role, placement_done
+      `SELECT id, firstname, lastname, username, role, placement_done
        FROM users
        WHERE id = $1
        LIMIT 1`,
