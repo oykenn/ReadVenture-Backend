@@ -526,6 +526,99 @@ router.put("/teacher/:id/reset-password", requireAuth, async (req, res) => {
   }
 });
 
+// router.delete("/teacher/:id/delete", requireAuth, async (req, res) => {
+
+//   // =========================================
+//   // 1. ADMIN AUTHORIZATION
+//   // =========================================
+//   if (req.user?.role !== "admin") {
+//     return res.status(403).json({
+//       success: false,
+//       message: "Admin access required",
+//     });
+//   }
+
+//   const client = await pool.connect();
+
+//   try {
+//     const { id } = req.params;
+
+//     await client.query("BEGIN");
+
+//     // =========================================
+//     // 2. CHECK TEACHER
+//     // =========================================
+//     const teacherCheck = await client.query(
+//       `
+//       SELECT id, firstname, lastname, username, role
+//       FROM users
+//       WHERE id = $1
+//   AND role IN ('teacher', 'admin')
+//   AND id <> $2
+//       `,
+//       [id]
+//     );
+
+//     if (teacherCheck.rows.length === 0) {
+//       await client.query("ROLLBACK");
+
+//       return res.status(404).json({
+//         success: false,
+//         message: "Teacher not found.",
+//       });
+//     }
+
+//     const teacher = teacherCheck.rows[0];
+
+//     // =========================================
+//     // 3. UNASSIGN STUDENTS
+//     // =========================================
+//     await client.query(
+//       `
+//       UPDATE users
+//       SET teacher_id = NULL
+//       WHERE teacher_id = $1
+//         AND role = 'student'
+//       `,
+//       [id]
+//     );
+
+//     // =========================================
+//     // 4. DELETE TEACHER
+//     // =========================================
+//     await client.query(
+//       `
+//       DELETE FROM users
+//       WHERE id = $1
+//         AND role = 'teacher'
+//       `,
+//       [id]
+//     );
+
+//     await client.query("COMMIT");
+
+//     return res.status(200).json({
+//       success: true,
+//       message: "Teacher deleted successfully.",
+//       deletedTeacher: teacher,
+//     });
+
+//   } catch (error) {
+//     await client.query("ROLLBACK");
+
+//     console.error("Error deleting teacher:", error);
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to delete teacher.",
+//     });
+
+//   } finally {
+//     client.release();
+//   }
+// });
+
+
 router.delete("/teacher/:id/delete", requireAuth, async (req, res) => {
 
   // =========================================
@@ -538,79 +631,113 @@ router.delete("/teacher/:id/delete", requireAuth, async (req, res) => {
     });
   }
 
+  const { id } = req.params;
+  const targetId = Number(id);
+  const loggedInAdminId = Number(req.user.id);
+
+  // =========================================
+  // 2. VALIDATE ID
+  // =========================================
+  if (!Number.isSafeInteger(targetId) || targetId <= 0) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid user ID.",
+    });
+  }
+
+  // =========================================
+  // 3. PREVENT SELF-DELETION
+  // =========================================
+  if (targetId === loggedInAdminId) {
+    return res.status(403).json({
+      success: false,
+      message: "You cannot delete your own admin account.",
+    });
+  }
+
   const client = await pool.connect();
 
   try {
-    const { id } = req.params;
-
     await client.query("BEGIN");
 
     // =========================================
-    // 2. CHECK TEACHER
+    // 4. CHECK TEACHER OR ADMIN
     // =========================================
-    const teacherCheck = await client.query(
+    const userCheck = await client.query(
       `
       SELECT id, firstname, lastname, username, role
       FROM users
       WHERE id = $1
-        AND role = 'teacher'
-      LIMIT 1
+        AND role IN ('teacher', 'admin')
+      FOR UPDATE
       `,
-      [id]
+      [targetId]
     );
 
-    if (teacherCheck.rows.length === 0) {
+    if (userCheck.rows.length === 0) {
       await client.query("ROLLBACK");
 
       return res.status(404).json({
         success: false,
-        message: "Teacher not found.",
+        message: "Teacher or admin not found.",
       });
     }
 
-    const teacher = teacherCheck.rows[0];
+    const user = userCheck.rows[0];
 
     // =========================================
-    // 3. UNASSIGN STUDENTS
+    // 5. UNASSIGN STUDENTS IF TEACHER
     // =========================================
-    await client.query(
-      `
-      UPDATE users
-      SET teacher_id = NULL
-      WHERE teacher_id = $1
-        AND role = 'student'
-      `,
-      [id]
-    );
+    if (user.role === "teacher") {
+      await client.query(
+        `
+        UPDATE users
+        SET teacher_id = NULL
+        WHERE teacher_id = $1
+          AND role = 'student'
+        `,
+        [targetId]
+      );
+    }
 
     // =========================================
-    // 4. DELETE TEACHER
+    // 6. DELETE TEACHER OR ADMIN
     // =========================================
-    await client.query(
+    const deleteResult = await client.query(
       `
       DELETE FROM users
       WHERE id = $1
-        AND role = 'teacher'
+        AND role IN ('teacher', 'admin')
+      RETURNING id
       `,
-      [id]
+      [targetId]
     );
+
+    if (deleteResult.rowCount !== 1) {
+      throw new Error("User deletion was not completed.");
+    }
 
     await client.query("COMMIT");
 
+    // =========================================
+    // 7. SUCCESS RESPONSE
+    // =========================================
     return res.status(200).json({
       success: true,
-      message: "Teacher deleted successfully.",
-      deletedTeacher: teacher,
+      message: `${
+        user.role === "admin" ? "Admin" : "Teacher"
+      } deleted successfully.`,
+      deletedTeacher: user,
     });
 
   } catch (error) {
     await client.query("ROLLBACK");
 
-    console.error("Error deleting teacher:", error);
+    console.error("DELETE TEACHER/ADMIN ERROR:", error);
 
     return res.status(500).json({
       success: false,
-      message: "Failed to delete teacher.",
+      message: "Failed to delete user.",
     });
 
   } finally {
