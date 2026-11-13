@@ -177,143 +177,143 @@ router.get("/teacher/:id/details", async (req, res) => {
 // });
 
 
-router.put("/teacher/:id/update-profile", requireAuth, async (req, res) => {
-  try {
-    const targetId = Number(req.params.id);
-    const loggedInId = Number(req.user.id);
+// router.put("/teacher/:id/update-profile", requireAuth, async (req, res) => {
+//   try {
+//     const targetId = Number(req.params.id);
+//     const loggedInId = Number(req.user.id);
 
-    // Validate target ID
-    if (!Number.isInteger(targetId) || targetId <= 0) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid user ID.",
-      });
-    }
+//     // Validate target ID
+//     if (!Number.isInteger(targetId) || targetId <= 0) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid user ID.",
+//       });
+//     }
 
-    // Verify logged-in user's role from database
-    const requesterResult = await pool.query(
-      `
-      SELECT id, role
-      FROM users
-      WHERE id = $1
-      LIMIT 1
-      `,
-      [loggedInId]
-    );
+//     // Verify logged-in user's role from database
+//     const requesterResult = await pool.query(
+//       `
+//       SELECT id, role
+//       FROM users
+//       WHERE id = $1
+//       LIMIT 1
+//       `,
+//       [loggedInId]
+//     );
 
-    if (
-      requesterResult.rows.length === 0 ||
-      requesterResult.rows[0].role !== "admin"
-    ) {
-      return res.status(403).json({
-        success: false,
-        message: "Administrator access required.",
-      });
-    }
+//     if (
+//       requesterResult.rows.length === 0 ||
+//       requesterResult.rows[0].role !== "admin"
+//     ) {
+//       return res.status(403).json({
+//         success: false,
+//         message: "Administrator access required.",
+//       });
+//     }
 
-    // Validate profile fields
-    const { firstname, lastname, username } = req.body || {};
+//     // Validate profile fields
+//     const { firstname, lastname, username } = req.body || {};
 
-    if (
-      typeof firstname !== "string" ||
-      typeof lastname !== "string" ||
-      typeof username !== "string" ||
-      !firstname.trim() ||
-      !lastname.trim() ||
-      !username.trim()
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "First name, last name, and username are required.",
-      });
-    }
+//     if (
+//       typeof firstname !== "string" ||
+//       typeof lastname !== "string" ||
+//       typeof username !== "string" ||
+//       !firstname.trim() ||
+//       !lastname.trim() ||
+//       !username.trim()
+//     ) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "First name, last name, and username are required.",
+//       });
+//     }
 
-    // Check target account
-    const targetResult = await pool.query(
-      `
-      SELECT id, role
-      FROM users
-      WHERE id = $1
-      LIMIT 1
-      `,
-      [targetId]
-    );
+//     // Check target account
+//     const targetResult = await pool.query(
+//       `
+//       SELECT id, role
+//       FROM users
+//       WHERE id = $1
+//       LIMIT 1
+//       `,
+//       [targetId]
+//     );
 
-    if (targetResult.rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "Account not found.",
-      });
-    }
+//     if (targetResult.rows.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Account not found.",
+//       });
+//     }
 
-    const targetRole = targetResult.rows[0].role;
+//     const targetRole = targetResult.rows[0].role;
 
-    // Allow teachers and the currently logged-in admin only
-    if (
-      targetRole !== "teacher" &&
-      !(targetRole === "admin" && targetId === loggedInId)
-    ) {
-      return res.status(403).json({
-        success: false,
-        message: "Not authorized to update this account.",
-      });
-    }
+//     // Allow teachers and the currently logged-in admin only
+//     if (
+//       targetRole !== "teacher" &&
+//       !(targetRole === "admin" && targetId === loggedInId)
+//     ) {
+//       return res.status(403).json({
+//         success: false,
+//         message: "Not authorized to update this account.",
+//       });
+//     }
 
-    // Update teacher OR own admin profile
-    // Authorization is repeated in SQL to prevent
-    // editing a different admin if the role changes.
-    const result = await pool.query(
-      `
-      UPDATE users
-      SET
-        firstname = $1,
-        lastname = $2,
-        username = $3
-      WHERE id = $4
-        AND (
-          role = 'teacher'
-          OR (role = 'admin' AND id = $5)
-        )
-      RETURNING id, firstname, lastname, username, role
-      `,
-      [
-        firstname.trim(),
-        lastname.trim(),
-        username.trim(),
-        targetId,
-        loggedInId
-      ]
-    );
+//     // Update teacher OR own admin profile
+//     // Authorization is repeated in SQL to prevent
+//     // editing a different admin if the role changes.
+//     const result = await pool.query(
+//       `
+//       UPDATE users
+//       SET
+//         firstname = $1,
+//         lastname = $2,
+//         username = $3
+//       WHERE id = $4
+//         AND (
+//           role = 'teacher'
+//           OR (role = 'admin' AND id = $5)
+//         )
+//       RETURNING id, firstname, lastname, username, role
+//       `,
+//       [
+//         firstname.trim(),
+//         lastname.trim(),
+//         username.trim(),
+//         targetId,
+//         loggedInId
+//       ]
+//     );
 
-    if (result.rows.length === 0) {
-      return res.status(403).json({
-        success: false,
-        message: "Account could not be updated.",
-      });
-    }
+//     if (result.rows.length === 0) {
+//       return res.status(403).json({
+//         success: false,
+//         message: "Account could not be updated.",
+//       });
+//     }
 
-    return res.status(200).json({
-      success: true,
-      message: "Profile updated successfully.",
-      teacher: result.rows[0],
-    });
+//     return res.status(200).json({
+//       success: true,
+//       message: "Profile updated successfully.",
+//       teacher: result.rows[0],
+//     });
 
-  } catch (error) {
-    console.error("UPDATE PROFILE ERROR:", error);
+//   } catch (error) {
+//     console.error("UPDATE PROFILE ERROR:", error);
 
-    if (error.code === "23505") {
-      return res.status(409).json({
-        success: false,
-        message: "Username already exists.",
-      });
-    }
+//     if (error.code === "23505") {
+//       return res.status(409).json({
+//         success: false,
+//         message: "Username already exists.",
+//       });
+//     }
 
-    return res.status(500).json({
-      success: false,
-      message: "Failed to update profile.",
-    });
-  }
-});
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to update profile.",
+//     });
+//   }
+// });
 
 // router.put("/teacher/:id/reset-password", async (req, res) => {
 //   try {
@@ -446,6 +446,112 @@ router.put("/teacher/:id/update-profile", requireAuth, async (req, res) => {
 //     client.release();
 //   }
 // });
+
+router.put("/teacher/:id/update-profile", requireAuth, async (req, res) => {
+  try {
+    // =========================================
+    // 1. ADMIN AUTHORIZATION
+    // =========================================
+    if (req.user?.role !== "admin") {
+      return res.status(403).json({
+        success: false,
+        message: "Admin access required",
+      });
+    }
+
+    // =========================================
+    // 2. GET PARAMETERS
+    // =========================================
+    const targetId = Number(req.params.id);
+    const { firstname, lastname, username } = req.body || {};
+
+    if (!Number.isSafeInteger(targetId) || targetId <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid user ID",
+      });
+    }
+
+    // =========================================
+    // 3. VALIDATE INPUT
+    // =========================================
+    if (
+      typeof firstname !== "string" ||
+      typeof lastname !== "string" ||
+      typeof username !== "string" ||
+      !firstname.trim() ||
+      !lastname.trim() ||
+      !username.trim()
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "First name, last name, and username are required.",
+      });
+    }
+
+    // =========================================
+    // 4. UPDATE TEACHER OR ADMIN
+    // =========================================
+    const result = await pool.query(
+      `
+      UPDATE users
+      SET
+        firstname = $1,
+        lastname = $2,
+        username = $3
+      WHERE id = $4
+        AND role IN ('teacher', 'admin')
+      RETURNING
+        id,
+        firstname,
+        lastname,
+        username,
+        role
+      `,
+      [
+        firstname.trim(),
+        lastname.trim(),
+        username.trim(),
+        targetId
+      ]
+    );
+
+    // =========================================
+    // 5. CHECK USER
+    // =========================================
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Teacher or Admin not found.",
+      });
+    }
+
+    // =========================================
+    // 6. RETURN RESPONSE
+    // =========================================
+    return res.status(200).json({
+      success: true,
+      message: "Profile updated successfully.",
+      teacher: result.rows[0],
+    });
+
+  } catch (error) {
+    console.error("UPDATE PROFILE ERROR:", error);
+
+    if (error.code === "23505") {
+      return res.status(409).json({
+        success: false,
+        message: "Username already exists.",
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update profile.",
+    });
+  }
+});
+
 
 router.put("/teacher/:id/reset-password", requireAuth, async (req, res) => {
   try {
