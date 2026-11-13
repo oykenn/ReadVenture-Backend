@@ -620,84 +620,84 @@ router.put("/teacher/:id/update-profile", requireAuth, async (req, res) => {
 });
 
 
-router.put("/teacher/:id/reset-password", requireAuth, async (req, res) => {
-  try {
-    // =========================================
-    // 1. ADMIN AUTHORIZATION
-    // =========================================
-    if (req.user?.role !== "admin") {
-      return res.status(403).json({
-        success: false,
-        message: "Admin access required",
-      });
-    }
+// router.put("/teacher/:id/reset-password", requireAuth, async (req, res) => {
+//   try {
+//     // =========================================
+//     // 1. ADMIN AUTHORIZATION
+//     // =========================================
+//     if (req.user?.role !== "admin") {
+//       return res.status(403).json({
+//         success: false,
+//         message: "Admin access required",
+//       });
+//     }
 
-    const { id } = req.params;
-    const { newPassword, confirmPassword } = req.body;
+//     const { id } = req.params;
+//     const { newPassword, confirmPassword } = req.body;
 
-    // =========================================
-    // 2. VALIDATE INPUT
-    // =========================================
-    if (!newPassword || !confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: "New password and confirm password are required.",
-      });
-    }
+//     // =========================================
+//     // 2. VALIDATE INPUT
+//     // =========================================
+//     if (!newPassword || !confirmPassword) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "New password and confirm password are required.",
+//       });
+//     }
 
-    if (newPassword !== confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: "Passwords do not match.",
-      });
-    }
+//     if (newPassword !== confirmPassword) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Passwords do not match.",
+//       });
+//     }
 
-    if (newPassword.length < 6) {
-      return res.status(400).json({
-        success: false,
-        message: "Password must be at least 6 characters.",
-      });
-    }
+//     if (newPassword.length < 6) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Password must be at least 6 characters.",
+//       });
+//     }
 
-    // =========================================
-    // 3. HASH PASSWORD
-    // =========================================
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+//     // =========================================
+//     // 3. HASH PASSWORD
+//     // =========================================
+//     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // =========================================
-    // 4. UPDATE TEACHER PASSWORD
-    // =========================================
-    const result = await pool.query(
-      `
-      UPDATE users
-      SET password = $1
-      WHERE id = $2
-        AND role = 'teacher'
-      RETURNING id, firstname, lastname, username, role
-      `,
-      [hashedPassword, id]
-    );
+//     // =========================================
+//     // 4. UPDATE TEACHER PASSWORD
+//     // =========================================
+//     const result = await pool.query(
+//       `
+//       UPDATE users
+//       SET password = $1
+//       WHERE id = $2
+//         AND role = 'teacher'
+//       RETURNING id, firstname, lastname, username, role
+//       `,
+//       [hashedPassword, id]
+//     );
 
-    if (result.rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "Teacher not found.",
-      });
-    }
+//     if (result.rows.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Teacher not found.",
+//       });
+//     }
 
-    return res.status(200).json({
-      success: true,
-      message: "Teacher password reset successfully.",
-      teacher: result.rows[0],
-    });
-  } catch (error) {
-    console.error("Error resetting teacher password:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to reset teacher password.",
-    });
-  }
-});
+//     return res.status(200).json({
+//       success: true,
+//       message: "Teacher password reset successfully.",
+//       teacher: result.rows[0],
+//     });
+//   } catch (error) {
+//     console.error("Error resetting teacher password:", error);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to reset teacher password.",
+//     });
+//   }
+// });
 
 // router.delete("/teacher/:id/delete", requireAuth, async (req, res) => {
 
@@ -790,6 +790,116 @@ router.put("/teacher/:id/reset-password", requireAuth, async (req, res) => {
 //     client.release();
 //   }
 // });
+
+router.put("/teacher/:id/reset-password", requireAuth, async (req, res) => {
+  try {
+    // =========================================
+    // 1. ADMIN AUTHORIZATION
+    // =========================================
+    if (req.user?.role !== "admin") {
+      return res.status(403).json({
+        success: false,
+        message: "Admin access required",
+      });
+    }
+
+    // =========================================
+    // 2. GET PARAMETERS
+    // =========================================
+    const targetId = Number(req.params.id);
+    const { newPassword, confirmPassword } = req.body || {};
+
+    // =========================================
+    // 3. VALIDATE USER ID
+    // =========================================
+    if (!Number.isSafeInteger(targetId) || targetId <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid user ID.",
+      });
+    }
+
+    // =========================================
+    // 4. VALIDATE PASSWORDS
+    // =========================================
+    if (
+      typeof newPassword !== "string" ||
+      typeof confirmPassword !== "string" ||
+      !newPassword ||
+      !confirmPassword
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "New password and confirm password are required.",
+      });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "Passwords do not match.",
+      });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: "Password must be at least 6 characters.",
+      });
+    }
+
+    // =========================================
+    // 5. HASH NEW PASSWORD
+    // =========================================
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+
+    // =========================================
+    // 6. UPDATE TEACHER OR ADMIN PASSWORD
+    // =========================================
+    const result = await pool.query(
+      `
+      UPDATE users
+      SET password = $1
+      WHERE id = $2
+        AND role IN ('teacher', 'admin')
+      RETURNING
+        id,
+        firstname,
+        lastname,
+        username,
+        role
+      `,
+      [hashedPassword, targetId]
+    );
+
+    // =========================================
+    // 7. CHECK TARGET ACCOUNT
+    // =========================================
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Teacher or Admin not found.",
+      });
+    }
+
+    // =========================================
+    // 8. RETURN SUCCESS
+    // =========================================
+    return res.status(200).json({
+      success: true,
+      message: "Password reset successfully.",
+      teacher: result.rows[0],
+    });
+
+  } catch (error) {
+    console.error("RESET PASSWORD ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to reset password.",
+    });
+  }
+});
 
 
 router.delete("/teacher/:id/delete", requireAuth, async (req, res) => {
