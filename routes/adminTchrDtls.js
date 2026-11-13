@@ -7,58 +7,58 @@ import bcrypt from "bcryptjs";
 
 const router = express.Router();
 
-router.get("/teacher/:id/details", async (req, res) => {
-  const teacherId = req.params.id;
+// router.get("/teacher/:id/details", async (req, res) => {
+//   const teacherId = req.params.id;
 
-  try {
-    const result = await pool.query(
-      `
-      SELECT
-        t.id,
-        t.firstname,
-        t.lastname,
-        t.username,
-        t.role,
-        COUNT(s.id)::int AS assigned_students
-      FROM users t
-      LEFT JOIN users s
-        ON s.teacher_id = t.id
-        AND s.role = 'student'
-      WHERE t.id = $1
-        AND t.role = 'teacher'
-      GROUP BY
-        t.id,
-        t.firstname,
-        t.lastname,
-        t.username,
-        t.role
-      LIMIT 1
-      `,
-      [teacherId]
-    );
+//   try {
+//     const result = await pool.query(
+//       `
+//       SELECT
+//         t.id,
+//         t.firstname,
+//         t.lastname,
+//         t.username,
+//         t.role,
+//         COUNT(s.id)::int AS assigned_students
+//       FROM users t
+//       LEFT JOIN users s
+//         ON s.teacher_id = t.id
+//         AND s.role = 'student'
+//       WHERE t.id = $1
+//         AND t.role = 'teacher'
+//       GROUP BY
+//         t.id,
+//         t.firstname,
+//         t.lastname,
+//         t.username,
+//         t.role
+//       LIMIT 1
+//       `,
+//       [teacherId]
+//     );
 
-    if (result.rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "Teacher not found",
-      });
-    }
+//     if (result.rows.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Teacher not found",
+//       });
+//     }
 
-    res.json({
-      success: true,
-      teacher: {
-        ...result.rows[0],
-        department: "N/A"
-      }
-    });
-  } catch (err) {
-    console.error("Teacher details error:", err);
-    res.status(500).json({
-      success: false,
-      message: "Server error",
-    });
-  }
-});
+//     res.json({
+//       success: true,
+//       teacher: {
+//         ...result.rows[0],
+//         department: "N/A"
+//       }
+//     });
+//   } catch (err) {
+//     console.error("Teacher details error:", err);
+//     res.status(500).json({
+//       success: false,
+//       message: "Server error",
+//     });
+//   }
+// });
 
 // router.put("/teacher/:id/update-profile", async (req, res) => {
 //   try {
@@ -446,6 +446,73 @@ router.get("/teacher/:id/details", async (req, res) => {
 //     client.release();
 //   }
 // });
+
+
+router.get("/teacher/:id/details", requireAuth, async (req, res) => {
+  // =========================================
+  // 1. ADMIN AUTHORIZATION
+  // =========================================
+  if (req.user?.role !== "admin") {
+    return res.status(403).json({
+      success: false,
+      message: "Admin access required",
+    });
+  }
+
+  const teacherId = req.params.id;
+
+  try {
+    const result = await pool.query(
+      `
+      SELECT
+        t.id,
+        t.firstname,
+        t.lastname,
+        t.username,
+        t.role,
+        COUNT(s.id)::int AS assigned_students
+      FROM users t
+      LEFT JOIN users s
+        ON s.teacher_id = t.id
+        AND s.role = 'student'
+      WHERE t.id = $1
+        AND t.role IN ('teacher', 'admin')
+      GROUP BY
+        t.id,
+        t.firstname,
+        t.lastname,
+        t.username,
+        t.role
+      LIMIT 1
+      `,
+      [teacherId]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Teacher or Admin not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      teacher: {
+        ...result.rows[0],
+        department: "N/A"
+      }
+    });
+
+  } catch (err) {
+    console.error("Teacher/Admin details error:", err);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+});
+
 
 router.put("/teacher/:id/update-profile", requireAuth, async (req, res) => {
   try {
