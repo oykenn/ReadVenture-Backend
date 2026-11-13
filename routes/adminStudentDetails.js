@@ -1,6 +1,8 @@
 import express from "express";
 import { pool } from "../db.js";
 
+import { requireAuth } from "../middleware/authMiddleware.js";
+
 import bcrypt from "bcryptjs";
 
 const router = express.Router();
