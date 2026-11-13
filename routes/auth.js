@@ -408,27 +408,140 @@ router.patch("/placement-v1", requireAuth, async (req, res) => {
   }
 });
 
+//working na to
+// router.get("/users-v2", requireAuth, async (req, res) => {
+//   // =========================================
+// // 1. ROLE AUTHORIZATION
+// // =========================================
+// const allowedRoles = ["admin", "teacher", "student"];
+
+// if (!allowedRoles.includes(req.user?.role)) {
+//   return res.status(403).json({
+//     success: false,
+//     message: "Access denied",
+//   });
+// }
+
+//   try {
+//     // =========================================
+//     // 2. GET QUERY PARAMETERS
+//     // =========================================
+//     const { role, search, sort = "az" } = req.query;
+
+//     // =========================================
+//     // 3. BUILD SQL QUERY
+//     // =========================================
+//     let query = `
+//       SELECT
+//         id,
+//         username,
+//         role,
+//         firstname,
+//         lastname
+//       FROM users
+//       WHERE 1 = 1
+//     `;
+
+//     const values = [];
+
+//     // =========================================
+//     // 4. FILTER BY ROLE
+//     // =========================================
+//     if (
+//       typeof role === "string" &&
+//       role !== "All" &&
+//       role !== "all" &&
+//       role.trim() !== ""
+//     ) {
+//       values.push(role.trim().toLowerCase());
+
+//       query += ` AND role = $${values.length}`;
+//     }
+
+//     // =========================================
+//     // 5. SEARCH USERS
+//     // =========================================
+//     if (
+//       typeof search === "string" &&
+//       search !== "null" &&
+//       search !== "undefined" &&
+//       search.trim() !== ""
+//     ) {
+//       values.push(`%${search.trim()}%`);
+
+//       query += `
+//         AND (
+//           firstname ILIKE $${values.length}
+//           OR lastname ILIKE $${values.length}
+//           OR username ILIKE $${values.length}
+//           OR role ILIKE $${values.length}
+//         )
+//       `;
+//     }
+
+//     // =========================================
+//     // 6. SORT USERS
+//     // =========================================
+//     if (sort === "za") {
+//       query += `
+//         ORDER BY
+//           firstname DESC,
+//           lastname DESC,
+//           id ASC
+//       `;
+//     } else {
+//       query += `
+//         ORDER BY
+//           firstname ASC,
+//           lastname ASC,
+//           id ASC
+//       `;
+//     }
+
+//     // =========================================
+//     // 7. EXECUTE DATABASE QUERY
+//     // =========================================
+//     const result = await pool.query(query, values);
+
+//     // =========================================
+//     // 8. RETURN USERS
+//     // =========================================
+//     return res.status(200).json({
+//       success: true,
+//       count: result.rows.length,
+//       users: result.rows,
+//     });
+
+//   } catch (error) {
+//     console.error("GET USERS V2 ERROR:", error.message);
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to retrieve users",
+//     });
+//   }
+// });
+
+
 router.get("/users-v2", requireAuth, async (req, res) => {
-
-  // =========================================
-  // 1. ADMIN AUTHORIZATION
-  // =========================================
-  if (req.user?.role !== "admin") {
-    return res.status(403).json({
-      success: false,
-      message: "Admin access required",
-    });
-  }
-
   try {
-    // =========================================
-    // 2. GET QUERY PARAMETERS
-    // =========================================
+    // 1. AUTHORIZATION
+    const userId = req.user?.id;
+    const userRole = String(req.user?.role || "").toLowerCase();
+
+    const allowedRoles = ["admin", "teacher", "student"];
+
+    if (!userId || !allowedRoles.includes(userRole)) {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied",
+      });
+    }
+
+    // 2. QUERY PARAMETERS
     const { role, search, sort = "az" } = req.query;
 
-    // =========================================
-    // 3. BUILD SQL QUERY
-    // =========================================
+    // 3. BASE QUERY
     let query = `
       SELECT
         id,
@@ -442,28 +555,32 @@ router.get("/users-v2", requireAuth, async (req, res) => {
 
     const values = [];
 
-    // =========================================
-    // 4. FILTER BY ROLE
-    // =========================================
-    if (
-      typeof role === "string" &&
-      role !== "All" &&
-      role !== "all" &&
-      role.trim() !== ""
-    ) {
-      values.push(role.trim().toLowerCase());
-
-      query += ` AND role = $${values.length}`;
+    // 4. JWT USER FILTER
+    // Admin: Can access all users
+    // Teacher/Student: Own account only
+    if (userRole !== "admin") {
+      values.push(userId);
+      query += ` AND id = $${values.length}`;
     }
 
-    // =========================================
-    // 5. SEARCH USERS
-    // =========================================
+    // 5. ADMIN ROLE FILTER
     if (
+      userRole === "admin" &&
+      typeof role === "string" &&
+      role.trim() !== "" &&
+      role.toLowerCase() !== "all"
+    ) {
+      values.push(role.trim().toLowerCase());
+      query += ` AND LOWER(role) = $${values.length}`;
+    }
+
+    // 6. ADMIN SEARCH
+    if (
+      userRole === "admin" &&
       typeof search === "string" &&
+      search.trim() !== "" &&
       search !== "null" &&
-      search !== "undefined" &&
-      search.trim() !== ""
+      search !== "undefined"
     ) {
       values.push(`%${search.trim()}%`);
 
@@ -477,33 +594,21 @@ router.get("/users-v2", requireAuth, async (req, res) => {
       `;
     }
 
-    // =========================================
-    // 6. SORT USERS
-    // =========================================
+    // 7. SORT
     if (sort === "za") {
       query += `
-        ORDER BY
-          firstname DESC,
-          lastname DESC,
-          id ASC
+        ORDER BY firstname DESC, lastname DESC, id ASC
       `;
     } else {
       query += `
-        ORDER BY
-          firstname ASC,
-          lastname ASC,
-          id ASC
+        ORDER BY firstname ASC, lastname ASC, id ASC
       `;
     }
 
-    // =========================================
-    // 7. EXECUTE DATABASE QUERY
-    // =========================================
+    // 8. EXECUTE QUERY
     const result = await pool.query(query, values);
 
-    // =========================================
-    // 8. RETURN USERS
-    // =========================================
+    // 9. RETURN RESPONSE
     return res.status(200).json({
       success: true,
       count: result.rows.length,
@@ -511,7 +616,7 @@ router.get("/users-v2", requireAuth, async (req, res) => {
     });
 
   } catch (error) {
-    console.error("GET USERS V2 ERROR:", error.message);
+    console.error("GET USERS V2 ERROR:", error);
 
     return res.status(500).json({
       success: false,
@@ -519,6 +624,7 @@ router.get("/users-v2", requireAuth, async (req, res) => {
     });
   }
 });
+
 
 router.get('/users-stats', async (req, res) => {
   try {
