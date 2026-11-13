@@ -242,21 +242,24 @@ router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
         -- SPEAKING PROGRESS
         -- EXISTING FORMULA (UNCHANGED)
         -- =====================================
-        COALESCE(
-          ROUND(
-            AVG(
-              CASE
-                WHEN up.activity_type IN (
-                  'word',
-                  'phrase',
-                  'sentence'
-                )
-                THEN (up.score::numeric / 5) * 100
-              END
-            )
-          ),
-          0
-        ) AS speaking_percent,
+       COALESCE(
+  ROUND(
+    COUNT(
+      DISTINCT CASE
+        WHEN up.activity_type IN (
+          'words',
+          'phrases',
+          'sentences'
+        )
+        AND up.score >= 3
+        AND up.level BETWEEN 1 AND 15
+        THEN (up.activity_type, up.level)
+      END
+    )::numeric / 45 * 100,
+    2
+  ),
+  0
+) AS speaking_percent,
 
         -- =====================================
         -- READING PROGRESS
