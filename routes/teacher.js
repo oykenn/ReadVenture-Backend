@@ -220,13 +220,46 @@ router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
         -- PASSING SCORE: 3/5
         -- =====================================
         COALESCE(
+            ROUND(
+              COUNT(
+                DISTINCT CASE
+                  WHEN up.activity_type IN (
+                    'poems',
+                    'short_stories',
+                    'shortstories',
+                    'texts'
+                  )
+                  AND up.score >= 3
+                  AND up.level BETWEEN 1 AND 15
+                  THEN (
+                    CASE
+                      WHEN up.activity_type IN (
+                        'short_stories',
+                        'shortstories'
+                      )
+                      THEN 'short_stories'
+                      ELSE up.activity_type
+                    END,
+                    up.level
+                  )
+                END
+              )::numeric / 45 * 100,
+              2
+            ),
+            0
+          ) AS comprehension_percent
+
+        -- =====================================
+        -- SPEAKING PROGRESS
+        -- =====================================
+       COALESCE(
           ROUND(
             COUNT(
               DISTINCT CASE
                 WHEN up.activity_type IN (
-                  'synonyms',
-                  'antonyms',
-                  'definitions'
+                  'words',
+                  'phrases',
+                  'sentences'
                 )
                 AND up.score >= 3
                 AND up.level BETWEEN 1 AND 15
@@ -236,30 +269,7 @@ router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
             2
           ),
           0
-        ) AS vocabulary_percent,
-
-        -- =====================================
-        -- SPEAKING PROGRESS
-        -- EXISTING FORMULA (UNCHANGED)
-        -- =====================================
-       COALESCE(
-  ROUND(
-    COUNT(
-      DISTINCT CASE
-        WHEN up.activity_type IN (
-          'words',
-          'phrases',
-          'sentences'
-        )
-        AND up.score >= 3
-        AND up.level BETWEEN 1 AND 15
-        THEN (up.activity_type, up.level)
-      END
-    )::numeric / 45 * 100,
-    2
-  ),
-  0
-) AS speaking_percent,
+        ) AS speaking_percent,
 
         -- =====================================
         -- READING PROGRESS
