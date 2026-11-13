@@ -40,7 +40,6 @@ router.get("/student-count", requireAuth, async (req, res) => {
   }
 });
 
-
 // router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
 //   try {
 //     const teacherId = req.user.id;
@@ -149,190 +148,309 @@ router.get("/student-count", requireAuth, async (req, res) => {
 //   }
 // });
 
+// router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
+//   try {
+//     // =========================================
+//     // 1. GET LOGGED-IN TEACHER ID
+//     // =========================================
+//     const teacherId = req.user.id;
+
+//     // =========================================
+//     // 2. GET FILTER PARAMETERS
+//     // =========================================
+//     const rawReadingPath = decodeURIComponent(
+//       req.params.readingPath || "All"
+//     ).trim();
+
+//     const normalizedReadingPath = rawReadingPath.toLowerCase();
+
+//     const rawSearch = String(req.query.search || "").trim();
+//     const normalizedSearch = `%${rawSearch.toLowerCase()}%`;
+
+//     const values = [teacherId];
+
+//     let readingPathFilter = "";
+//     let searchFilter = "";
+
+//     // =========================================
+//     // 3. FILTER BY READING PATH
+//     // =========================================
+//     if (normalizedReadingPath !== "all") {
+//       values.push(normalizedReadingPath);
+
+//       readingPathFilter =
+//         `AND LOWER(TRIM(s.reading_path)) = $${values.length}`;
+//     }
+
+//     // =========================================
+//     // 4. SEARCH STUDENTS
+//     // =========================================
+//     if (rawSearch !== "") {
+//       values.push(normalizedSearch);
+
+//       searchFilter = `
+//         AND (
+//           LOWER(s.firstname) LIKE $${values.length}
+//           OR LOWER(s.lastname) LIKE $${values.length}
+//           OR LOWER(CONCAT(s.firstname, ' ', s.lastname))
+//              LIKE $${values.length}
+//         )
+//       `;
+//     }
+
+//     // =========================================
+//     // 5. FETCH STUDENT PROGRESS
+//     // =========================================
+//     const result = await pool.query(
+//       `
+//       SELECT
+//         s.id,
+//         s.firstname,
+//         s.lastname,
+
+//         COALESCE(
+//           s.reading_path,
+//           'Not Set'
+//         ) AS reading_path,
+
+//         -- =====================================
+//         -- VOCABULARY PROGRESS
+//         -- 3 ACTIVITIES x 15 LEVELS = 45
+//         -- PASSING SCORE: 3/5
+//         -- =====================================
+//         COALESCE(
+//             ROUND(
+//               COUNT(
+//                 DISTINCT CASE
+//                   WHEN up.activity_type IN (
+//                     'poems',
+//                     'short_stories',
+//                     'shortstories',
+//                     'texts'
+//                   )
+//                   AND up.score >= 3
+//                   AND up.level BETWEEN 1 AND 15
+//                   THEN (
+//                     CASE
+//                       WHEN up.activity_type IN (
+//                         'short_stories',
+//                         'shortstories'
+//                       )
+//                       THEN 'short_stories'
+//                       ELSE up.activity_type
+//                     END,
+//                     up.level
+//                   )
+//                 END
+//               )::numeric / 45 * 100,
+//               2
+//             ),
+//             0
+//           ) AS comprehension_percent
+
+//         -- =====================================
+//         -- SPEAKING PROGRESS
+//         -- =====================================
+//        COALESCE(
+//           ROUND(
+//             COUNT(
+//               DISTINCT CASE
+//                 WHEN up.activity_type IN (
+//                   'words',
+//                   'phrases',
+//                   'sentences'
+//                 )
+//                 AND up.score >= 3
+//                 AND up.level BETWEEN 1 AND 15
+//                 THEN (up.activity_type, up.level)
+//               END
+//             )::numeric / 45 * 100,
+//             2
+//           ),
+//           0
+//         ) AS speaking_percent,
+
+//         -- =====================================
+//         -- READING PROGRESS
+//         -- EXISTING FORMULA (UNCHANGED)
+//         -- =====================================
+//         COALESCE(
+//           ROUND(
+//             AVG(
+//               CASE
+//                 WHEN up.activity_type IN (
+//                   'poem',
+//                   'story',
+//                   'reading'
+//                 )
+//                 THEN (up.score::numeric / 5) * 100
+//               END
+//             )
+//           ),
+//           0
+//         ) AS comprehension_percent
+
+//       FROM users s
+
+//       LEFT JOIN user_progress up
+//         ON up.user_id = s.id
+
+//       WHERE s.teacher_id = $1
+//         AND s.role = 'student'
+//         ${readingPathFilter}
+//         ${searchFilter}
+
+//       GROUP BY
+//         s.id,
+//         s.firstname,
+//         s.lastname,
+//         s.reading_path
+
+//       ORDER BY
+//         s.lastname ASC,
+//         s.firstname ASC
+//       `,
+//       values
+//     );
+
+//     // =========================================
+//     // 6. RETURN RESPONSE
+//     // =========================================
+//     return res.status(200).json({
+//       success: true,
+//       selected_reading_path: rawReadingPath,
+//       search: rawSearch,
+//       students: result.rows,
+//     });
+
+//   } catch (error) {
+//     console.error(
+//       "GET TEACHER STUDENTS PROGRESS FILTERED ERROR:",
+//       error
+//     );
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Server error while getting students progress.",
+//     });
+//   }
+// });
+
 router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
   try {
-    // =========================================
-    // 1. GET LOGGED-IN TEACHER ID
-    // =========================================
     const teacherId = req.user.id;
-
-    // =========================================
-    // 2. GET FILTER PARAMETERS
-    // =========================================
-    const rawReadingPath = decodeURIComponent(
+    const readingPath = decodeURIComponent(
       req.params.readingPath || "All"
     ).trim();
 
-    const normalizedReadingPath = rawReadingPath.toLowerCase();
-
-    const rawSearch = String(req.query.search || "").trim();
-    const normalizedSearch = `%${rawSearch.toLowerCase()}%`;
-
+    const search = String(req.query.search || "").trim();
     const values = [teacherId];
 
-    let readingPathFilter = "";
+    let pathFilter = "";
     let searchFilter = "";
 
-    // =========================================
-    // 3. FILTER BY READING PATH
-    // =========================================
-    if (normalizedReadingPath !== "all") {
-      values.push(normalizedReadingPath);
-
-      readingPathFilter =
-        `AND LOWER(TRIM(s.reading_path)) = $${values.length}`;
+    if (readingPath.toLowerCase() !== "all") {
+      values.push(readingPath.toLowerCase());
+      pathFilter = `AND LOWER(TRIM(s.reading_path)) = $${values.length}`;
     }
 
-    // =========================================
-    // 4. SEARCH STUDENTS
-    // =========================================
-    if (rawSearch !== "") {
-      values.push(normalizedSearch);
+    if (search) {
+      values.push(`%${search.toLowerCase()}%`);
 
       searchFilter = `
         AND (
           LOWER(s.firstname) LIKE $${values.length}
           OR LOWER(s.lastname) LIKE $${values.length}
-          OR LOWER(CONCAT(s.firstname, ' ', s.lastname))
-             LIKE $${values.length}
+          OR LOWER(CONCAT(s.firstname, ' ', s.lastname)) LIKE $${values.length}
         )
       `;
     }
 
-    // =========================================
-    // 5. FETCH STUDENT PROGRESS
-    // =========================================
     const result = await pool.query(
       `
       SELECT
         s.id,
         s.firstname,
         s.lastname,
+        COALESCE(s.reading_path, 'Not Set') AS reading_path,
 
         COALESCE(
-          s.reading_path,
-          'Not Set'
-        ) AS reading_path,
-
-        -- =====================================
-        -- VOCABULARY PROGRESS
-        -- 3 ACTIVITIES x 15 LEVELS = 45
-        -- PASSING SCORE: 3/5
-        -- =====================================
-        COALESCE(
-            ROUND(
-              COUNT(
-                DISTINCT CASE
-                  WHEN up.activity_type IN (
-                    'poems',
-                    'short_stories',
-                    'shortstories',
-                    'texts'
-                  )
-                  AND up.score >= 3
-                  AND up.level BETWEEN 1 AND 15
-                  THEN (
-                    CASE
-                      WHEN up.activity_type IN (
-                        'short_stories',
-                        'shortstories'
-                      )
-                      THEN 'short_stories'
-                      ELSE up.activity_type
-                    END,
-                    up.level
-                  )
-                END
-              )::numeric / 45 * 100,
-              2
-            ),
-            0
-          ) AS comprehension_percent
-
-        -- =====================================
-        -- SPEAKING PROGRESS
-        -- =====================================
-       COALESCE(
           ROUND(
-            COUNT(
-              DISTINCT CASE
-                WHEN up.activity_type IN (
-                  'words',
-                  'phrases',
-                  'sentences'
-                )
+            COUNT(DISTINCT CASE
+              WHEN up.activity_type IN ('synonyms', 'antonyms', 'definitions')
                 AND up.score >= 3
                 AND up.level BETWEEN 1 AND 15
-                THEN (up.activity_type, up.level)
-              END
-            )::numeric / 45 * 100,
+              THEN (up.activity_type, up.level)
+            END)::numeric / 45 * 100,
+            2
+          ),
+          0
+        ) AS vocabulary_percent,
+
+        COALESCE(
+          ROUND(
+            COUNT(DISTINCT CASE
+              WHEN up.activity_type IN ('words', 'phrases', 'sentences')
+                AND up.score >= 3
+                AND up.level BETWEEN 1 AND 15
+              THEN (up.activity_type, up.level)
+            END)::numeric / 45 * 100,
             2
           ),
           0
         ) AS speaking_percent,
 
-        -- =====================================
-        -- READING PROGRESS
-        -- EXISTING FORMULA (UNCHANGED)
-        -- =====================================
         COALESCE(
           ROUND(
-            AVG(
-              CASE
-                WHEN up.activity_type IN (
-                  'poem',
-                  'story',
-                  'reading'
-                )
-                THEN (up.score::numeric / 5) * 100
-              END
-            )
+            COUNT(DISTINCT CASE
+              WHEN up.activity_type IN (
+                'poems', 'short_stories', 'shortstories', 'texts'
+              )
+                AND up.score >= 3
+                AND up.level BETWEEN 1 AND 15
+              THEN (
+                CASE
+                  WHEN up.activity_type IN ('short_stories', 'shortstories')
+                  THEN 'short_stories'
+                  ELSE up.activity_type
+                END,
+                up.level
+              )
+            END)::numeric / 45 * 100,
+            2
           ),
           0
         ) AS comprehension_percent
 
       FROM users s
-
-      LEFT JOIN user_progress up
-        ON up.user_id = s.id
+      LEFT JOIN user_progress up ON up.user_id = s.id
 
       WHERE s.teacher_id = $1
         AND s.role = 'student'
-        ${readingPathFilter}
+        ${pathFilter}
         ${searchFilter}
 
       GROUP BY
-        s.id,
-        s.firstname,
-        s.lastname,
-        s.reading_path
+        s.id, s.firstname, s.lastname, s.reading_path
 
-      ORDER BY
-        s.lastname ASC,
-        s.firstname ASC
+      ORDER BY s.lastname ASC, s.firstname ASC
       `,
       values
     );
 
-    // =========================================
-    // 6. RETURN RESPONSE
-    // =========================================
     return res.status(200).json({
       success: true,
-      selected_reading_path: rawReadingPath,
-      search: rawSearch,
-      students: result.rows,
+      selected_reading_path: readingPath,
+      search,
+      students: result.rows
     });
 
   } catch (error) {
-    console.error(
-      "GET TEACHER STUDENTS PROGRESS FILTERED ERROR:",
-      error
-    );
+    console.error("GET STUDENTS PROGRESS ERROR:", error);
 
     return res.status(500).json({
       success: false,
-      message: "Server error while getting students progress.",
+      message: "Server error while getting students progress."
     });
   }
 });
