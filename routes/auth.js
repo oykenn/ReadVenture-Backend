@@ -7,6 +7,7 @@ import multer from "multer";
 import { parse } from "csv-parse/sync";
 import path from "path";
 
+
 import { randomBytes } from "node:crypto";
 
 
@@ -655,6 +656,242 @@ router.get('/users-stats', async (req, res) => {
   }
 });
 
+// router.post("/add-user", requireAuth, async (req, res) => {
+//   // =========================================
+//   // 1. ADMIN AUTHORIZATION
+//   // =========================================
+//   if (req.user?.role !== "admin") {
+//     return res.status(403).json({
+//       success: false,
+//       message: "Admin access required",
+//     });
+//   }
+
+//   const { firstname, lastname, role, teacher_id, section_id } =
+//     req.body || {};
+
+//   // =========================================
+//   // 2. VALIDATE INPUT
+//   // =========================================
+//   if (
+//     typeof firstname !== "string" ||
+//     typeof lastname !== "string" ||
+//     typeof role !== "string" ||
+//     !firstname.trim() ||
+//     !lastname.trim() ||
+//     !role.trim()
+//   ) {
+//     return res.status(400).json({
+//       success: false,
+//       message: "Valid firstname, lastname, and role are required",
+//     });
+//   }
+
+//   const normalizedRole = role.trim().toLowerCase();
+//   const allowedRoles = ["student", "teacher", "admin"];
+
+//   if (!allowedRoles.includes(normalizedRole)) {
+//     return res.status(400).json({
+//       success: false,
+//       message: "Invalid role. Must be student, teacher, or admin.",
+//     });
+//   }
+
+//   // =========================================
+//   // 3. CLEAN NAMES
+//   // =========================================
+//   const cleanName = (value) =>
+//     String(value)
+//       .trim()
+//       .normalize("NFD")
+//       .replace(/[\u0300-\u036f]/g, "")
+//       .toLowerCase()
+//       .replace(/[^a-z]/g, "");
+
+//   const cleanFirstName = cleanName(firstname);
+//   const cleanLastName = cleanName(lastname);
+
+//   if (!cleanFirstName || !cleanLastName) {
+//     return res.status(400).json({
+//       success: false,
+//       message: "Firstname and lastname must contain valid letters",
+//     });
+//   }
+
+//   try {
+//     // =========================================
+//     // 4. VALIDATE TEACHER FOR STUDENTS
+//     // =========================================
+//     let finalTeacherId = null;
+
+//     if (normalizedRole === "student") {
+//       const parsedTeacherId = Number(teacher_id);
+
+//       if (
+//         !Number.isSafeInteger(parsedTeacherId) ||
+//         parsedTeacherId <= 0
+//       ) {
+//         return res.status(400).json({
+//           success: false,
+//           message: "Valid teacher_id is required for students",
+//         });
+//       }
+
+//       const teacherResult = await pool.query(
+//         `
+//         SELECT id
+//         FROM users
+//         WHERE id = $1
+//           AND role = 'teacher'
+//         LIMIT 1
+//         `,
+//         [parsedTeacherId]
+//       );
+
+//       if (teacherResult.rows.length === 0) {
+//         return res.status(400).json({
+//           success: false,
+//           message: "Invalid teacher_id",
+//         });
+//       }
+
+//       finalTeacherId = parsedTeacherId;
+//     }
+
+//     // =========================================
+//     // 5. GENERATE UNIQUE USERNAME
+//     // =========================================
+//     const baseUsername =
+//       `${cleanLastName}.${cleanFirstName}@jhg`;
+
+//     let username = baseUsername;
+//     let counter = 2;
+
+//     while (true) {
+//       const existingUser = await pool.query(
+//         `
+//         SELECT id
+//         FROM users
+//         WHERE username = $1
+//         LIMIT 1
+//         `,
+//         [username]
+//       );
+
+//       if (existingUser.rows.length === 0) {
+//         break;
+//       }
+
+//       username =
+//         `${cleanLastName}.${cleanFirstName}${counter}@jhg`;
+
+//       counter++;
+//     }
+
+//     // =========================================
+//     // 6. GENERATE DEFAULT PASSWORD
+//     // =========================================
+//     // ReadVenture agreed format:
+//     // lastname + firstname initials + !
+//     //
+//     // Example:
+//     // firstname = Paolo
+//     // lastname  = Ad
+//     // password  = adP!
+//     //
+//     // Example:
+//     // firstname = Kenn Louis Mario
+//     // lastname  = Apellido
+//     // password  = apellidoKLM!
+
+//     const firstNameInitials = firstname
+//       .trim()
+//       .split(/\s+/)
+//       .filter(Boolean)
+//       .map((name) => {
+//         const cleaned = cleanName(name);
+//         return cleaned.charAt(0).toUpperCase();
+//       })
+//       .join("");
+
+//     const generatedPassword =
+//       `${cleanLastName}${firstNameInitials}!`;
+
+//     // =========================================
+//     // 7. HASH PASSWORD
+//     // =========================================
+//     const hashedPassword = await bcrypt.hash(
+//       generatedPassword,
+//       12
+//     );
+
+//     // =========================================
+//     // 8. INSERT USER INTO POSTGRESQL
+//     // =========================================
+//     const result = await pool.query(
+//       `
+//       INSERT INTO users (
+//         firstname,
+//         lastname,
+//         username,
+//         password,
+//         role,
+//         teacher_id
+//       )
+//       VALUES ($1, $2, $3, $4, $5, $6)
+//       RETURNING
+//         id,
+//         firstname,
+//         lastname,
+//         username,
+//         role,
+//         teacher_id
+//       `,
+//       [
+//         firstname.trim(),
+//         lastname.trim(),
+//         username,
+//         hashedPassword,
+//         normalizedRole,
+//         finalTeacherId,
+//       ]
+//     );
+
+//     console.log("USER CREATED:", {
+//       id: result.rows[0].id,
+//       role: result.rows[0].role,
+//     });
+
+//     // =========================================
+//     // 9. RETURN USER AND DEFAULT CREDENTIALS
+//     // =========================================
+//     return res.status(201).json({
+//       success: true,
+//       message: "User added successfully.",
+//       user: result.rows[0],
+//       credentials: {
+//         username,
+//         temporary_password: generatedPassword,
+//       },
+//     });
+
+//   } catch (err) {
+//     console.error("ADD USER ERROR:", err.message);
+
+//     if (err.code === "23505") {
+//       return res.status(409).json({
+//         success: false,
+//         message: "Username already exists. Please retry.",
+//       });
+//     }
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to add user",
+//     });
+//   }
+// });
+
 router.post("/add-user", requireAuth, async (req, res) => {
   // =========================================
   // 1. ADMIN AUTHORIZATION
@@ -666,8 +903,13 @@ router.post("/add-user", requireAuth, async (req, res) => {
     });
   }
 
-  const { firstname, lastname, role, teacher_id } =
-    req.body || {};
+  const {
+    firstname,
+    lastname,
+    role,
+    teacher_id,
+    section_id,
+  } = req.body || {};
 
   // =========================================
   // 2. VALIDATE INPUT
@@ -719,14 +961,18 @@ router.post("/add-user", requireAuth, async (req, res) => {
 
   try {
     // =========================================
-    // 4. VALIDATE TEACHER FOR STUDENTS
+    // 4. VALIDATE TEACHER AND SECTION
     // =========================================
     let finalTeacherId = null;
+    let finalSectionId = null;
 
     if (normalizedRole === "student") {
+      // Validate teacher ID
       const parsedTeacherId = Number(teacher_id);
 
       if (
+        teacher_id == null ||
+        teacher_id === "" ||
         !Number.isSafeInteger(parsedTeacherId) ||
         parsedTeacherId <= 0
       ) {
@@ -736,6 +982,7 @@ router.post("/add-user", requireAuth, async (req, res) => {
         });
       }
 
+      // Check if selected user is a teacher
       const teacherResult = await pool.query(
         `
         SELECT id
@@ -754,7 +1001,42 @@ router.post("/add-user", requireAuth, async (req, res) => {
         });
       }
 
+      // Validate section ID
+      const parsedSectionId = Number(section_id);
+
+      if (
+        section_id == null ||
+        section_id === "" ||
+        !Number.isSafeInteger(parsedSectionId) ||
+        parsedSectionId <= 0
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: "Valid section_id is required for students",
+        });
+      }
+
+      // Verify section belongs to selected teacher
+      const sectionResult = await pool.query(
+        `
+        SELECT id
+        FROM sections
+        WHERE id = $1
+          AND teacher_id = $2
+        LIMIT 1
+        `,
+        [parsedSectionId, parsedTeacherId]
+      );
+
+      if (sectionResult.rows.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: "Section does not belong to the selected teacher",
+        });
+      }
+
       finalTeacherId = parsedTeacherId;
+      finalSectionId = parsedSectionId;
     }
 
     // =========================================
@@ -790,18 +1072,13 @@ router.post("/add-user", requireAuth, async (req, res) => {
     // =========================================
     // 6. GENERATE DEFAULT PASSWORD
     // =========================================
-    // ReadVenture agreed format:
+    // Format:
     // lastname + firstname initials + !
     //
     // Example:
-    // firstname = Paolo
-    // lastname  = Ad
-    // password  = adP!
-    //
-    // Example:
     // firstname = Kenn Louis Mario
-    // lastname  = Apellido
-    // password  = apellidoKLM!
+    // lastname = Apellido
+    // password = apellidoKLM!
 
     const firstNameInitials = firstname
       .trim()
@@ -835,16 +1112,18 @@ router.post("/add-user", requireAuth, async (req, res) => {
         username,
         password,
         role,
-        teacher_id
+        teacher_id,
+        section_id
       )
-      VALUES ($1, $2, $3, $4, $5, $6)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING
         id,
         firstname,
         lastname,
         username,
         role,
-        teacher_id
+        teacher_id,
+        section_id
       `,
       [
         firstname.trim(),
@@ -853,12 +1132,15 @@ router.post("/add-user", requireAuth, async (req, res) => {
         hashedPassword,
         normalizedRole,
         finalTeacherId,
+        finalSectionId,
       ]
     );
 
     console.log("USER CREATED:", {
       id: result.rows[0].id,
       role: result.rows[0].role,
+      teacher_id: result.rows[0].teacher_id,
+      section_id: result.rows[0].section_id,
     });
 
     // =========================================
@@ -884,13 +1166,19 @@ router.post("/add-user", requireAuth, async (req, res) => {
       });
     }
 
+    if (err.code === "23503") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid teacher or section reference.",
+      });
+    }
+
     return res.status(500).json({
       success: false,
       message: "Failed to add user",
     });
   }
 });
-
 
 router.post(
   "/add-users-csv",
