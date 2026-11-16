@@ -1,0 +1,83 @@
+import express from "express";
+import { pool } from "../db.js";
+import requireAuthFromHeaderOrQuery from "../middleware/requireAuthFromHeaderOrQuery.js";
+
+const router = express.Router();
+
+// Require valid JWT for all section routes
+router.use(requireAuthFromHeaderOrQuery);
+
+// Admin-only authorization
+const requireAdmin = (req, res, next) => {
+  if (req.user?.role !== "admin") {
+    return res.status(403).json({
+      success: false,
+      message: "Admin access required.",
+    });
+  }
+
+  next();
+};
+
+// For now, protect all section routes
+router.use(requireAdmin);
+
+// CREATE SECTION — ADMIN ONLY
+router.post("/create", async (req, res) => {
+  const { section_name, teacher_id } = req.body;
+
+  if (!section_name?.trim() || !teacher_id) {
+    return res.status(400).json({
+      success: false,
+      message: "Section name and teacher are required.",
+    });
+  }
+
+  try {
+    // Verify that the selected user is a teacher
+    const teacher = await pool.query(
+      `SELECT id FROM users
+       WHERE id = $1 AND role = 'teacher'`,
+      [teacher_id]
+    );
+
+    if (teacher.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Teacher not found.",
+      });
+    }
+
+    // Create section
+    const result = await pool.query(
+      `INSERT INTO sections (section_name, teacher_id)
+       VALUES ($1, $2)
+       RETURNING *`,
+      [section_name.trim(), teacher_id]
+    );
+
+    return res.status(201).json({
+      success: true,
+      message: "Section created successfully.",
+      section: result.rows[0],
+    });
+
+  } catch (error) {
+    console.error("CREATE SECTION ERROR:", error);
+
+    if (error.code === "23505") {
+      return res.status(409).json({
+        success: false,
+        message: "This section already exists for this teacher.",
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error.",
+    });
+  }
+});
+
+
+export default router;

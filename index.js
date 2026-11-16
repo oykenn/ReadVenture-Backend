@@ -20,8 +20,10 @@ import poemsRouter from "./routes/poems.js";
 import shortStoriesRouter from "./routes/shortstories.js";
 import textsRouter from "./routes/texts.js";
 import aiUsageRoutes from "./routes/aiUsage.js";
+import sectionsRoutes from "./routes/sections.js";
 
 import healthRoutes from "./routes/health.js"; 
+
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -94,6 +96,7 @@ app.use("/admin/student", adminStud);
 app.use("/admin", adminTchr);
 
 app.use("/health", healthRoutes);
+app.use("/sections", sectionsRoutes);
 
 /**
  * ✅ Start server
