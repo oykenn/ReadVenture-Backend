@@ -115,4 +115,48 @@ router.get("/teacher/:teacherId", async (req, res) => {
   }
 });
 
+// GET ALL SECTIONS — ADMIN ONLY
+router.get("/", async (req, res) => {
+  try {
+    const result = await pool.query(
+      `
+      SELECT
+        s.id,
+        s.section_name,
+        s.teacher_id,
+        u.firstname AS teacher_firstname,
+        u.lastname AS teacher_lastname,
+        COUNT(st.id)::INTEGER AS student_count
+      FROM sections s
+      JOIN users u
+        ON u.id = s.teacher_id
+       AND u.role = 'teacher'
+      LEFT JOIN users st
+        ON st.section_id = s.id
+       AND st.role = 'student'
+      GROUP BY
+        s.id,
+        s.section_name,
+        s.teacher_id,
+        u.firstname,
+        u.lastname
+      ORDER BY s.section_name ASC, s.id ASC
+      `
+    );
+
+    return res.status(200).json({
+      success: true,
+      total_sections: result.rows.length,
+      sections: result.rows,
+    });
+  } catch (error) {
+    console.error("GET ALL SECTIONS ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to retrieve sections.",
+    });
+  }
+});
+
 export default router;
