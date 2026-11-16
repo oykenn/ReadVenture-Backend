@@ -80,4 +80,39 @@ router.post("/create", async (req, res) => {
 });
 
 
+// GET SECTIONS BY TEACHER — ADMIN ONLY
+router.get("/teacher/:teacherId", async (req, res) => {
+  const teacherId = Number(req.params.teacherId);
+
+  if (!Number.isSafeInteger(teacherId) || teacherId <= 0) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid teacher ID.",
+    });
+  }
+
+  try {
+    const result = await pool.query(
+      `SELECT id, section_name, teacher_id
+       FROM sections
+       WHERE teacher_id = $1
+       ORDER BY section_name ASC`,
+      [teacherId]
+    );
+
+    return res.json({
+      success: true,
+      teacher_id: teacherId,
+      sections: result.rows,
+    });
+  } catch (error) {
+    console.error("GET TEACHER SECTIONS ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error.",
+    });
+  }
+});
+
 export default router;
