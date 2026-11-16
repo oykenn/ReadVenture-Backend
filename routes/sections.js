@@ -320,4 +320,114 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// ==========================================
+// DELETE SECTION — ADMIN ONLY
+// DELETE /sections/:id
+// ==========================================
+
+router.delete("/:id", async (req, res) => {
+  const sectionId = Number(req.params.id);
+
+  // Validate section ID
+  if (!Number.isSafeInteger(sectionId) || sectionId <= 0) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid section ID.",
+    });
+  }
+
+  let client;
+
+  try {
+    client = await pool.connect();
+    await client.query("BEGIN");
+
+    // Lock section to prevent simultaneous modifications
+    const sectionResult = await client.query(
+      `
+      SELECT id, section_name, teacher_id
+      FROM sections
+      WHERE id = $1
+      FOR UPDATE
+      `,
+      [sectionId]
+    );
+
+    if (sectionResult.rows.length === 0) {
+      await client.query("ROLLBACK");
+
+      return res.status(404).json({
+        success: false,
+        message: "Section not found.",
+      });
+    }
+
+    // Check whether ANY users are assigned to this section.
+    // Do not delete sections with existing assignments.
+    const assignedUsers = await client.query(
+      `
+      SELECT id
+      FROM users
+      WHERE section_id = $1
+      LIMIT 1
+      `,
+      [sectionId]
+    );
+
+    if (assignedUsers.rows.length > 0) {
+      await client.query("ROLLBACK");
+
+      return res.status(409).json({
+        success: false,
+        message:
+          "Cannot delete this section because students are still assigned to it.",
+      });
+    }
+
+    // Delete empty section
+    const deletedSection = await client.query(
+      `
+      DELETE FROM sections
+      WHERE id = $1
+      RETURNING id, section_name, teacher_id
+      `,
+      [sectionId]
+    );
+
+    await client.query("COMMIT");
+
+    return res.status(200).json({
+      success: true,
+      message: "Section deleted successfully.",
+      section: deletedSection.rows[0],
+    });
+
+  } catch (error) {
+    if (client) {
+      await client.query("ROLLBACK").catch(console.error);
+    }
+
+    console.error("DELETE SECTION ERROR:", error);
+
+    // Foreign key protection
+    if (error.code === "23503") {
+      return res.status(409).json({
+        success: false,
+        message:
+          "Cannot delete section because it still has assigned users.",
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to delete section.",
+    });
+
+  } finally {
+    if (client) {
+      client.release();
+    }
+  }
+});
+
 export default router;
