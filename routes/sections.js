@@ -160,6 +160,152 @@ router.get("/", async (req, res) => {
 });
 
 // ==========================================
+// ASSIGN / TRANSFER EXISTING STUDENT
+// PUT /sections/assign-student
+// ADMIN ONLY
+// ==========================================
+
+router.put("/assign-student", async (req, res) => {
+  const { student_id, section_id } = req.body || {};
+
+  const studentId = Number(student_id);
+  const sectionId = Number(section_id);
+
+  if (
+    student_id == null ||
+    student_id === "" ||
+    !Number.isSafeInteger(studentId) ||
+    studentId <= 0
+  ) {
+    return res.status(400).json({
+      success: false,
+      message: "Valid student ID is required.",
+    });
+  }
+
+  if (
+    section_id == null ||
+    section_id === "" ||
+    !Number.isSafeInteger(sectionId) ||
+    sectionId <= 0
+  ) {
+    return res.status(400).json({
+      success: false,
+      message: "Valid section ID is required.",
+    });
+  }
+
+  let client;
+
+  try {
+    client = await pool.connect();
+    await client.query("BEGIN");
+
+    // Check student and lock their record
+    const studentResult = await client.query(
+      `
+      SELECT id, firstname, lastname, teacher_id, section_id
+      FROM users
+      WHERE id = $1
+        AND role = 'student'
+      FOR UPDATE
+      `,
+      [studentId]
+    );
+
+    if (studentResult.rows.length === 0) {
+      await client.query("ROLLBACK");
+
+      return res.status(404).json({
+        success: false,
+        message: "Student not found.",
+      });
+    }
+
+    // Check destination section
+    const sectionResult = await client.query(
+      `
+      SELECT id, section_name, teacher_id
+      FROM sections
+      WHERE id = $1
+      FOR UPDATE
+      `,
+      [sectionId]
+    );
+
+    if (sectionResult.rows.length === 0) {
+      await client.query("ROLLBACK");
+
+      return res.status(404).json({
+        success: false,
+        message: "Section not found.",
+      });
+    }
+
+    const student = studentResult.rows[0];
+    const section = sectionResult.rows[0];
+
+    // Return early if student is already assigned
+    if (
+      Number(student.section_id) === sectionId &&
+      Number(student.teacher_id) === Number(section.teacher_id)
+    ) {
+      await client.query("ROLLBACK");
+
+      return res.status(200).json({
+        success: true,
+        message: "Student is already assigned to this section.",
+        student,
+      });
+    }
+
+    // Update teacher and section together
+    const updatedStudent = await client.query(
+      `
+      UPDATE users
+      SET teacher_id = $1,
+          section_id = $2
+      WHERE id = $3
+        AND role = 'student'
+      RETURNING
+        id,
+        firstname,
+        lastname,
+        teacher_id,
+        section_id
+      `,
+      [section.teacher_id, sectionId, studentId]
+    );
+
+    await client.query("COMMIT");
+
+    return res.status(200).json({
+      success: true,
+      message: "Student assigned to section successfully.",
+      section_name: section.section_name,
+      student: updatedStudent.rows[0],
+    });
+
+  } catch (error) {
+    if (client) {
+      await client.query("ROLLBACK").catch(console.error);
+    }
+
+    console.error("ASSIGN STUDENT ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to assign student to section.",
+    });
+
+  } finally {
+    if (client) {
+      client.release();
+    }
+  }
+});
+
+// ==========================================
 // UPDATE SECTION — ADMIN ONLY
 // PUT /sections/:id
 // ==========================================
@@ -430,150 +576,6 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// ==========================================
-// ASSIGN / TRANSFER EXISTING STUDENT
-// PUT /sections/assign-student
-// ADMIN ONLY
-// ==========================================
 
-router.put("/assign-student", async (req, res) => {
-  const { student_id, section_id } = req.body || {};
-
-  const studentId = Number(student_id);
-  const sectionId = Number(section_id);
-
-  if (
-    student_id == null ||
-    student_id === "" ||
-    !Number.isSafeInteger(studentId) ||
-    studentId <= 0
-  ) {
-    return res.status(400).json({
-      success: false,
-      message: "Valid student ID is required.",
-    });
-  }
-
-  if (
-    section_id == null ||
-    section_id === "" ||
-    !Number.isSafeInteger(sectionId) ||
-    sectionId <= 0
-  ) {
-    return res.status(400).json({
-      success: false,
-      message: "Valid section ID is required.",
-    });
-  }
-
-  let client;
-
-  try {
-    client = await pool.connect();
-    await client.query("BEGIN");
-
-    // Check student and lock their record
-    const studentResult = await client.query(
-      `
-      SELECT id, firstname, lastname, teacher_id, section_id
-      FROM users
-      WHERE id = $1
-        AND role = 'student'
-      FOR UPDATE
-      `,
-      [studentId]
-    );
-
-    if (studentResult.rows.length === 0) {
-      await client.query("ROLLBACK");
-
-      return res.status(404).json({
-        success: false,
-        message: "Student not found.",
-      });
-    }
-
-    // Check destination section
-    const sectionResult = await client.query(
-      `
-      SELECT id, section_name, teacher_id
-      FROM sections
-      WHERE id = $1
-      FOR UPDATE
-      `,
-      [sectionId]
-    );
-
-    if (sectionResult.rows.length === 0) {
-      await client.query("ROLLBACK");
-
-      return res.status(404).json({
-        success: false,
-        message: "Section not found.",
-      });
-    }
-
-    const student = studentResult.rows[0];
-    const section = sectionResult.rows[0];
-
-    // Return early if student is already assigned
-    if (
-      Number(student.section_id) === sectionId &&
-      Number(student.teacher_id) === Number(section.teacher_id)
-    ) {
-      await client.query("ROLLBACK");
-
-      return res.status(200).json({
-        success: true,
-        message: "Student is already assigned to this section.",
-        student,
-      });
-    }
-
-    // Update teacher and section together
-    const updatedStudent = await client.query(
-      `
-      UPDATE users
-      SET teacher_id = $1,
-          section_id = $2
-      WHERE id = $3
-        AND role = 'student'
-      RETURNING
-        id,
-        firstname,
-        lastname,
-        teacher_id,
-        section_id
-      `,
-      [section.teacher_id, sectionId, studentId]
-    );
-
-    await client.query("COMMIT");
-
-    return res.status(200).json({
-      success: true,
-      message: "Student assigned to section successfully.",
-      section_name: section.section_name,
-      student: updatedStudent.rows[0],
-    });
-
-  } catch (error) {
-    if (client) {
-      await client.query("ROLLBACK").catch(console.error);
-    }
-
-    console.error("ASSIGN STUDENT ERROR:", error);
-
-    return res.status(500).json({
-      success: false,
-      message: "Failed to assign student to section.",
-    });
-
-  } finally {
-    if (client) {
-      client.release();
-    }
-  }
-});
 
 export default router;
