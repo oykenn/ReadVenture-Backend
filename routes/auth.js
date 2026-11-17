@@ -1180,13 +1180,385 @@ router.post("/add-user", requireAuth, async (req, res) => {
   }
 });
 
+// router.post(
+//   "/add-users-csv",
+
+//   // 1. JWT AUTHENTICATION
+//   requireAuth,
+
+//   // 2. ADMIN AUTHORIZATION
+//   (req, res, next) => {
+//     if (req.user?.role !== "admin") {
+//       return res.status(403).json({
+//         success: false,
+//         message: "Admin access required",
+//       });
+//     }
+
+//     next();
+//   },
+
+//   // 3. CSV FILE UPLOAD
+//   uploadCsvFile,
+
+//   // =========================================
+//   // 4. CSV PROCESSING
+//   // =========================================
+//   async (req, res) => {
+//     if (!req.file?.buffer) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "CSV file is required",
+//       });
+//     }
+
+//     console.log(
+//       "CSV FILE RECEIVED:",
+//       req.file.originalname
+//     );
+
+//     let rows;
+//     let detectedHeaders = [];
+
+//     try {
+//       const csvText = req.file.buffer.toString("utf8");
+
+//       rows = parse(csvText, {
+//         columns: (headers) => {
+//           detectedHeaders = headers.map((header) =>
+//             String(header).trim().toLowerCase()
+//           );
+
+//           return detectedHeaders;
+//         },
+
+//         skip_empty_lines: true,
+//         trim: true,
+//         bom: true,
+//       });
+
+//     } catch (err) {
+//       return res.status(400).json({
+//         success: false,
+//         message:
+//           "Invalid CSV format. Please check the file and try again.",
+//       });
+//     }
+
+//     // =========================================
+//     // 5. VALIDATE CSV HEADERS
+//     // =========================================
+//     const requiredColumns = [
+//       "firstname",
+//       "lastname",
+//       "role",
+//       "teacher_lastname",
+//     ];
+
+//     const missingColumns = requiredColumns.filter(
+//       (column) => !detectedHeaders.includes(column)
+//     );
+
+//     if (missingColumns.length > 0) {
+//       return res.status(400).json({
+//         success: false,
+//         message:
+//           `Invalid CSV format. Missing column(s): ${missingColumns.join(", ")}`,
+//         required_columns: requiredColumns,
+//       });
+//     }
+
+//     if (!rows.length) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "CSV file contains no users.",
+//       });
+//     }
+
+//     if (rows.length > 500) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Maximum of 500 users per CSV import.",
+//       });
+//     }
+
+//     // =========================================
+//     // 6. ALLOWED CSV ROLES
+//     // =========================================
+//     // Admin accounts are created individually.
+//     const allowedRoles = ["student", "teacher"];
+
+//     const cleanName = (value) =>
+//       String(value)
+//         .trim()
+//         .normalize("NFD")
+//         .replace(/[\u0300-\u036f]/g, "")
+//         .toLowerCase()
+//         .replace(/[^a-z]/g, "");
+
+//     // =========================================
+//     // 7. DATABASE TRANSACTION
+//     // =========================================
+//     let client;
+//     let transactionStarted = false;
+
+//     try {
+//       client = await pool.connect();
+
+//       await client.query("BEGIN");
+//       transactionStarted = true;
+
+//       const createdUsers = [];
+
+//       // =====================================
+//       // PROCESS EACH CSV ROW
+//       // =====================================
+//       for (let i = 0; i < rows.length; i++) {
+//         const row = rows[i];
+//         const rowNumber = i + 2;
+
+//         const firstname = String(
+//           row.firstname || ""
+//         ).trim();
+
+//         const lastname = String(
+//           row.lastname || ""
+//         ).trim();
+
+//         const role = String(
+//           row.role || ""
+//         ).trim().toLowerCase();
+
+//         const teacherLastname = String(
+//           row.teacher_lastname || ""
+//         ).trim();
+
+//         // ===================================
+//         // VALIDATE USER DATA
+//         // ===================================
+//         if (!firstname || !lastname || !role) {
+//           throw new Error(
+//             `Row ${rowNumber}: firstname, lastname, and role are required.`
+//           );
+//         }
+
+//         if (!allowedRoles.includes(role)) {
+//           throw new Error(
+//             `Row ${rowNumber}: invalid role. Only student and teacher are allowed in CSV imports.`
+//           );
+//         }
+
+//         // ===================================
+//         // VALIDATE STUDENT'S TEACHER
+//         // ===================================
+//         let teacherId = null;
+
+//         if (role === "student") {
+//           if (!teacherLastname) {
+//             throw new Error(
+//               `Row ${rowNumber}: teacher_lastname is required for students.`
+//             );
+//           }
+
+//           const teacherResult = await client.query(
+//             `
+//             SELECT
+//               id,
+//               firstname,
+//               lastname,
+//               username
+//             FROM users
+//             WHERE LOWER(TRIM(lastname)) =
+//                   LOWER(TRIM($1))
+//               AND role = 'teacher'
+//             `,
+//             [teacherLastname]
+//           );
+
+//           if (teacherResult.rows.length === 0) {
+//             throw new Error(
+//               `Row ${rowNumber}: teacher "${teacherLastname}" was not found.`
+//             );
+//           }
+
+//           if (teacherResult.rows.length > 1) {
+//             throw new Error(
+//               `Row ${rowNumber}: multiple teachers have the lastname "${teacherLastname}".`
+//             );
+//           }
+
+//           teacherId = teacherResult.rows[0].id;
+//         }
+
+//         // ===================================
+//         // CLEAN FIRSTNAME AND LASTNAME
+//         // ===================================
+//         const cleanFirstName = cleanName(firstname);
+//         const cleanLastName = cleanName(lastname);
+
+//         if (!cleanFirstName || !cleanLastName) {
+//           throw new Error(
+//             `Row ${rowNumber}: invalid firstname or lastname.`
+//           );
+//         }
+
+//         // ===================================
+//         // GENERATE FIRSTNAME INITIALS
+//         // ===================================
+//         const firstNameInitials = firstname
+//           .split(/\s+/)
+//           .filter(Boolean)
+//           .map((name) => {
+//             const cleaned = cleanName(name);
+//             return cleaned.charAt(0).toUpperCase();
+//           })
+//           .join("");
+
+//         // ===================================
+//         // GENERATE UNIQUE USERNAME
+//         // ===================================
+//         let username =
+//           `${cleanLastName}.${cleanFirstName}@jhg`;
+
+//         let counter = 2;
+
+//         while (true) {
+//           const existingUser = await client.query(
+//             `
+//             SELECT id
+//             FROM users
+//             WHERE username = $1
+//             LIMIT 1
+//             `,
+//             [username]
+//           );
+
+//           if (existingUser.rows.length === 0) {
+//             break;
+//           }
+
+//           username =
+//             `${cleanLastName}.${cleanFirstName}${counter}@jhg`;
+
+//           counter++;
+//         }
+
+//         // ===================================
+//         // GENERATE DEFAULT PASSWORD
+//         // ===================================
+//         // Same format as /auth/add-user:
+//         // lastname + firstname initials + !
+
+//         const generatedPassword =
+//           `${cleanLastName}${firstNameInitials}!`;
+
+//         // ===================================
+//         // HASH DEFAULT PASSWORD
+//         // ===================================
+//         const hashedPassword = await bcrypt.hash(
+//           generatedPassword,
+//           12
+//         );
+
+//         // ===================================
+//         // INSERT USER INTO POSTGRESQL
+//         // ===================================
+//         const result = await client.query(
+//           `
+//           INSERT INTO users (
+//             firstname,
+//             lastname,
+//             username,
+//             password,
+//             role,
+//             teacher_id
+//           )
+//           VALUES ($1, $2, $3, $4, $5, $6)
+
+//           RETURNING
+//             id,
+//             firstname,
+//             lastname,
+//             username,
+//             role,
+//             teacher_id
+//           `,
+//           [
+//             firstname,
+//             lastname,
+//             username,
+//             hashedPassword,
+//             role,
+//             teacherId,
+//           ]
+//         );
+
+//         // ===================================
+//         // COLLECT CREATED ACCOUNTS
+//         // ===================================
+//         createdUsers.push({
+//           ...result.rows[0],
+//           temporary_password: generatedPassword,
+//         });
+
+//         console.log("CSV USER CREATED:", {
+//           id: result.rows[0].id,
+//           role: result.rows[0].role,
+//         });
+//       }
+
+//       // =====================================
+//       // 8. COMMIT DATABASE TRANSACTION
+//       // =====================================
+//       await client.query("COMMIT");
+//       transactionStarted = false;
+
+//       return res.status(201).json({
+//         success: true,
+//         message:
+//           `${createdUsers.length} users imported successfully.`,
+//         total_created: createdUsers.length,
+//         users: createdUsers,
+//       });
+
+//     } catch (err) {
+//       if (client && transactionStarted) {
+//         try {
+//           await client.query("ROLLBACK");
+//         } catch (rollbackErr) {
+//           console.error(
+//             "CSV ROLLBACK ERROR:",
+//             rollbackErr.message
+//           );
+//         }
+//       }
+
+//       console.error("CSV IMPORT ERROR:", err.message);
+
+//       const isRowError =
+//         /^Row \d+:/.test(err.message);
+
+//       return res.status(isRowError ? 400 : 500).json({
+//         success: false,
+//         message: isRowError
+//           ? err.message
+//           : "CSV import failed",
+//       });
+
+//     } finally {
+//       if (client) {
+//         client.release();
+//       }
+//     }
+//   }
+// );
+
 router.post(
   "/add-users-csv",
 
-  // 1. JWT AUTHENTICATION
   requireAuth,
 
-  // 2. ADMIN AUTHORIZATION
+  // ADMIN AUTHORIZATION
   (req, res, next) => {
     if (req.user?.role !== "admin") {
       return res.status(403).json({
@@ -1198,24 +1570,18 @@ router.post(
     next();
   },
 
-  // 3. CSV FILE UPLOAD
   uploadCsvFile,
 
-  // =========================================
-  // 4. CSV PROCESSING
-  // =========================================
   async (req, res) => {
+    // ======================================
+    // VALIDATE UPLOADED FILE
+    // ======================================
     if (!req.file?.buffer) {
       return res.status(400).json({
         success: false,
         message: "CSV file is required",
       });
     }
-
-    console.log(
-      "CSV FILE RECEIVED:",
-      req.file.originalname
-    );
 
     let rows;
     let detectedHeaders = [];
@@ -1236,23 +1602,22 @@ router.post(
         trim: true,
         bom: true,
       });
-
-    } catch (err) {
+    } catch (error) {
       return res.status(400).json({
         success: false,
-        message:
-          "Invalid CSV format. Please check the file and try again.",
+        message: "Invalid CSV format.",
       });
     }
 
-    // =========================================
-    // 5. VALIDATE CSV HEADERS
-    // =========================================
+    // ======================================
+    // VALIDATE CSV HEADERS
+    // ======================================
     const requiredColumns = [
       "firstname",
       "lastname",
       "role",
       "teacher_lastname",
+      "section_name",
     ];
 
     const missingColumns = requiredColumns.filter(
@@ -1263,7 +1628,7 @@ router.post(
       return res.status(400).json({
         success: false,
         message:
-          `Invalid CSV format. Missing column(s): ${missingColumns.join(", ")}`,
+          `Missing CSV column(s): ${missingColumns.join(", ")}`,
         required_columns: requiredColumns,
       });
     }
@@ -1282,10 +1647,9 @@ router.post(
       });
     }
 
-    // =========================================
-    // 6. ALLOWED CSV ROLES
-    // =========================================
-    // Admin accounts are created individually.
+    // ======================================
+    // HELPERS
+    // ======================================
     const allowedRoles = ["student", "teacher"];
 
     const cleanName = (value) =>
@@ -1296,9 +1660,6 @@ router.post(
         .toLowerCase()
         .replace(/[^a-z]/g, "");
 
-    // =========================================
-    // 7. DATABASE TRANSACTION
-    // =========================================
     let client;
     let transactionStarted = false;
 
@@ -1310,9 +1671,9 @@ router.post(
 
       const createdUsers = [];
 
-      // =====================================
+      // ====================================
       // PROCESS EACH CSV ROW
-      // =====================================
+      // ====================================
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         const rowNumber = i + 2;
@@ -1333,9 +1694,13 @@ router.post(
           row.teacher_lastname || ""
         ).trim();
 
-        // ===================================
-        // VALIDATE USER DATA
-        // ===================================
+        const sectionName = String(
+          row.section_name || ""
+        ).trim();
+
+        // ==================================
+        // VALIDATE BASIC DATA
+        // ==================================
         if (!firstname || !lastname || !role) {
           throw new Error(
             `Row ${rowNumber}: firstname, lastname, and role are required.`
@@ -1344,15 +1709,16 @@ router.post(
 
         if (!allowedRoles.includes(role)) {
           throw new Error(
-            `Row ${rowNumber}: invalid role. Only student and teacher are allowed in CSV imports.`
+            `Row ${rowNumber}: only student and teacher roles are allowed.`
           );
         }
 
-        // ===================================
-        // VALIDATE STUDENT'S TEACHER
-        // ===================================
         let teacherId = null;
+        let sectionId = null;
 
+        // ==================================
+        // STUDENT TEACHER AND SECTION
+        // ==================================
         if (role === "student") {
           if (!teacherLastname) {
             throw new Error(
@@ -1360,6 +1726,13 @@ router.post(
             );
           }
 
+          if (!sectionName) {
+            throw new Error(
+              `Row ${rowNumber}: section_name is required for students.`
+            );
+          }
+
+          // Find teacher by lastname
           const teacherResult = await client.query(
             `
             SELECT
@@ -1388,11 +1761,50 @@ router.post(
           }
 
           teacherId = teacherResult.rows[0].id;
+
+          // ==================================
+          // VERIFY SECTION BELONGS TO TEACHER
+          // ==================================
+          const sectionResult = await client.query(
+            `
+            SELECT
+              id,
+              section_name,
+              teacher_id
+            FROM sections
+            WHERE LOWER(TRIM(section_name)) =
+                  LOWER(TRIM($1))
+              AND teacher_id = $2
+            FOR SHARE
+            `,
+            [sectionName, teacherId]
+          );
+
+          if (sectionResult.rows.length === 0) {
+            throw new Error(
+              `Row ${rowNumber}: section "${sectionName}" was not found under teacher "${teacherLastname}".`
+            );
+          }
+
+          if (sectionResult.rows.length > 1) {
+            throw new Error(
+              `Row ${rowNumber}: multiple matching sections were found.`
+            );
+          }
+
+          sectionId = sectionResult.rows[0].id;
+        } else {
+          // Teachers must not have student assignments
+          if (teacherLastname || sectionName) {
+            throw new Error(
+              `Row ${rowNumber}: teacher rows must have empty teacher_lastname and section_name fields.`
+            );
+          }
         }
 
-        // ===================================
-        // CLEAN FIRSTNAME AND LASTNAME
-        // ===================================
+        // ==================================
+        // CLEAN USER NAMES
+        // ==================================
         const cleanFirstName = cleanName(firstname);
         const cleanLastName = cleanName(lastname);
 
@@ -1402,9 +1814,9 @@ router.post(
           );
         }
 
-        // ===================================
+        // ==================================
         // GENERATE FIRSTNAME INITIALS
-        // ===================================
+        // ==================================
         const firstNameInitials = firstname
           .split(/\s+/)
           .filter(Boolean)
@@ -1414,9 +1826,9 @@ router.post(
           })
           .join("");
 
-        // ===================================
+        // ==================================
         // GENERATE UNIQUE USERNAME
-        // ===================================
+        // ==================================
         let username =
           `${cleanLastName}.${cleanFirstName}@jhg`;
 
@@ -1443,26 +1855,23 @@ router.post(
           counter++;
         }
 
-        // ===================================
+        // ==================================
         // GENERATE DEFAULT PASSWORD
-        // ===================================
-        // Same format as /auth/add-user:
-        // lastname + firstname initials + !
-
+        // ==================================
         const generatedPassword =
           `${cleanLastName}${firstNameInitials}!`;
 
-        // ===================================
-        // HASH DEFAULT PASSWORD
-        // ===================================
+        // ==================================
+        // HASH PASSWORD
+        // ==================================
         const hashedPassword = await bcrypt.hash(
           generatedPassword,
           12
         );
 
-        // ===================================
-        // INSERT USER INTO POSTGRESQL
-        // ===================================
+        // ==================================
+        // INSERT USER WITH SECTION
+        // ==================================
         const result = await client.query(
           `
           INSERT INTO users (
@@ -1471,17 +1880,21 @@ router.post(
             username,
             password,
             role,
-            teacher_id
+            teacher_id,
+            section_id
           )
-          VALUES ($1, $2, $3, $4, $5, $6)
-
+          VALUES (
+            $1, $2, $3, $4,
+            $5, $6, $7
+          )
           RETURNING
             id,
             firstname,
             lastname,
             username,
             role,
-            teacher_id
+            teacher_id,
+            section_id
           `,
           [
             firstname,
@@ -1490,12 +1903,13 @@ router.post(
             hashedPassword,
             role,
             teacherId,
+            sectionId,
           ]
         );
 
-        // ===================================
+        // ==================================
         // COLLECT CREATED ACCOUNTS
-        // ===================================
+        // ==================================
         createdUsers.push({
           ...result.rows[0],
           temporary_password: generatedPassword,
@@ -1504,14 +1918,17 @@ router.post(
         console.log("CSV USER CREATED:", {
           id: result.rows[0].id,
           role: result.rows[0].role,
+          section_id: result.rows[0].section_id,
         });
       }
 
-      // =====================================
-      // 8. COMMIT DATABASE TRANSACTION
-      // =====================================
+      // ====================================
+      // COMMIT TRANSACTION
+      // ====================================
       await client.query("COMMIT");
       transactionStarted = false;
+
+      res.set("Cache-Control", "no-store");
 
       return res.status(201).json({
         success: true,
@@ -1521,27 +1938,31 @@ router.post(
         users: createdUsers,
       });
 
-    } catch (err) {
+    } catch (error) {
       if (client && transactionStarted) {
         try {
           await client.query("ROLLBACK");
-        } catch (rollbackErr) {
+        } catch (rollbackError) {
           console.error(
             "CSV ROLLBACK ERROR:",
-            rollbackErr.message
+            rollbackError.message
           );
         }
       }
 
-      console.error("CSV IMPORT ERROR:", err.message);
+      console.error(
+        "CSV IMPORT ERROR:",
+        error.message
+      );
 
-      const isRowError =
-        /^Row \d+:/.test(err.message);
+      const isRowError = /^Row \d+:/.test(
+        error.message
+      );
 
       return res.status(isRowError ? 400 : 500).json({
         success: false,
         message: isRowError
-          ? err.message
+          ? error.message
           : "CSV import failed",
       });
 
