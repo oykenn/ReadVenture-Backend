@@ -40,23 +40,171 @@ router.get("/student-count", requireAuth, async (req, res) => {
   }
 });
 
+// router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
+//   try {
+//     const teacherId = req.user.id;
+//     const readingPath = decodeURIComponent(
+//       req.params.readingPath || "All"
+//     ).trim();
+
+//     const search = String(req.query.search || "").trim();
+//     const values = [teacherId];
+
+//     let pathFilter = "";
+//     let searchFilter = "";
+
+//     if (readingPath.toLowerCase() !== "all") {
+//       values.push(readingPath.toLowerCase());
+//       pathFilter = `AND LOWER(TRIM(s.reading_path)) = $${values.length}`;
+//     }
+
+//     if (search) {
+//       values.push(`%${search.toLowerCase()}%`);
+
+//       searchFilter = `
+//         AND (
+//           LOWER(s.firstname) LIKE $${values.length}
+//           OR LOWER(s.lastname) LIKE $${values.length}
+//           OR LOWER(CONCAT(s.firstname, ' ', s.lastname)) LIKE $${values.length}
+//         )
+//       `;
+//     }
+
+//     const result = await pool.query(
+//       `
+//       SELECT
+//         s.id,
+//         s.firstname,
+//         s.lastname,
+//         COALESCE(s.reading_path, 'Not Set') AS reading_path,
+
+//         COALESCE(
+//           ROUND(
+//             COUNT(DISTINCT CASE
+//               WHEN up.activity_type IN ('synonyms', 'antonyms', 'definitions')
+//                 AND up.score >= 3
+//                 AND up.level BETWEEN 1 AND 15
+//               THEN (up.activity_type, up.level)
+//             END)::numeric / 45 * 100,
+//             2
+//           ),
+//           0
+//         ) AS vocabulary_percent,
+
+//         COALESCE(
+//           ROUND(
+//             COUNT(DISTINCT CASE
+//               WHEN up.activity_type IN ('words', 'phrases', 'sentences')
+//                 AND up.score >= 3
+//                 AND up.level BETWEEN 1 AND 15
+//               THEN (up.activity_type, up.level)
+//             END)::numeric / 45 * 100,
+//             2
+//           ),
+//           0
+//         ) AS speaking_percent,
+
+//         COALESCE(
+//           ROUND(
+//             COUNT(DISTINCT CASE
+//               WHEN up.activity_type IN (
+//                 'poems', 'short_stories', 'shortstories', 'texts'
+//               )
+//                 AND up.score >= 3
+//                 AND up.level BETWEEN 1 AND 15
+//               THEN (
+//                 CASE
+//                   WHEN up.activity_type IN ('short_stories', 'shortstories')
+//                   THEN 'short_stories'
+//                   ELSE up.activity_type
+//                 END,
+//                 up.level
+//               )
+//             END)::numeric / 45 * 100,
+//             2
+//           ),
+//           0
+//         ) AS comprehension_percent
+
+//       FROM users s
+//       LEFT JOIN user_progress up ON up.user_id = s.id
+
+//       WHERE s.teacher_id = $1
+//         AND s.role = 'student'
+//         ${pathFilter}
+//         ${searchFilter}
+
+//       GROUP BY
+//         s.id, s.firstname, s.lastname, s.reading_path
+
+//       ORDER BY s.lastname ASC, s.firstname ASC
+//       `,
+//       values
+//     );
+
+//     return res.status(200).json({
+//       success: true,
+//       selected_reading_path: readingPath,
+//       search,
+//       students: result.rows
+//     });
+
+//   } catch (error) {
+//     console.error("GET STUDENTS PROGRESS ERROR:", error);
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Server error while getting students progress."
+//     });
+//   }
+// });
+
+// ==========================================
+// GET TEACHER STUDENTS PROGRESS
+// WITH READING PATH, SEARCH, AND SECTION FILTER
+// ==========================================
+
 router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
   try {
     const teacherId = req.user.id;
+
     const readingPath = decodeURIComponent(
       req.params.readingPath || "All"
     ).trim();
 
+    // ======================================
+    // QUERY PARAMETERS
+    // ======================================
+
     const search = String(req.query.search || "").trim();
+
+    const rawSectionId = String(
+      req.query.section_id || ""
+    ).trim();
+
     const values = [teacherId];
 
     let pathFilter = "";
     let searchFilter = "";
+    let sectionFilter = "";
+
+    let selectedSectionId = null;
+
+    // ======================================
+    // READING PATH FILTER
+    // ======================================
 
     if (readingPath.toLowerCase() !== "all") {
       values.push(readingPath.toLowerCase());
-      pathFilter = `AND LOWER(TRIM(s.reading_path)) = $${values.length}`;
+
+      pathFilter = `
+        AND LOWER(TRIM(s.reading_path)) = $${values.length}
+      `;
     }
+
+    // ======================================
+    // SEARCH STUDENTS
+    // ======================================
 
     if (search) {
       values.push(`%${search.toLowerCase()}%`);
@@ -65,10 +213,44 @@ router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
         AND (
           LOWER(s.firstname) LIKE $${values.length}
           OR LOWER(s.lastname) LIKE $${values.length}
-          OR LOWER(CONCAT(s.firstname, ' ', s.lastname)) LIKE $${values.length}
+          OR LOWER(CONCAT(s.firstname, ' ', s.lastname))
+            LIKE $${values.length}
         )
       `;
     }
+
+    // ======================================
+    // SECTION FILTER (OPTIONAL)
+    // ======================================
+
+    if (
+      rawSectionId &&
+      rawSectionId.toLowerCase() !== "all"
+    ) {
+      const sectionId = Number(rawSectionId);
+
+      if (
+        !Number.isSafeInteger(sectionId) ||
+        sectionId <= 0
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid section ID.",
+        });
+      }
+
+      selectedSectionId = sectionId;
+
+      values.push(sectionId);
+
+      sectionFilter = `
+        AND s.section_id = $${values.length}
+      `;
+    }
+
+    // ======================================
+    // GET STUDENTS WITH PROGRESS
+    // ======================================
 
     const result = await pool.query(
       `
@@ -76,45 +258,89 @@ router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
         s.id,
         s.firstname,
         s.lastname,
-        COALESCE(s.reading_path, 'Not Set') AS reading_path,
+
+        COALESCE(
+          s.reading_path,
+          'Not Set'
+        ) AS reading_path,
+
+        -- SECTION INFORMATION
+        s.section_id,
+
+        COALESCE(
+          sec.section_name,
+          'Unassigned'
+        ) AS section_name,
+
+        -- ==================================
+        -- VOCABULARY PROGRESS
+        -- ==================================
 
         COALESCE(
           ROUND(
             COUNT(DISTINCT CASE
-              WHEN up.activity_type IN ('synonyms', 'antonyms', 'definitions')
+              WHEN up.activity_type IN (
+                'synonyms',
+                'antonyms',
+                'definitions'
+              )
                 AND up.score >= 3
                 AND up.level BETWEEN 1 AND 15
-              THEN (up.activity_type, up.level)
+              THEN (
+                up.activity_type,
+                up.level
+              )
             END)::numeric / 45 * 100,
             2
           ),
           0
         ) AS vocabulary_percent,
 
+        -- ==================================
+        -- SPEAKING PROGRESS
+        -- ==================================
+
         COALESCE(
           ROUND(
             COUNT(DISTINCT CASE
-              WHEN up.activity_type IN ('words', 'phrases', 'sentences')
+              WHEN up.activity_type IN (
+                'words',
+                'phrases',
+                'sentences'
+              )
                 AND up.score >= 3
                 AND up.level BETWEEN 1 AND 15
-              THEN (up.activity_type, up.level)
+              THEN (
+                up.activity_type,
+                up.level
+              )
             END)::numeric / 45 * 100,
             2
           ),
           0
         ) AS speaking_percent,
 
+        -- ==================================
+        -- READING COMPREHENSION PROGRESS
+        -- ==================================
+
         COALESCE(
           ROUND(
             COUNT(DISTINCT CASE
               WHEN up.activity_type IN (
-                'poems', 'short_stories', 'shortstories', 'texts'
+                'poems',
+                'short_stories',
+                'shortstories',
+                'texts'
               )
                 AND up.score >= 3
                 AND up.level BETWEEN 1 AND 15
               THEN (
                 CASE
-                  WHEN up.activity_type IN ('short_stories', 'shortstories')
+                  WHEN up.activity_type IN (
+                    'short_stories',
+                    'shortstories'
+                  )
                   THEN 'short_stories'
                   ELSE up.activity_type
                 END,
@@ -127,38 +353,67 @@ router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
         ) AS comprehension_percent
 
       FROM users s
-      LEFT JOIN user_progress up ON up.user_id = s.id
+
+      -- Existing progress records
+      LEFT JOIN user_progress up
+        ON up.user_id = s.id
+
+      -- Student's assigned section
+      LEFT JOIN sections sec
+        ON sec.id = s.section_id
+        AND sec.teacher_id = s.teacher_id
 
       WHERE s.teacher_id = $1
         AND s.role = 'student'
+
         ${pathFilter}
         ${searchFilter}
+        ${sectionFilter}
 
       GROUP BY
-        s.id, s.firstname, s.lastname, s.reading_path
+        s.id,
+        s.firstname,
+        s.lastname,
+        s.reading_path,
+        s.section_id,
+        sec.section_name
 
-      ORDER BY s.lastname ASC, s.firstname ASC
+      ORDER BY
+        s.lastname ASC,
+        s.firstname ASC
       `,
       values
     );
 
+    // ======================================
+    // RETURN STUDENT PROGRESS
+    // ======================================
+
     return res.status(200).json({
       success: true,
+
       selected_reading_path: readingPath,
+
       search,
-      students: result.rows
+
+      selected_section_id: selectedSectionId,
+
+      students: result.rows,
     });
 
   } catch (error) {
-    console.error("GET STUDENTS PROGRESS ERROR:", error);
+    console.error(
+      "GET STUDENTS PROGRESS ERROR:",
+      error
+    );
 
     return res.status(500).json({
       success: false,
-      message: "Server error while getting students progress."
+      message:
+        "Server error while getting students progress.",
     });
   }
 });
-
 
 router.get("/profile", requireAuth, async (req, res) => {
   try {
@@ -965,11 +1220,9 @@ const headerBottomY = 34 + headerHeight + 16;
   }
 );
 
-// ==========================================
-// GET LOGGED-IN TEACHER'S SECTIONS
+
 // GET /teacher/my-sections
 // ==========================================
-
 router.get("/my-sections", requireAuth, async (req, res) => {
   try {
     // Only teachers can access this endpoint
