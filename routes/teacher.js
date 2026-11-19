@@ -224,8 +224,9 @@ router.get("/students-progress/:readingPath", requireAuth, async (req, res) => {
     // ======================================
 
     if (
-      rawSectionId &&
-      rawSectionId.toLowerCase() !== "all"
+        rawSectionId &&
+        rawSectionId !== "0" &&
+        rawSectionId.toLowerCase() !== "all"
     ) {
       const sectionId = Number(rawSectionId);
 
